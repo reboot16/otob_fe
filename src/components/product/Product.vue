@@ -4,8 +4,8 @@
     <header id="header">
       <div class="container">
         <h4>Product
-          <b-button v-on:click="onCreate">Tambah</b-button>
-          <b-button v-on:click="onUpload">Upload</b-button>
+          <b-button v-on:click="onButtonCreate">Tambah</b-button>
+          <b-button v-on:click="onButtonUpload">Upload</b-button>
         </h4>
       </div>
     </header>
@@ -13,10 +13,14 @@
 
       <div class="container">
         <div>
-          <b-form v-if="showFormUpload">
-            <b-form-file v-model="file" plain id="file" ref="file" v-on:change="handleFileUpload()"></b-form-file><br>
-            <b-button type="submit" variant="primary" v-on:click="submitFile()">Upload</b-button>
-          </b-form>
+          <!-- <b-form-file v-model="file" ref="file-input" class="mb-2"></b-form-file>
+          <p class="mt-2">Selected file: <b>{{ file ? file.name : '' }}</b></p> -->
+           
+          <div v-if="showFormUpload">
+            <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
+            <button v-on:click="submitForm()">Upload</button>
+          </div>
+          
         </div>
 
         <div class="pull-right multiple-action " >
@@ -138,7 +142,8 @@
         filterByName: [],
         sortByName: false,
 
-        text : ''
+        text : '',
+        file: '' 
       }
     },
     computed: {
@@ -158,18 +163,36 @@
       }
     },
     methods: {
+      submitForm(){
+        let formData = new FormData();
+        formData.append('file', this.file);
+
+        axios
+        .post(API + '/import',
+          formData,
+          {'headers': {'Content-Type': 'multipart/form-data'}}
+        )
+        .then(response => {
+          alert('Success upload data')
+        }).catch((e) => {
+          console.error(e)
+        }); 
+      },
+      onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+      },
       onSearch: function(){
         axios
           .get(API + '/getByName/' + this.text)
           .then(response => (this.list = response.data.data))
       },
-      onUpload: function(){
+      onButtonUpload: function(){
         if(this.showFormUpload === true)
           this.showFormUpload = false;
         else
           this.showFormUpload = true;
       },
-      onCreate: function(){
+      onButtonCreate: function(){
         if(this.showForm === true)
           this.showForm = false;
         else
