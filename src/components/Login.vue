@@ -1,0 +1,95 @@
+<template>
+<div id="Login">
+  <h2><b>Login</b></h2>
+  <b-row id="loginContainer">
+    <b-col sm="3"></b-col>
+    <b-col sm="2">
+      <img src="@/assets/blibli.jpeg" style="height: 180px; border-radius:2em">
+    </b-col>
+    <b-col sm="4" id="formLogin">
+      
+      <b-form @submit="onLogin">
+        <b-row id="usern_row">
+          <b-col sm="3">
+            <label >Username</label>
+          </b-col>
+          <b-col sm="9">
+            <b-form-input v-model="form.username" placeholder="Enter your username" required></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row id="pass_row">
+          <b-col sm="3">
+            <label >Password</label>
+          </b-col>
+          <b-col sm="9">
+            <b-form-input v-model="form.password" placeholder="Enter your password" required type="password"></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row id="button_row" class="text-right">
+            <b-col sm="12">
+              <b-button type="submit" variant="primary">Login</b-button>
+            </b-col>
+        </b-row>
+      </b-form>
+    </b-col>
+  </b-row>
+</div>
+</template>
+
+<script>
+import axios from 'axios'
+const API = 'http://localhost:9000/api'
+
+export default {
+  name: 'Login',
+  data () {
+    return {
+      form: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    onLogin (evt) {
+      evt.preventDefault()
+      axios
+        .post(API + '/user/login',
+          JSON.stringify(this.form),
+          {'headers': {'Content-Type': 'application/json'}}
+        )
+        .then(response => {
+          alert('Login success')
+        }).catch((e) => {
+          console.error(e)
+        })
+    }
+  }
+}
+</script>
+
+<style scoped>
+h2{
+  color: white;
+}
+#user_row, #pass_row, #button_row{ 
+  margin-top: 1em;
+}
+#Login{
+  background:rgb(2, 122, 200);
+  height: 575px;
+  padding-top: 10em
+}
+#loginContainer{
+  align-items: center;
+}
+#formLogin{
+  background-color: white;
+  padding: 1em;
+  align-content: center;
+}
+#button_row{
+  padding-left: 1.5em;
+
+}
+</style>

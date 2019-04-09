@@ -13,14 +13,10 @@
 
       <div class="container">
         <div>
-          <!-- <b-form-file v-model="file" ref="file-input" class="mb-2"></b-form-file>
-          <p class="mt-2">Selected file: <b>{{ file ? file.name : '' }}</b></p> -->
-           
           <div v-if="showFormUpload">
             <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
             <button v-on:click="submitForm()">Upload</button>
           </div>
-          
         </div>
 
         <div class="pull-right multiple-action " >
@@ -81,7 +77,7 @@
 
         <div>
 
-          <table class="table table-bordered table-hover table-striped table-xs-block">
+          <table class="table table-bordered table-hover table-striped table-xs-block" >
             <thead>
             <tr class="bg-primary">
               <th width="50">#</th>
@@ -110,7 +106,6 @@
             </tr>
             </tbody>
           </table>
-
         </div>
       </div>
     </main>
