@@ -3,14 +3,17 @@
   <div>
     <header id="header">
       <div class="container">
-        <h4>Product
-          <b-button v-on:click="onButtonCreate">Tambah</b-button>
-          <b-button v-on:click="onButtonUpload">Upload</b-button>
-        </h4>
+        <p>Product 
+          <b-dropdown variant="" size="sm" no-caret>
+            <template slot="button-content"> ⚙️ </template>
+            <b-dropdown-item v-on:click="onButtonCreate">Tambah</b-dropdown-item>
+            <b-dropdown-item v-on:click="onButtonUpload">Upload</b-dropdown-item>
+          </b-dropdown>  
+        </p>
       </div>
     </header>
-    <main id="main">
 
+    <main id="main">
       <div class="container">
         <div>
           <div v-if="showFormUpload">
@@ -22,7 +25,8 @@
         <div class="pull-right multiple-action " >
           <div class="search">
             <div class="input-group">
-              <input type="search" class="form-control" placeholder="Search by Name" v-model="text">
+              <input type="search" class="form-control" placeholder="Search by Name" 
+                v-model="textSearch" v-on:keyup.enter="onSearch">
               <b-button type="button" variant="primary" @click="onSearch">Search</b-button>
             </div>
           </div>
@@ -30,41 +34,31 @@
 
         <b-form @submit="onSubmit" class="col-sm-6 col-sm-offset-3" v-if="showForm">
           <b-row>
-            <b-col sm="2">
-              <label >Nama Produk :</label>
-            </b-col>
+            <b-col sm="2"><label >Nama Produk :</label></b-col>
             <b-col sm="10">
               <b-form-input v-model="form.name" placeholder="Masukkan nama produk" required></b-form-input>
             </b-col>
           </b-row><br>
           <b-row>
-            <b-col sm="2">
-              <label >Deskripsi :</label>
-            </b-col>
+            <b-col sm="2"><label >Deskripsi :</label></b-col>
             <b-col sm="10">
               <b-form-textarea v-model="form.description" rows="3" placeholder="Deskripsi produk" required></b-form-textarea>
             </b-col>
           </b-row><br>
           <b-row>
-            <b-col sm="2">
-              <label >Harga Awal :</label>
-            </b-col>
+            <b-col sm="2"><label >Harga Awal :</label></b-col>
             <b-col sm="10">
               <b-form-input v-model="form.listPrice" placeholder="0" type="number" required></b-form-input>
             </b-col>
           </b-row><br>
           <b-row>
-            <b-col sm="2">
-              <label >Harga Akhir :</label>
-            </b-col>
+            <b-col sm="2"><label >Harga Akhir :</label></b-col>
             <b-col sm="10">
               <b-form-input v-model="form.offerPrice" placeholder="0" type="number" required></b-form-input>
             </b-col>
           </b-row><br>
           <b-row>
-            <b-col sm="2">
-              <label >Stok :</label>
-            </b-col>
+            <b-col sm="2"><label >Stok :</label></b-col>
             <b-col sm="10">
               <b-form-input v-model="form.stock" placeholder="0" type="number" required></b-form-input>
             </b-col>
@@ -79,7 +73,7 @@
 
           <table class="table table-bordered table-hover table-striped table-xs-block" >
             <thead>
-            <tr class="bg-primary">
+            <tr class="bg-info" style="color:white">
               <th width="50">#</th>
               <th v-on:click="sortByName = !sortByName">Name
                 <i class="pull-right glyphicon" :class="[sortByName?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']">**</i>
@@ -88,11 +82,11 @@
               <th>List Price</th>
               <th>Offer Price</th>
               <th>Stock</th>
-              <th width="105" class="text-center">Action</th>
+              <th width="75" class="text-center">Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr v-for="(product, index) in listView"  :key="product.productId">
+            <tbody style="background-color:white">
+            <tr v-for="(product, index) in listView"  :key="product.productId" >
               <td align="center"><b>{{ index+1 }}</b></td>
               <td v-text="product.name"></td>
               <td v-text="product.description"></td>
@@ -100,8 +94,11 @@
               <td v-text="product.offerPrice"></td>
               <td v-text="product.stock"></td>
               <td>
-                <button type="button" class="btn btn-warning" v-on:click="onUpdate(product, index)">E</button>
-                <button type="button" class="btn btn-danger" v-on:click="onDelete(product, index)">D</button>
+                <b-dropdown variant="outline-dark" size="sm">
+                  <template slot="button-content"> &#128295; </template>
+                  <b-dropdown-item v-on:click="onUpdate(product, index)">Edit</b-dropdown-item>
+                  <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
+                </b-dropdown>
               </td>
             </tr>
             </tbody>
@@ -109,14 +106,13 @@
         </div>
       </div>
     </main>
-
-
+     
   </div>
 </template>
 
 <script>
   import axios from 'axios'
-  const API = 'http://localhost:9000/api/product'
+  const API = 'http://localhost:9000/api/products'
 
   export default {
     name: 'Test',
@@ -137,8 +133,9 @@
         filterByName: [],
         sortByName: false,
 
-        text : '',
-        file: '' 
+        textSearch : '',
+        file: '',
+        modalAddData: false
       }
     },
     computed: {
@@ -177,9 +174,15 @@
         this.file = this.$refs.file.files[0];
       },
       onSearch: function(){
-        axios
-          .get(API + '/getByName/' + this.text)
+        if(this.textSearch == ''){
+          axios
+          .get(API + '/getAll')
           .then(response => (this.list = response.data.data))
+        }else{
+          axios
+          .get(API + '/getByName/' + this.textSearch)
+          .then(response => (this.list = response.data.data))
+        }
       },
       onButtonUpload: function(){
         if(this.showFormUpload === true)

@@ -1,6 +1,6 @@
 <template>
 <div id="Login">
-  <h2><b>Login</b></h2>
+  <h2><b>Offline to Online Bazaar</b></h2><br>
   <b-row id="loginContainer">
     <b-col sm="3"></b-col>
     <b-col sm="2">
@@ -54,7 +54,7 @@ export default {
     onLogin (evt) {
       evt.preventDefault()
       axios
-        .post(API + '/user/login',
+        .post(API + '/login',
           JSON.stringify(this.form),
           {'headers': {'Content-Type': 'application/json'}}
         )
@@ -70,13 +70,13 @@ export default {
 
 <style scoped>
 h2{
-  color: white;
+  color: rgb(2, 122, 200);
 }
 #user_row, #pass_row, #button_row{ 
   margin-top: 1em;
 }
 #Login{
-  background:rgb(2, 122, 200);
+  background: #d2d6de;
   height: 575px;
   padding-top: 10em
 }
