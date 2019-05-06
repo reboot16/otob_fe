@@ -1,6 +1,6 @@
 <template>
 <div id="Login">
-  <h2><b>Offline to Online Bazaar</b></h2><br>
+  <h2 style="text-align:center"><b>Offline to Online Bazaar</b></h2><br>
   <b-row id="loginContainer">
     <b-col sm="3"></b-col>
     <b-col sm="2">
@@ -78,7 +78,7 @@ h2{
 #Login{
   background: #d2d6de;
   height: 575px;
-  padding-top: 10em
+  padding-top: 5em
 }
 #loginContainer{
   align-items: center;

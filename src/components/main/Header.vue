@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Product</b-nav-item>
+          <b-nav-item><router-link to="/product">Product</router-link></b-nav-item>
           <b-nav-item href="#">Order</b-nav-item>
           <b-nav-item href="#"><font-awesome-icon name="user"></font-awesome-icon>User</b-nav-item> 
         </b-navbar-nav>
@@ -15,8 +15,7 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto"> 
           <b-nav-item><router-link to="/register">Register</router-link></b-nav-item> 
-          <!-- <b-nav-item><router-link to="/login">Login</router-link></b-nav-item>          -->
-          <b-nav-item v-if="!activeUser" @click="doLogin()">Login</b-nav-item>         
+          <b-nav-item v-if="!activeUser"><router-link to="/login">Login</router-link></b-nav-item> 
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
