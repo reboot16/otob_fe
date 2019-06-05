@@ -1,11 +1,10 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Router from 'vue-router' 
 import Product from '@/components/product/Product'
 import ProductCustomer from '@/components/product/ProductCustomer'
 import Register from '@/components/main/Register'
-import Login from '@/components/main/Login'
-import Header from '@/components/main/Header'
+import form from '@/components/product/form/Form'
+import Login from '@/components/main/Login' 
 
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -16,12 +15,7 @@ Vue.use(BootstrapVue)
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
+  routes: [ 
     {
       path: '/product',
       name: 'Product',
@@ -33,7 +27,7 @@ export default new Router({
       component: ProductCustomer
     },
     {
-      path: '/login',
+      path: '/',
       name: 'Login',
       component: Login
     },
@@ -41,11 +35,10 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
-    },
+    }, 
     {
-      path: '/Header',
-      name: 'Header',
-      component: Header, 
-    },
+      path: '/form',
+      component: form
+    }
   ]
 })

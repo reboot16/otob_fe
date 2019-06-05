@@ -1,20 +1,33 @@
-<template>
-
-  <div>
-    <header id="header">
-      <div class="container">
-        <p>Product 
-          <b-dropdown variant="" size="sm" no-caret>
-            <template slot="button-content"> ⚙️ </template>
-            <b-dropdown-item v-on:click="onButtonCreate">Tambah</b-dropdown-item>
-            <b-dropdown-item v-on:click="onButtonUpload">Upload</b-dropdown-item>
-          </b-dropdown>  
-        </p>
+<template> 
+  <div> 
+    <div class="container">
+      <div class="row" >
+        <div class="col-sm-6">
+          <h3>Product</h3> 
+        </div>
+        <div class="col-sm-6" style="text-align:right;">
+            <b-dropdown right variant="success" size="sm" >
+              <template slot="button-content"> Tambah </template>
+              <b-dropdown-item v-on:click="showAddModal">Tambah Data Baru</b-dropdown-item>
+              <b-dropdown-item v-on:click="onButtonUpload">Upload Data Excel</b-dropdown-item>
+              <b-dropdown-item v-on:click="onButtonUpload">Download Template Excel</b-dropdown-item>
+            </b-dropdown>  
+        </div>
       </div>
-    </header>
+    </div>
 
     <main id="main">
-      <div class="container">
+      <div class="container"> 
+      <b-modal ref="modal-form-add" hide-footer class="text-center">
+        <template slot="modal-title" class="text-center">
+          <i class="fa fa-times"></i> Product
+        </template>
+        <div class="d-block text-center">
+          <productForm/>
+        </div> 
+      </b-modal>
+
+
         <div>
           <div v-if="showFormUpload">
             <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
@@ -27,11 +40,13 @@
             <div class="input-group">
               <input type="search" class="form-control" placeholder="Search by Name" 
                 v-model="textSearch" v-on:keyup.enter="onSearch">
-              <b-button type="button" variant="primary" @click="onSearch">Search</b-button>
+              <div class="input-group-append">
+                <b-button type="button" variant="success" @click="onSearch" style="margin-left:0;padding:0.25em">Search</b-button>
+              </div>
             </div>
           </div>
         </div> <br>
-
+ 
         <b-form @submit="onSubmit" class="col-sm-6 col-sm-offset-3" v-if="showForm">
           <b-row>
             <b-col sm="2"><label >Nama Produk :</label></b-col>
@@ -94,7 +109,7 @@
               <td v-text="product.offerPrice"></td>
               <td v-text="product.stock"></td>
               <td>
-                <b-dropdown variant="outline-dark" size="sm">
+                <b-dropdown variant="outline-info" size="sm" right>
                   <template slot="button-content"> &#128295; </template>
                   <b-dropdown-item v-on:click="onUpdate(product, index)">Edit</b-dropdown-item>
                   <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
@@ -110,174 +125,11 @@
   </div>
 </template>
 
-<script>
-  import axios from 'axios'
-  const API = 'http://localhost:9000/api/products'
-
-  export default {
-    name: 'Test',
-    data() {
-      return {
-        list: '',
-        form: {
-          name: '',
-          description: '',
-          listPrice: '',
-          offerPrice: '',
-          stock: ''
-        },
-        submitButton: true,
-        showForm : false,
-        showFormUpload : false,
-
-        filterByName: [],
-        sortByName: false,
-
-        textSearch : '',
-        file: '',
-        modalAddData: false
-      }
-    },
-    computed: {
-      listView: function () {
-        if (this.filterByName.length > 0 ) {
-          return this.list.filter(function (item) {
-            return this.filterByName.indexOf(item.name) > -1 ;
-          });
-        } else {
-          return this.list;
-        }
-      },
-    },
-    watch: {
-      sortByName: function (val) {
-        this.listView = this.sortBy(this.listView, 'name', val);
-      }
-    },
-    methods: {
-      submitForm(){
-        let formData = new FormData();
-        formData.append('file', this.file);
-
-        axios
-        .post(API + '/import',
-          formData,
-          {'headers': {'Content-Type': 'multipart/form-data'}}
-        )
-        .then(response => {
-          alert('Success upload data')
-        }).catch((e) => {
-          console.error(e)
-        }); 
-      },
-      onChangeFileUpload(){
-        this.file = this.$refs.file.files[0];
-      },
-      onSearch: function(){
-        if(this.textSearch == ''){
-          axios
-          .get(API + '/getAll')
-          .then(response => (this.list = response.data.data))
-        }else{
-          axios
-          .get(API + '/getByName/' + this.textSearch)
-          .then(response => (this.list = response.data.data))
-        }
-      },
-      onButtonUpload: function(){
-        if(this.showFormUpload === true)
-          this.showFormUpload = false;
-        else
-          this.showFormUpload = true;
-      },
-      onButtonCreate: function(){
-        if(this.showForm === true)
-          this.showForm = false;
-        else
-          this.showForm = true;
-      },
-      onSubmit: function(){
-        //on create data
-        if(this.submitButton === true){
-          axios
-            .post(API + '/create',
-              JSON.stringify(this.form),
-              {'headers': {'Content-Type': 'application/json'}}
-            )
-            .then(response => {
-              alert('Success add data')
-            }).catch((e) => {
-            console.error(e)
-          });
-
-          this.list.push(this.form);
-          this.showForm = false;
-        }
-        //on update data
-        else{
-          axios
-            .put(API + '/updateById/' + this.form.productId,
-              JSON.stringify(this.form),
-              {'headers': {'Content-Type': 'application/json'}}
-            )
-            .then(response => {
-              alert('Success update data')
-            }).catch((e) => {
-            console.error(e)
-          });
-
-          this.list[index] = item;
-          this.showForm = false;
-        }
-
-      },
-      onDelete: function (product, index) {
-        const confirmDelete = confirm("Are you sure to delete this?");
-
-        if (confirmDelete) {
-          axios
-            .delete(API + '/deleteById/' + product.productId)
-            .then(response => {
-              alert('Success delete data')
-            }).catch(e => {
-            console.log(e)
-          });
-
-          this.list.splice(index, 1);
-        }
-      },
-      sortBy: function (array, param, reverse) {
-        var filterA, filterB;
-        return array.sort(function (a, b) {
-          switch (param) {
-            case 'name':
-              filterA = a.name;
-              filterB = b.name;
-              break;
-          }
-          if (reverse) {
-            return (filterA > filterB) ? 1 : -1;
-          } else {
-            return (filterA < filterB) ? 1 : -1;
-          }
-        });
-      },
-      onUpdate: function (product, index) {
-        this.submitButton = false;
-        this.form = product;
-        this.showForm = true;
-      },
-
-    },
-    mounted () {
-      axios
-        .get(API + '/getAll')
-        .then(response => (this.list = response.data.data))
-    }
-  }
-</script>
+<script src="./product.js"></script>
 
 <style scoped>
 
-
+h5 {
+  text-align: center;
+}
 </style>

@@ -2,13 +2,14 @@
   <div id="app">  
   
     <!-- HEADER -->
-    <component :is="Header"></component>
-    
+    <!-- <component :is="Header"></component> -->
+    <Header/>
     <!-- CONTENT -->
     <router-view :activeUser="activeUser"/>
 
     <!-- FOOTER -->
-    <component :is="Footer"></component>
+    <!-- <component :is="Footer"></component> -->
+    <Footer/>
 
   </div>
 </template>  
@@ -18,12 +19,14 @@
  import Footer from '@/components/main/Footer'
 
  export default {
-    name: 'app',   
+    name: 'app',
+    components:{
+      Header,
+      Footer
+    } ,  
     data: () => {  
       return {  
-        activeUser: null,
-        Header,
-        Footer
+        activeUser: null
       }  
     }, 
   }  

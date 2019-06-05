@@ -1,6 +1,6 @@
 <template>
-  <div id="Header">
-    <b-navbar toggleable="lg" type="" variant="dark">
+  <div id="Header" style="padding-bottom:5em">
+    <b-navbar toggleable="lg" type="" variant="dark" class="fixed-top" >
       <b-navbar-brand href="#">OTOB</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
