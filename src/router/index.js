@@ -1,6 +1,9 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Router from 'vue-router' 
+import Product from '@/components/product/Product'
+import ProductCustomer from '@/components/product/ProductCustomer'
+import Register from '@/components/main/Register' 
+import Login from '@/components/main/Login' 
 
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -11,11 +14,26 @@ Vue.use(BootstrapVue)
 Vue.use(Router)
 
 export default new Router({
-  routes: [
+  routes: [ 
+    {
+      path: '/product',
+      name: 'Product',
+      component: Product
+    },
+    {
+      path: '/product_cust',
+      name: 'ProductCustomer',
+      component: ProductCustomer
+    },
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },  
   ]
 })

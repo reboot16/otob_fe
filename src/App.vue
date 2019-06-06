@@ -1,23 +1,44 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+<template>  
+  <div id="app">  
+  
+    <!-- HEADER -->
+    <!-- <component :is="Header"></component> -->
+    <Header/>
+    <!-- CONTENT -->
+    <router-view :activeUser="activeUser"/>
+
+    <!-- FOOTER -->
+    <!-- <component :is="Footer"></component> -->
+    <Footer/>
+
   </div>
-</template>
+</template>  
 
-<script>
-export default {
-  name: 'App'
-}
-</script>
+<script>   
+ import Header from '@/components/main/Header'
+ import Footer from '@/components/main/Footer'
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+ export default {
+    name: 'app',
+    components:{
+      Header,
+      Footer
+    } ,  
+    data: () => {  
+      return {  
+        activeUser: null
+      }  
+    }, 
+  }  
+</script>  
+  
+<style>  
+  [v-cloak] { display: none; }  
+  #container, #app{
+    background: #d2d6de;
+  }
+  a{
+    color: white
+  }
 </style>
+
