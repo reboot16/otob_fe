@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router' 
 import Product from '@/components/product/Product'
 import ProductCustomer from '@/components/product/ProductCustomer'
-import Register from '@/components/main/Register'
-import form from '@/components/product/form/Form'
+import Register from '@/components/main/Register' 
 import Login from '@/components/main/Login' 
 
 import BootstrapVue from 'bootstrap-vue'
@@ -35,10 +34,6 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
-    }, 
-    {
-      path: '/form',
-      component: form
-    }
+    },  
   ]
 })

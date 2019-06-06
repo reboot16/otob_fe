@@ -1,5 +1,5 @@
 <template>
-    <b-form id="form_product" style="text-align:left" >
+    <b-form @submit="onSubmit" id="form_product" style="text-align:left" >
         <b-row>
             <b-col sm="3"><label>Nama Produk</label></b-col>
             <b-col sm="9">
@@ -37,35 +37,9 @@
     </b-form>
 </template>
 
-
 <style>
-button{
-  margin-left: 1em;
-} 
+  button{
+    margin-left: 1em;
+  } 
 </style>
-
-
-<script>
-    
-const API = 'http://localhost:9000/api/products'
-
-export default {
-  name: 'form_product', 
-  data() {
-    return {
-      form: {
-        name: '',
-        description: '',
-        listPrice: '',
-        offerPrice: '',
-        stock: ''
-      }, 
-    }
-  },
-  methods: {
-     
-  },
  
-}
-</script>
-

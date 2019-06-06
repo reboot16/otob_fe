@@ -1,16 +1,14 @@
-import axios from 'axios'
-import productForm from '@/components/product/form/Form'
+import formProduct from '@/components/product/Form'
 
 const API = 'http://localhost:9000/api/products'
 
 export default {
   name: 'Product',
   components:{
-    productForm
+    formProduct
   } , 
   data() {
-    return {
-      list: '',
+    return { 
       form: {
         name: '',
         description: '',
@@ -20,7 +18,7 @@ export default {
       },
       submitButton: true,
       showForm : false,
-      showFormUpload : false,
+      showFormUpload : true,
 
       filterByName: [],
       sortByName: false,
@@ -30,67 +28,38 @@ export default {
       modalAddData: false
     }
   },
-  mounted () {
-    // axios
-    //   .get(API + '/getAll')
-    //   .then(response => (this.list = response.data.data))
-    this.$store.dispatch('GET_PRODUCT') 
-    // this.list =  axios.get(API + '/getAll')
-    // this.list = this.$store.dispatch('GET_PRODUCT')
+  mounted () { 
+    this.$store.dispatch('getProducts')  
+    // this.$refs['modal-add'].show() 
+    this.$refs['modal-add'].hide()
   },
   computed: {
-    listView: function () {
-      // if (this.filterByName.length > 0 ) {
-      //   return this.list.filter(function (item) {
-      //     return this.filterByName.indexOf(item.name) > -1 ;
-      //   });
-      // } else {
-      //   return this.list;
-      // }
-      // return this.list
+    listProduct: function () { 
       return this.$store.getters.PRODUCTS
-    }, 
-    // listView : function() {
-    //   this.$store.getters.PRODUCTS
-    // }
+    },  
   },
   watch: {
     sortByName: function (val) {
-      this.listView = this.sortBy(this.listView, 'name', val);
+      this.listProduct = this.sortBy(this.listProduct, 'name', val);
     }
   },
   methods: {
-    showAddModal() {
-      this.$refs['modal-form-add'].show()
+    showModal(modalName) {
+      this.$refs[modalName].show()
+    },
+    hideModal() {
+      this.$refs['modal-add'].hide()
     },
     submitForm(){
       let formData = new FormData();
-      formData.append('file', this.file);
-
-      axios
-      .post(API + '/import',
-        formData,
-        {'headers': {'Content-Type': 'multipart/form-data'}}
-      )
-      .then(response => {
-        alert('Success upload data')
-      }).catch((e) => {
-        console.error(e)
-      }); 
+      formData.append('file', this.file); 
+      this.$store.dispatch('uploadProduct', formData)   
     },
     onChangeFileUpload(){
       this.file = this.$refs.file.files[0];
     },
-    onSearch: function(){
-      if(this.textSearch == ''){
-        axios
-        .get(API + '/getAll')
-        .then(response => (this.list = response.data.data))
-      }else{
-        axios
-        .get(API + '/getByName/' + this.textSearch)
-        .then(response => (this.list = response.data.data))
-      }
+    onSearch: function(){ 
+      this.$store.dispatch('searchProduct', this.textSearch)   
     },
     onButtonUpload: function(){
       if(this.showFormUpload === true)
@@ -107,52 +76,30 @@ export default {
     onSubmit: function(){
       //on create data
       if(this.submitButton === true){
-        axios
-          .post(API + '/create',
-            JSON.stringify(this.form),
-            {'headers': {'Content-Type': 'application/json'}}
-          )
-          .then(response => {
-            alert('Success add data')
-          }).catch((e) => {
-          console.error(e)
-        });
-
-        this.list.push(this.form);
-        this.showForm = false;
+        this.$store.dispatch('addProduct', this.form)
+        hideModal()
       }
       //on update data
       else{
-        axios
-          .put(API + '/updateById/' + this.form.productId,
-            JSON.stringify(this.form),
-            {'headers': {'Content-Type': 'application/json'}}
-          )
-          .then(response => {
-            alert('Success update data')
-          }).catch((e) => {
-          console.error(e)
-        });
-
-        this.list[index] = item;
-        this.showForm = false;
+        this.$store.dispatch('updateProduct', this.form)
+        hideModal()
       }
-
     },
     onDelete: function (product, index) {
       const confirmDelete = confirm("Are you sure to delete this?");
 
       if (confirmDelete) {
-        axios
-          .delete(API + '/deleteById/' + product.productId)
-          .then(response => {
-            alert('Success delete data')
-          }).catch(e => {
-          console.log(e)
-        });
-
-        this.list.splice(index, 1);
+        product.index = index
+        this.$store.dispatch('deleteProduct', product) 
       }
+    },
+    onReset: function (){
+      this.form = '';
+    },
+    onUpdate: function (product, index) {
+      this.submitButton = false;
+      this.form = product;
+      this.showForm = true;
     },
     sortBy: function (array, param, reverse) {
       var filterA, filterB;
@@ -169,13 +116,7 @@ export default {
           return (filterA < filterB) ? 1 : -1;
         }
       });
-    },
-    onUpdate: function (product, index) {
-      this.submitButton = false;
-      this.form = product;
-      this.showForm = true;
-    },
-
+    }, 
   },
   
 }
