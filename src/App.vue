@@ -36,6 +36,7 @@
   [v-cloak] { display: none; }  
   #container, #app{
     background: #d2d6de;
+    min-height: 575px;
   }
   a{
     color: white

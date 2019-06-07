@@ -9,7 +9,7 @@
             <b-dropdown right variant="success" size="sm" >
               <template slot="button-content"> Tambah </template>
               <b-dropdown-item v-on:click="showModal('modal-add')">Tambah Data Baru</b-dropdown-item>
-              <b-dropdown-item v-on:click="onButtonUpload">Upload Data Excel</b-dropdown-item>
+              <b-dropdown-item v-on:click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
               <b-dropdown-item v-on:click="onButtonUpload">Download Template Excel</b-dropdown-item>
             </b-dropdown>  
         </div>
@@ -18,14 +18,6 @@
 
     <main id="main">
       <div class="container"> 
- 
-
-        <div>
-          <div v-if="showFormUpload">
-            <input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"/>
-            <button v-on:click="submitForm()">Upload</button>
-          </div>
-        </div>
 
         <div class="pull-right multiple-action " >
           <div class="search">
@@ -38,54 +30,16 @@
             </div>
           </div>
         </div> <br>
- 
-        <b-form @submit="onSubmit"  v-if="showForm">
-          <b-row>
-            <b-col sm="3"><label >Nama Produk :</label></b-col>
-            <b-col sm="9">
-              <b-form-input v-model="form.name" placeholder="Masukkan nama produk" required></b-form-input>
-            </b-col>
-          </b-row><br>
-          <b-row>
-            <b-col sm="3"><label >Deskripsi :</label></b-col>
-            <b-col sm="9">
-              <b-form-textarea v-model="form.description" rows="3" placeholder="Deskripsi produk" required></b-form-textarea>
-            </b-col>
-          </b-row><br>
-          <b-row>
-            <b-col sm="3"><label >Harga Awal :</label></b-col>
-            <b-col sm="9">
-              <b-form-input v-model="form.listPrice" placeholder="0" type="number" required></b-form-input>
-            </b-col>
-          </b-row><br>
-          <b-row>
-            <b-col sm="3"><label >Harga Akhir :</label></b-col>
-            <b-col sm="9">
-              <b-form-input v-model="form.offerPrice" placeholder="0" type="number" required></b-form-input>
-            </b-col>
-          </b-row><br>
-          <b-row>
-            <b-col sm="3"><label >Stok :</label></b-col>
-            <b-col sm="9">
-              <b-form-input v-model="form.stock" placeholder="0" type="number" required></b-form-input>
-            </b-col>
-          </b-row><br>
-          <b-row>
-            <b-button type="submit" variant="primary">{{submitButton ? 'Submit' : 'Update'}}</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
-          </b-row>
-        </b-form>
 
-        <div>
-
+        <div> 
           <table class="table table-bordered table-hover table-striped table-xs-block" >
             <thead>
-            <tr class="bg-info" style="color:white">
+            <tr style="color:white; background-color:#0096D9">
               <th width="50">#</th>
               <th v-on:click="sortByName = !sortByName">Name
                 <i class="pull-right glyphicon" :class="[sortByName?'glyphicon-sort-by-alphabet-alt':'glyphicon-sort-by-alphabet']">**</i>
               </th>
-              <th>Description</th>
+              <th>Description<i class="fa fa-times"></i></th>
               <th>List Price</th>
               <th>Offer Price</th>
               <th>Stock</th>
@@ -101,7 +55,7 @@
               <td v-text="product.offerPrice"></td>
               <td v-text="product.stock"></td>
               <td>
-                <b-dropdown variant="outline-info" size="sm" right>
+                <b-dropdown variant="outline-primary" size="sm" right>
                   <template slot="button-content"> &#128295; </template>
                   <b-dropdown-item v-on:click="onUpdate(product, index)">Edit</b-dropdown-item>
                   <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
@@ -114,7 +68,7 @@
       </div>
     </main>
      
-    <b-modal ref="modal-add" id="modal-add" hide-footer >
+    <b-modal ref="modal-add" hide-footer v-if="showModalForm">
       <template slot="modal-title">
         <div style="text-align:center; margin-left:150px">
           <img src="@/assets/blibli.jpeg"><br>
@@ -153,27 +107,39 @@
               <b-form-input v-model="form.stock" placeholder="0" type="number" required></b-form-input>
               </b-col>
           </b-row><br>
-          <div id="r_button"> 
-              <b-button type="button" variant="success" style="width:100%" @click="onReset">
-                Reset
-              </b-button>
-              <!-- <b-button type="submit" variant="success" style="width:100%">
+          <div id="r_button">  
+              <b-button type="submit" variant="success" style="width:100%">
                 {{submitButton ? 'Tambah' : 'Ubah'}} Product
-              </b-button> -->
-              <div class="" style="text-align:left">
-                  Upload banyak data? <b-link href="#" type="reset">Upload Disini</b-link>
-              </div>  
+              </b-button> 
           </div>
         </b-form>
       </div> 
     </b-modal>
 
+    <b-modal ref="modal-upload" hide-footer v-if="showModalForm">
+      <template slot="modal-title">
+        <div style="text-align:center; margin-left:150px">
+          <img src="@/assets/blibli.jpeg"><br>
+          Upload Data Product
+        </div>
+      </template> 
+      <div class="d-block text-center">
+        <b-form @submit="onUpload" id="form_product" style="text-align:left" >  
+          <b-row style="padding:0 1em 0 1em"> 
+              <b-form-file v-model="file" v-on:change="onChangeFileUpload()" required></b-form-file>
+          </b-row><br> 
+          <div id="r_button">  
+              <b-button type="submit" variant="success" style="width:100%">
+                Upload File
+              </b-button> 
+          </div>
+        </b-form>
+      </div> 
+    </b-modal>
 
-
+ 
   </div> 
 </template>
-
-<script src="./product.js"></script>
 
 <style scoped>
 h5 {
@@ -195,3 +161,5 @@ button{
   margin-left:0;
 }
 </style>
+
+<script src="./product.js"></script>
