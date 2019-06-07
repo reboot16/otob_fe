@@ -16,22 +16,19 @@ export default {
         offerPrice: '',
         stock: ''
       },
+
       submitButton: true,
-      showForm : false,
-      showFormUpload : true,
+      showModalForm : true, 
 
       filterByName: [],
       sortByName: false,
 
       textSearch : '',
-      file: '',
-      modalAddData: false
+      file: '', 
     }
   },
   mounted () { 
-    this.$store.dispatch('getProducts')  
-    // this.$refs['modal-add'].show() 
-    this.$refs['modal-add'].hide()
+    this.$store.dispatch('getProducts')   
   },
   computed: {
     listProduct: function () { 
@@ -44,46 +41,37 @@ export default {
     }
   },
   methods: {
-    showModal(modalName) {
+    showModal: function(modalName) {
+      this.showModalForm = true
       this.$refs[modalName].show()
     },
-    hideModal() {
-      this.$refs['modal-add'].hide()
-    },
-    submitForm(){
+    hideModal: function(modalName) { 
+      this.$refs[modalName].hide()
+    }, 
+    onUpload: function(event){
       let formData = new FormData();
       formData.append('file', this.file); 
-      this.$store.dispatch('uploadProduct', formData)   
+
+      this.$store.dispatch('uploadProduct', formData)
+      this.showModalForm = false      
     },
-    onChangeFileUpload(){
+    onChangeFileUpload: function(){
       this.file = this.$refs.file.files[0];
     },
     onSearch: function(){ 
       this.$store.dispatch('searchProduct', this.textSearch)   
-    },
-    onButtonUpload: function(){
-      if(this.showFormUpload === true)
-        this.showFormUpload = false;
-      else
-        this.showFormUpload = true;
-    },
-    onButtonCreate: function(){
-      if(this.showForm === true)
-        this.showForm = false;
-      else
-        this.showForm = true;
-    },
+    }, 
     onSubmit: function(){
       //on create data
       if(this.submitButton === true){
-        this.$store.dispatch('addProduct', this.form)
-        hideModal()
+        this.$store.dispatch('addProduct', this.form) 
+        this.showModalForm = false 
       }
       //on update data
       else{
-        this.$store.dispatch('updateProduct', this.form)
-        hideModal()
-      }
+        this.$store.dispatch('updateProduct', this.form) 
+        this.showModalForm = false 
+      } 
     },
     onDelete: function (product, index) {
       const confirmDelete = confirm("Are you sure to delete this?");
@@ -93,14 +81,11 @@ export default {
         this.$store.dispatch('deleteProduct', product) 
       }
     },
-    onReset: function (){
-      this.form = '';
-    },
     onUpdate: function (product, index) {
-      this.submitButton = false;
-      this.form = product;
-      this.showForm = true;
-    },
+      this.$refs['modal-add'].show()
+      this.submitButton = false
+      this.form = product 
+    }, 
     sortBy: function (array, param, reverse) {
       var filterA, filterB;
       return array.sort(function (a, b) {

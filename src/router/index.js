@@ -8,10 +8,14 @@ import Login from '@/components/main/Login'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+ 
+import Vuetify from 'vuetify'
 
 Vue.use(BootstrapVue)
-
 Vue.use(Router)
+Vue.use(Vuetify, {
+  iconfont: 'fa' // 'md' || 'mdi' || 'fa' || 'fa4'
+})
 
 export default new Router({
   routes: [ 

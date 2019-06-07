@@ -1,5 +1,5 @@
 <template>
-  <div id="footer">
+  <div id="footer" style="padding-top:3em">
     <div class="fixed-bottom">
       <p style="margin:0.25em">Offline to Online Bazaar : Abdi ~ Alex ~ Nani</p>
     </div> 
