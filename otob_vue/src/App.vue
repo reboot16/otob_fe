@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="header">
-      <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
+      <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white;">
         <b-navbar-brand href="#"><img src="@/assets/blibli.jpeg"><b>OTOB</b></b-navbar-brand>
 
         <b-collapse id="nav-collapse" is-nav>
@@ -9,7 +9,11 @@
             <b-nav-item><router-link to="/user">User</router-link></b-nav-item> 
             <b-nav-item><router-link to="/product">Product</router-link></b-nav-item>
             <b-nav-item><router-link to="/product_cust">Product_</router-link></b-nav-item>
-            <b-nav-item><router-link to="/order">Order</router-link></b-nav-item>
+            <b-nav-item-dropdown>
+              <template slot="button-content">Order</template>
+              <router-link :to="{name: 'order-approvement'}" tag="b-dropdown-item">Approvement</router-link>
+              <router-link :to="{name: 'orders'}" tag="b-dropdown-item">View All Orders</router-link>
+            </b-nav-item-dropdown>
             <b-nav-item><router-link to="/cart">Cart</router-link></b-nav-item> 
           </b-navbar-nav>
 
@@ -70,7 +74,6 @@ img{
   color:white;
   text-align: center;
 }
-
 #content{
   background-color: #f5f5f5;
   margin-top: 3em;
