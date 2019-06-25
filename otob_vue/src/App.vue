@@ -2,7 +2,7 @@
   <div id="app">
     <div id="header">
       <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
-        <b-navbar-brand href="#"><img src="@/assets/blibli.jpeg"><b>OTOB</b></b-navbar-brand>
+        <b-navbar-brand href="#"><img src="@/assets/blibli.jpeg"><b>Blibli Bazaar</b></b-navbar-brand>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
@@ -27,7 +27,7 @@
 
     <div id="footer" style="padding-top:3em">
       <div class="fixed-bottom">
-        <p style="margin:0.5em">Offline to Online Bazaar : Abdi ~ Alex ~ Nani</p>
+        <p style="margin:0.5em">Offline to Online Bazaar</p>
       </div> 
     </div>
   </div>
@@ -72,9 +72,18 @@ img{
 }
 
 #content{
-  background-color: #f5f5f5;
+  background-color: #e2e2e2;
   margin-top: 3em;
   padding-top: 2em;
-  min-height: 550px;
+  min-height: 700px;
 }
+
+#content .btn-primary{
+  background-color:#0096D9;
+}
+
+#content{
+
+}
+
 </style>

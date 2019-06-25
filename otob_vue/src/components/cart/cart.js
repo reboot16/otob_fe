@@ -1,3 +1,7 @@
+'use strict';
+
+let sessionstorage = require('session-storage');
+
 export default {
   name: 'Cart', 
   data() {
@@ -11,39 +15,59 @@ export default {
       total: ''
     }
   },
-  mounted () { 
+  mounted () {
     this.$store.dispatch('getCart', this.email)
+    this.$store.dispatch('getProducts')
+
+    this.setStockSession()
   },
   computed: {
-    listProduct: function () { 
+    listItemCart: function () {
       return this.$store.getters.CARTS
-    },  
+    },
   },
   watch: {
-    
+
   },
   methods: {
+    setStockSession: function () {
+      let products = this.$store.getters.PRODUCTS
+
+      products.map(function(product, index) {
+        sessionStorage.setItem(product.name, product.stock);
+      });
+
+      alert(sessionstorage.getItem(""))
+    },
+    decDisable(product) {
+      if (product.qty == 1) {
+        return true
+      } else {
+        return false
+      }
+    },
+    incDisable(product) {
+      // alert(sessionstorage.getItem(product.productName))
+
+      // if (product.qty == stock) {
+      //   return true
+      // } else {
+      //   return false
+      // }
+    },
+    decrement: function(product, index) {
+      product.qty--
+      product.email = this.email
+      product.index = index
+
+      this.$store.dispatch('updateItemCart', product)
+    },
     increment: function(product, index) {
       product.qty++
       product.email = this.email
       product.index = index
-      var stock = this.$store.dispatch('getItemStock', product.productId) 
-      alert(stock)
 
-      // this.$store.dispatch('updateItemCart', product) 
-      // alert(product.email + ' - ' + product.productId + ' - ' + product.qty)
-    },
-    decrement: function(product, index) {
-      if(product.qty == 1){
-        alert('Minimal qty = 1')
-      }else{
-        product.qty--
-        product.email = this.email
-        product.index = index
-  
-        this.$store.dispatch('updateItemCart', product) 
-      }
-      // alert(product.email + ' - ' + product.productId + ' - ' + product.qty)
+      this.$store.dispatch('updateItemCart', product)
     },
     onDelete: function (product, index) {
       const confirmDelete = confirm("Are you sure to remove from cart?");

@@ -3,12 +3,12 @@ const API = 'http://localhost:9000/api/products'
 
 export default {
   state: {
-    products: [], 
+    products: [],
   },
   getters : {
     PRODUCTS  : state => {
       return state.products;
-    }
+    },
   },
   mutations: { 
     SET_PRODUCT : (state, payload) => {
@@ -121,17 +121,5 @@ export default {
           console.error(e)
         }); 
     },
-    getItemStock  ({commit}, productId) {
-      Axios
-        .get(API + '/getById/' + productId) 
-        .then(response => {
-          return response.data.data.stock
-        })
-        .catch((e) => {
-          console.error(e)
-          alert(e) 
-        }); 
-    },
-      
   }  
 }

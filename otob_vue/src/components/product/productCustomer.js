@@ -47,10 +47,27 @@ export default {
       }
     },
     decrement: function () {
+      let btn = document.getElementById("btnDec")
+      btn.disabled = true
+      // alert(btn.disabled)
       if(this.quantity === 1) {
         alert('Pembelian minimal 1')
       } else {
         this.quantity-- 
+      }
+    },
+
+    isDisable(product) {
+      if (product.stock == 1) {
+        // for (let x in listProduct) {
+        //   if (listProduct[x].name === basket.name && listProduct[x].size === basket.size) {
+        //     return true
+        //   }
+        // }
+        return true
+
+      } else {
+        return false
       }
     },
     onSearch: function(){ 

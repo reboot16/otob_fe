@@ -23,15 +23,15 @@
         </tr>
         </thead>
         <tbody style="background-color:white">
-        <tr v-for="(product, index) in listProduct" :key="index" >
+        <tr v-for="(product, index) in listItemCart" :key="index" >
             <td align="center"><b>{{ index+1 }}</b></td>
             <td v-text="product.productName"></td>
             <td v-text="product.productPrice"></td>
             <td> 
               <div class="quantity-toggle">
-                <button @click="decrement(product, index)" id="btn">&mdash;</button>
+                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
                 <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" id="btn">&#xff0b;</button>
+                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
               </div>
             </td>
             <td>
@@ -74,10 +74,10 @@ tr td a{
     text-align: center;
     padding: 0.1em;
 }
-.quantity-toggle #btn {
+.quantity-toggle button {
     border: 2px solid #ddd;
     padding: .25em .5em .25em .5em;
-    background: #f5f5f5; 
+    /*background: #f5f5f5; */
     font-size: 0.75em;
     cursor: pointer;
 } 

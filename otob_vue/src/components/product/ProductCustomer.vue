@@ -37,11 +37,11 @@
               <td v-text="product.listPrice"></td>
               <td v-text="product.offerPrice"></td>
               <td v-text="product.stock"></td>
-              <td> 
+              <td>
                 <div class="quantity-toggle">
-                  <button @click="decrement()" id="btn">&mdash;</button>
+                  <button @click="decrement(product, index)" :disabled="isDisable(product, index)" id="btnDec" class="btn btn-primary">&mdash;</button>
                   <input type="text" :value="quantity" readonly>
-                  <button @click="increment(product.stock)" id="btn">&#xff0b;</button>
+                  <button @click="increment(product.stock)" id="btnInc" class="btn btn-primary">&#xff0b;</button>
                   <button class="btn btn-primary" id="bookBtn" @click="book(product, index)">Book</button>
                 </div>
               </td>
@@ -70,14 +70,14 @@
       padding: 0.1em;
   }
 
-  .quantity-toggle #btn {
+  .quantity-toggle button{
       border: 2px solid #ddd;
-      padding: .25em .5em .25em .5em;
-      background: #f5f5f5;
-      color: #888;
+      padding: 0 .55em 0 .55em;
+      /*background: #f5f5f5;*/
+      /*color: #888;*/
       font-size: 0.75em;
       cursor: pointer;
-  } 
+  }
 
   #bookBtn{
     padding:0 0.5em 0 0.5em;
@@ -87,6 +87,7 @@
   .tabel td{
     font-size: 5px;
   }
+
 </style>
 
 <script src="./productCustomer.js"></script>

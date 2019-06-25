@@ -13,16 +13,6 @@ export default new Router({
       component: () => import('./components/main/Login')
     },
     {
-      path: '/product',
-      name: 'Product',
-      component: () => import('./components/product/Product')
-    },
-    {
-      path: '/product_cust',
-      name: 'ProductCustomer',
-      component: () => import('./components/product/ProductCustomer')
-    }, 
-    {
       path: '/register',
       name: 'Register',
       component: () => import('./components/main/Register')
@@ -30,7 +20,7 @@ export default new Router({
     {
       path: '/user',
       name: 'User',
-      component: () => import('./components/user/User')
+      component: () => import('./components/user/User.vue')
     },
     {
       path: '/thx',
@@ -38,9 +28,19 @@ export default new Router({
       component: () => import('./components/order/Thanks')
     },
     {
+      path: '/product',
+      name: 'Product',
+      component: () => import('./components/product/Product.vue')
+    },
+    {
+      path: '/product_cust',
+      name: 'Product',
+      component: () => import('./components/product/ProductCustomer.vue')
+    },
+    {
       path: '/cart',
       name: 'Cart',
-      component: () => import('./components/cart/Cart')
-    }  
+      component: () => import('./components/cart/Cart.vue')
+    },
   ]
 })
