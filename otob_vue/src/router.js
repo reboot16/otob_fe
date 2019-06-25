@@ -43,7 +43,7 @@ export default new Router({
       component: () => import('./components/cart/Cart.vue')
     },
     {
-      path: '/orders/approvement/',
+      path: '/orders/approvement/:id',
       name: 'order-approvement',
       component: () => import('./components/order/Approvement.vue')
     },

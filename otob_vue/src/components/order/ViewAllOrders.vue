@@ -6,19 +6,136 @@
         <hr style="border: none;height: 4px;background-color: #166184">
 
         <div class="filters">
-            <b-col md="6">
-                <b-col>
-
-                </b-col>
-                Filter By Status:
-            </b-col>
+                <b-form-group label-cols-sm="0" class="mb-0">
+                    <b-container>
+                        <b-row style="margin-bottom: 10px">
+                            <b-col tag="b">Filter By Status:</b-col>
+                            <b-col tag="b">Filter By Date :</b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col>
+                                <b-form-select
+                                        v-model="filters.status"
+                                        style="width: 150px;"
+                                        placeholder="status"
+                                >
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </b-form-select>
+                            </b-col>
+                            <b-col>
+                                <b-input-group>
+                                    <datepicker
+                                            placeholder="Select Order date"
+                                            v-model="filters.orderdate"
+                                            :format="format"
+                                    />
+                                </b-input-group>
+                            </b-col>
+                        </b-row>
+                    </b-container>
+                </b-form-group>
         </div>
+
+        <div class="sec3">
+            <b-card
+                    header="List Order"
+                    header-tag="b"
+                    style="color: white;"
+                    header-bg-variant="primary"
+            >
+                <b-table
+                        :items="orders"
+                        :fields="fields"
+                        :filter="filters.status"
+                        bordered hover stripped responsive
+                        style="text-align: center"
+                >
+                    <template slot="index" slot-scope="data">{{data.index+1}}</template>
+                    <template slot="totalPrice" slot-scope="data">Rp {{data.item.totalPrice}}</template>
+                    <template slot="action" slot-scope="row">
+                            <b-button
+                                    variant="outline-info"
+                                    size="sm"
+                                    v-on:click="goTo(1)"
+                                    class="mr-2">
+                                <icon name="eye" scale="1"></icon> View Details
+                            </b-button>
+                    </template>
+                </b-table>
+            </b-card>
+        </div>
+
     </div>
 </template>
 
 <script>
+    import Datepicker from "vuejs-datepicker/dist/vuejs-datepicker.esm.js";
     export default {
-        name: "ViewAllOrders"
+        name: "ViewAllOrders",
+        components: {Datepicker},
+        data(){
+            return{
+                orders: [],
+                format: "dd MM yyyy",
+                filters:{
+                    status: null,
+                    orderdate: null
+                },
+                fields: [
+                    {
+                        key: 'index',
+                        label: 'No.'
+                    },
+                    {
+                        key: 'orders_number',
+                        label: 'Order Number'
+                    },
+                    {
+                        key: 'user_email',
+                        label: 'Customer'
+                    },
+                    {
+                        key: 'orders_date',
+                        label: 'Order date'
+                    },
+                    {
+                        key: 'total_item',
+                        label: 'Total Items'
+                    },
+                    {
+                        key: 'totalPrice',
+                        label: 'Total Price'
+                    },
+                    {
+                        key: 'order_status',
+                        label: 'Status'
+                    },
+                    {
+                        key: 'action',
+                        label: 'Action'
+                    }
+                ]
+            }
+        },
+        methods:{
+            getAllOrders()
+            {
+                this.orders = this.$store.getters.ORDERS;
+            },
+            goTo(id){
+                try{
+                    this.$router.push({name:'order-approvement', params : { id: id}});
+                }
+                catch (e) {
+                    alert(e);
+                }
+            }
+        },
+        mounted() {
+            this.getAllOrders();
+        }
     }
 </script>
 
@@ -28,5 +145,8 @@
         margin-top: 80px;
         max-width: 80%;
         padding: 10px;
+    }
+    .sec3{
+        margin-top: 30px;
     }
 </style>

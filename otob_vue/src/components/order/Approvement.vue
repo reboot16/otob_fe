@@ -3,7 +3,7 @@
         <div>
             <h2>Status Pesanan</h2>
         </div>
-        <hr>
+        <hr style="border: none;height: 4px;background-color: #166184">
 
         <div id="sec2">
             <b-row>
@@ -46,24 +46,6 @@
                 >
                     <template slot="index" slot-scope="data"> {{data.index + 1}}</template>
                     <template slot="hargaTotal" slot-scope="data">Rp {{data.item.jumlah * data.item.harga}}</template>
-                    <template slot="action" slot-scope="row">
-                        <b-button
-                                variant="outline-success"
-                                size="sm"
-                                class="mr-2"
-                                v-on:click="updateProductStatus('Approve',1)"
-                        >
-                            <icon name="eye" scale="1"></icon> Approve
-                        </b-button>
-                        <b-button
-                                variant="outline-danger"
-                                size="sm"
-                                class="mr-2"
-                                v-on:click="updateProductStatus('Reject',data.item.products_id)"
-                        >
-                            <icon name="trash-alt" scale="1"></icon> Reject
-                        </b-button>
-                    </template>
                 </b-table>
 
 
@@ -106,14 +88,6 @@
                     {
                         key : 'hargaTotal',
                         label : 'Harga Total'
-                    },
-                    {
-                        key : 'status',
-                        label : 'Status'
-                    },
-                    {
-                        key : 'action',
-                        label : 'Action'
                     },
                 ],
                 orders: [],

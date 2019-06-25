@@ -7,28 +7,30 @@ export default{
     orders: [
       {
         orders_id : 1,
+        user_email: 'abdi.aruan@gdn-commerce.com',
         orders_number : '1231232',
-        orders_date: '22 May 2019',
+        orders_date: '20 06 2019',
         products: [
           {
             products_id: 1,
             products_name: 'Tipe-X',
             jumlah: 2,
             harga: 10000,
-            status: '',
           },
           {
             products_id: 2,
             products_name: 'Penghapus',
             jumlah: 1,
             harga: 15000,
-            status: '',
           }
         ],
-        total: 0
+        total_item: 2,
+        totalPrice: 35000,
+        order_status: 'pending'
       },
       {
         orders_id : 2,
+        user_email: 'xxx.yyy@gdn-commerce.com',
         orders_number : '12331213',
         orders_date: '24 April 2019',
         products: [
@@ -37,17 +39,17 @@ export default{
             products_name: 'Pensil 2B',
             jumlah: 1,
             harga: 6000,
-            status: 'Pending',
           },
           {
             products_id: 4,
             products_name: 'Penggaris',
             jumlah: 5,
             harga: 20000,
-            status: 'Pending',
           }
         ],
-        total: 0
+        total_item: 2,
+        totalPrice: 106000,
+        order_status: 'pending'
       }
     ],
   },
