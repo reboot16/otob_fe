@@ -121,5 +121,9 @@ export default {
           console.error(e)
         }); 
     },
+    appendQtyProduct ({commit}, payload) {
+      alert(payload[1].name)
+      commit('SET_PRODUCT', payload)
+    },
   }  
 }

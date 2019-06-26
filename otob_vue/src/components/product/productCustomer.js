@@ -20,7 +20,8 @@ export default {
     }
   },
   mounted () { 
-    this.$store.dispatch('getProducts')   
+    this.$store.dispatch('getProducts')
+    this.appendQty()
   },
   computed: {
     listProduct: function () { 
@@ -31,6 +32,12 @@ export default {
     
   },
   methods: {
+    appendQty: function (index) {
+      this.listProduct.map(function(product, index) {
+        product.qty = 1
+      });
+      this.$store.dispatch('appendQtyProduct', this.listProduct)
+    },
     book: function (product, index) {
       this.bookData = this.$store.getters.USER_LOGIN
       this.bookData.productId = product.productId
@@ -38,6 +45,20 @@ export default {
       this.bookData.index = index
 
       this.$store.dispatch('addToCart', this.bookData) 
+    },
+    decDisable: function (product) {
+      if (product.stock === 0) {
+        return true
+      } else {
+        return false
+      }
+    },
+    incDisable: function (product) {
+      if (product.stock === 0) {
+        return true
+      } else {
+        return false
+      }
     },
     increment: function(stock) {
       if(this.quantity === stock){
@@ -47,16 +68,12 @@ export default {
       }
     },
     decrement: function () {
-      let btn = document.getElementById("btnDec")
-      btn.disabled = true
-      // alert(btn.disabled)
       if(this.quantity === 1) {
         alert('Pembelian minimal 1')
       } else {
         this.quantity-- 
       }
     },
-
     isDisable(product) {
       if (product.stock == 1) {
         // for (let x in listProduct) {

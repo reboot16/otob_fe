@@ -1,5 +1,5 @@
 <template>
-<div id="Register">
+<div id="Register" style="text-align: center; padding-top: 7em">
   <img src="@/assets/blibli.jpeg" style="height:100px; border-radius:1em">
 
   <h3 style="color:rgb(2, 122, 200)"><b>Offline to Online Bazaar</b></h3> 
@@ -20,7 +20,7 @@
                     <b-button type="submit" variant="success" style="width:100%">Register</b-button>
                 </b-col>
                 <b-col sm="12" style="font-size:14px; text-align:right">
-                    <router-link to="/login">Login</router-link>
+                    <router-link to="/">Login</router-link>
                 </b-col> 
             </b-row>
           </b-col>

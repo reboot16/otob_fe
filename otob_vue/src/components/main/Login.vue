@@ -1,6 +1,6 @@
 <template>
-<div id="Login">
-  <h2 style="text-align:center"><b>Offline to Online Bazaar</b></h2><br>
+<div id="Login" >
+  <h2 style="text-align:center; margin-top: 5em"><b>Offline to Online Bazaar</b></h2><br>
   <b-row id="loginContainer">
     <b-col sm="3"></b-col>
     <b-col sm="2">

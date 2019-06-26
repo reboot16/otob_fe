@@ -39,9 +39,9 @@
               <td v-text="product.stock"></td>
               <td>
                 <div class="quantity-toggle">
-                  <button @click="decrement(product, index)" :disabled="isDisable(product, index)" id="btnDec" class="btn btn-primary">&mdash;</button>
-                  <input type="text" :value="quantity" readonly>
-                  <button @click="increment(product.stock)" id="btnInc" class="btn btn-primary">&#xff0b;</button>
+                  <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
+                  <input type="text" :value="product.qty" readonly>
+                  <button @click="increment(product.stock)" :disabled="decDisable(product)" class="btn btn-primary">&#xff0b;</button>
                   <button class="btn btn-primary" id="bookBtn" @click="book(product, index)">Book</button>
                 </div>
               </td>
