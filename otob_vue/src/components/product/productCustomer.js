@@ -21,7 +21,6 @@ export default {
   },
   mounted () { 
     this.$store.dispatch('getProducts')
-    this.appendQty()
   },
   computed: {
     listProduct: function () { 
@@ -32,12 +31,6 @@ export default {
     
   },
   methods: {
-    appendQty: function (index) {
-      this.listProduct.map(function(product, index) {
-        product.qty = 1
-      });
-      this.$store.dispatch('appendQtyProduct', this.listProduct)
-    },
     book: function (product, index) {
       this.bookData = this.$store.getters.USER_LOGIN
       this.bookData.productId = product.productId
@@ -47,32 +40,31 @@ export default {
       this.$store.dispatch('addToCart', this.bookData) 
     },
     decDisable: function (product) {
-      if (product.stock === 0) {
+      if (product.stock === 0 || product.qty === 1) {
         return true
       } else {
         return false
       }
     },
     incDisable: function (product) {
+      if (product.stock === 0 || product.stock === product.qty) {
+        return true
+      } else {
+        return false
+      }
+    },
+    bookDisable: function (product) {
       if (product.stock === 0) {
         return true
       } else {
         return false
       }
     },
-    increment: function(stock) {
-      if(this.quantity === stock){
-        alert('Maksimal pembelian adalah ' + stock)
-      }else{
-        this.quantity++
-      }
+    increment: function(product) {
+      product.qty++
     },
-    decrement: function () {
-      if(this.quantity === 1) {
-        alert('Pembelian minimal 1')
-      } else {
-        this.quantity-- 
-      }
+    decrement: function (product) {
+      product.qty--
     },
     isDisable(product) {
       if (product.stock == 1) {

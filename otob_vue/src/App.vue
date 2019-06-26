@@ -82,8 +82,9 @@ img{
   background-color:#0096D9;
 }
 
-#content{
-
-}
+#content button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
 
 </style>

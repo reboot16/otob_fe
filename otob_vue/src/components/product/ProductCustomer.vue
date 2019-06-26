@@ -41,8 +41,8 @@
                 <div class="quantity-toggle">
                   <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
                   <input type="text" :value="product.qty" readonly>
-                  <button @click="increment(product.stock)" :disabled="decDisable(product)" class="btn btn-primary">&#xff0b;</button>
-                  <button class="btn btn-primary" id="bookBtn" @click="book(product, index)">Book</button>
+                  <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
+                  <button @click="book(product, index)" :disabled="bookDisable(product)" class="btn btn-primary" id="bookBtn">Book</button>
                 </div>
               </td>
             </tr>
@@ -81,9 +81,9 @@
 
   #bookBtn{
     padding:0 0.5em 0 0.5em;
-    font-size: 13px;
     margin-left:0.5em;
   }
+
   .tabel td{
     font-size: 5px;
   }
