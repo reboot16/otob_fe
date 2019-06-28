@@ -8,7 +8,7 @@
           <b-navbar-nav>
             <b-nav-item><router-link to="/user">User</router-link></b-nav-item> 
             <b-nav-item><router-link to="/product">Product</router-link></b-nav-item>
-            <b-nav-item><router-link to="/product_cust">Product_</router-link></b-nav-item>
+            <b-nav-item><router-link to="/product_cust">Product</router-link></b-nav-item>
             <b-nav-item><router-link to="/order">Order</router-link></b-nav-item>
             <b-nav-item><router-link to="/cart">Cart</router-link></b-nav-item> 
           </b-navbar-nav>
@@ -83,8 +83,12 @@ img{
 }
 
 #content button:disabled {
-    cursor: not-allowed;
-    pointer-events: all !important;
-  }
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+#content table{
+  font-size: 13px;
+}
 
 </style>

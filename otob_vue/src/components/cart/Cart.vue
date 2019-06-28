@@ -1,48 +1,46 @@
 <template> 
-  <div id="Cart">  
-    <div class="container">  
-      <b-row>
-        <div class="col-sm-3">
-          <b-button to="/product_cust">Back to Product</b-button>
-        </div>
-        <div class="col-sm-6" style="text-align:center">
-          <h3>List Items on Cart</h3>
-        </div>
-        <div class="col-sm-3" style="text-align:right">
-           <b-button @click="onOrder" variant="success">Order Now</b-button>
-        </div>
-      </b-row>
-      <table class="table table-hover table-striped " >
-        <thead>
-        <tr style="color:white; background-color:#0096D9">
-            <th width="50">#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th width="200">Quantity</th> 
-            <th width="100">Action</th>
-        </tr>
-        </thead>
-        <tbody style="background-color:white">
+  <div name="Cart">  
+
+    <div class="row" style="margin-bottom: 1em">
+      <div class="col-sm-6">
+        <h3>My Cart</h3>
+      </div>
+      <div class="col-sm-6" style="text-align:right">
+        <button class="btn btn-success" @click="onOrder" variant="success">Order Now</button>
+      </div>
+    </div>
+
+   
+    <table class="table table-hover table-striped">
+      <thead>
+      <tr style="color:white; background-color:#0096D9">
+          <th width="50">#</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th width="200">Quantity</th> 
+          <th width="100">Action</th>
+      </tr>
+      </thead>
+      <tbody style="background-color:white">
         <tr v-for="(product, index) in listItemCart" :key="index" >
-            <td align="center"><b>{{ index+1 }}</b></td>
-            <td v-text="product.productName"></td>
-            <td v-text="product.productPrice"></td>
-            <td> 
-              <div class="quantity-toggle">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
-                <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
-              </div>
-            </td>
-            <td>
-              <b-link @click="onDelete(product, index)">Delete</b-link>
-            </td>
+          <td align="center"><b>{{ index+1 }}</b></td>
+          <td v-text="product.productName"></td>
+          <td v-text="product.productPrice"></td>
+          <td> 
+            <div class="quantity-toggle">
+              <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
+              <input type="text" :value="product.qty" readonly>
+              <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
+            </div>
+          </td>
+          <td>
+            <b-link @click="onDelete(product, index)">Delete</b-link>
+          </td>
         </tr>
-        </tbody>
-      </table> 
-    </div> 
- 
+      </tbody>
+    </table> 
   </div> 
+ 
 </template>
 
 <style scoped>

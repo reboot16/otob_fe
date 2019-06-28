@@ -1,7 +1,11 @@
 import { userInfo } from "os";
+import cart from '@/components/cart/Cart.vue'
 
 export default {
-  name: 'Product', 
+  name: 'ProductCustomer', 
+  components: {
+    cart
+  },
   data() {
     return { 
       form: {
