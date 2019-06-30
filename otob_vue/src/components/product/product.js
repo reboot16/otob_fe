@@ -1,3 +1,5 @@
+import { mapGetters } from "vuex";
+
 export default {
   name: 'Product',  
   data() {
@@ -26,7 +28,7 @@ export default {
   computed: {
     listProduct: function () { 
       return this.$store.getters.PRODUCTS
-    },  
+    }, 
   },
   watch: {
     sortByName: function (val) {

@@ -1,6 +1,5 @@
 'use strict';
 
-let sessionstorage = require('session-storage');
 let ls = require('local-storage');
 
 export default {

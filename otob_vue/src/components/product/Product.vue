@@ -8,9 +8,9 @@
         <div class="col-sm-6" style="text-align:right;">
             <b-dropdown right variant="success" size="sm" >
               <template slot="button-content"> Tambah </template>
-              <b-dropdown-item v-on:click="showModal('modal-add')">Tambah Data Baru</b-dropdown-item>
-              <b-dropdown-item v-on:click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
-              <b-dropdown-item v-on:click="onButtonUpload">Download Template Excel</b-dropdown-item>
+              <b-dropdown-item @click="showModal('modal-add')">Tambah Data Baru</b-dropdown-item>
+              <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
+              <b-dropdown-item >Download Template Excel</b-dropdown-item>
             </b-dropdown>  
         </div>
       </div>

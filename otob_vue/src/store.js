@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
 
 import login from '@/store/loginStore'
 import user from '@/store/userStore'

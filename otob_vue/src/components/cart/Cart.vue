@@ -1,7 +1,7 @@
 <template> 
   <div name="Cart">  
 
-    <div class="row" style="margin-bottom: 1em">
+    <div class="row" style="margin-bottom: 0.5em">
       <div class="col-sm-6">
         <h3>My Cart</h3>
       </div>
@@ -10,35 +10,36 @@
       </div>
     </div>
 
-   
-    <table class="table table-hover table-striped">
-      <thead>
-      <tr style="color:white; background-color:#0096D9">
-          <th width="50">#</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th width="200">Quantity</th> 
-          <th width="100">Action</th>
-      </tr>
-      </thead>
-      <tbody style="background-color:white">
-        <tr v-for="(product, index) in listItemCart" :key="index" >
-          <td align="center"><b>{{ index+1 }}</b></td>
-          <td v-text="product.productName"></td>
-          <td v-text="product.productPrice"></td>
-          <td> 
-            <div class="quantity-toggle">
-              <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
-              <input type="text" :value="product.qty" readonly>
-              <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
-            </div>
-          </td>
-          <td>
-            <b-link @click="onDelete(product, index)">Delete</b-link>
-          </td>
-        </tr>
-      </tbody>
-    </table> 
+    <div class="tableContainer">
+      <table width="100%" class="table table-hover table-striped scrollTable">
+        <thead class="fixedHeader"  style="background-color:white">
+          <tr class="col-sm-12" style="color:white; background-color:#00b35e">
+            <th class="col-sm-1">#</th>
+            <th class="col-sm-3">Name</th>
+            <th class="col-sm-3">Price</th>
+            <th class="col-sm-3">Quantity</th> 
+            <th class="col-sm-2"> Action</th>
+          </tr>
+        </thead>
+        <tbody class="scrollContentCart" style="background-color:white">
+          <tr class="col-sm-12" v-for="(product, index) in listItemCart" :key="index" >
+            <td class="col-sm-1" align="center"><b>{{ index+1 }}</b></td>
+            <td class="col-sm-3">{{ product.productName }}</td>
+            <td class="col-sm-3">{{ product.productPrice }}</td>
+            <td class="col-sm-3"> 
+              <div class="quantity-toggle">
+                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
+                <input type="text" :value="product.qty" readonly>
+                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
+              </div>
+            </td>
+            <td class="col-sm-2">
+              <b-link @click="onDelete(product, index)">Delete</b-link>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
   </div> 
  
 </template>
@@ -57,13 +58,11 @@ tr td a{
   font-size: 14px;
   color:#0096D9;
 }
-.btn{
-  font-size: 14px;
-  margin-left:0;
-}
+
 .quantity-toggle {
   display: flex;
 }
+
 .quantity-toggle input {
     border: 0;
     border-top: 2px solid #ddd;
@@ -75,7 +74,6 @@ tr td a{
 .quantity-toggle button {
     border: 2px solid #ddd;
     padding: .25em .5em .25em .5em;
-    /*background: #f5f5f5; */
     font-size: 0.75em;
     cursor: pointer;
 } 

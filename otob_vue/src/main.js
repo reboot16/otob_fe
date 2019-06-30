@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import VueSessionStorage from 'session-storage'
-Vue.use(VueSessionStorage)
-
 import VueLocalStorage from 'local-storage'
 Vue.use(VueLocalStorage)
-
 
 import router from './router'
 import store from './store'
