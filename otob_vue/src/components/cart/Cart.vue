@@ -6,14 +6,14 @@
         <h3>My Cart</h3>
       </div>
       <div class="col-sm-6" style="text-align:right">
-        <button class="btn btn-success" @click="onOrder" variant="success">Order Now</button>
+        <button class="btn btn-info" @click="onOrder">Order Now</button>
       </div>
     </div>
 
     <div class="tableContainer">
       <table width="100%" class="table table-hover table-striped scrollTable">
         <thead class="fixedHeader"  style="background-color:white">
-          <tr class="col-sm-12" style="color:white; background-color:#00b35e">
+          <tr class="col-sm-12" style="color:white; background-color: #17a2b8">
             <th class="col-sm-1">#</th>
             <th class="col-sm-3">Name</th>
             <th class="col-sm-3">Price</th>
@@ -28,13 +28,13 @@
             <td class="col-sm-3">{{ product.productPrice }}</td>
             <td class="col-sm-3"> 
               <div class="quantity-toggle">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
+                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-info">&mdash;</button>
                 <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
+                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-info">&#xff0b;</button>
               </div>
             </td>
             <td class="col-sm-2">
-              <b-link @click="onDelete(product, index)">Delete</b-link>
+              <b-link @click="onDelete(product, index)" style="color:red" >Delete</b-link>
             </td>
           </tr>
         </tbody>

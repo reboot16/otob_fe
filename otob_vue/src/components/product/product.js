@@ -1,7 +1,5 @@
-import { mapGetters } from "vuex";
-
 export default {
-  name: 'Product',  
+  name: 'Product',
   data() {
     return { 
       form: {
@@ -19,7 +17,7 @@ export default {
       sortByName: false,
 
       textSearch : '',
-      file: '', 
+      file: '',
     }
   },
   mounted () { 
@@ -36,6 +34,12 @@ export default {
     }
   },
   methods: {
+    isStockAvailable: function(stock) {
+      // if(stock == 0){
+      //   return false;
+      // }
+      return true;
+    },
     showModal: function(modalName) {
       this.showModalForm = true
       this.$refs[modalName].show()

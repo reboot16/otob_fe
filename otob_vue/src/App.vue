@@ -2,7 +2,7 @@
   <div id="app">
     <div id="header">
       <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
-        <div class="container">
+<!--        <div class="container">-->
           <b-navbar-brand href="#"><img src="@/assets/blibli.jpeg"><b>Blibli Bazaar</b></b-navbar-brand>
 
           <b-collapse id="nav-collapse" is-nav>
@@ -21,7 +21,7 @@
               <b-nav-item><router-link to="#">Logout</router-link></b-nav-item>
             </b-navbar-nav>
           </b-collapse>
-          </div>
+<!--          </div>-->
       </b-navbar>
     </div>
 

@@ -1,4 +1,5 @@
 import cart from '@/components/cart/Cart.vue'
+// import bookButton from '@/components/product/BookButton'
 
 export default {
   name: 'ProductCustomer', 
@@ -19,7 +20,7 @@ export default {
 
       textSearch : '', 
       quantity: 1, 
-      bookData: ''
+      bookData: '',
     }
   },
   mounted () { 
@@ -31,9 +32,15 @@ export default {
     },  
   },
   watch: {
-    
+
   },
   methods: {
+    isStockAvailable(stock){
+      if(stock <= 0){
+        return false;
+      }
+      return true;
+    },
     book: function (product, index) {
       this.bookData = this.$store.getters.USER_LOGIN
       this.bookData.productId = product.productId
