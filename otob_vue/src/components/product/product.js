@@ -1,7 +1,10 @@
-import { mapGetters } from "vuex";
+import SearchProduct from '@/components/SearchProduct'
 
 export default {
   name: 'Product',  
+  components: {
+    SearchProduct
+  },
   data() {
     return { 
       form: {
@@ -17,8 +20,6 @@ export default {
 
       filterByName: [],
       sortByName: false,
-
-      textSearch : '',
       file: '', 
     }
   },
@@ -53,9 +54,6 @@ export default {
     onChangeFileUpload: function(){
       this.file = this.$refs.file.files[0];
     },
-    onSearch: function(){ 
-      this.$store.dispatch('searchProduct', this.textSearch)   
-    }, 
     onSubmit: function(){
       //on create data
       if(this.submitButton === true){

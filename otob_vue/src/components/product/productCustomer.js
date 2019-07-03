@@ -1,9 +1,10 @@
 import cart from '@/components/cart/Cart.vue'
+import SearchProduct from '@/components/SearchProduct'
 
 export default {
   name: 'ProductCustomer', 
   components: {
-    cart
+    cart, SearchProduct
   },
   data() {
     return { 
@@ -16,8 +17,6 @@ export default {
       },
       filterByName: [],
       sortByName: false,
-
-      textSearch : '', 
       quantity: 1, 
       bookData: ''
     }
@@ -81,10 +80,7 @@ export default {
       } else {
         return false
       }
-    },
-    onSearch: function(){ 
-      this.$store.dispatch('searchProduct', this.textSearch)   
-    },    
+    },   
   },
   
 }

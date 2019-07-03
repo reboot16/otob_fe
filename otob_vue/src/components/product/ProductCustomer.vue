@@ -11,13 +11,7 @@
               <h3>List of Product</h3>
             </div>
             <div class="col-sm-8" style="text-align:right">
-              <div class="input-group">
-                <input type="search" class="form-control" placeholder="Search by Name" 
-                  v-model="textSearch" v-on:keyup.enter="onSearch">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button" @click="onSearch" style="margin-left:0;padding:0.25em">Search</button>
-                </div>
-              </div>
+              <SearchProduct/>
             </div>
           </div>
 

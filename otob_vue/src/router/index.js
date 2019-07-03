@@ -10,37 +10,37 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      component: () => import('./components/main/Login')
+      component: () => import('@/components/main/Login')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('./components/main/Register')
+      component: () => import('@/components/main/Register')
     },
     {
       path: '/user',
       name: 'User',
-      component: () => import('./components/user/User.vue')
+      component: () => import('@/components/user/User')
     },
     {
       path: '/thx',
       name: 'Thanks',
-      component: () => import('./components/order/Thanks')
+      component: () => import('@/components/order/Thanks')
     },
     {
       path: '/product',
       name: 'Product',
-      component: () => import('./components/product/Product.vue')
+      component: () => import('@/components/product/Product')
     },
     {
       path: '/product_cust',
       name: 'ProductCustomer',
-      component: () => import('./components/product/ProductCustomer.vue')
+      component: () => import('@/components/product/ProductCustomer')
     },
     {
       path: '/cart',
       name: 'Cart',
-      component: () => import('./components/cart/Cart.vue')
+      component: () => import('@/components/cart/Cart')
     },
   ]
 })

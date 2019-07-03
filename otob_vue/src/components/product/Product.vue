@@ -21,13 +21,7 @@
 
         <div class="pull-right multiple-action " >
           <div class="search">
-            <div class="input-group">
-              <input type="search" class="form-control" placeholder="Search by Name" 
-                v-model="textSearch" v-on:keyup.enter="onSearch">
-              <div class="input-group-append">
-                <b-button type="button" variant="success" @click="onSearch" style="margin-left:0;padding:0.25em">Search</b-button>
-              </div>
-            </div>
+            <SearchProduct/>
           </div>
         </div> <br>
 
