@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    <Test/>
     <main id="main">
       <div class="container"> 
 
@@ -24,8 +24,7 @@
             <SearchProduct/>
           </div>
         </div> <br>
-
-        <div> 
+        <div>
           <table class="table table-hover table-striped table-xs-block" >
             <thead>
             <tr style="background-color:#0096D9; color:white">
@@ -100,7 +99,7 @@
               <b-form-input v-model="form.stock" placeholder="0" type="number" required></b-form-input>
               </b-col>
           </b-row><br>
-          <div id="r_button">  
+          <div id="r_button">
               <b-button type="submit" variant="success" style="width:100%">
                 {{submitButton ? 'Tambah' : 'Ubah'}} Product
               </b-button> 
@@ -121,7 +120,7 @@
           <b-row style="padding:0 1em 0 1em"> 
               <b-form-file v-model="file" v-on:change="onChangeFileUpload()" required></b-form-file>
           </b-row><br> 
-          <div id="r_button">  
+          <div id="r_button2">
               <b-button type="submit" variant="success" style="width:100%">
                 Upload File
               </b-button> 

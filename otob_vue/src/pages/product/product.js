@@ -1,9 +1,11 @@
 import SearchProduct from '@/components/SearchProduct'
+// import Test from '@/components/Modal/Modal'
 
 export default {
   name: 'Product',  
   components: {
-    SearchProduct
+    SearchProduct,
+    // Test
   },
   data() {
     return { 
@@ -20,7 +22,6 @@ export default {
 
       filterByName: [],
       sortByName: false,
-      file: '', 
       file: '',
     }
   },
