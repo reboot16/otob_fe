@@ -20,27 +20,27 @@ export default new Router({
     {
       path: '/user',
       name: 'User',
-      component: () => import('@/components/user/User')
+      component: () => import('@/pages/user/User')
     },
     {
       path: '/thx',
       name: 'Thanks',
-      component: () => import('@/components/order/Thanks')
+      component: () => import('@/pages/order/Thanks')
     },
     {
       path: '/product',
       name: 'Product',
-      component: () => import('@/components/product/Product')
+      component: () => import('@/pages/product/Product')
     },
     {
       path: '/product_cust',
       name: 'ProductCustomer',
-      component: () => import('@/components/product/ProductCustomer')
+      component: () => import('@/pages/product/ProductCustomer')
     },
     {
       path: '/cart',
       name: 'Cart',
-      component: () => import('@/components/cart/Cart')
+      component: () => import('@/pages/cart/Cart')
     },
   ]
 })

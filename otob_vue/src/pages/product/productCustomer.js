@@ -1,4 +1,4 @@
-import cart from '@/components/cart/Cart.vue'
+import cart from '@/pages/cart/Cart.vue'
 import SearchProduct from '@/components/SearchProduct'
 
 export default {
