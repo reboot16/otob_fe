@@ -1,11 +1,11 @@
 import SearchProduct from '@/components/SearchProduct'
-// import Test from '@/components/Modal/Modal'
+import ComponentTest from '@/components/Modal'
 
 export default {
   name: 'Product',  
   components: {
     SearchProduct,
-    // Test
+    ComponentTest
   },
   data() {
     return { 

@@ -10,9 +10,11 @@ import './registerServiceWorker'
 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 import BootstrapVue from 'bootstrap-vue'
+import FontAwesome from 'font-awesome'
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
+Vue.use(FontAwesome)
 
 Vue.config.productionTip = false
 

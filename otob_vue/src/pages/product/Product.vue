@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row" >
         <div class="col-sm-6">
-          <h3>Product</h3> 
+          <h3>Product <i class="fa fa-user"></i></h3> <ComponentTest/>
         </div>
         <div class="col-sm-6" style="text-align:right;">
             <b-dropdown right variant="success" size="sm" >
