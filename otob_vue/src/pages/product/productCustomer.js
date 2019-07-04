@@ -18,7 +18,7 @@ export default {
       filterByName: [],
       sortByName: false,
       quantity: 1, 
-      bookData: ''
+      bookData: '',
     }
   },
   mounted () { 
@@ -30,9 +30,15 @@ export default {
     },  
   },
   watch: {
-    
+
   },
   methods: {
+    isStockAvailable(stock){
+      if(stock <= 0){
+        return false;
+      }
+      return true;
+    },
     book: function (product, index) {
       this.bookData = this.$store.getters.USER_LOGIN
       this.bookData.productId = product.productId

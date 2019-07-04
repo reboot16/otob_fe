@@ -21,6 +21,7 @@ export default {
       filterByName: [],
       sortByName: false,
       file: '', 
+      file: '',
     }
   },
   mounted () { 
@@ -37,6 +38,12 @@ export default {
     }
   },
   methods: {
+    isStockAvailable: function(stock) {
+      // if(stock == 0){
+      //   return false;
+      // }
+      return true;
+    },
     showModal: function(modalName) {
       this.showModalForm = true
       this.$refs[modalName].show()
