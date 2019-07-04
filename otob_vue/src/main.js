@@ -10,7 +10,7 @@ import './registerServiceWorker'
 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 import BootstrapVue from 'bootstrap-vue'
-import FontAwesome from 'font-awesome'
+import FontAwesome from 'font-awesome/css/font-awesome.css'
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
