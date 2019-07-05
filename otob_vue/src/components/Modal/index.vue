@@ -1,6 +1,6 @@
 <template>
     <div class="modalpage" v-if="show">
-        <header v-if="!hideHeader" class="m-page__header m-header m-header--blue">
+        <header class="m-page__header m-header m-header--blue">
             <div class="m-header__nav"></div>
             <div class="m-header__content">
                 <span class="m-header__content--title">
