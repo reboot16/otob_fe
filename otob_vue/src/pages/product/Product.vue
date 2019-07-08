@@ -3,12 +3,16 @@
     <div class="container">
       <div class="row" >
         <div class="col-sm-6">
-          <h3>Product <i class="fa fa-user"></i></h3> <ComponentTest/>
+          <h3>Product</h3> 
+
+          <ComponentTest v-show="isProductVisible" @close="closeModal"/>
+          <ComponentTest v-show="isUploadVisible" :objProduct="tempProduct" @close="closeModal"/>
+
         </div>
         <div class="col-sm-6" style="text-align:right;">
             <b-dropdown right variant="success" size="sm" >
               <template slot="button-content"> Tambah </template>
-              <b-dropdown-item @click="showModal('modal-add')">Tambah Data Baru</b-dropdown-item>
+              <b-dropdown-item @click="showModalAdd">Tambah Data Baru</b-dropdown-item>
               <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
               <b-dropdown-item >Download Template Excel</b-dropdown-item>
             </b-dropdown>  
@@ -49,7 +53,7 @@
               <td>
                 <b-dropdown variant="outline-primary" size="sm" right>
                   <template slot="button-content"> &#128295; </template>
-                  <b-dropdown-item v-on:click="onUpdate(product, index)">Edit</b-dropdown-item>
+                  <b-dropdown-item @click="showModalUpdate(product, index)">Edit</b-dropdown-item>
                   <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
                 </b-dropdown>
               </td>
@@ -109,12 +113,12 @@
     </b-modal>
 
     <b-modal ref="modal-upload" hide-footer v-if="showModalForm">
-      <template slot="modal-title">
+      <div slot="modal-title">
         <div style="text-align:center; margin-left:150px">
           <img src="@/assets/blibli.jpeg"><br>
           Upload Data Product
         </div>
-      </template> 
+      </div> 
       <div class="d-block text-center">
         <b-form @submit="onUpload" id="form_product" style="text-align:left" >  
           <b-row style="padding:0 1em 0 1em"> 
@@ -133,25 +137,6 @@
   </div> 
 </template>
 
-<style scoped>
-h5 {
-  text-align: center;
-}
-img{
-  height:75px; 
-  border-radius:50%; 
-  border:1px solid #999999; 
-  padding:0.25em;
-}
-#r_button div, a{
-  font-size: 14px;
-}
-a{
-  color:#0096D9;
-}
-button{
-  margin-left:0;
-}
-</style>
+<style src="@/static/css/main.css"></style>
 
 <script src="./product.js"></script>

@@ -1,43 +1,42 @@
 <template>
-    <div class="modalpage" v-if="show">
-        <header class="m-page__header m-header m-header--blue">
-            <div class="m-header__nav"></div>
-            <div class="m-header__content">
-                <span class="m-header__content--title">
-        <!--          {{ pageTitle }}-->
-                    Header
-                </span>
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-container"> 
+                <div class="modal-header">
+                    <img id="imgModal" src="@/assets/blibli.jpeg"> 
+                    <slot name="modal-header"> Default Title</slot>
+                    <button type="button" class="btn-close" @click="close"> x </button>
+                </div>
+
+                <div class="modal-body">
+                    <slot name="modal-body"> Default Body </slot>
+                </div>
+
+                <div class="modal-footer">
+                    <slot name="modal-footer"> Default Footer </slot>
+                </div>
             </div>
-            <div class="m-header__nav close">
-                <i class="m-header__icon m-header__icon--small bli-close m-header__nav--link" @click="closeModal">close</i>
-            </div>
-        </header>
-<!--        <div class="fullpagemodal__content" v-bind:class="{'fullpagemodal__content&#45;&#45;noheader': hideHeader}">-->
-<!--            <component ref="childComp" :is="view" v-bind="passedProps" v-on:on-close-modal="closeModal" :on-close="closeModal"></component>-->
-<!--        </div>-->
-    </div>
+        </div>
+    </transition>
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
-                show: true,
-            }
-        },
-        methods: {
-            // openModal: function () {
-            //     if (typeof this.view === 'undefined' || this.view === null || this.view === '') {
-            //         return
-            //     }
-            //     this.show = true
-            //     this.removeBodyScroll(true)
-            // },
-            closeModal: function () {
-                this.show = false
-                // this.view = null // trigger destroyed hook from component
-                // this.removeBodyScroll(false)
-            },
+export default {
+    name: 'Modal',
+    data () {
+        return {
         }
-    }
+    },
+    methods: {
+        close() {
+            this.$emit('close');
+        },
+    }, 
+}
 </script>
+
+<style>
+
+</style>
+
+

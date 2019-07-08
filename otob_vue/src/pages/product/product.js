@@ -1,12 +1,12 @@
 import SearchProduct from '@/components/SearchProduct'
-import ComponentTest from '@/components/Modal'
+import ComponentTest from '@/components/Modal/FormProduct'
 
 export default {
   name: 'Product',  
   components: {
     SearchProduct,
     ComponentTest
-  },
+  }, 
   data() {
     return { 
       form: {
@@ -23,6 +23,11 @@ export default {
       filterByName: [],
       sortByName: false,
       file: '',
+      txt: '',
+      isProductVisible: false,
+      isUploadVisible: false,
+
+      tempProduct: {}
     }
   },
   mounted () { 
@@ -39,16 +44,28 @@ export default {
     }
   },
   methods: {
+    showModalAdd() {
+      this.isProductVisible = true
+    },
+    showModalUpdate(product, index) {
+      this.isProductVisible = true
+      this.tempProduct = product
+      // this.$refs.form = product 
+    },
+    closeModal() {
+      this.isProductVisible = false
+      this.isUploadVisible = false
+    },
     isStockAvailable: function(stock) {
       // if(stock == 0){
       //   return false;
       // }
       return true;
     },
-    showModal: function(modalName) {
-      this.showModalForm = true
-      this.$refs[modalName].show()
-    },
+    // showModal: function(modalName) {
+    //   this.showModalForm = true
+    //   this.$refs[modalName].show()
+    // },
     hideModal: function(modalName) { 
       this.$refs[modalName].hide()
     }, 

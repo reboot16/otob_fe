@@ -1,7 +1,7 @@
 <template>
     <div class="input-group">
-        <input type="search" class="form-control" placeholder="Enter the product name" 
-            v-model="textSearch" @keyup.enter="onSearch">
+        <input type="search" class="form-control" placeholder="Enter Product Name Here" 
+            v-model="tempText" @keyup.enter="onSearch">
 
         <div class="input-group-append">
             <button class="btn btn-primary" type="button" @click="onSearch">Search</button>
@@ -11,29 +11,16 @@
 
 <script>
     export default {
-        data () {
+        name: "SearchProduct",
+        data() {
             return {
-                products: []
+                tempText: ''
             }
-        },
-        components:{
-
-        },
-        props: {
-            textSearch: {
-                type: String,
-                default: ''
-            }
-        },
-        computed: {
-
-        },
-        watch: {
-
         },
         methods: {
-            onSearch: function(){ 
-                this.$store.dispatch('searchProduct', this.textSearch)   
+            onSearch: function(){
+                this.$emit("inputText", this.tempText);
+                this.$store.dispatch('searchProduct', this.tempText)   
             }, 
         }
     }
