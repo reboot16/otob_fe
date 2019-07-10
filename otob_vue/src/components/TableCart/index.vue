@@ -1,6 +1,5 @@
 <template> 
   <div name="Cart">  
-
     <div class="row" style="margin-bottom: 0.5em">
       <div class="col-sm-6">
         <h3>My Cart</h3>
@@ -12,8 +11,9 @@
 
     <div class="tableContainer">
       <table width="100%" class="table table-hover table-striped scrollTable">
+        
         <thead class="fixedHeader"  style="background-color:white">
-          <tr class="col-sm-12" style="color:white; background-color: #17a2b8">
+          <tr class="col-sm-12">
             <th class="col-sm-1">#</th>
             <th class="col-sm-3">Name</th>
             <th class="col-sm-3">Price</th>
@@ -21,6 +21,7 @@
             <th class="col-sm-2"> Action</th>
           </tr>
         </thead>
+
         <tbody class="scrollContentCart" style="background-color:white">
           <tr class="col-sm-12" v-for="(product, index) in listItemCart" :key="index" >
             <td class="col-sm-1" align="center"><b>{{ index+1 }}</b></td>
@@ -38,8 +39,10 @@
             </td>
           </tr>
         </tbody>
+
       </table> 
     </div>
+
   </div> 
  
 </template>
@@ -79,4 +82,4 @@ tr td a{
 } 
 </style>
 
-<script src="./cart.js"></script>
+<script src="./TableCart.js"></script>

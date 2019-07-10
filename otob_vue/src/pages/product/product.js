@@ -100,9 +100,10 @@ export default {
       }
     },
     onUpdate: function (product, index) {
-      this.$refs['modal-add'].show()
-      this.submitButton = false
-      this.form = product 
+      // this.$refs['modal-add'].show()
+      // this.submitButton = false
+      this.isProductVisible = true
+      this.$refs.form = product 
     }, 
     sortBy: function (array, param, reverse) {
       var filterA, filterB;

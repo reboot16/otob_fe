@@ -1,10 +1,13 @@
-import cart from '@/pages/cart/Cart.vue'
+import TableCart from '@/components/TableCart'
 import SearchProduct from '@/components/SearchProduct'
+// import TableProductCustomer from '@/components/TableProductCustomer'
 
 export default {
   name: 'ProductCustomer', 
   components: {
-    cart, SearchProduct
+    TableCart, 
+    SearchProduct, 
+    // TableProductCustomer
   },
   data() {
     return { 
@@ -75,12 +78,7 @@ export default {
       product.qty--
     },
     isDisable(product) {
-      if (product.stock == 1) {
-        // for (let x in listProduct) {
-        //   if (listProduct[x].name === basket.name && listProduct[x].size === basket.size) {
-        //     return true
-        //   }
-        // }
+      if (product.stock == 1) { 
         return true
 
       } else {

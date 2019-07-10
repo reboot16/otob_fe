@@ -53,7 +53,7 @@
               <td>
                 <b-dropdown variant="outline-primary" size="sm" right>
                   <template slot="button-content"> &#128295; </template>
-                  <b-dropdown-item @click="showModalUpdate(product, index)">Edit</b-dropdown-item>
+                  <b-dropdown-item @click="onUpdate(product, index)">Edit</b-dropdown-item>
                   <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
                 </b-dropdown>
               </td>

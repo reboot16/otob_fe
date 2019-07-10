@@ -62,7 +62,8 @@ export default {
         Modal
     },
     props: {
-        objProduct: Object
+        objProduct: Object,
+        idProduct: String
     },
     data() {
         return { 
