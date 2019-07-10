@@ -36,6 +36,11 @@ export default new Router({
       path: '/product_cust',
       name: 'ProductCustomer',
       component: () => import('@/pages/product/ProductCustomer.vue')
+    },
+    {
+      path: '/test',
+      name: 'ProdCust',
+      component: () => import('@/components/TableProductCustomer')
     }
   ]
 })

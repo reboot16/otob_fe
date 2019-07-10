@@ -5,7 +5,7 @@
         <h3>My Cart</h3>
       </div>
       <div class="col-sm-6" style="text-align:right">
-        <button class="btn btn-info" @click="onOrder">Order Now</button>
+        <button class="btn btn-primary" @click="onOrder">Order Now</button>
       </div>
     </div>
 
@@ -14,27 +14,27 @@
         
         <thead class="fixedHeader"  style="background-color:white">
           <tr class="col-sm-12">
-            <th class="col-sm-1">#</th>
-            <th class="col-sm-3">Name</th>
-            <th class="col-sm-3">Price</th>
-            <th class="col-sm-3">Quantity</th> 
-            <th class="col-sm-2"> Action</th>
+            <th width="4%">#</th>
+            <th width="25%">Name</th>
+            <th width="25%">Price</th>
+            <th width="25%">Quantity</th>
+            <th width="20%"> Action</th>
           </tr>
         </thead>
 
         <tbody class="scrollContentCart" style="background-color:white">
           <tr class="col-sm-12" v-for="(product, index) in listItemCart" :key="index" >
-            <td class="col-sm-1" align="center"><b>{{ index+1 }}</b></td>
-            <td class="col-sm-3">{{ product.productName }}</td>
-            <td class="col-sm-3">{{ product.productPrice }}</td>
-            <td class="col-sm-3"> 
+            <td width="4%"><b>{{ index+1 }}</b></td>
+            <td width="25%">{{ product.productName }}</td>
+            <td width="25%">{{ product.productPrice }}</td>
+            <td  width="25%">
               <div class="quantity-toggle">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-info">&mdash;</button>
+                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
                 <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-info">&#xff0b;</button>
+                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
               </div>
             </td>
-            <td class="col-sm-2">
+            <td width="20%">
               <b-link @click="onDelete(product, index)" style="color:red" >Delete</b-link>
             </td>
           </tr>

@@ -96,4 +96,8 @@ img{
   font-size: 14px;
 }
 
+#content table{
+  border: 1px solid #dee2e6;
+}
+
 </style>
