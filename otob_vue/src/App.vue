@@ -8,7 +8,7 @@
             <b style="font-size:24px">Blibli Bazaar</b>
           </b-navbar-brand>
 
-          <MenuAdmin/>
+          <NavbarAdmin/>
           
          </div>
       </b-navbar>
@@ -25,11 +25,15 @@
 </template>
 
 <script>
-import MenuAdmin from '@/components/MenuAdmin'
+import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
+import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
+import NavbarCashier from '@/components/Navbar/NavbarCashier'
 
 export default {
   components: {
-    MenuAdmin
+    NavbarAdmin,
+    NavbarCustomer,
+    NavbarCashier
   }, 
 }
 </script>
@@ -58,7 +62,7 @@ export default {
   background-color: #068aca;
   padding: 0.3em 0 0.3em 0;
   margin-top:0.2em;
-  border-radius: 0.5em;
+  border-radius: 0.3em;
 }
 
 .navbar a.router-link-exact-active {
