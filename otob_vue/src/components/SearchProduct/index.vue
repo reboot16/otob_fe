@@ -26,7 +26,7 @@
     }
 </script>
 
-<style>
+<style> 
     .input-group-append button{
         margin-left:0;padding:0.25em
     }
