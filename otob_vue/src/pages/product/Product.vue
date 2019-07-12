@@ -1,33 +1,28 @@
 <template> 
   <div> 
     <div class="container">
-      <div class="row" >
-        <div class="col-sm-6">
-          <h3>Product</h3> 
 
-          <ComponentTest v-show="isProductVisible" @close="closeModal"/>
-          <ComponentTest v-show="isUploadVisible" :objProduct="tempProduct" @close="closeModal"/>
-
+      <div class="row" style="margin-bottom: 0.5em">
+        <div class="col-sm-3" >
+          <h3>Product</h3>
         </div>
-        <div class="col-sm-6" style="text-align:right;">
-            <b-dropdown right variant="success" size="sm" >
-              <template slot="button-content"> Tambah </template>
+        <div class="col-sm-8">
+          <SearchProduct/>
+        </div>
+        <div class="col-sm-1"> 
+            <b-dropdown right variant="primary" size="sm">
+              <template slot="button-content"> New </template>
               <b-dropdown-item @click="showModalAdd">Tambah Data Baru</b-dropdown-item>
               <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
               <b-dropdown-item >Download Template Excel</b-dropdown-item>
-            </b-dropdown>  
+            </b-dropdown>   
         </div>
       </div>
+ 
     </div>
  
     <main id="main">
       <div class="container"> 
-
-        <div class="pull-right multiple-action " >
-          <div class="search">
-            <SearchProduct/>
-          </div>
-        </div> <br>
         <div>
           <table class="table table-hover table-striped table-xs-block" >
             <thead>
