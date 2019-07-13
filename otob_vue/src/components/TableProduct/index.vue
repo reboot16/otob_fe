@@ -1,11 +1,19 @@
 <template>
-  <div name="TableProductCustomer">
+  <div name="TableProduct" class="container">
       <div class="row" style="margin-bottom: 0.5em">
-        <div class="col-sm-4" >
-          <h3>List of Product</h3>
+        <div class="col-sm-3" >
+          <h3>Product</h3>
         </div>
-        <div class="col-sm-8" style="text-align:right">
+        <div class="col-sm-8">
           <SearchProduct/>
+        </div>
+        <div class="col-sm-1"> 
+            <b-dropdown right variant="primary" size="sm">
+              <template slot="button-content"> New </template>
+              <b-dropdown-item @click="showModalAdd">Tambah Data Baru</b-dropdown-item>
+              <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
+              <b-dropdown-item >Download Template Excel</b-dropdown-item>
+            </b-dropdown>   
         </div>
       </div>
 
@@ -33,13 +41,11 @@
             <td width="15%">{{ product.offerPrice }}</td>
             <td width="10%">{{ product.stock }}</td>
             <td width="25%">
-              <div class="quantity-toggle" v-if="isStockAvailable(product.stock)">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
-                <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
-                <button @click="book(product, index)" :disabled="bookDisable(product)" class="btn btn-primary" id="bookBtn">Book</button>
-              </div>
-              <div v-else style="text-align: center; color: red; font-style: italic">Stock Habis</div>
+              <b-dropdown variant="outline-primary" size="sm" right>
+                <template slot="button-content"> &#128295; </template>
+                <b-dropdown-item @click="onUpdate(product, index)">Edit</b-dropdown-item>
+                <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
+              </b-dropdown>
             </td>
           </tr>
           </tbody>
@@ -52,7 +58,7 @@
 <script src="./TableProductCustomer.js"></script>
 
 <style>
-  thead.fixedHeader {
+thead.fixedHeader {
     display: table;
     width: 100%; 
   }

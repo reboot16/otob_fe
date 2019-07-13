@@ -1,11 +1,13 @@
 import SearchProduct from '@/components/SearchProduct'
 import ComponentTest from '@/components/Modal/FormProduct'
+import TableProduct from '@/components/TableProduct'
 
 export default {
   name: 'Product',  
   components: {
     SearchProduct,
-    ComponentTest
+    ComponentTest,
+    TableProduct
   }, 
   data() {
     return { 

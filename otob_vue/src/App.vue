@@ -1,26 +1,33 @@
 <template>
   <div id="app">
-    <div id="header">
-      <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
-       <div class="container">
-          <b-navbar-brand>
-            <img src="@/assets/blibli.jpeg" style="vertical-align: top;">
-            <b style="font-size:24px">Blibli Bazaar</b>
-          </b-navbar-brand>
+    <div v-if="isLogin == true">
+      <div id="header">
+        <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
+        <div class="container">
+            <b-navbar-brand>
+              <img src="@/assets/blibli.jpeg" style="vertical-align: top;">
+              <b style="font-size:24px">Blibli Bazaar</b>
+            </b-navbar-brand>
 
-          <NavbarAdmin/>
-          
-         </div>
-      </b-navbar>
+            <NavbarAdmin/>
+            
+          </div>
+        </b-navbar>
+      </div>
+
+      <router-view id="content"/> 
+
+      <div id="footer">
+        <div class="fixed-bottom">
+          <p style="margin:0.5em">Blibli Bazaar</p>
+        </div> 
+      </div>
     </div>
 
-    <router-view id="content"/> 
-
-    <div id="footer">
-      <div class="fixed-bottom">
-        <p style="margin:0.5em">Blibli Bazaar</p>
-      </div> 
+    <div v-else>
+      <router-view id="loginFirst"/> 
     </div>
+
   </div>
 </template>
 
@@ -35,6 +42,17 @@ export default {
     NavbarCustomer,
     NavbarCashier
   }, 
+  data () {
+    return {
+      isUserLogin : false
+    }
+  },
+  mounted () { 
+    this.isUserLogin = this.$store.getters.IS_LOGIN 
+  },
+  computed : {
+    
+  }
 }
 </script>
 
@@ -120,6 +138,10 @@ img{
 
 #content table{
   border: 1px solid #dee2e6;
+}
+
+#loginFirst {
+  background-color: #d2d6de
 }
 
 </style>

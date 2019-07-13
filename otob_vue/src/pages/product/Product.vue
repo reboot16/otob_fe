@@ -1,64 +1,7 @@
 <template> 
   <div> 
-    <div class="container">
-
-      <div class="row" style="margin-bottom: 0.5em">
-        <div class="col-sm-3" >
-          <h3>Product</h3>
-        </div>
-        <div class="col-sm-8">
-          <SearchProduct/>
-        </div>
-        <div class="col-sm-1"> 
-            <b-dropdown right variant="primary" size="sm">
-              <template slot="button-content"> New </template>
-              <b-dropdown-item @click="showModalAdd">Tambah Data Baru</b-dropdown-item>
-              <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
-              <b-dropdown-item >Download Template Excel</b-dropdown-item>
-            </b-dropdown>   
-        </div>
-      </div>
+    <TableProduct/>
  
-    </div>
- 
-    <main id="main">
-      <div class="container"> 
-        <div>
-          <table class="table table-hover table-striped table-xs-block" >
-            <thead>
-            <tr style="background-color:#0096D9; color:white">
-              <th width="50">#</th>
-              <th>Name
-              </th>
-              <th>Description<i class="fa fa-times"></i></th>
-              <th>List Price</th>
-              <th>Offer Price</th>
-              <th>Stock</th>
-              <th width="75" class="text-center">Action</th>
-            </tr>
-            </thead>
-            <tbody style="background-color:white">
-            <tr v-for="(product, index) in listProduct" :key="index" >
-              <td align="center"><b>{{ index+1 }}</b></td>
-              <td v-text="product.name"></td>
-              <td v-text="product.description"></td>
-              <td v-text="product.listPrice"></td>
-              <td v-text="product.offerPrice"></td>
-              <td v-text="product.stock"></td>
-              <td>
-                <b-dropdown variant="outline-primary" size="sm" right>
-                  <template slot="button-content"> &#128295; </template>
-                  <b-dropdown-item @click="onUpdate(product, index)">Edit</b-dropdown-item>
-                  <b-dropdown-item v-on:click="onDelete(product, index)">Delete</b-dropdown-item>
-                </b-dropdown>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-     
     <b-modal ref="modal-add" hide-footer v-if="showModalForm">
       <template slot="modal-title">
         <div style="text-align:center; margin-left:150px">
