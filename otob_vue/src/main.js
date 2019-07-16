@@ -16,6 +16,9 @@ Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -44,15 +44,26 @@ export default {
   }, 
   data () {
     return {
-      isUserLogin : false
+      isLogin : ''
     }
   },
   mounted () { 
     this.isUserLogin = this.$store.getters.IS_LOGIN 
+    // $cookies.set("key", "value", 5)
+    // cookies.set("key", "value", "30s", "/path", "bazaar.com", true)
+    this.isLogin = 'a'
+    alert(this.isLogin)
+    // $cookies.remove("key")
   },
   computed : {
-    
+    setCookies () {
+      this.isLogin = $cookies.isKey('bazaar-isLogin')
+      if(this.isLogin == false){
+        alert('kosong')
+      }
+    }
   }
+  
 }
 </script>
 
