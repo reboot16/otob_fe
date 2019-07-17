@@ -1,10 +1,6 @@
-import { mapGetters } from 'vuex'
-import SearchProduct from '@/components/SearchProduct'
-
 export default {
   name: 'TableProductCustomer',
   components: {
-    SearchProduct
   },
   data() {
     return {
@@ -15,8 +11,6 @@ export default {
         offerPrice: '',
         stock: ''
       },
-      filterByName: [],
-      sortByName: false,
       quantity: 1,
       bookData: '',
     }
@@ -25,7 +19,6 @@ export default {
     this.$store.dispatch('getProducts')
   },
   computed: {
-    ...mapGetters('product', ['PRODUCTS']),
 
     listProduct: function () {
       return this.$store.getters.PRODUCTS
