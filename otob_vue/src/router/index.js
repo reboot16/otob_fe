@@ -41,6 +41,11 @@ export default new Router({
       path: '/test',
       name: 'ProdCust',
       component: () => import('@/components/TableProductCustomer')
+    },
+    {
+      path: '/button',
+      name: 'ProdCustHeader',
+      component: () => import('@/components/ProductHeaderButton')
     }
   ]
 })

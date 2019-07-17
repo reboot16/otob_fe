@@ -1,5 +1,25 @@
 <template> 
-  <div> 
+  <div name="product">
+
+    <div class="container header-body">
+      <div class="row" style="margin-bottom: 0.5em">
+        <div class="col-sm-3" >
+          <h3>Product</h3>
+        </div>
+        <div class="col-sm-8">
+          <SearchProduct/>
+        </div>
+        <div class="col-sm-1"> 
+            <b-dropdown right variant="primary" size="sm">
+              <template slot="button-content"> New </template>
+              <b-dropdown-item @click="showModalAdd">Tambah Data Baru</b-dropdown-item>
+              <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
+              <b-dropdown-item >Download Template Excel</b-dropdown-item>
+            </b-dropdown>   
+        </div>
+      </div>
+    </div> 
+
     <TableProduct/>
  
     <b-modal ref="modal-add" hide-footer v-if="showModalForm">

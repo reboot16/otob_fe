@@ -1,22 +1,6 @@
 <template>
   <div name="TableProduct" class="container">
-      <div class="row" style="margin-bottom: 0.5em">
-        <div class="col-sm-3" >
-          <h3>Product</h3>
-        </div>
-        <div class="col-sm-8">
-          <SearchProduct/>
-        </div>
-        <div class="col-sm-1"> 
-            <b-dropdown right variant="primary" size="sm">
-              <template slot="button-content"> New </template>
-              <b-dropdown-item @click="showModalAdd">Tambah Data Baru</b-dropdown-item>
-              <b-dropdown-item @click="showModal('modal-upload')">Upload Data Excel</b-dropdown-item>
-              <b-dropdown-item >Download Template Excel</b-dropdown-item>
-            </b-dropdown>   
-        </div>
-      </div>
-
+      
       <div class="tableContainer">
         <table width="100%" class="table table-hover table-striped scrollTable" style="table-layout: fixed;">
 
@@ -55,7 +39,7 @@
   </div>
 </template>
 
-<script src="./TableProductCustomer.js"></script>
+<script src="./TableProduct.js"></script>
 
 <style>
 thead.fixedHeader {

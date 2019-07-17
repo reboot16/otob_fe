@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="isLogin == true">
+    <div>
       <div id="header">
         <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
         <div class="container">
@@ -24,9 +24,9 @@
       </div>
     </div>
 
-    <div v-else>
+    <!-- <div v-else>
       <router-view id="loginFirst"/> 
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -48,20 +48,16 @@ export default {
     }
   },
   mounted () { 
-    this.isUserLogin = this.$store.getters.IS_LOGIN 
-    // $cookies.set("key", "value", 5)
-    // cookies.set("key", "value", "30s", "/path", "bazaar.com", true)
-    this.isLogin = 'a'
-    alert(this.isLogin)
-    // $cookies.remove("key")
+    let isLoginExist = $cookies.isKey('bazaar-isLogin')
+
+    if(isLoginExist == false){
+      $cookies.set('bazaar-isLogin', false, 10)
+    }
+
+    this.isLogin = $cookies.get('bazaar-isLogin') 
   },
   computed : {
-    setCookies () {
-      this.isLogin = $cookies.isKey('bazaar-isLogin')
-      if(this.isLogin == false){
-        alert('kosong')
-      }
-    }
+    
   }
   
 }
