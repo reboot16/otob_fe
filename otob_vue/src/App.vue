@@ -49,6 +49,8 @@ export default {
   },
   mounted () { 
     let isLoginExist = $cookies.isKey('bazaar-isLogin')
+    $cookies.set('bazaar-email', "nanihutagaol@gmail.com", 10)
+    $cookies.set('bazaar-password', "12345678", 10)
 
     if(isLoginExist == false){
       $cookies.set('bazaar-isLogin', false, 10)

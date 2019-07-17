@@ -45,7 +45,7 @@ export default new Router({
     {
       path: '/button',
       name: 'ProdCustHeader',
-      component: () => import('@/components/ProductHeaderDropdown')
+      component: () => import('@/components/ProductModifyDropdown')
     }
   ]
 })

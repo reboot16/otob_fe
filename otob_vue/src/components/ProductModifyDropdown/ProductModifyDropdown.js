@@ -1,4 +1,4 @@
- export default {
+export default {
     name: 'product-header-button',
     components: {
     },
@@ -21,11 +21,8 @@
 
     },
     methods: {
-        showModalAdd () { 
+        showModalUpdate (product, index) {
             this.$bvModal.show('modalProductForm')
-        },
-        showModalBatch () { 
-            this.$bvModal.show('modalBatchUpload')
         },
         onHandleSubmit (event) {
             let data = this.form
@@ -34,20 +31,20 @@
 
             event.preventDefault()
         },
+        onUpdate: function (product, index) {
+            this.$refs.form = product
+        },
         onSubmit (data) {
-            this.$store.dispatch('addProduct', data)
+            this.$store.dispatch('updateProduct', data)
             this.$refs.modalProductForm.hide()
         },
-        onUpload: function(event){
-            let formData = new FormData();
-            formData.append('file', this.file);
+        onDelete: function (product, index) {
+            const confirmDelete = confirm("Are you sure to delete this?");
 
-            this.$store.dispatch('uploadProduct', formData)
-            event.preventDefault()
-            this.$refs.modalBatchUpload.hide()
-        },
-        onChangeFileUpload: function(){
-            this.file = this.$refs.file.files[0];
+            if (confirmDelete) {
+                product.index = index
+                this.$store.dispatch('deleteProduct', product)
+            }
         },
         close () {
             this.close();

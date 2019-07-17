@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb8f44f-4296-4823-bd48-be7911a8e118" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/ProductModifyDropdown.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/ProductModifyDropdown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/Container/Container66.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/Modal/FormProduct.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/Modal/FormUpload.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/Modal/ProductForm.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/Modal/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderButton/ProductHeaderButton.css" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderButton/ProductHeaderButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderButton/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otob_vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/ModalProduct/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/TableCart/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/TableCart/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/TableProduct/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/TableProduct/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/otob_vue/src/pages/product/Product.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/pages/product/Product.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/pages/product/ProductCustomer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/pages/product/ProductCustomer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/otob_vue/src/pages/product/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/pages/product/product.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/otob_vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/otob_vue/src/router/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/otob_vue/node_modules/" />
@@ -32,44 +31,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="52" lean-forward="true" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="60" column="19" lean-forward="true" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+            <state relative-caret-position="307">
+              <caret line="86" column="35" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#b-modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/ProductCustomer.vue">
+        <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/otob_vue/src/components/UserForm/index.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="47" column="2" lean-forward="true" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="31" />
+            <state relative-caret-position="525">
+              <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -117,19 +92,23 @@
         <option value="$PROJECT_DIR$/otob_vue/src/components/Modal/Modal.vue" />
         <option value="$PROJECT_DIR$/otob_vue/src/components/Modal/ProductForm.vue" />
         <option value="$PROJECT_DIR$/otob_vue/src/components/SearchProduct/index.vue" />
-        <option value="$PROJECT_DIR$/otob_vue/src/components/TableCart/index.vue" />
-        <option value="$PROJECT_DIR$/otob_vue/src/App.vue" />
-        <option value="$PROJECT_DIR$/otob_vue/src/router/index.js" />
         <option value="$PROJECT_DIR$/otob_vue/src/pages/product/productCustomer.js" />
-        <option value="$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/index.vue" />
         <option value="$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/TableProductCustomer.js" />
         <option value="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderButton/index.vue" />
         <option value="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderButton/ProductHeaderButton.js" />
         <option value="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/index.vue" />
-        <option value="$PROJECT_DIR$/otob_vue/src/pages/product/Product.vue" />
         <option value="$PROJECT_DIR$/otob_vue/src/pages/product/product.js" />
-        <option value="$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js" />
         <option value="$PROJECT_DIR$/otob_vue/src/pages/product/ProductCustomer.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/router/index.js" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/index.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.js" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/ProductModifyDropdown.js" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/index.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/TableCart/index.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/pages/product/Product.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/App.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/TableProduct/index.vue" />
+        <option value="$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js" />
       </list>
     </option>
   </component>
@@ -149,6 +128,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,7 +160,23 @@
               <item name="otob_vue" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="product" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="otob_fe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="otob_fe" type="462c0819:PsiDirectoryNode" />
+              <item name="otob_vue" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ProductHeaderDropdown" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="otob_fe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="otob_fe" type="462c0819:PsiDirectoryNode" />
+              <item name="otob_vue" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductModifyDropdown" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="otob_fe" type="b2602c69:ProjectViewProjectNode" />
@@ -286,19 +282,19 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/otob_vue/src/components/Modal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/otob_vue/src/components" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Future\frontend\otob_fe\otob_vue\src\components" />
       <recent name="D:\Future\frontend\otob_fe\otob_vue\src\components\Modal" />
       <recent name="D:\Future\frontend\otob_fe\otob_vue\src\components\SearchProcess" />
       <recent name="D:\Future\frontend\otob_fe\otob_vue\src\static\images" />
@@ -340,17 +336,19 @@
       <workItem from="1562300035563" duration="9000" />
       <workItem from="1562300061065" duration="800000" />
       <workItem from="1562725453446" duration="6124000" />
+      <workItem from="1563342682736" duration="1506000" />
+      <workItem from="1563360974285" duration="2802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72244000" />
+    <option name="totallyTimeSpent" value="76683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18573265" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19087404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -366,7 +364,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Terminal" order="3" weight="0.24742931" />
+      <window_info anchor="right" id="Terminal" order="3" visible="true" weight="0.24742931" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,16 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableCart/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#b-link#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableCart/TableCart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -470,106 +458,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/store/productStore.js">
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/FormUpload.vue" />
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/FormProduct.vue" />
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Container/Container66.vue" />
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/ProductForm.vue" />
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/index.vue" />
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/main/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        <state relative-caret-position="-16" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/UserForm/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="47" column="2" lean-forward="true" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/FormUpload.vue">
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/ProductModifyDropdown.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="49" column="15" lean-forward="true" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
-          <folding>
-            <element signature="n#style#0;n#b-navbar#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#b-navbar-brand#0;n#div#0;n#b-navbar#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#b#0;n#b-navbar-brand#0;n#div#0;n#b-navbar#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#799#856#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/FormProduct.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#b-form#0;n#div#1;n#modal#0;n#transition#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Container/Container66.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/ProductForm.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#template#0;n#b-modal#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#b-form#0;n#div#0;n#b-modal#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#b-button#0;n#div#0;n#b-form#0;n#div#0;n#b-modal#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/Modal/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/otob_vue/src/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        <state relative-caret-position="525">
+          <caret line="47" column="57" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/SearchProduct/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/Product.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/product.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="24" column="4" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -584,16 +498,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/index.vue">
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/ProductHeaderDropdown/ProductHeaderDropdown.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="61" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/ProductModifyDropdown/ProductModifyDropdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="35" column="10" lean-forward="true" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/store/productStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="60" column="18" lean-forward="true" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableCart/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#b-link#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/ModalProduct/index.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/ProductCustomer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="2" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="31" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/Product.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="n#style#0;n#b-navbar#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#b-navbar-brand#0;n#div#0;n#b-navbar#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#b#0;n#b-navbar-brand#0;n#div#0;n#b-navbar#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#799#856#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/SearchProduct/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/TableProductCustomer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="-51">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
@@ -601,36 +595,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="52" lean-forward="true" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProductCustomer/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="60" column="19" lean-forward="true" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+        <state relative-caret-position="85">
+          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/main/Login.vue">
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/UserForm/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="47" column="2" lean-forward="true" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="31" />
+        <state relative-caret-position="307">
+          <caret line="86" column="35" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#b-modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/otob_vue/src/pages/product/ProductCustomer.vue">
+    <entry file="file://$PROJECT_DIR$/otob_vue/src/components/TableProduct/TableProduct.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+        <state relative-caret-position="525">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
         </state>
       </provider>
     </entry>

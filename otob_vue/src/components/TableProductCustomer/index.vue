@@ -10,9 +10,9 @@
       </div>
 
       <div class="tableContainer">
-        <table width="100%" class="table table-hover table-striped scrollTable" style="table-layout: fixed;">
+        <table width="100%" class="table table-hover table-striped table-scroll small-first-col" style="table-layout: fixed;">
 
-          <thead class="fixedHeader"  style="background-color:white">
+        <thead class="fixedHeader"  style="background-color:white">
           <tr class="col-sm-12">
             <td width="5%"><b>#</b></td>
             <td width="15%">Name</td>
@@ -52,6 +52,56 @@
 <script src="./TableProductCustomer.js"></script>
 
 <style>
+  .table-scroll{
+    /*width:100%; */
+    display: block;
+    empty-cells: show;
+
+    /* Decoration */
+    border-spacing: 0;
+    border: 1px solid;
+  }
+
+  .table-scroll thead{
+    /*background-color: #f1f1f1;*/
+    position:relative;
+    display: block;
+    width:100%;
+    overflow-y: scroll;
+  }
+
+  .table-scroll tbody{
+    /* Position */
+    display: block; position:relative;
+    width:100%; overflow-y:scroll;
+    /* Decoration */
+    border-top: 1px solid rgba(0,0,0,0.2);
+  }
+
+  .table-scroll tr{
+    width: 100%;
+    display:flex;
+  }
+
+  .table-scroll td,.table-scroll th{
+    flex-basis:100%;
+    flex-grow:2;
+    display: block;
+    padding: 1rem;
+    text-align:left;
+  }
+
+  /* Other options */
+
+  .table-scroll.small-first-col td:first-child,
+  .table-scroll.small-first-col th:first-child{
+    flex-basis:20%;
+    flex-grow:1;
+  }
+
+  .table-scroll tbody tr:nth-child(2n){
+    /*background-color: rgba(130,130,170,0.1);*/
+  }
   thead.fixedHeader {
     display: table;
     width: 100%; 
