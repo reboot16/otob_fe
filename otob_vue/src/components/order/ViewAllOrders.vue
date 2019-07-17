@@ -19,7 +19,7 @@
                                         style="width: 150px;"
                                         placeholder="status"
                                 >
-                                    <option value="pending">Pending</option>
+                                    <option value="waiting">Waiting</option>
                                     <option value="approved">Approved</option>
                                     <option value="rejected">Rejected</option>
                                 </b-form-select>
@@ -53,12 +53,12 @@
                         style="text-align: center"
                 >
                     <template slot="index" slot-scope="data">{{data.index+1}}</template>
-                    <template slot="totalPrice" slot-scope="data">Rp {{data.item.totalPrice}}</template>
-                    <template slot="action" slot-scope="row">
+                    <template slot="totalPrice" slot-scope="data">Rp {{data.item.totPrice}}</template>
+                    <template slot="action" slot-scope="data">
                             <b-button
                                     variant="outline-info"
                                     size="sm"
-                                    v-on:click="goTo(1)"
+                                    v-on:click="viewDetail(data.item.ordId)"
                                     class="mr-2">
                                 <icon name="eye" scale="1"></icon> View Details
                             </b-button>
@@ -77,7 +77,7 @@
         components: {Datepicker},
         data(){
             return{
-                orders: [],
+                listOrders: [],
                 format: "dd MM yyyy",
                 filters:{
                     status: null,
@@ -89,27 +89,27 @@
                         label: 'No.'
                     },
                     {
-                        key: 'orders_number',
+                        key: 'ordId',
                         label: 'Order Number'
                     },
                     {
-                        key: 'user_email',
+                        key: 'userEmail',
                         label: 'Customer'
                     },
                     {
-                        key: 'orders_date',
+                        key: 'ordDate',
                         label: 'Order date'
                     },
                     {
-                        key: 'total_item',
+                        key: 'totItem',
                         label: 'Total Items'
                     },
                     {
-                        key: 'totalPrice',
+                        key: 'totPrice',
                         label: 'Total Price'
                     },
                     {
-                        key: 'order_status',
+                        key: 'ordStatus',
                         label: 'Status'
                     },
                     {
@@ -122,19 +122,20 @@
         methods:{
             getAllOrders()
             {
-                this.orders = this.$store.getters.ORDERS;
+                this.listOrders = this.$store.getters.ORDERS;
             },
-            goTo(id){
-                try{
-                    this.$router.push({name:'order-approvement', params : { id: id}});
-                }
-                catch (e) {
-                    alert(e);
-                }
+            viewDetail(id){
+                this.$router.push('orders/approvement/'+id)
             }
         },
         mounted() {
-            this.getAllOrders();
+            this.$store.dispatch('getOrders')
+            this.getAllOrders()
+        },
+        computed: {
+            orders: function () {
+                return this.$store.getters.ORDERS
+            },
         }
     }
 </script>

@@ -48,7 +48,7 @@ export default new Router({
       component: () => import('./components/order/Approvement.vue')
     },
     {
-      path: '/orders/',
+      path: '/orders',
       name: 'orders',
       component: () => import('./components/order/ViewAllOrders.vue')
     },

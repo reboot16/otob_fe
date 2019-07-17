@@ -11,14 +11,14 @@
                     Tanggal Transaksi
                 </b-col>
                 <b-col md="3">
-                    : {{orders.orders_date}}
+                    : {{orders.ordDate}}
                 </b-col>
                 <b-col md="3">
                     Total Pembayaran
                 </b-col>
 
                 <b-col md="3">
-                    : Rp {{orders.total}}
+                    : Rp {{orders.totPrice}}
                 </b-col>
             </b-row>
             <b-row>
@@ -26,7 +26,7 @@
                     Nomor Pesanan
                 </b-col>
                 <b-col md="3">
-                    : {{orders.orders_number}}
+                    : {{orders.ordId}}
                 </b-col>
             </b-row>
         </div>
@@ -39,13 +39,13 @@
                     header-bg-variant="primary"
             >
                 <b-table
-                        :items="orders.products"
+                        :items="orders.ordItems"
                         :fields="fields"
                         bordered hover stripped responsive
                         class="table"
                 >
                     <template slot="index" slot-scope="data"> {{data.index + 1}}</template>
-                    <template slot="hargaTotal" slot-scope="data">Rp {{data.item.jumlah * data.item.harga}}</template>
+                    <template slot="hargaTotal" slot-scope="data">Rp {{data.item.qty * data.item.productPrice}}</template>
                 </b-table>
 
 
@@ -74,15 +74,15 @@
                         label : 'No.'
                     },
                     {
-                        key : 'products_name',
+                        key : 'productName',
                         label : 'Nama Produk'
                     },
                     {
-                        key : 'jumlah',
+                        key : 'qty',
                         label : 'Jumlah'
                     },
                     {
-                        key : 'harga',
+                        key : 'productPrice',
                         label : 'Harga Per Item'
                     },
                     {
@@ -102,7 +102,7 @@
         },
         methods: {
             updateProductStatus(status, index){
-                this.products = this.orders.products[index-1];
+                this.products = this.orders.ordItem[index-1];
                 this.products.status = status;
                 try {
                     this.$store.dispatch('updateStatusProduct',this.products);
@@ -116,10 +116,13 @@
                 location.reload();
             },
             getOrders(){
-                this.orders = this.$store.getters.getOrderById(1);
+                let par = ''
+                par = this.$route.params.id
+                this.orders = this.$store.getters.getOrderById(par);
             }
         },
         mounted() {
+            this.$store.dispatch('getOrders')
             this.getOrders();
         }
     }
