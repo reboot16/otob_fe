@@ -28,6 +28,12 @@
                 <b-col md="3">
                     : {{orders.ordId}}
                 </b-col>
+                <b-col md="3">
+                    Status Pesanan
+                </b-col>
+                <b-col md="3">
+                    : {{orders.ordStatus}}
+                </b-col>
             </b-row>
         </div>
 
@@ -48,16 +54,27 @@
                     <template slot="hargaTotal" slot-scope="data">Rp {{data.item.qty * data.item.productPrice}}</template>
                 </b-table>
 
+                <b-row id="sec4">
+                    <div v-if="orders.ordStatus === 'Waiting'">
+                        <b-button
+                                variant="success"
+                                class="mr-2"
+                                v-on:click="confirm(orders.ordId)"
+                        >
+                            Accepted
+                        </b-button>
+                    </div>
+                    <div v-if="orders.ordStatus === 'Waiting'">
+                        <b-button
+                                variant="danger"
+                                class="mr-2"
+                                v-on:click="reject(orders.ordId)"
+                        >
+                            Reject
+                        </b-button>
+                    </div>
+                </b-row>
 
-                <div id="sec4">
-                    <b-button
-                            variant="primary"
-                            class="mr-2"
-                            v-on:click="confirm"
-                    >
-                        CONFIRM
-                    </b-button>
-                </div>
             </b-card>
         </div>
     </div>
@@ -112,8 +129,15 @@
                     alert(e);
                 }
             },
-            confirm(){
-                location.reload();
+            confirm(id){
+                let orderReq = []
+                orderReq = this.$store.getters.getOrderById(id);
+                return this.$store.dispatch('acceptOrders', orderReq)
+            },
+            reject(id){
+                let orderReq = []
+                orderReq = this.$store.getters.getOrderById(id);
+                return this.$store.dispatch('rejectOrders', orderReq)
             },
             getOrders(){
                 let par = ''
@@ -145,6 +169,7 @@
     }
     #sec4{
         text-align: right;
+        float: right;
     }
     hr{
         border-color: #008800;
