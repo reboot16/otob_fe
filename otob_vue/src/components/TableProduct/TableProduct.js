@@ -1,10 +1,9 @@
-import { mapGetters } from 'vuex'
-import SearchProduct from '@/components/SearchProduct'
+import ProductModifyDropdown from '@/components/ProductModifyDropdown'
 
 export default {
   name: 'TableProductCustomer',
   components: {
-    SearchProduct
+    ProductModifyDropdown
   },
   data() {
     return {
@@ -15,17 +14,15 @@ export default {
         offerPrice: '',
         stock: ''
       },
-      filterByName: [],
-      sortByName: false,
       quantity: 1,
       bookData: '',
+      index: ''
     }
   },
   mounted () {
     this.$store.dispatch('getProducts')
   },
   computed: {
-    ...mapGetters('product', ['PRODUCTS']),
 
     listProduct: function () {
       return this.$store.getters.PRODUCTS
@@ -35,55 +32,16 @@ export default {
 
   },
   methods: {
-    isStockAvailable(stock){
-      if(stock <= 0){
-        return false;
-      }
-      return true;
+    showModalUpdate (product, index) {
+      this.$bvModal.show('modalProductForm')
+      this.onUpdate(product, index)
     },
-    book: function (product, index) {
-      this.bookData = this.$store.getters.USER_LOGIN
-      this.bookData.productId = product.productId
-      this.bookData.qty = this.quantity
-      this.bookData.index = index
-
-      this.$store.dispatch('addToCart', this.bookData)
+    onUpdate: function (product, index) {
+      this.$refs.form = product
     },
-    decDisable: function (product) {
-      if (product.stock === 0 || product.qty === 1) {
-        return true
-      } else {
-        return false
-      }
-    },
-    incDisable: function (product) {
-      if (product.stock === 0 || product.stock === product.qty) {
-        return true
-      } else {
-        return false
-      }
-    },
-    bookDisable: function (product) {
-      if (product.stock === 0) {
-        return true
-      } else {
-        return false
-      }
-    },
-    increment: function(product) {
-      product.qty++
-    },
-    decrement: function (product) {
-      product.qty--
-    },
-    isDisable(product) {
-      if (product.stock == 1) {
-        return true
-
-      } else {
-        return false
-      }
-    },
+    resetForm : function () {
+      this.form = ''
+    }
   },
 
 }

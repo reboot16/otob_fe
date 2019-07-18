@@ -28,7 +28,7 @@
   }
  
   .block:hover {
-    transform: scale(1.01);
+    box-shadow: 0 1px 10px #999;
   }
 
   thead.fixedHeader {

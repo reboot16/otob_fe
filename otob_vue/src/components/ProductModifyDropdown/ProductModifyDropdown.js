@@ -1,9 +1,6 @@
-import ModalProductForm from '@/components/ModalProduct'
-
 export default {
     name: 'product-header-button',
     components: {
-        ModalProductForm
     },
     data () {
         return {
@@ -13,7 +10,8 @@ export default {
                 listPrice: '',
                 offerPrice: '',
                 stock: ''
-            }, 
+            },
+            file: '',
         }
     },
     mounted () {
@@ -23,21 +21,30 @@ export default {
 
     },
     methods: {
-        showModalAdd () { 
+        showModalUpdate (product, index) {
             this.$bvModal.show('modalProductForm')
-        },
-        showModalBatch () { 
-            this.$bvModal.show('modalBatchUpload')
         },
         onHandleSubmit (event) {
             let data = this.form
             this.form = ''
-            event.preventDefault()
             this.onSubmit(data)
+
+            event.preventDefault()
+        },
+        onUpdate: function (product, index) {
+            this.$refs.form = product
         },
         onSubmit (data) {
-            this.$store.dispatch('addProduct', data)
+            this.$store.dispatch('updateProduct', data)
             this.$refs.modalProductForm.hide()
+        },
+        onDelete: function (product, index) {
+            const confirmDelete = confirm("Are you sure to delete this?");
+
+            if (confirmDelete) {
+                product.index = index
+                this.$store.dispatch('deleteProduct', product)
+            }
         },
         close () {
             this.close();

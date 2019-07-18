@@ -50,7 +50,8 @@ export default {
       isLogin : ''
     }
   },
-  mounted () { 
+  mounted () {  
+    let isLoginExist = $cookies.isKey('bazaar-isLogin') 
   },
   computed : {
     
