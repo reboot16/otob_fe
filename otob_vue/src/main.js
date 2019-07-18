@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import VueLocalStorage from 'local-storage'
-Vue.use(VueLocalStorage)
-
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
@@ -17,7 +14,9 @@ Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 
 import VueCookies from 'vue-cookies'
-Vue.use(VueCookies)
+import VueLocalStorage from 'local-storage'
+Vue.use(VueCookies) 
+Vue.use(VueLocalStorage)
 
 Vue.config.productionTip = false
 

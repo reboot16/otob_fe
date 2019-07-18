@@ -32,6 +32,9 @@
 </template>
 
 <script>
+'use strict'
+
+
 import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
 import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
 import NavbarCashier from '@/components/Navbar/NavbarCashier'
@@ -48,13 +51,6 @@ export default {
     }
   },
   mounted () { 
-    let isLoginExist = $cookies.isKey('bazaar-isLogin')
-
-    if(isLoginExist == false){
-      $cookies.set('bazaar-isLogin', false, 10)
-    }
-
-    this.isLogin = $cookies.get('bazaar-isLogin') 
   },
   computed : {
     
