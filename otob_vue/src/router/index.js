@@ -46,6 +46,16 @@ export default new Router({
       path: '/button',
       name: 'ProdCustHeader',
       component: () => import('@/components/ProductModifyDropdown')
-    }
+    },
+    {
+      path: '/orders/approvement/:id',
+      name: 'order-approvement',
+      component: () => import('@/components/order/Approvement.vue')
+    },
+    {
+      path: '/orders',
+      name: 'orders',
+      component: () => import('@/components/order/ViewAllOrders.vue')
+    },
   ]
 })

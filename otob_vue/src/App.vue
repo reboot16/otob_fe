@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app"> 
     <div>
       <div id="header">
         <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
@@ -13,7 +13,7 @@
             
           </div>
         </b-navbar>
-      </div>
+      </div> 
 
       <router-view id="content"/> 
 
@@ -117,7 +117,6 @@ img{
   text-align: center; 
   font-weight: bold;
 }
-
 #content{
   background-color: #f5f5f5;
   margin-top: 3em;
