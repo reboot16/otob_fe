@@ -35,6 +35,10 @@ export default {
       Axios
         .get(API + '/') 
         .then(response => {
+          //append default qty = 1
+          response.data.data.map(function(product) {
+            product.qty = 1
+          });
           commit('SET_PRODUCT', response.data.data)
         })
         .catch((e) => {

@@ -1,6 +1,6 @@
 'use strict';
 
-let sessionstorage = require('session-storage');
+let ls = require('local-storage');
 
 export default {
   name: 'Cart', 
@@ -25,35 +25,32 @@ export default {
     listItemCart: function () {
       return this.$store.getters.CARTS
     },
+    listProduct: function () {
+      return this.$store.getters.PRODUCTS
+    },
   },
   watch: {
 
   },
   methods: {
     setStockSession: function () {
-      let products = this.$store.getters.PRODUCTS
-
-      products.map(function(product, index) {
-        sessionStorage.setItem(product.name, product.stock);
+      this.listProduct.map(function(product, index) {
+        ls.set(product.name, product.stock);
       });
-
-      alert(sessionstorage.getItem(""))
     },
-    decDisable(product) {
-      if (product.qty == 1) {
+    decDisable: function (product) {
+      if (product.qty === 1) {
         return true
       } else {
         return false
       }
     },
-    incDisable(product) {
-      // alert(sessionstorage.getItem(product.productName))
-
-      // if (product.qty == stock) {
-      //   return true
-      // } else {
-      //   return false
-      // }
+    incDisable: function (product) {
+      if (product.qty === ls.get(product.productName)) {
+        return true
+      } else {
+        return false
+      }
     },
     decrement: function(product, index) {
       product.qty--

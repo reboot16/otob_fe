@@ -7,10 +7,14 @@ export default {
       email : 'nanihutagaol@gmail.com',
       role : 'ROLE_CUSTOMER'
     },
+    isLogin: false
   },
   getters : {
     USER_LOGIN: state => {
       return state.userLogin
+    },
+    IS_LOGIN: state => {
+      return state.isLogin
     }
   },
   mutations: { 
