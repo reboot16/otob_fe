@@ -34,7 +34,6 @@
 <script>
 'use strict'
 
-
 import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
 import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
 import NavbarCashier from '@/components/Navbar/NavbarCashier'
@@ -47,11 +46,17 @@ export default {
   }, 
   data () {
     return {
-      isLogin : ''
     }
   },
   mounted () {
     this.setCookies()
+
+    console.log(this.isAuth)
+  },
+  computed : {
+    isAuth: function () {
+      return this.$store.getters.isAuth
+    },
   },
   methods : {
     setCookies () {
@@ -70,9 +75,13 @@ export default {
       if(isRoleExist == false) {
         $cookies.set('bazaar-role', "null")
       }
-    },
-    checkUserLogin () {
 
+      this.autoSetUserAuth()
+    },
+    autoSetUserAuth () {
+      if (!this.isAuth || this.isAuth.length === 0) {
+        this.$store.dispatch('autoSetAuth')
+      }
     }
   }
   

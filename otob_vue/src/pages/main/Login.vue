@@ -26,7 +26,6 @@
 
 <script>
 import UserForm from '@/components/UserForm'
-import Axios from 'axios'
 
 const API = 'http://localhost:9000/api/auth'
 
@@ -43,8 +42,11 @@ export default {
   components: {
     UserForm
   },
-  mounted () { 
+  mounted () {
     // this.$router.push('/product') 
+  },
+  computed: {
+
   },
   methods: {
     onLogin (evt) {
