@@ -7,7 +7,7 @@
     </div>
 
     <div slot="slot-form">
-      <b-form @submit="onLogin">
+      <b-form @submit="onRegister">
         <b-form-input v-model="form.email" placeholder="Enter your email" required></b-form-input>
         <b-button type="submit" variant="success" style="width:100%">Register</b-button>
       </b-form> 

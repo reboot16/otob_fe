@@ -1,11 +1,21 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
 
-export default new Router({
+Vue.use(VueRouter)
+
+// const initProject = (to, from, next) => {
+//   // jika project id dari url sebelum dan sesudah berbeda, maka fetch ulang datanya
+//   if(from.params.projectId !== to.params.projectId){
+//     store.dispatch('project/fetchProjectData',to.params.projectId)
+//   }
+//   next()
+// }
+
+
+export const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -58,4 +68,12 @@ export default new Router({
       component: () => import('@/components/order/ViewAllOrders.vue')
     },
   ]
+})
+
+// redirect to login if not logged in
+router.beforeEach((to, from, next) => {
+  //redirect to login if not logged in and trying to access restricted page
+  // http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example#loginpage-vue
+  
+  next();
 })

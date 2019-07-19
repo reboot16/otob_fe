@@ -36,14 +36,24 @@ export default {
       form: {
         username: '',
         password: ''
-      }
+      },
+      dataLogin: []
     }
   },
   components: {
     UserForm
   },
+  watch: {
+    // autoCheck () {
+    //   if(this.dataLogin.login == true) {
+    //     console.log(this.dataLogin)
+    //     this.$router.push('/product')
+    //   }
+    // }
+  },
   mounted () {
-    // this.$router.push('/product') 
+    // this.$router.push('/product')
+    this.dataLogin = this.$store.getters.isAuth
   },
   computed: {
 
@@ -64,7 +74,7 @@ export default {
       let formData = new FormData();
       formData.append('email', this.form.username);
       formData.append('password', this.form.password);
-
+        console.log(formData)
       this.$store.dispatch('doLogout', formData)
     },
   }

@@ -1,12 +1,12 @@
 <template>
-  <div id="app"> 
-    <div>
+  <div id="app">
+<!--    <div v-if="isAuth.login == 'true'">-->
       <div id="header">
         <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
         <div class="container">
             <b-navbar-brand>
               <img src="@/assets/blibli.jpeg" style="vertical-align: top;">
-              <b style="font-size:24px">Blibli Bazaar</b>
+              <b style="font-size:24px" @click="brandClick">Blibli Bazaar</b>
             </b-navbar-brand>
 
             <NavbarAdmin/>
@@ -22,11 +22,11 @@
           <p style="margin:0.5em">Blibli Bazaar</p>
         </div> 
       </div>
-    </div>
+<!--    </div>-->
 
-    <!-- <div v-else>
-      <router-view id="loginFirst"/> 
-    </div> -->
+<!--    <div v-else>-->
+<!--      <router-view id="loginFirst"/>-->
+<!--    </div>-->
 
   </div>
 </template>
@@ -37,6 +37,7 @@
 import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
 import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
 import NavbarCashier from '@/components/Navbar/NavbarCashier'
+import Login from "./pages/main/Login";
 
 export default {
   components: {
@@ -49,8 +50,7 @@ export default {
     }
   },
   mounted () {
-    this.setCookies()
-
+    //this.setCookies()
     console.log(this.isAuth)
   },
   computed : {
@@ -82,6 +82,13 @@ export default {
       if (!this.isAuth || this.isAuth.length === 0) {
         this.$store.dispatch('autoSetAuth')
       }
+    },
+    brandClick(){
+      console.log('brand click')
+      return this.$router.push({
+        name: 'Register'
+        }
+      )
     }
   }
   

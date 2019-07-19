@@ -24,7 +24,6 @@ export default {
   actions : {
     autoSetAuth({commit}){
       let payload = []
-      
       payload.login = $cookies.get('bazaar-isLogin')
       payload.userId = $cookies.get('bazaar-userId')
       payload.role = $cookies.get('bazaar-role')
@@ -35,11 +34,12 @@ export default {
       Axios
         .post(API + '/login', payload)
         .then(response => {
+          console.log($cookies)
           console.log(response.data.data)
           commit('SET_AUTH', response.data.data)
           alert('Login success')
         }).catch((e) => {
-          console.log(response.data.data)
+          console.log(e)
           commit('SET_AUTH', response.data.data)
           alert('Login gagal')
         })
@@ -52,7 +52,7 @@ export default {
           commit('SET_AUTH', response.data.data)
           alert('Logout success')
         }).catch((e) => {
-          console.log(response.data.data)
+          console.log(e)
           commit('SET_AUTH', response.data.data)
           alert('Logout gagal')
         })
