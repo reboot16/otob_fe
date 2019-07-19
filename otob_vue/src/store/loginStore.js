@@ -1,42 +1,45 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/users'
+const API = 'http://localhost:9000/api/auth'
 
 export default {
   state: {
-    userLogin: {
-      email : 'nanihutagaol@gmail.com',
-      role : 'ROLE_CUSTOMER'
-    },
-    isLogin: false
+    isAuthorized: []
   },
   getters : {
-    USER_LOGIN: state => {
-      return state.userLogin
-    },
-    IS_LOGIN: state => {
-      return state.isLogin
+    IS_AUTH: state => {
+      return state.isAuthorized
     }
   },
   mutations: { 
-    SET_LOGIN : (state, payload) => {
-      state.users = payload
-    },
-    DELETE_USER: (state, payload) => { 
-      state.users.splice(payload.index, 1) 
-    },
+    SET_AUTH : (state, payload) => {
+      state.isLogin = payload
+      $cookies.set('bazaar-isLogin', payload.login)
+      $cookies.set('bazaar-userId', payload.userId)
+      $cookies.set('bazaar-role', payload.role)
+    }
   },
-  actions : { 
-    getUser  ({commit}) {  
+  actions : {
+    doLogin({commit}, payload) {
       Axios
-        .get(API) 
+        .post(API + '/login', payload)
         .then(response => {
-          commit('SET_LOGIN', response.data.data)
-        })
-        .catch((e) => {
-          console.error(e)
-          alert(e) 
-        }); 
+          commit('SET_AUTH', response.data.data)
+          alert('Login success')
+        }).catch((e) => {
+        commit('SET_AUTH', response.data.data)
+        alert('Login gagal')
+      })
     },
-  }  
-
+    doLogout({commit}, payload) {
+      Axios
+        .post(API + '/logout', payload)
+        .then(response => {
+          commit('SET_AUTH', response.data.data)
+          alert('Logout success')
+        }).catch((e) => {
+        commit('SET_AUTH', response.data.data)
+        alert('Logout gagal')
+      })
+    },
+  }
 }

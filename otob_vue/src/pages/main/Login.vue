@@ -15,7 +15,9 @@
       </div>
 
       <div slot="slot-notif">
-        If you don't have an account, <a href="/register" >Register Here</a>
+        If you don't have an account, <a href="/register" >Register Here</a> <br>
+          <a href="" variant="primary" @click="onLogout">onLogout</a>
+
       </div>
     </UserForm>
     
@@ -24,9 +26,9 @@
 
 <script>
 import UserForm from '@/components/UserForm'
-import axios from 'axios'
+import Axios from 'axios'
 
-const API = 'http://localhost:9000'
+const API = 'http://localhost:9000/api/auth'
 
 export default {
   name: 'Login',
@@ -47,17 +49,22 @@ export default {
   methods: {
     onLogin (evt) {
       evt.preventDefault()
-      axios
-        .post(API + '/login',
-          JSON.stringify(this.form),
-          {'headers': {'Content-Type': 'application/json'}}
-        )
-        .then(response => {
-          alert('Login success')
-        }).catch((e) => {
-          console.error(e)
-        })
-    }
+
+      let formData = new FormData();
+      formData.append('email', this.form.username);
+      formData.append('password', this.form.password);
+
+      this.$store.dispatch('doLogin', formData)
+    },
+    onLogout (evt) {
+      evt.preventDefault()
+
+      let formData = new FormData();
+      formData.append('email', this.form.username);
+      formData.append('password', this.form.password);
+
+      this.$store.dispatch('doLogout', formData)
+    },
   }
 }
 </script>

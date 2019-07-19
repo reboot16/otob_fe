@@ -50,11 +50,30 @@ export default {
       isLogin : ''
     }
   },
-  mounted () {  
-    let isLoginExist = $cookies.isKey('bazaar-isLogin') 
+  mounted () {
+    this.setCookies()
   },
-  computed : {
-    
+  methods : {
+    setCookies () {
+      let isLoginExist = $cookies.isKey('bazaar-isLogin')
+      let isIdExist = $cookies.isKey('bazaar-userId')
+      let isRoleExist = $cookies.isKey('bazaar-role')
+
+      if(isLoginExist == false) {
+        $cookies.set('bazaar-isLogin', "false")
+      }
+
+      if(isIdExist == false) {
+        $cookies.set('bazaar-userId', "null")
+      }
+
+      if(isRoleExist == false) {
+        $cookies.set('bazaar-role', "null")
+      }
+    },
+    checkUserLogin () {
+
+    }
   }
   
 }
