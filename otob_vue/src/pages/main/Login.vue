@@ -41,6 +41,9 @@ export default {
   components: {
     UserForm
   },
+  mounted () { 
+    // this.$router.push('/product') 
+  },
   methods: {
     onLogin (evt) {
       evt.preventDefault()
