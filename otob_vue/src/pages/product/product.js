@@ -18,7 +18,9 @@ export default {
     this.$store.dispatch('getProducts')   
   },
   computed: {
-
+    listProduct: function () {
+      return this.$store.getters.PRODUCTS
+    },
   },
   watch: {
 
