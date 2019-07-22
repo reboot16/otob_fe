@@ -1,6 +1,6 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/auth'
 
+const API = 'http://localhost:9000/api/auth'
 export default {
   state: {
     isAuthorized: []
