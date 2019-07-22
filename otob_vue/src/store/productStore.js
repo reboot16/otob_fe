@@ -33,7 +33,7 @@ export default {
   actions : {
     getProducts  ({commit}) {  
       Axios
-        .get(API + '/') 
+        .get(API)
         .then(response => {
           //append default qty = 1
           response.data.data.map(function(product) {
@@ -48,7 +48,7 @@ export default {
     },
     addProduct ({commit}, payload) {
       Axios
-        .post(API + '/',
+        .post(API,
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -63,7 +63,7 @@ export default {
     },
     updateProduct ({commit}, payload) {
       Axios
-        .put(API + '/updateById/' + payload.productId,
+        .put(API + '/' + payload.productId,
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -77,7 +77,7 @@ export default {
     },
     deleteProduct ({commit}, payload) {  
       Axios
-        .delete(API + '/deleteById/' + payload.productId)
+        .delete(API + '/' + payload.productId)
         .then(response => { 
           commit('DELETE_PRODUCT', payload) 
           alert('Success delete data')
@@ -89,13 +89,13 @@ export default {
     searchProduct({commit}, textSearch){
       if(textSearch == ''){
         Axios
-          .get(API + '/') 
+          .get(API)
           .then(response => {
             commit('SET_PRODUCT', response.data.data)
           })
       }else{
         Axios
-          .get(API + '/getByName/' + textSearch) 
+          .get(API + '/name/' + textSearch)
           .then(response => {
             commit('SET_PRODUCT', response.data.data)
           })
@@ -103,7 +103,7 @@ export default {
     },
     uploadProduct({commit}, payload){ 
       Axios
-        .post(API + '/import',
+        .post(API + '/batch',
           payload,
           {'headers': {'Content-Type': 'multipart/form-data'}
         })
