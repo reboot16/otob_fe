@@ -6,7 +6,7 @@
         <table width="100%" class="table table-hover table-striped table-scroll small-first-col" style="table-layout: fixed;">
 
           <thead class="fixedHeader"  style="background-color:white">
-            <tr class="col-sm-12">
+            <th class="col-sm-12">
               <td class="col-sm-1"><b>#</b></td>
               <td class="col-sm-2">Name</td>
               <td class="col-sm-2">Description</td>
@@ -14,7 +14,7 @@
               <td class="col-sm-2">Offer Price</td>
               <td class="col-sm-1">Stock</td>
               <td class="col-sm-2">Action</td>
-            </tr>
+            </th>
           </thead>
 
           <tbody class="scrollContentProduct" style="background-color:white;">
@@ -26,10 +26,10 @@
               <td class="col-sm-2">{{ product.offerPrice }}</td>
               <td class="col-sm-1">{{ product.stock }}</td>
               <td class="col-sm-2">
-                <b-dropdown variant="outline-primary" size="sm" right>
+                <b-dropdown variant="outline-primary" size="sm" right name="dropdown">
                   <template slot="button-content"><li class="fa fa-eye"></li> </template>
-                  <b-dropdown-item @click="showModalUpdate(product, index)"><li class="fa fa-edit"></li> Edit</b-dropdown-item>
-                  <b-dropdown-item v-on:click="onDelete(product, index)"><li class="fa fa-trash"></li> Delete</b-dropdown-item>
+                  <b-dropdown-item @click="showModalUpdate(product, index)" name="edit"><li class="fa fa-edit"></li> Edit</b-dropdown-item>
+                  <b-dropdown-item v-on:click="onDelete(product, index)" name="delete"><li class="fa fa-trash"></li> Delete</b-dropdown-item>
                 </b-dropdown>
               </td>
             </tr>
@@ -97,22 +97,20 @@
 <script src="./TableProduct.js"></script>
 
 <style>
-  .table-scroll{
-    /*width:100%; */
+  .table-scroll{ 
     display: block;
-    /*empty-cells: show;*/
-
-    /* Decoration */
-    border-spacing: 0;
-    border: 1px solid;
+    empty-cells: show;  
   }
 
-  .table-scroll thead{
-    /*background-color: #f1f1f1;*/
+  .table-scroll thead{ 
     position:relative;
     display: block;
     width:100%;
     overflow-y: scroll;
+  }
+
+  .table-scroll thead th {
+    display: flex;
   }
 
   .table-scroll tbody{
@@ -128,37 +126,18 @@
     display:flex;
   }
 
-  .table-scroll td,.table-scroll th{
+  .table-scroll td{
     flex-basis:100%;
-    flex-grow:2;
+    flex-grow:1;
     display: block;
-    padding: 1rem;
+    /* padding: 1rem; */
     text-align:left;
   }
-
-  /* Other options */
-
-  .table-scroll.small-first-col td:first-child,
-  .table-scroll.small-first-col th:first-child{
-    flex-basis:20%;
-    flex-grow:1;
-  }
-
-  .table-scroll tbody tr:nth-child(2n){
-    /*background-color: rgba(130,130,170,0.1);*/
-  }
-
+  
   .body-half-screen{
     max-height: 50vh;
   }
-
-  .small-col{flex-basis:10%;}
-
-thead.fixedHeader {
-    display: table;
-    width: 100%; 
-  }
-
+  
   tbody.scrollContentProduct{
     display: block;
     height: 350px;
@@ -170,30 +149,8 @@ thead.fixedHeader {
     height: 200px;
     overflow: auto;
   }
-
-  tbody.scrollContentProduct tr td{
-    word-break: break-all;
-  }
-
-  .quantity-toggle {
-    display: flex;
-  }
-
-  .quantity-toggle input {
-    border: 0;
-    border-top: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
-    width: 2em;
-    text-align: center;
-    padding: 0.1em;
-  }
-  .quantity-toggle button {
-    /*border: 2px solid #ddd;*/
-    padding: .1em .5em .1em .5em;
-    font-size: 0.75em;
-    cursor: pointer;
-  } 
-
+ 
+   
   #bookBtn{
     padding:0 0.5em 0 0.5em;
     margin-left:0.5em;

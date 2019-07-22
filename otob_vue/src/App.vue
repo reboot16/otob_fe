@@ -160,7 +160,7 @@ img{
   min-height: 700px;
 }
 
-#content thead tr, #content .btn-primary{
+#content thead th, #content .btn-primary{
   color:white;
   background-color: rgb(38, 164, 218);
 }
