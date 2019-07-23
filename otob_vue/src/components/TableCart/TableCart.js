@@ -54,7 +54,7 @@ export default {
     },
     decrement: function(product, index) {
       product.qty--
-      product.email = this.email
+      // product.email = this.email
       product.index = index
 
       this.$store.dispatch('updateItemCart', product)

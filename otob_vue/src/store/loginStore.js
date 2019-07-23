@@ -34,8 +34,7 @@ export default {
       Axios
         .post(API + '/login', payload)
         .then(response => {
-          console.log($cookies)
-          console.log(response.data.data)
+          console.log(response.data)
           commit('SET_AUTH', response.data.data)
           alert('Login success')
         }).catch((e) => {
