@@ -83,6 +83,9 @@
 <script>
     export default {
         name: "Approvement",
+        props: {
+            'auth': ''
+        },
         data(){
             return{
                 fields: [
@@ -146,6 +149,10 @@
             }
         },
         mounted() {
+            if(this.auth.isCashier == false){
+                this.$router.push('/forbidden')
+            }
+            
             this.$store.dispatch('getOrders')
             this.getOrders();
         }

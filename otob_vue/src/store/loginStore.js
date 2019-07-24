@@ -4,9 +4,9 @@ const API = 'http://localhost:9000/api/auth'
 export default {
   state: {
     isAuthorized: {
-      isLogin: 'false',
+      isLogin: true,
       userId: 'nanihutagaol@gmail.com',
-      userRole: 'ROLE_ADMIN'
+      userRole: 'ROLE_CASHIER'
     } 
   },
   getters : {
@@ -16,12 +16,6 @@ export default {
   },
   mutations: { 
     SET_AUTH : (state, payload) => {
-      state.isAuthorized = payload
-      $cookies.set('bazaar-isLogin', payload.login)
-      $cookies.set('bazaar-userId', payload.userId)
-      $cookies.set('bazaar-role', payload.role)
-    },
-    SET_AUTH_AUTO : (state, payload) => {
       state.isAuthorized = payload
     },
   },
@@ -67,9 +61,9 @@ export default {
           alert('Login gagal')
         })
     },
-    doLogout({commit}, payload) {
+    doLogout({commit}) {
       Axios
-        .post(API + '/logout', payload)
+        .post(API + '/logout')
         .then(response => {
           console.log(response.data.data)
           // commit('SET_AUTH', response.data.data)

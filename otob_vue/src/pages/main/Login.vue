@@ -31,6 +31,9 @@ const API = 'http://localhost:9000/api/auth'
 
 export default {
   name: 'Login',
+  props: {
+    'auth': ''
+  },
   data () {
     return {
       form: {
@@ -42,18 +45,11 @@ export default {
   },
   components: {
     UserForm
-  },
-  watch: {
-    // autoCheck () {
-    //   if(this.dataLogin.login == true) {
-    //     console.log(this.dataLogin)
-    //     this.$router.push('/product')
-    //   }
-    // }
-  },
-  mounted () {
-    // this.$router.push('/product')
-    this.dataLogin = this.$store.getters.isAuth
+  }, 
+  mounted () { 
+    if(this.auth.isLogin == true){
+      this.$router.push('/page-not-found')
+    } 
   },
   computed: {
 
@@ -66,18 +62,8 @@ export default {
       formData.append('email', this.form.username);
       formData.append('password', this.form.password);
 
-      // this.$store.dispatch('doLogin', formData)
-      this.$store.dispatch('checkCookieAuth')
-    },
-    onLogout (evt) {
-      evt.preventDefault()
-
-      let formData = new FormData();
-      formData.append('email', this.form.username);
-      formData.append('password', this.form.password);
-        console.log(formData)
-      this.$store.dispatch('doLogout', formData)
-    },
+      this.$store.dispatch('doLogin', formData) 
+    }, 
   }
 }
 </script>

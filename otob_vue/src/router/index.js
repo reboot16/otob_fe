@@ -81,6 +81,16 @@ export const router = new VueRouter({
       name: 'ForbiddenAccess',
       component: () => import('@/pages/main/ForbiddenAccess.vue')
     },
+    {
+      path: '/page-not-found',
+      name: 'PageNotFound',
+      component: () => import('@/pages/main/PageNotFound.vue')
+    },
+    {
+      path: '*',
+      name: 'PageNotFound',
+      component: () => import('@/pages/main/PageNotFound.vue')
+    }
   ]
 })
 

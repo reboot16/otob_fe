@@ -6,7 +6,7 @@ import NavbarCashier from '@/components/Navbar/NavbarCashier'
 import Login from "@/pages/main/Login";
 
 const adminRole = 'ROLE_ADMIN'
-const cashierRole = 'ROLE_CAHSIER'
+const cashierRole = 'ROLE_CASHIER'
 const customerRole = 'ROLE_CUSTOMER'
 
 export default {
@@ -16,11 +16,10 @@ export default {
     NavbarCashier
   }, 
   data () {
-    return {
-      authData: []
+    return { 
     }
   },
-  mounted () {
+  mounted () { 
   },
   computed : {
     isAuth () {
@@ -46,40 +45,23 @@ export default {
         return true
       }
       return false
+    },
+    userAuth () {
+      let auth = {
+        isLogin: this.isLogin,
+        isAdmin: this.isAdmin,
+        isCashier: this.isCashier,
+        isCustomer: this.isCustomer
+      }
+      return auth
     }
   },
   methods : {
-    setCookies () {
-      let isLoginExist = $cookies.isKey('bazaar-isLogin')
-      let isIdExist = $cookies.isKey('bazaar-userId')
-      let isRoleExist = $cookies.isKey('bazaar-role')
-
-      if(isLoginExist == false) {
-        $cookies.set('bazaar-isLogin', "false")
-      }
-
-      if(isIdExist == false) {
-        $cookies.set('bazaar-userId', "null")
-      }
-
-      if(isRoleExist == false) {
-        $cookies.set('bazaar-role', "null")
-      }
-
-      this.autoSetUserAuth()
+    onLogout (evt) {
+      evt.preventDefault()
+ 
+      this.$store.dispatch('doLogout')
     },
-    autoSetUserAuth () {
-      if (!this.isAuth || this.isAuth.length === 0) {
-        // this.$store.dispatch('autoSetAuth')
-      }
-    },
-    brandClick(){
-      console.log('brand click')
-      return this.$router.push({
-        name: 'Register'
-        }
-      )
-    }
   }
   
 }
