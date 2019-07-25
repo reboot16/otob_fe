@@ -39,7 +39,6 @@ export default {
       return true;
     },
     book: function (product, index) {
-  
       product.index = index
       console.log(product)
 
