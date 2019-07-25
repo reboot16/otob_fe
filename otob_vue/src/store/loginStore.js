@@ -22,9 +22,9 @@ export default {
   actions : {
     autoSetAuth({commit}){
       let payload = []
-      payload.login = $cookies.get('bazaar-isLogin')
-      payload.userId = $cookies.get('bazaar-userId')
-      payload.role = $cookies.get('bazaar-role')
+      payload.login = $cookies.get('is-login')
+      payload.userId = $cookies.get('user-id')
+      payload.role = $cookies.get('user-role')
       
       commit('SET_AUTH_AUTO', payload)
     },
