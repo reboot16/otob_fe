@@ -20,7 +20,7 @@ export default {
       filterByName: [],
       sortByName: false,
       quantity: 1,
-      bookData: '',
+      bookData: {},
     }
   },
   mounted () {
@@ -38,12 +38,12 @@ export default {
       }
       return true;
     },
-    book: function (product, index) { 
-      this.bookData.productId = product.productId
-      this.bookData.qty = this.quantity
-      this.bookData.index = index
+    book: function (product, index) {
+  
+      product.index = index
+      console.log(product)
 
-      this.$store.dispatch('addToCart', this.bookData)
+      this.$store.dispatch('addToCart', product)
     },
     decDisable: function (product) {
       if (product.stock === 0 || product.qty === 1) {

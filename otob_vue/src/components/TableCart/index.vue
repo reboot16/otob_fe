@@ -23,7 +23,10 @@
         </thead>
 
         <tbody class="scrollContentCart">
-          <tr class="col-sm-12" v-for="(product, index) in listItemCart" :key="index" >
+          <tr class="col-sm-12" v-if="listItemCart.length == 0" :key="index" >
+            <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty cart :(</h5></td>
+          </tr>
+          <tr class="col-sm-12" v-else v-for="(product, index) in listItemCart" :key="index" >
             <td width="4%"><b>{{ index+1 }}</b></td>
             <td width="25%">{{ product.productName }}</td>
             <td width="25%">{{ product.productPrice }}</td>

@@ -68,16 +68,15 @@ export default {
       const confirmDelete = confirm("Are you sure to remove from cart?");
 
       if (confirmDelete) {
-        product.email = this.email
         product.index = index
-        this.$store.dispatch('deleteItemCart', product) 
+        this.$store.dispatch('deleteItemCart', product)
       }
     },
     onOrder: function () {
       const confirmOrder= confirm("Are you sure want to order all item on cart?");
 
       if (confirmOrder) {
-        this.$store.dispatch('orderItemCart', this.email) 
+        this.$store.dispatch('orderItemCart')
       }
     },
   },

@@ -85,6 +85,13 @@
     flex-basis:20%;
     flex-grow:1;
   }
+
+  .empty-cart {
+      height: 200px;
+  }
+  .empty-cart h5{
+      margin-top: 3em;
+  }
    /* ======================== END OF CSS FOR SCROLL TABLE =========================== */
 
    /* ============================== CSS FOR BUTTON MODIFY =========================== */
