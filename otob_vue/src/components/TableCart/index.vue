@@ -10,9 +10,9 @@
     </div>
 
     <div class="tableContainer">
-      <table width="100%" class="table table-hover table-striped table-scroll small-first-col" style="table-layout: fixed;">
+      <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 
-      <thead class="fixedHeader"  style="background-color:white">
+      <thead>
           <tr class="col-sm-12">
             <th width="4%">#</th>
             <th width="25%">Name</th>
@@ -22,7 +22,7 @@
           </tr>
         </thead>
 
-        <tbody class="scrollContentCart" style="background-color:white">
+        <tbody class="scrollContentCart">
           <tr class="col-sm-12" v-for="(product, index) in listItemCart" :key="index" >
             <td width="4%"><b>{{ index+1 }}</b></td>
             <td width="25%">{{ product.productName }}</td>
@@ -47,89 +47,6 @@
  
 </template>
 
-<style scoped>
-  .table-scroll{
-    /*width:100%; */
-    display: block;
-    empty-cells: show;
-
-    /* Decoration */
-    border-spacing: 0;
-    border: 1px solid;
-  }
-
-  .table-scroll thead{
-    /*background-color: #f1f1f1;*/
-    position:relative;
-    display: block;
-    width:100%;
-    overflow-y: scroll;
-  }
-
-  .table-scroll tbody{
-    /* Position */
-    display: block; position:relative;
-    width:100%; overflow-y:scroll;
-    /* Decoration */
-    border-top: 1px solid rgba(0,0,0,0.2);
-  }
-
-  .table-scroll tr{
-    width: 100%;
-    display:flex;
-  }
-
-  .table-scroll td,.table-scroll th{
-    flex-basis:100%;
-    flex-grow:2;
-    display: block;
-    padding: 1rem;
-    text-align:left;
-  }
-
-  /* Other options */
-
-  .table-scroll.small-first-col td:first-child,
-  .table-scroll.small-first-col th:first-child{
-    flex-basis:20%;
-    flex-grow:1;
-  }
-
-  .table-scroll tbody tr:nth-child(2n){
-    /*background-color: rgba(130,130,170,0.1);*/
-  }
-h5 {
-  text-align: center;
-}
-img{
-  height:30px; 
-  border-radius:50%; 
-  border:1px solid #999999; 
-  padding:0.1em;
-}
-tr td a{
-  font-size: 14px;
-  color:#0096D9;
-}
-
-.quantity-toggle {
-  display: flex;
-}
-
-.quantity-toggle input {
-    border: 0;
-    border-top: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
-    width: 2em;
-    text-align: center;
-    padding: 0.1em;
-}
-.quantity-toggle button {
-    border: 2px solid #ddd;
-    padding: .25em .5em .25em .5em;
-    font-size: 0.75em;
-    cursor: pointer;
-} 
-</style>
-
 <script src="./TableCart.js"></script>
+
+<style scoped> </style>

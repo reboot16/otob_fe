@@ -74,6 +74,9 @@
     import Datepicker from "vuejs-datepicker/dist/vuejs-datepicker.esm.js";
     export default {
         name: "ViewAllOrders",
+        props: {
+            'auth': ''
+        },
         components: {Datepicker},
         data(){
             return{
@@ -129,6 +132,10 @@
             }
         },
         mounted() {
+            if(this.auth.isCashier == false){
+                this.$router.push('/forbidden')
+            }
+
             this.$store.dispatch('getOrders')
             this.getAllOrders()
         },

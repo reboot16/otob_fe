@@ -1,8 +1,10 @@
-import { mapGetters } from 'vuex'
 import SearchProduct from '@/components/SearchProduct'
 
 export default {
   name: 'TableProductCustomer',
+  props: {
+    'listProduct': ''
+  },
   components: {
     SearchProduct
   },
@@ -22,14 +24,9 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('getProducts')
   },
   computed: {
-    ...mapGetters('product', ['PRODUCTS']),
-
-    listProduct: function () {
-      return this.$store.getters.PRODUCTS
-    },
+ 
   },
   watch: {
 
@@ -41,8 +38,7 @@ export default {
       }
       return true;
     },
-    book: function (product, index) {
-      this.bookData = this.$store.getters.USER_LOGIN
+    book: function (product, index) { 
       this.bookData.productId = product.productId
       this.bookData.qty = this.quantity
       this.bookData.index = index

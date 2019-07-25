@@ -38,11 +38,12 @@ h2{
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2em;
-  border: 2px solid #d2d6de;
+  border: 1px solid #d2d6de;
   border-radius: 10px;
   transition: transform 2s;
   font-family: sans-serif;
   width: 500px;
+  background-color: white;
 }
 .boxMain:hover {
   box-shadow: 0 1px 10px #999; 

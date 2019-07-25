@@ -1,13 +1,13 @@
 <template>
 <div>
-    <div class="forbidden">
-        <h1>Sorry, you're not allowed to access that page :(</h1>
+    <div class="not-found">
+        <h1>Sorry, page not found :(</h1>
     </div>
 </div>
 </template>
 
 <style>
-.forbidden { 
+.not-found { 
     text-align: center;
     position: fixed;
     top: 50%;
