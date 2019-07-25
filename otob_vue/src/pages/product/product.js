@@ -4,6 +4,9 @@ import TableProduct from '@/components/TableProduct'
 
 export default {
   name: 'Product',  
+  props: {
+    'auth': ''
+  },
   components: {
     SearchProduct,
     ProductHeaderDropdown,
@@ -15,6 +18,10 @@ export default {
     }
   },
   mounted () { 
+    if(this.auth.isAdmin == false){
+      this.$router.push('/forbidden')
+    } 
+
     this.$store.dispatch('getProducts')   
   },
   computed: {

@@ -30,9 +30,9 @@ export default {
     },
   },
   actions : {
-    getCart ({commit}, email) {
+    getCart ({commit}) {
       Axios
-        .get(API)
+        .get(API) 
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
@@ -43,8 +43,14 @@ export default {
       Axios
         .post(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
-          commit('ADD_TO_CART', payload)
-          alert('Success add to cart')
+          if(response.data.code == 200) {
+            commit('ADD_TO_CART', payload)
+            alert('Success add to cart')
+          }
+          else{
+            console.log(payload.name)
+            alert(response.data.message)
+          }
         })
         .catch((e) => {
           alert(e)
@@ -55,10 +61,12 @@ export default {
       Axios
         .put(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
-          if(response.data.code == 500){
-            alert('stock not available');
-          }else{
+          if(response.data.code == 200) {
             commit('UPDATE_ITEM_CART', payload)
+            alert('Success add to cart')
+          }
+          else{
+            alert(response.data.message)
           }
         })
         .catch((e) => {
@@ -75,15 +83,15 @@ export default {
         })
         .catch((e) => {
           alert(e)
-          console.error(e) 
+          console.error(e)
         }); 
     },
     orderItemCart ({commit}) {
       Axios
-        .get(API + '/checkout')
+        .get(API + '/checkout') 
         .then(response => {
           alert('okk')
-          // commit('SET_CART', response.data.data.cartItems)
+          commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
           alert(e)
         });

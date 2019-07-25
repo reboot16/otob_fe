@@ -1,8 +1,7 @@
 import Axios from 'axios'
 const API = 'http://localhost:9000/api/orders'
 
-export default{
-
+export default {
   state: {
     orders: [],
   },
@@ -37,7 +36,7 @@ export default{
 
     getOrders ({commit}) {
       Axios
-          .get(API+'/')
+          .get(API)
           .then(response => {
             commit('SET_ORDERS',response.data.data)
           }).catch((e) => {
@@ -47,7 +46,7 @@ export default{
 
     acceptOrders ({commit}, payload) {
       Axios
-          .get(API+'/acc/'+ payload.ordId)
+          .get(API + '/' + payload.ordId + '/accept')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
             alert('Succes to Accept Order'+ payload.ordId)
@@ -58,7 +57,7 @@ export default{
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(API+'/rej/'+ payload.ordId)
+          .get(API + '/' + payload.ordId + '/reject')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
             alert('Succes to Reject Order'+ payload.ordId)
