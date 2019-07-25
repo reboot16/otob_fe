@@ -14,5 +14,16 @@ export default {
     if(this.auth.isCustomer == false){
       this.$router.push('/forbidden')
     }
+
+    this.$store.dispatch('getProducts')
+    this.$store.dispatch('getCart')
+  },
+  computed: {
+    listProduct: function () {
+      return this.$store.getters.PRODUCTS
+    },
+    listItemCart: function () {
+      return this.$store.getters.CARTS
+    },
   },
 }

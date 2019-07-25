@@ -30,9 +30,9 @@ export default {
     },
   },
   actions : {
-    getCart ({commit}, email) {
+    getCart ({commit}) {
       Axios
-        .get(API + '/' + email + '/') 
+        .get(API) 
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
@@ -41,7 +41,7 @@ export default {
     },
     addToCart ({commit}, payload) { 
       Axios
-        .post(API + '/' + payload.email + '/add/' + payload.productId + '/' + payload.qty)
+        .post(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           commit('ADD_TO_CART', payload)
           alert('Success add to cart')
@@ -53,7 +53,7 @@ export default {
     },
     updateItemCart ({commit}, payload) { 
       Axios
-        .put(API + '/' + payload.email + '/update/' + payload.productId + '/' + payload.qty)
+        .put(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 500){
             alert('stock not available');
@@ -68,7 +68,7 @@ export default {
     },
     deleteItemCart ({commit}, payload) {
       Axios
-        .delete(API + '/' + payload.email + '/remove/' + payload.productId)
+        .delete(API + '/' + payload.productId)
         .then(response => {
           commit('DELETE_ITEM_CART', payload) 
           alert('Success delete from cart')
@@ -80,7 +80,7 @@ export default {
     },
     orderItemCart ({commit}, email) {
       Axios
-        .get(API + '/' + email + '/checkout') 
+        .get(API + '/checkout') 
         .then(response => {
           alert('okk')
           // commit('SET_CART', response.data.data.cartItems)

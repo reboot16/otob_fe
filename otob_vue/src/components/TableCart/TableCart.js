@@ -4,9 +4,12 @@ let ls = require('local-storage');
 
 export default {
   name: 'Cart', 
+  props: {
+    'listItemCart': '',
+    'listProduct': ''
+  },
   data() {
-    return { 
-      email : this.$store.getters.USER_LOGIN.email,
+    return {  
       form: {
         productName : '',
         productPrice: '',
@@ -16,18 +19,13 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('getCart', this.email)
     this.$store.dispatch('getProducts')
 
     this.setStockSession()
   },
   computed: {
-    listItemCart: function () {
-      return this.$store.getters.CARTS
-    },
-    listProduct: function () {
-      return this.$store.getters.PRODUCTS
-    },
+    
+     
   },
   watch: {
 
