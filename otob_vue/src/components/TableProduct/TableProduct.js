@@ -1,9 +1,12 @@
-import ProductModifyDropdown from '@/components/ProductModifyDropdown'
+// import ProductModifyDropdown from '@/components/ProductModifyDropdown'
 
 export default {
-  name: 'TableProductCustomer',
+  name: 'TableProduct',
+  props: {
+    listProduct: ''
+  },
   components: {
-    ProductModifyDropdown
+    // ProductModifyDropdown
   },
   data() {
     return {
@@ -20,13 +23,10 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('getProducts')
+    // this.$store.dispatch('getProducts')
   },
   computed: {
-
-    listProduct: function () {
-      return this.$store.getters.PRODUCTS
-    },
+ 
   },
   watch: {
 

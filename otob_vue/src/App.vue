@@ -1,12 +1,12 @@
 <template>
-  <div id="app"> 
-    <div>
+  <div id="app">
+<!--    <div v-if="isAuth.login == 'true'">-->
       <div id="header">
         <b-navbar toggleable="lg" type="" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
         <div class="container">
             <b-navbar-brand>
               <img src="@/assets/blibli.jpeg" style="vertical-align: top;">
-              <b style="font-size:24px">Blibli Bazaar</b>
+              <b style="font-size:24px" @click="brandClick">Blibli Bazaar</b>
             </b-navbar-brand>
 
             <NavbarAdmin/>
@@ -22,11 +22,11 @@
           <p style="margin:0.5em">Blibli Bazaar</p>
         </div> 
       </div>
-    </div>
+<!--    </div>-->
 
-    <!-- <div v-else>
-      <router-view id="loginFirst"/> 
-    </div> -->
+<!--    <div v-else>-->
+<!--      <router-view id="loginFirst"/>-->
+<!--    </div>-->
 
   </div>
 </template>
@@ -34,10 +34,10 @@
 <script>
 'use strict'
 
-
 import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
 import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
 import NavbarCashier from '@/components/Navbar/NavbarCashier'
+import Login from "./pages/main/Login";
 
 export default {
   components: {
@@ -47,14 +47,49 @@ export default {
   }, 
   data () {
     return {
-      isLogin : ''
     }
   },
-  mounted () {  
-    let isLoginExist = $cookies.isKey('bazaar-isLogin') 
+  mounted () {
+    //this.setCookies()
+    console.log(this.isAuth)
   },
   computed : {
-    
+    isAuth: function () {
+      return this.$store.getters.isAuth
+    },
+  },
+  methods : {
+    setCookies () {
+      let isLoginExist = $cookies.isKey('bazaar-isLogin')
+      let isIdExist = $cookies.isKey('bazaar-userId')
+      let isRoleExist = $cookies.isKey('bazaar-role')
+
+      if(isLoginExist == false) {
+        $cookies.set('bazaar-isLogin', "false")
+      }
+
+      if(isIdExist == false) {
+        $cookies.set('bazaar-userId', "null")
+      }
+
+      if(isRoleExist == false) {
+        $cookies.set('bazaar-role', "null")
+      }
+
+      this.autoSetUserAuth()
+    },
+    autoSetUserAuth () {
+      if (!this.isAuth || this.isAuth.length === 0) {
+        this.$store.dispatch('autoSetAuth')
+      }
+    },
+    brandClick(){
+      console.log('brand click')
+      return this.$router.push({
+        name: 'Register'
+        }
+      )
+    }
   }
   
 }
@@ -125,7 +160,7 @@ img{
   min-height: 700px;
 }
 
-#content thead tr, #content .btn-primary{
+#content thead th, #content .btn-primary{
   color:white;
   background-color: rgb(38, 164, 218);
 }

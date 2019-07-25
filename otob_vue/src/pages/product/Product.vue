@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <TableProduct/>
+        <TableProduct :listProduct="listProduct"/>
      </div>
     </div>
  

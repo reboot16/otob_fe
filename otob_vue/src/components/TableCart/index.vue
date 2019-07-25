@@ -1,5 +1,5 @@
 <template> 
-  <div name="Cart">  
+  <div name="TableCart">  
     <div class="row" style="margin-bottom: 0.5em">
       <div class="col-sm-6">
         <h3>My Cart</h3>

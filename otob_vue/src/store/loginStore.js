@@ -1,42 +1,60 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/users'
 
+const API = 'http://localhost:9000/api/auth'
 export default {
   state: {
-    userLogin: {
-      email : 'nanihutagaol@gmail.com',
-      role : 'ROLE_CUSTOMER'
-    },
-    isLogin: false
+    isAuthorized: []
   },
   getters : {
-    USER_LOGIN: state => {
-      return state.userLogin
-    },
-    IS_LOGIN: state => {
-      return state.isLogin
+    isAuth: state => {
+      return state.isAuthorized
     }
   },
   mutations: { 
-    SET_LOGIN : (state, payload) => {
-      state.users = payload
+    SET_AUTH : (state, payload) => {
+      state.isAuthorized = payload
+      $cookies.set('bazaar-isLogin', payload.login)
+      $cookies.set('bazaar-userId', payload.userId)
+      $cookies.set('bazaar-role', payload.role)
     },
-    DELETE_USER: (state, payload) => { 
-      state.users.splice(payload.index, 1) 
+    SET_AUTH_AUTO : (state, payload) => {
+      state.isAuthorized = payload
     },
   },
-  actions : { 
-    getUser  ({commit}) {  
-      Axios
-        .get(API) 
-        .then(response => {
-          commit('SET_LOGIN', response.data.data)
-        })
-        .catch((e) => {
-          console.error(e)
-          alert(e) 
-        }); 
+  actions : {
+    autoSetAuth({commit}){
+      let payload = []
+      payload.login = $cookies.get('bazaar-isLogin')
+      payload.userId = $cookies.get('bazaar-userId')
+      payload.role = $cookies.get('bazaar-role')
+      
+      commit('SET_AUTH_AUTO', payload)
     },
-  }  
-
+    doLogin({commit}, payload) {
+      Axios
+        .post(API + '/login', payload)
+        .then(response => {
+          console.log(response.data)
+          commit('SET_AUTH', response.data.data)
+          alert('Login success')
+        }).catch((e) => {
+          console.log(e)
+          commit('SET_AUTH', response.data.data)
+          alert('Login gagal')
+        })
+    },
+    doLogout({commit}, payload) {
+      Axios
+        .post(API + '/logout', payload)
+        .then(response => {
+          console.log(response.data.data)
+          commit('SET_AUTH', response.data.data)
+          alert('Logout success')
+        }).catch((e) => {
+          console.log(e)
+          commit('SET_AUTH', response.data.data)
+          alert('Logout gagal')
+        })
+    },
+  }
 }
