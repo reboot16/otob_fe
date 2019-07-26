@@ -6,7 +6,7 @@ export default {
     isAuthorized: {
       isLogin: true,
       userId: 'nanihutagaol@gmail.com',
-      userRole: 'ROLE_CUSTOMER'
+      userRole: 'ROLE_ADMIN'
     } 
   },
   getters : {

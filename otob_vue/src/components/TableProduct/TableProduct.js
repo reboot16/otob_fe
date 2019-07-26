@@ -1,4 +1,4 @@
-// import ProductModifyDropdown from '@/components/ProductModifyDropdown'
+import CustomModal from '@/components/CustomModal/CustomModal.vue'
 
 export default {
   name: 'TableProduct',
@@ -6,7 +6,7 @@ export default {
     listProduct: ''
   },
   components: {
-    // ProductModifyDropdown
+    CustomModal
   },
   data() {
     return {
@@ -19,11 +19,11 @@ export default {
       },
       quantity: 1,
       bookData: '',
-      index: ''
+      index: '',
+      showModal: false
     }
   },
-  mounted () {
-    // this.$store.dispatch('getProducts')
+  mounted () { 
   },
   computed: {
  
@@ -32,6 +32,10 @@ export default {
 
   },
   methods: {
+    onShowModal (product, index) {
+      this.showModal = true
+      this.form = product
+    },
     showModalUpdate (product, index) {
       this.$bvModal.show('modalProductForm')
       this.onUpdate(product, index)

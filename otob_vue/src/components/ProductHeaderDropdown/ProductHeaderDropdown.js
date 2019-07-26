@@ -21,6 +21,9 @@
 
     },
     methods: {
+        openModal () {
+            this.$emit("showModalForm");
+        },
         showModalAdd () { 
             this.$bvModal.show('modalProductForm')
         },

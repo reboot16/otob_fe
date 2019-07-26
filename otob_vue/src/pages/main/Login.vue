@@ -1,7 +1,7 @@
 <template>
   <div name="login">
 
-    <UserForm>
+    <CustomForm>
       <div slot="slot-title">
         Welcome to Blibli Bazaar
       </div>
@@ -19,13 +19,14 @@
           <a href="" variant="primary" @click="onLogout">onLogout</a>
 
       </div>
-    </UserForm>
+    </CustomForm>
     
   </div>
 </template>
 
 <script>
-import UserForm from '@/components/UserForm'
+import CustomForm from '@/components/CustomForm'
+import Cookies from 'js-cookie'
 
 const API = 'http://localhost:9000/api/auth'
 
@@ -44,9 +45,12 @@ export default {
     }
   },
   components: {
-    UserForm
+    CustomForm
   }, 
   mounted () { 
+    // Cookies.set('haha', 'value')
+    // alert(Cookies.get('user-id'))
+    // alert(document.cookie)
     if(this.auth.isLogin == true){
       this.$router.push('/page-not-found')
     } 

@@ -11,10 +11,10 @@ export default {
     SearchProduct,
     ProductHeaderDropdown,
     TableProduct
-  }, 
+  },  
   data() {
     return { 
-
+      showModal: false
     }
   },
   mounted () { 
@@ -47,6 +47,9 @@ export default {
       this.isProductVisible = true
       this.$refs.form = product 
     },
+    showModals () {
+      this.showModal = true
+    }
   },
   
 }

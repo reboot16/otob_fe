@@ -1,7 +1,7 @@
 <template>
 <div name="register">
 
-  <UserForm>
+  <CustomForm>
     <div slot="slot-title" id="title">
       Register Your Self
     </div>
@@ -16,13 +16,13 @@
     <div slot="slot-notif">
       If you alredy have an account, <a href="/" >Login Here</a>
     </div>
-  </UserForm> 
+  </CustomForm> 
   
 </div>
 </template>
 
 <script>
-import UserForm from '@/components/UserForm'
+import CustomForm from '@/components/CustomForm'
 import axios from 'axios'
 
 const API = 'http://localhost:9000/api'
@@ -38,7 +38,7 @@ export default {
     }
   },
   components: {
-    UserForm
+    CustomForm
   },
   methods: {
     onRegister (evt) {

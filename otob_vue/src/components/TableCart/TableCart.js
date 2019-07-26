@@ -3,7 +3,7 @@
 let ls = require('local-storage');
 
 export default {
-  name: 'Cart', 
+  name: 'TableCart', 
   props: {
     'listItemCart': '',
     'listProduct': ''
