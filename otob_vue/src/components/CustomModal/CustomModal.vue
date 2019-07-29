@@ -1,34 +1,27 @@
 <template> 
   <div id="modal-template">
     <transition name="modal">
-        <div class="modal-mask">
+      <div class="modal-mask">
         <div class="modal-wrapper">
             <div class="modal-container">
 
-            <div class="modal-header">
+              <div class="modal-header">
                 <img id="imgModal" src="@/assets/blibli.jpeg" class="modal-title">
                 <slot name="header">
-                default header
+                  default header
                 </slot>
-            </div>
+                <li class="fa fa-times" @click="$emit('close')"></li>
+              </div>
 
-            <div class="modal-body">
+              <div class="modal-body">
                 <slot name="body">
                 default body
                 </slot>
-            </div>
+              </div> 
 
-            <div class="modal-footer">
-                <slot name="footer">
-                default footer
-                <button class="modal-default-button" @click="$emit('close')">
-                    OK
-                </button>
-                </slot>
-            </div>
             </div>
         </div>
-        </div>
+      </div>
     </transition>
   </div> 
 </template>
@@ -36,7 +29,7 @@
 <style>
 .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,7 +39,7 @@
   transition: opacity .3s ease;
 }
 
-.modal-wrapper {
+.modal-wrapper { 
   display: table-cell;
   vertical-align: middle;
 }
@@ -62,10 +55,11 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
+.modal-header{
   margin-top: 0;
   color: #42b983;
   text-align: center;
+  font-size: 24px;
 }
 
 .modal-body {
@@ -73,10 +67,31 @@
 }
 
 .modal-body input {
-    height: 40px;
-    width: 100%;
-    border: 1px solid rgb(38, 164, 218);
-    border-radius: 0.3em;
+  height: 40px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 0.3em;
+}
+.modal-body label{
+  color: #9c9e9f;
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.modal-body .reset-btn, .btn-secondary{
+  background-color: #fff;
+  color: #28a745;
+  border: none;
+  font-size: 12px;
+  padding: 0;
+}
+
+li {
+  cursor: pointer;
+}
+
+.grup-input {
+  margin: 0.5em 0 ;
 }
 
 .modal-default-button {
@@ -95,6 +110,13 @@
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.span-class{
+  font-size:12px;  
+  color: #068aca; 
+  cursor:pointer;
+  font-weight: bold;
 }
 </style>
 

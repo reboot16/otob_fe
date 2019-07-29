@@ -11,8 +11,7 @@
       <!-- Table Cart -->
       <div class="block" style="margin-top:2em;">
         <TableCart class="tbl"
-          :listItemCart="listItemCart"
-          :listProduct="listProduct"
+          :listItemCart="listItemCart" 
         />
       </div>
     </div>

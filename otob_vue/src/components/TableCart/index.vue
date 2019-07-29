@@ -23,7 +23,7 @@
         </thead>
 
         <tbody class="scrollContentCart">
-          <tr class="col-sm-12" v-if="listItemCart.length == 0" :key="index" >
+          <tr class="col-sm-12" v-if="listItemCart.length == 0">
             <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty cart :(</h5></td>
           </tr>
           <tr class="col-sm-12" v-else v-for="(product, index) in listItemCart" :key="index" >
@@ -32,9 +32,9 @@
             <td width="25%">{{ product.productPrice }}</td>
             <td  width="25%">
               <div class="quantity-toggle">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
+                <button @click="decrement(product, index)" class="btn btn-primary">&mdash;</button>
                 <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
+                <button @click="increment(product, index)" class="btn btn-primary">&#xff0b;</button>
               </div>
             </td>
             <td width="20%">

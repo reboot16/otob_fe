@@ -44,6 +44,9 @@ export default {
         .post(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
+            payload.productName = payload.name
+            payload.productPrice = payload.offerPrice
+            
             commit('ADD_TO_CART', payload)
             alert('Success add to cart')
           }
@@ -62,12 +65,17 @@ export default {
         .put(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
-            commit('UPDATE_ITEM_CART', payload)
             alert('Success add to cart')
           }
           else{
             alert(response.data.message)
+            if(payload.type == true){
+              payload.qty--
+            }else{
+              payload.qty++
+            }
           }
+          commit('UPDATE_ITEM_CART', payload)
         })
         .catch((e) => {
           alert(e)

@@ -1,66 +1,24 @@
-'use strict';
-
-let ls = require('local-storage');
-
 export default {
   name: 'TableCart', 
   props: {
-    'listItemCart': '',
-    'listProduct': ''
+    'listItemCart': ''
   },
   data() {
     return {  
-      form: {
-        productName : '',
-        productPrice: '',
-        qty: ''
-      },
-      total: ''
     }
   },
-  mounted () {
-    this.$store.dispatch('getProducts')
-
-    this.setStockSession()
-  },
-  computed: {
-    
-     
-  },
-  watch: {
-
-  },
   methods: {
-    setStockSession: function () {
-      this.listProduct.map(function(product, index) {
-        ls.set(product.name, product.stock);
-      });
-    },
-    decDisable: function (product) {
-      if (product.qty === 1) {
-        return true
-      } else {
-        return false
-      }
-    },
-    incDisable: function (product) {
-      if (product.qty === ls.get(product.productName)) {
-        return true
-      } else {
-        return false
-      }
-    },
     decrement: function(product, index) {
       product.qty--
-      // product.email = this.email
       product.index = index
+      product.type = false
 
       this.$store.dispatch('updateItemCart', product)
     },
     increment: function(product, index) {
       product.qty++
-      product.email = this.email
       product.index = index
+      product.type = true
 
       this.$store.dispatch('updateItemCart', product)
     },

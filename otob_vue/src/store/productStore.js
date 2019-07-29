@@ -62,6 +62,7 @@ export default {
         }); 
     },
     updateProduct ({commit}, payload) {
+      console.log(JSON.stringify(payload))
       Axios
         .put(API + '/' + payload.productId,
           JSON.stringify(payload),

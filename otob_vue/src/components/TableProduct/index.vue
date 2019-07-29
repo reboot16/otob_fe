@@ -28,7 +28,7 @@
                 <b-dropdown variant="outline-primary" size="sm" right name="dropdown">
                   <template slot="button-content"><li class="fa fa-eye"></li> </template>
                   <b-dropdown-item @click="onShowModal(product, index)" name="edit"><li class="fa fa-edit"></li> Edit</b-dropdown-item>
-                  <b-dropdown-item v-on:click="onDelete(product, index)" name="delete"><li class="fa fa-trash"></li> Delete</b-dropdown-item>
+                  <b-dropdown-item v-on:click="onConfirmDelete(product, index)" name="delete"><li class="fa fa-trash"></li> Delete</b-dropdown-item>
                 </b-dropdown>
               </td>
             </tr>
@@ -37,16 +37,44 @@
         </table>
     </div>
 
-    <CustomModal v-if="showModal" @close="showModal = false"> 
-      <h3 slot="header">Tambah Product</h3>
+    <CustomModal v-if="showModal" @close="showModal=false"> 
+      <div slot="header">
+        Tambah Product
+      </div>
+
       <div slot="body">
-        <form ref="form" @submit.prevent="onHandleSubmit">
-          <input v-model="form.name" placeholder="Masukkan nama produk" required>
-          <input v-model="form.description" placeholder="Masukkan deskripsi produk" required>
-          <input v-model="form.listPrice" placeholder="Harga awal" required type="number">
-          <input v-model="form.offerPrice" placeholder="Harga akhir" required type="number">
-          <input v-model="form.stock" placeholder="Stock" required>
-        </form>
+        <b-form ref="form" @submit.prevent="onHandleSubmit">
+          <div class="row grup-input">
+            <label>Nama</label>
+            <b-form-input type="text" v-model="form.name" placeholder="Masukkan nama produk" required/>
+          </div>
+          <div class="row grup-input">
+            <label>Deskripsi</label>
+            <b-form-textarea  v-model="form.description" placeholder="Masukkan deskripsi produk" required rows="3"/>
+          </div>
+          <div class="row grup-input">
+            <label>Harga Awal</label>
+            <b-form-input v-model="form.listPrice" placeholder="Harga awal" required type="number"/>
+          </div>
+          <div class="row grup-input">
+            <label>Harga Akhir</label>
+            <b-form-input v-model="form.offerPrice" placeholder="Harga akhir" required type="number"/>
+          </div>
+          <div class="row grup-input">
+            <label>Stock</label>
+            <b-form-input v-model="form.stock" placeholder="Stock" required/>
+          </div>
+          
+          <div class="row grup-input">
+            <b-button type="submit" variant="success" style="width:100%">
+              Ubah Data Product
+            </b-button>
+          </div>
+          
+          <div style="text-align: right">
+            <b-button class="reset-btn" type="reset"> Reset </b-button>
+          </div>
+        </b-form>
       </div>
     </CustomModal>
 

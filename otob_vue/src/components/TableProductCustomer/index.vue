@@ -37,7 +37,7 @@
                 <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
                 <input type="text" :value="product.qty" readonly>
                 <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
-                <button @click="book(product, index)" :disabled="bookDisable(product)" class="btn btn-primary" id="bookBtn">Book</button>
+                <button @click="addToCart(product, index)" :disabled="bookDisable(product)" class="btn btn-primary" id="bookBtn">Book</button>
               </div>
               <div v-else style="text-align: center; color: red; font-style: italic">Stock Habis</div>
             </td>

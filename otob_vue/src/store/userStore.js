@@ -35,7 +35,7 @@ export default {
     },
     registerCustomer ({commit}, payload) {
       Axios
-        .post(API + '/register/customer',
+        .post(API + '/customer/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -50,7 +50,7 @@ export default {
     },
     registerCashier ({commit}, payload) {
       Axios
-        .post(API + '/register/cashier',
+        .post(API + '/cashier/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -65,7 +65,7 @@ export default {
     },
     registerAdmin ({commit}, payload) {
       Axios
-        .post(API + '/register/admin',
+        .post(API + '/admin/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })

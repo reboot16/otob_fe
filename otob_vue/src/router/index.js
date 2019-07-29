@@ -83,7 +83,7 @@ export const router = new VueRouter({
     },
     {
       path: '/page-not-found',
-      name: 'PageNotFound',
+      name: 'PageNotFound2',
       component: () => import('@/pages/main/PageNotFound.vue')
     },
     {

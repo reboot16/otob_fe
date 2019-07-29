@@ -44,7 +44,7 @@ export default {
     onRegister (evt) {
       evt.preventDefault()
       axios
-        .post(API + '/users/register/customer',
+        .post(API + '/users/admin/register',
           JSON.stringify(this.form),
           {'headers': {'Content-Type': 'application/json'}}
         )

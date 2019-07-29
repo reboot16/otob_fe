@@ -15,9 +15,7 @@
       </div>
 
       <div slot="slot-notif">
-        If you don't have an account, <a href="/register" >Register Here</a> <br>
-          <a href="" variant="primary" @click="onLogout">onLogout</a>
-
+        If you don't have an account, <a href="/register" >Register Here</a> <br> 
       </div>
     </CustomForm>
     
@@ -52,7 +50,13 @@ export default {
     // alert(Cookies.get('user-id'))
     // alert(document.cookie)
     if(this.auth.isLogin == true){
-      this.$router.push('/page-not-found')
+      if(this.auth.isAdmin == true){
+       this.$router.push('/product') 
+      }else if(this.auth.isCashier == true){
+       this.$router.push('/order') 
+      }else if(this.auth.isCustomer == true){
+       this.$router.push('/product_cust') 
+      }
     } 
   },
   computed: {

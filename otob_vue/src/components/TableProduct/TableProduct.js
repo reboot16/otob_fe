@@ -35,13 +35,23 @@ export default {
     onShowModal (product, index) {
       this.showModal = true
       this.form = product
+      this.form.index = index
+
     },
-    showModalUpdate (product, index) {
-      this.$bvModal.show('modalProductForm')
-      this.onUpdate(product, index)
+    onHandleSubmit () {
+      let product = this.form
+      this.onUpdate(product)
     },
-    onUpdate: function (product, index) {
-      this.$refs.form = product
+    onUpdate (product) {
+      this.$store.dispatch('updateProduct', product)
+    },
+    onConfirmDelete: function (product, index) {
+      const confirmDelete = confirm("Are you sure to delete this?");
+
+      if (confirmDelete) {
+          product.index = index
+          this.$store.dispatch('deleteProduct', product)
+      }
     },
     resetForm : function () {
       this.form = ''

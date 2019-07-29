@@ -19,10 +19,10 @@ export default {
     this.$store.dispatch('getCart')
   },
   computed: {
-    listProduct: function () {
+    listProduct () {
       return this.$store.getters.PRODUCTS
     },
-    listItemCart: function () {
+    listItemCart () {
       return this.$store.getters.CARTS
     },
   },
