@@ -4,7 +4,9 @@ import TableProductCustomer from '@/components/TableProductCustomer'
 export default {
   name: 'ProductCustomer', 
   props: {
-    'auth': ''
+    auth: {
+      isCustomer: true
+    }
   },
   components: {
     TableCart, 
