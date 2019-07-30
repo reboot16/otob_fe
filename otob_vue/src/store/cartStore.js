@@ -39,7 +39,8 @@ export default {
           alert(e)
         });
     },
-    addToCart ({commit}, payload) { 
+    addToCart ({commit}, payload) {
+      console.log(API + '/' + payload.productId + '/' + payload.qty)
       Axios
         .post(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
@@ -60,12 +61,14 @@ export default {
           console.error(e) 
         }); 
     },
-    updateItemCart ({commit}, payload) { 
+    updateItemCart ({commit}, payload) {
+      console.log(API + '/' + payload.productId + '/' + payload.qty)
+  
       Axios
         .put(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
-            alert('Success add to cart')
+            alert('Success update cart')
           }
           else{
             alert(response.data.message)

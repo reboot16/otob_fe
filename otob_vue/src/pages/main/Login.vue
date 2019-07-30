@@ -70,7 +70,7 @@ export default {
       formData.append('email', this.form.username);
       formData.append('password', this.form.password);
 
-      this.$store.dispatch('doLogin', formData) 
+      this.$store.dispatch('doLogin', formData)
     }, 
   }
 }

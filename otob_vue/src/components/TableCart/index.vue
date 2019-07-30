@@ -12,7 +12,7 @@
     <div class="tableContainer">
       <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 
-      <thead>
+        <thead>
           <tr class="col-sm-12">
             <th width="4%">#</th>
             <th width="25%">Name</th>
@@ -23,10 +23,7 @@
         </thead>
 
         <tbody class="scrollContentCart">
-          <tr class="col-sm-12" v-if="listItemCart.length == 0">
-            <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty cart :(</h5></td>
-          </tr>
-          <tr class="col-sm-12" v-else v-for="(product, index) in listItemCart" :key="index" >
+          <tr ref="listItemCart" class="col-sm-12" v-if="listItemCart.length != 0" v-for="(product, index) in listItemCart" :key="index" >
             <td width="4%"><b>{{ index+1 }}</b></td>
             <td width="25%">{{ product.productName }}</td>
             <td width="25%">{{ product.productPrice }}</td>
@@ -40,6 +37,10 @@
             <td width="20%">
               <b-link @click="onDelete(product, index)" style="color:red" >Delete</b-link>
             </td>
+          </tr>
+
+          <tr class="col-sm-12" v-else>
+            <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty cart :(</h5></td>
           </tr>
         </tbody>
 

@@ -1,11 +1,7 @@
 export default {
   name: 'TableCart', 
   props: {
-    'listItemCart': ''
-  },
-  data() {
-    return {  
-    }
+    listItemCart: ''
   },
   methods: {
     decrement: function(product, index) {

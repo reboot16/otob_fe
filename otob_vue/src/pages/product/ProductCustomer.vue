@@ -14,6 +14,8 @@
           :listItemCart="listItemCart" 
         />
       </div>
+
+      <ProgressBar/>
     </div>
   </div>
       

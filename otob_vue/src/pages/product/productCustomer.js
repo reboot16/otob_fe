@@ -1,16 +1,22 @@
 import TableCart from '@/components/TableCart'
 import TableProductCustomer from '@/components/TableProductCustomer'
+import ProgressBar from '@/components/ProgressBar'
 
 export default {
   name: 'ProductCustomer', 
   props: {
     auth: {
-      isCustomer: true
+      type: Object,
+      required: true,
+      default: {
+        isCustomer: true
+      }
     }
   },
   components: {
     TableCart, 
-    TableProductCustomer
+    TableProductCustomer,
+    ProgressBar
   },
   mounted () { 
     if(this.auth.isCustomer == false){
