@@ -7,7 +7,7 @@
     </div>
 
     <div slot="slot-form">
-      <b-form @submit="onRegister">
+      <b-form @submit.prevent="onRegister">
         <b-form-input v-model="form.email" placeholder="Enter your email" required></b-form-input>
         <b-button type="submit" variant="success" style="width:100%">Register</b-button>
       </b-form> 
@@ -32,8 +32,7 @@ export default {
   data () {
     return {
       form: {
-        email: '',
-        password: ''
+        email: ''
       }
     }
   },
@@ -41,18 +40,10 @@ export default {
     CustomForm
   },
   methods: {
-    onRegister (evt) {
-      evt.preventDefault()
-      axios
-        .post(API + '/users/admin/register',
-          JSON.stringify(this.form),
-          {'headers': {'Content-Type': 'application/json'}}
-        )
-        .then(response => {
-          alert('Register success')
-        }).catch((e) => {
-          console.error(e)
-        })
+    onRegister () {
+      let formData = new FormData();
+      formData.append('email', this.form.username);
+      this.$store.dispatch('doRegister', formData)
     }
   }
 }

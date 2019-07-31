@@ -4,7 +4,7 @@ const API = 'http://localhost:9000/api/auth'
 export default {
   state: {
     isAuthorized: {
-      isLogin: false,
+      isLogin: true,
       userId: 'nanihutagaol@gmail.com',
       userRole: 'ROLE_CUSTOMER'
     } 
@@ -73,5 +73,14 @@ export default {
           alert('Logout gagal')
         })
     },
+    doRegister({commit}, payload) {
+      Axios
+        .post('http://localhost:9000/api/users/admin/register', payload)
+        .then(response => {
+          alert('Register success')
+        }).catch((e) => {
+          console.error(e)
+        })
+    }
   }
 }

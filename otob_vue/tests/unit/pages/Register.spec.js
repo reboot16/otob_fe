@@ -1,27 +1,29 @@
 import { createLocalVue,  shallowMount, mount } from '@vue/test-utils'
 import BootstrapVue from 'bootstrap-vue'
 import Register from '@/pages/main/Register.vue'
+import axios from 'axios'
 import CustomForm from '@/components/CustomForm/index.vue'
 
 const localVue = createLocalVue()
 localVue.use(BootstrapVue)
 
-const wrapper = mount(Register, {
-  localVue,
-  slots:{
-    default: [ CustomForm ]
-  }
+jest.mock('axios', () => {
+  post: jest.fn()
 })
 
 describe('Login', () => {
-  it('onRegister: ev.preventDefault', () => {
-    const onRegister = jest.fn()
+  it('onRegister: dispatch', () => {
+    const mockStore = {
+      dispatch: jest.fn()
+    }
     const wrapper = mount(Register, {
-      methods: {
-        onRegister
+      localVue,
+      $store: {
+        mockStore
       }
     })
-    wrapper.find('form').trigger('submit')
-    expect(event.preventDefault()).toBeCalled()
+    wrapper.vm.$options.methods.onRegister()
+    const form = wrapper.vm.$options.methods.onRegister.formData
+    expect(mockStore.dispatch).toHaveBeenCalledWith('doRegister', form)
   })
 })
