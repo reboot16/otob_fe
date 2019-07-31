@@ -4,7 +4,7 @@ const API = 'http://localhost:9000/api/auth'
 export default {
   state: {
     isAuthorized: {
-      isLogin: true,
+      isLogin: false,
       userId: 'nanihutagaol@gmail.com',
       userRole: 'ROLE_CUSTOMER'
     } 

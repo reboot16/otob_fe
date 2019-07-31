@@ -1,8 +1,4 @@
 'use strict'
-
-import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
-import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
-import NavbarCashier from '@/components/Navbar/NavbarCashier'
 import Login from "@/pages/main/Login";
 
 const adminRole = 'ROLE_ADMIN'
@@ -10,11 +6,6 @@ const cashierRole = 'ROLE_CASHIER'
 const customerRole = 'ROLE_CUSTOMER'
 
 export default {
-  components: {
-    NavbarAdmin,
-    NavbarCustomer,
-    NavbarCashier
-  }, 
   data () {
     return { 
     }

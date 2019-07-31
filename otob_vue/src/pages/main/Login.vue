@@ -31,7 +31,12 @@ const API = 'http://localhost:9000/api/auth'
 export default {
   name: 'Login',
   props: {
-    'auth': ''
+    auth: {
+      isLogin: '',
+      isAdmin: '',
+      isCashier: '',
+      isCustomer: ''
+    }
   },
   data () {
     return {
@@ -45,10 +50,7 @@ export default {
   components: {
     CustomForm
   }, 
-  mounted () { 
-    // Cookies.set('haha', 'value')
-    // alert(Cookies.get('user-id'))
-    // alert(document.cookie)
+  mounted () {
     if(this.auth.isLogin == true){
       if(this.auth.isAdmin == true){
        this.$router.push('/product') 

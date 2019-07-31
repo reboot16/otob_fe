@@ -20,15 +20,27 @@ describe('TableCart', () => {
   
   it('methods: onDelete', () => {
     const onDelete = jest.fn()
+    const mockStore = {
+      dispatch: jest.fn()
+    }
+    const products = {
+      name: 'Product name',
+      description: 'Product description',
+      listPrice: 'Product listPrice',
+      offerPrice: 'Product offerPrice',
+      stock: 'Product stock'
+    }
+    
     const wrapper = shallowMount(TableCart, {
       localVue,
       methods: {
         onDelete
+      },
+      mocks: {
+        $store: mockStore
       }
     })
-    wrapper.trigger('clicked', {
-      key: 'onDelete'
-    })
-    expect(wrapper.vm.product.index).toBe()
+    wrapper.vm.confirmDelete = true
+    expect(mockStore.dispatch).toHaveBeenCalledWith('deleteItemCart', products)
   })
 })
