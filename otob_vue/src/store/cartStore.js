@@ -4,7 +4,7 @@ import Axios from 'axios'
 
 Vue.use(Vuex);
 
-const API = 'http://localhost:9000/api/carts'
+const API = 'http://localhost/api/carts'
 
 export default {
   state: {
@@ -40,7 +40,6 @@ export default {
         });
     },
     addToCart ({commit}, payload) {
-      console.log(API + '/' + payload.productId + '/' + payload.qty)
       Axios
         .post(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
@@ -62,8 +61,6 @@ export default {
         }); 
     },
     updateItemCart ({commit}, payload) {
-      console.log(API + '/' + payload.productId + '/' + payload.qty)
-  
       Axios
         .put(API + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
@@ -101,8 +98,8 @@ export default {
       Axios
         .get(API + '/checkout') 
         .then(response => {
-          alert('okk')
           commit('SET_CART', response.data.data.cartItems)
+          alert('success checkout')
         }).catch((e) => {
           alert(e)
         });

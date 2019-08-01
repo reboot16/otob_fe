@@ -28,7 +28,7 @@ Vue.use(FontAwesome)
 import VueCookies from 'vue-cookies'
 import VueLocalStorage from 'local-storage'
 Vue.use(VueCookies) 
-Vue.use(VueLocalStorage) 
+Vue.use(VueLocalStorage)
 
 Vue.config.productionTip = false
 new Vue({

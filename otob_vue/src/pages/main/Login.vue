@@ -7,7 +7,7 @@
       </div>
 
       <div slot="slot-form">
-        <b-form @submit="onLogin">
+        <b-form @submit.prevent="onLogin">
           <b-form-input v-model="form.username" placeholder="Enter your username" required></b-form-input>
           <b-form-input v-model="form.password" placeholder="Enter your password" required type="password"></b-form-input>       
           <b-button type="submit" variant="primary" style="width: 100%;">Login</b-button>
@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     onLogin (evt) {
-      evt.preventDefault()
 
       let formData = new FormData();
       formData.append('email', this.form.username);

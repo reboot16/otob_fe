@@ -9,6 +9,13 @@ import order from '@/store/orderStore'
 
 Vue.use(Vuex)
 
+const vueConfig = require('vue-config')
+const configs = {
+  CONF: 'http://localhost:9000/api' // It's better to require a config file
+}
+
+Vue.use(vueConfig, configs)
+
 export default new Vuex.Store({
   modules: {
     login,
