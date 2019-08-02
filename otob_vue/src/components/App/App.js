@@ -1,5 +1,5 @@
 'use strict'
-import Login from "@/pages/main/Login";
+import Login from "@/pages/Main/Login";
 
 const adminRole = 'ROLE_ADMIN'
 const cashierRole = 'ROLE_CASHIER'
@@ -48,9 +48,7 @@ export default {
     }
   },
   methods : {
-    onLogout (evt) {
-      evt.preventDefault()
- 
+    onLogout () {
       this.$store.dispatch('doLogout')
     },
   }

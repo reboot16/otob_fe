@@ -32,7 +32,7 @@ export default {
       }
     },
     onOrder: function () {
-      const confirmOrder= confirm("Are you sure want to order all item on cart?");
+      const confirmOrder= confirm("Are you sure want to Order all item on cart?");
 
       if (confirmOrder) {
         this.$store.dispatch('orderItemCart')

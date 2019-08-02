@@ -51,4 +51,4 @@
 
 </style>
 
-<script src="productCustomer.js"></script>
+<script src="./productCustomer.js"></script>

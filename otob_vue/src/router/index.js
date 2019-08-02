@@ -10,52 +10,52 @@ export const router = new VueRouter({
     {
       path: '/',
       name: 'Login',
-      component: () => import('@/pages/main/Login')
+      component: () => import('@/pages/Main/Login')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/main/Register')
+      component: () => import('@/pages/Main/Register')
     },
     {
-      path: '/product',
+      path: '/Product',
       name: 'Product',
-      component: () => import('@/pages/product')
+      component: () => import('@/pages/Product')
     },
     {
       path: '/product_cust',
       name: 'ProductCustomer',
-      component: () => import('@/pages/product')
+      component: () => import('@/pages/ProductCustomer')
     },
     {
-      path: '/user',
+      path: '/User',
       name: 'User',
-      component: () => import('@/pages/user/User.vue')
+      component: () => import('@/pages/User/User.vue')
     },
     {
       path: '/orders',
       name: 'orders',
-      component: () => import('@/pages/order/ViewAllOrders.vue')
+      component: () => import('@/pages/Order/ViewAllOrders.vue')
     },
     {
       path: '/orders/approvement/:id',
-      name: 'order-approvement',
-      component: () => import('@/pages/order/Approvement.vue')
+      name: 'Order-approvement',
+      component: () => import('@/pages/Order/Approvement.vue')
     },
     {
       path: '/thx',
       name: 'Thanks',
-      component: () => import('@/pages/thx-order')
+      component: () => import('@/pages/Thx-Order')
     },
     {
       path: '/not-found',
       name: 'PageNotFound2',
-      component: () => import('@/pages/main/PageNotFound.vue')
+      component: () => import('@/pages/Main/PageNotFound.vue')
     },
     {
       path: '*',
       name: 'PageNotFound',
-      component: () => import('@/pages/main/PageNotFound.vue')
+      component: () => import('@/pages/Main/PageNotFound.vue')
     }
   ]
 })

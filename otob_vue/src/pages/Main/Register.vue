@@ -14,7 +14,7 @@
     </div>
 
     <div slot="slot-notif">
-      If you alredy have an account, <a href="/" >Login Here</a>
+      If you already have an account, <a href="/" >Login Here</a>
     </div>
   </CustomForm> 
   
@@ -23,12 +23,17 @@
 
 <script>
 import CustomForm from '@/components/CustomForm'
-import axios from 'axios'
-
-const API = 'http://localhost:9000/api'
 
 export default {
   name: 'Register',
+  props: {
+    auth: {
+      isLogin: '',
+      isAdmin: '',
+      isCashier: '',
+      isCustomer: ''
+    }
+  },
   data () {
     return {
       form: {
@@ -39,11 +44,20 @@ export default {
   components: {
     CustomForm
   },
+  mounted () {
+    if(this.auth.isLogin == true){
+      if(this.auth.isAdmin == true){
+        this.$router.push('/Product')
+      }else if(this.auth.isCashier == true){
+        this.$router.push('/Order')
+      }else if(this.auth.isCustomer == true){
+        this.$router.push('/product_cust')
+      }
+    }
+  },
   methods: {
     onRegister () {
-      let formData = new FormData();
-      formData.append('email', this.form.username);
-      this.$store.dispatch('doRegister', formData)
+      this.$store.dispatch('registerCustomer', this.form)
     }
   }
 }

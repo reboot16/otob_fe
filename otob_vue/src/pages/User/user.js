@@ -1,5 +1,10 @@
+import CustomModal from '@/components/CustomModal/CustomModal.vue'
+
 export default {
-    name: 'User',  
+    name: 'User',
+    props: {
+      'auth': ''
+    },
     data() {
       return { 
         form: {
@@ -12,10 +17,19 @@ export default {
           { value: '2', text: 'Cashier' },
           { value: '3', text: 'Admin' },
         ],
-        showModalForm : true, 
+        showModalForm : false,
       }
     },
-    mounted () { 
+    components: {
+      CustomModal
+    },
+    mounted () {
+      if(this.auth.isLogin === false){
+        this.$router.push('/')
+      }
+      if(this.auth.isAdmin === false){
+        this.$router.push('/not-found')
+      }
       this.$store.dispatch('getUser')   
     },
     computed: {
@@ -27,21 +41,18 @@ export default {
 
     },
     methods: {
-      showModal: function() {
+      showModalUser: function() {
         this.showModalForm = true
-        this.$refs['modal-add'].show()
       },
-      hideModal: function(modalName) { 
-        this.$refs[modalName].hide()
-      }, 
       onSubmit: function(){
         if(this.form.role == 1){
-            this.$store.dispatch('registerCustomer', this.form)           
+            this.$store.dispatch('registerCustomer', this.form)
         }else if(this.form.role == 2){
             this.$store.dispatch('registerCashier', this.form)           
         }else if(this.form.role == 3){
             this.$store.dispatch('registerAdmin', this.form)           
         }
+        this.showModalForm = false
       },
       onDelete: function (user, index) {
         const confirmDelete = confirm("Are you sure to delete this?");
@@ -51,6 +62,9 @@ export default {
           this.$store.dispatch('deleteUser', user) 
         }
       },
+      onReset () {
+        this.$refs.form.reset()
+      }
     },
     
   }

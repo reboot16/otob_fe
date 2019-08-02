@@ -1,6 +1,6 @@
 import { createLocalVue,  shallowMount, mount } from '@vue/test-utils'
 import BootstrapVue from 'bootstrap-vue'
-import Register from '@/pages/main/Register.vue'
+import Register from '@/pages/Main/Register.vue'
 import axios from 'axios'
 import CustomForm from '@/components/CustomForm/index.vue'
 

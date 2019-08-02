@@ -53,9 +53,9 @@ export default {
   mounted () {
     if(this.auth.isLogin == true){
       if(this.auth.isAdmin == true){
-       this.$router.push('/product') 
+       this.$router.push('/Product')
       }else if(this.auth.isCashier == true){
-       this.$router.push('/order') 
+       this.$router.push('/Order')
       }else if(this.auth.isCustomer == true){
        this.$router.push('/product_cust') 
       }

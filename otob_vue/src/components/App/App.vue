@@ -14,7 +14,7 @@
               <b-nav-item v-if="isCustomer"><router-link to="/product_cust">Product</router-link></b-nav-item> 
               <b-nav-item-dropdown v-if="isCashier">
                 <template slot="button-content">Order</template>
-                <router-link :to="{name: 'order-approvement'}" tag="b-dropdown-item">Approvement</router-link>
+                <router-link :to="{name: 'Order-approvement'}" tag="b-dropdown-item">Approvement</router-link>
                 <router-link :to="{name: 'orders'}" tag="b-dropdown-item">View All Orders</router-link>
               </b-nav-item-dropdown>
               <b-nav-item v-if="isLogin==false"><router-link to="/">Login</router-link></b-nav-item>

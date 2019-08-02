@@ -54,7 +54,10 @@ export default {
           this.$store.dispatch('deleteProduct', product)
       }
     },
-    resetForm : function () {
+    onReset () {
+      this.$refs.form.reset()
+    },
+    resetForm () {
       this.form = ''
     }
   },

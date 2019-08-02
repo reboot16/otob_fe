@@ -6,7 +6,7 @@ export default {
     isAuthorized: {
       isLogin: true,
       userId: 'nanihutagaol@gmail.com',
-      userRole: 'ROLE_ADMIN'
+      userRole: 'ROLE_CUSTOMER'
     } 
   },
   getters : {
@@ -23,27 +23,27 @@ export default {
     autoSetAuth({commit}){
       let payload = []
       payload.login = $cookies.get('is-login')
-      payload.userId = $cookies.get('user-id')
-      payload.role = $cookies.get('user-role')
+      payload.userId = $cookies.get('User-id')
+      payload.role = $cookies.get('User-role')
       
       commit('SET_AUTH_AUTO', payload)
     },
     checkCookieAuth({commit}) {
       let isSessionExist = window.$cookies.isKey('SESSION')
-      let isIdExist = window.$cookies.isKey('user-id')
-      let isRoleExist = $cookies.isKey('user-role')
+      let isIdExist = window.$cookies.isKey('User-id')
+      let isRoleExist = $cookies.isKey('User-role')
       
       alert(isSessionExist)
       alert(isIdExist)
       alert(isRoleExist)
       if(isSessionExist == true && isIdExist == true && isRoleExist == true) {
-        $cookies.set('user-id', "null")
+        $cookies.set('User-id', "null")
         alert('done')
       }
       else{
         $cookies.remove('SESSION')
-        $cookies.remove('user-id')
-        $cookies.remove('user-role')
+        $cookies.remove('User-id')
+        $cookies.remove('User-role')
         alert('no')
       }
     },
@@ -68,23 +68,13 @@ export default {
       Axios
         .post(API + '/logout')
         .then(response => {
-          console.log(response.data.data)
+          console.log(response.data)
+          response.data.data.isLogin = false
           // commit('SET_AUTH', response.data.data)
           alert('Logout success')
         }).catch((e) => {
-          console.log(e)
-          // commit('SET_AUTH', response.data.data)
+          // console.log(e)
           alert('Logout gagal')
-        })
-    },
-    doRegister({commit}, payload) {
-      Axios
-        .post('http://localhost:9000/api/users/admin/register', payload)
-        .then(response => {
-          console.log(response)
-          alert('Register success')
-        }).catch((e) => {
-          console.error(e)
         })
     }
   }
