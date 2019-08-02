@@ -37,9 +37,9 @@
         </table>
     </div>
 
-    <CustomModal v-if="showModal" @close="showModal=false"> 
+    <CustomModal v-if="showModalUpd" @close="showModalUpd=false">
       <div slot="header">
-        Tambah Product
+        Ubah Product
       </div>
 
       <div slot="body">

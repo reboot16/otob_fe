@@ -6,7 +6,7 @@ export default {
     isAuthorized: {
       isLogin: true,
       userId: 'nanihutagaol@gmail.com',
-      userRole: 'ROLE_CUSTOMER'
+      userRole: 'ROLE_ADMIN'
     } 
   },
   getters : {
@@ -51,9 +51,13 @@ export default {
       Axios
         .post(API + '/login', payload)
         .then(response => {
-          console.log(response.data)
-          commit('SET_AUTH', response.data.data)
-          alert('Login success')
+          if(response.data.code == 400){
+            alert('wrong username/password')
+          }else{
+            commit('SET_AUTH', response.data.data)
+            alert('Login success')
+          }
+          console.log(response)
         }).catch((e) => {
           console.log(e)
           // commit('SET_AUTH', response.data.data)
@@ -77,6 +81,7 @@ export default {
       Axios
         .post('http://localhost:9000/api/users/admin/register', payload)
         .then(response => {
+          console.log(response)
           alert('Register success')
         }).catch((e) => {
           console.error(e)

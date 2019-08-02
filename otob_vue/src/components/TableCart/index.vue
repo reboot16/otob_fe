@@ -35,7 +35,7 @@
               </div>
             </td>
             <td width="20%">
-              <button @click="onDelete(product, index)" style="color:red" class="btn btn-danger">Delete</button>
+              <button @click="onDelete(product, index)" style="color:red; padding:0.3em 0.5em; color:white; font-size: 12px" class="btn btn-danger">Delete</button>
             </td>
           </tr>
 

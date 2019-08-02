@@ -15,12 +15,13 @@ export default {
         description: '',
         listPrice: '',
         offerPrice: '',
-        stock: ''
+        stock: '',
+        index: ''
       },
       quantity: 1,
       bookData: '',
       index: '',
-      showModal: false
+      showModalUpd: false
     }
   },
   mounted () { 
@@ -33,16 +34,16 @@ export default {
   },
   methods: {
     onShowModal (product, index) {
-      this.showModal = true
+      this.showModalUpd = true
       this.form = product
       this.form.index = index
-
     },
     onHandleSubmit () {
       let product = this.form
       this.onUpdate(product)
     },
     onUpdate (product) {
+      this.showModalUpd = false
       this.$store.dispatch('updateProduct', product)
     },
     onConfirmDelete: function (product, index) {

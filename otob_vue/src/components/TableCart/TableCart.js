@@ -5,11 +5,16 @@ export default {
   },
   methods: {
     decrement: function(product, index) {
-      product.qty--
-      product.index = index
-      product.type = false
-
-      this.$store.dispatch('updateItemCart', product)
+      if( product.qty == 1) {
+        this.onDelete(product, index)
+      }
+      else{
+        product.qty--
+        product.index = index
+        product.type = false
+  
+        this.$store.dispatch('updateItemCart', product)
+      }
     },
     increment: function(product, index) {
       product.qty++

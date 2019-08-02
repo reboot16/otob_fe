@@ -8,9 +8,7 @@ export default {
     auth: {
       type: Object,
       required: true,
-      default: {
-        isCustomer: true
-      }
+      default: ''
     }
   },
   components: {
@@ -19,8 +17,8 @@ export default {
     ProgressBar
   },
   mounted () { 
-    if(this.auth.isCustomer == false){
-      this.$router.push('/forbidden')
+    if(this.auth.isLogin == false){
+      this.$router.push('/')
     }
 
     this.$store.dispatch('getProducts')

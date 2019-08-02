@@ -35,7 +35,6 @@ export default {
       Axios
         .get(API)
         .then(response => {
-          //append default qty = 1
           response.data.data.map(function(product) {
             product.qty = 1
           });
@@ -43,7 +42,6 @@ export default {
         })
         .catch((e) => {
           console.error(e)
-          alert(e) 
         }); 
     },
     addProduct ({commit}, payload) {
@@ -53,8 +51,12 @@ export default {
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          alert('Success add data')
-          commit('ADD_PRODUCT', payload)
+          if(response.data.code == 200){
+            commit('ADD_PRODUCT', payload)
+            alert('Success add data')
+          }else{
+            alert('access denied')
+          }
         })
         .catch((e) => {
           console.error(e) 
@@ -62,15 +64,18 @@ export default {
         }); 
     },
     updateProduct ({commit}, payload) {
-      console.log(JSON.stringify(payload))
       Axios
         .put(API + '/' + payload.productId,
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          commit('UPDATE_PRODUCT', payload)
-          alert('Success update data')
+          if(response.data.code == 200){
+            commit('UPDATE_PRODUCT', payload)
+            alert('Success update data')
+          }else{
+            alert('access denied')
+          }
         })
         .catch((e) => {
           console.error(e) 
@@ -79,9 +84,13 @@ export default {
     deleteProduct ({commit}, payload) {  
       Axios
         .delete(API + '/' + payload.productId)
-        .then(response => { 
-          commit('DELETE_PRODUCT', payload) 
-          alert('Success delete data')
+        .then(response => {
+          if(response.data.code == 200){
+            commit('DELETE_PRODUCT', payload)
+            alert('Success delete data')
+          }else{
+            alert('access denied')
+          }
         })
         .catch((e) => {
           console.error(e) 
@@ -109,18 +118,23 @@ export default {
           {'headers': {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
-          var length = response.data.data.length 
-          var i = 0
-
-          for(i=0; i<length; i++){ 
-            if(response.data.data[i].productId == 0){ 
-              //belum bisa auto update
-              commit('UPDATE_PRODUCT_BY_NAME', response.data.data[i])
-            }else{
-              commit('ADD_PRODUCT', response.data.data[i])
+          console.log()
+          if(response.data.code == 200){
+            var length = response.data.data.length
+            var i = 0
+  
+            for(i=0; i<length; i++){
+              if(response.data.data[i].productId == 0){
+                //belum bisa auto update
+                commit('UPDATE_PRODUCT_BY_NAME', response.data.data[i])
+              }else{
+                commit('ADD_PRODUCT', response.data.data[i])
+              }
             }
+            alert('Success upload data')
+          }else{
+            alert('access denied')
           }
-          alert('Success upload data')
         })
         .catch((e) => {
           console.error(e)

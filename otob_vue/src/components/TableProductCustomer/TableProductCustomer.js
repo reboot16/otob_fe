@@ -56,27 +56,12 @@ export default {
         return false
       }
     },
-    bookDisable: function (product) {
-      if (product.stock === 0) {
-        return true
-      } else {
-        return false
-      }
-    },
     increment: function(product) {
       product.qty++
     },
     decrement: function (product) {
       product.qty--
-    },
-    isDisable(product) {
-      if (product.stock == 1) {
-        return true
-
-      } else {
-        return false
-      }
-    },
+    }
   },
 
 }

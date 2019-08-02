@@ -17,18 +17,15 @@
   .navbar a:hover{
     /* font-weight: bold; */
     text-decoration: none;
-    color: white;
-    background-color: #068aca;
-    padding: 0.3em 0 0.3em 0;
+    color: #068aca;
+    font-weight: bold;
     margin-top:0.2em;
     border-radius: 0.3em;
   }
   
   .navbar a.router-link-exact-active {
     font-weight: bold;
-    color: white;
-    background-color: #068aca;
-    padding: 0.5em;
+    color: #068aca;
     border-radius: 0.5em;
   }
   

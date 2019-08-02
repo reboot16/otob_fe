@@ -1,6 +1,6 @@
 import {createLocalVue, shallowMount} from '@vue/test-utils'
 import Vuex from 'vuex'
-import ProductCustomer from '@/pages/product/ProductCustomer.vue'
+import ProductCustomer from '@/pages/product/index.vue'
 import TableCart from '@/components/TableCart/index.vue'
 import TableProductCustomer from '@/components/TableProductCustomer'
 
