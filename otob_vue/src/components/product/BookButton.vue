@@ -1,9 +1,9 @@
 <template>
     <div class="quantity-toggle">
-<!--        <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>-->
-<!--        <input type="text" :value="product.qty" readonly>-->
-<!--        <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>-->
-<!--        <button @click="book(product, index)" :disabled="bookDisable(product)" class="btn btn-primary" id="bookBtn">Book</button>-->
+<!--        <button @click="decrement(Product, index)" :disabled="decDisable(Product)" class="btn btn-primary">&mdash;</button>-->
+<!--        <input type="text" :value="Product.qty" readonly>-->
+<!--        <button @click="increment(Product, index)" :disabled="incDisable(Product)" class="btn btn-primary">&#xff0b;</button>-->
+<!--        <button @click="book(Product, index)" :disabled="bookDisable(Product)" class="btn btn-primary" id="bookBtn">Book</button>-->
     </div>
 </template>
 

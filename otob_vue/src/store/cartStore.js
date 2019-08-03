@@ -1,10 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import Axios from 'axios'
-
-Vue.use(Vuex);
-
-const API = 'http://localhost:9000/api/carts'
 
 export default {
   state: {
@@ -32,68 +26,72 @@ export default {
   actions : {
     getCart ({commit}) {
       Axios
-        .get(API) 
+        .get(config.API_CART)
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
-          alert(e)
-        });
+        console.error(e)
+      });
     },
-    addToCart ({commit}, payload) { 
+    addToCart ({commit}, payload) {
       Axios
-        .post(API + '/' + payload.productId + '/' + payload.qty)
+        .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
+            payload.productName = payload.name
+            payload.productPrice = payload.offerPrice
+            
             commit('ADD_TO_CART', payload)
             alert('Success add to cart')
           }
           else{
-            console.log(payload.name)
             alert(response.data.message)
           }
         })
         .catch((e) => {
-          alert(e)
           console.error(e) 
         }); 
     },
-    updateItemCart ({commit}, payload) { 
+    updateItemCart ({commit}, payload) {
       Axios
-        .put(API + '/' + payload.productId + '/' + payload.qty)
+        .put(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
-            commit('UPDATE_ITEM_CART', payload)
-            alert('Success add to cart')
+            alert('Success update cart')
           }
           else{
             alert(response.data.message)
+            if(payload.type == true){
+              payload.qty--
+            }else{
+              payload.qty++
+            }
           }
+          commit('UPDATE_ITEM_CART', payload)
         })
         .catch((e) => {
-          alert(e)
           console.error(e) 
         }); 
     },
     deleteItemCart ({commit}, payload) {
       Axios
-        .delete(API + '/' + payload.productId)
+        .delete(config.API_CART + '/' + payload.productId)
         .then(response => {
           commit('DELETE_ITEM_CART', payload) 
           alert('Success delete from cart')
         })
         .catch((e) => {
-          alert(e)
           console.error(e)
         }); 
     },
     orderItemCart ({commit}) {
       Axios
-        .get(API + '/checkout') 
+        .get(config.API_CART + '/checkout')
         .then(response => {
-          alert('okk')
           commit('SET_CART', response.data.data.cartItems)
+          alert('success checkout')
         }).catch((e) => {
-          alert(e)
+          console.error(e)
         });
     },
   }  

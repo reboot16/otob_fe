@@ -11,15 +11,18 @@ export default {
     SearchProduct,
     ProductHeaderDropdown,
     TableProduct
-  }, 
+  },  
   data() {
-    return { 
-
+    return {
+      showModalUpd: false
     }
   },
-  mounted () { 
-    if(this.auth.isAdmin == false){
-      this.$router.push('/forbidden')
+  mounted () {
+    if(this.auth.isLogin === false){
+      this.$router.push('/')
+    }
+    if(this.auth.isAdmin === false){
+      this.$router.push('/not-found')
     } 
 
     this.$store.dispatch('getProducts')   
@@ -47,6 +50,9 @@ export default {
       this.isProductVisible = true
       this.$refs.form = product 
     },
+    showModals () {
+      this.showModal = true
+    }
   },
   
 }

@@ -1,5 +1,4 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/users'
 
 export default {
   state: {
@@ -24,7 +23,7 @@ export default {
   actions : { 
     getUser  ({commit}) {  
       Axios
-        .get(API) 
+        .get(config.API_USER)
         .then(response => {
           commit('SET_USER', response.data.data)
         })
@@ -34,14 +33,19 @@ export default {
         }); 
     },
     registerCustomer ({commit}, payload) {
+      console.log('masuk')
       Axios
-        .post(API + '/register/customer',
+        .post(config.API_USER + '/customer/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          alert('Success add new user')
-          commit('ADD_USER', payload)
+          if(response.data.code == 403) {
+            alert(response.data.message)
+          }else{
+            alert('Success add new User')
+            commit('ADD_USER', payload)
+          }
         })
         .catch((e) => {
           console.error(e) 
@@ -50,13 +54,17 @@ export default {
     },
     registerCashier ({commit}, payload) {
       Axios
-        .post(API + '/register/cashier',
+        .post(config.API_USER + '/cashier/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          alert('Success add new user')
-          commit('ADD_USER', payload)
+          if(response.data.code == 403) {
+            alert(response.data.message)
+          }else{
+            alert('Success add new User')
+            commit('ADD_USER', payload)
+          }
         })
         .catch((e) => {
           console.error(e) 
@@ -65,31 +73,23 @@ export default {
     },
     registerAdmin ({commit}, payload) {
       Axios
-        .post(API + '/register/admin',
+        .post(config.API_USER + '/admin/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          alert('Success add new user')
-          commit('ADD_USER', payload)
+          if(response.data.code == 403) {
+            alert(response.data.message)
+          }else{
+            alert('Success add new User')
+            commit('ADD_USER', payload)
+          }
         })
         .catch((e) => {
           console.error(e) 
           alert(e)
         }); 
-    },
-    deleteUser({commit}, payload) {  
-      Axios
-        .delete(API + '/delete/' + payload.email)
-        .then(response => { 
-          commit('DELETE_USER', payload) 
-          alert('Success delete user')
-        })
-        .catch((e) => {
-          console.error(e) 
-          alert(e)
-        }); 
-    },
+    }
   }  
 
 }

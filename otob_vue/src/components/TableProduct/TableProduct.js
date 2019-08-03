@@ -1,4 +1,4 @@
-// import ProductModifyDropdown from '@/components/ProductModifyDropdown'
+import CustomModal from '@/components/CustomModal/CustomModal.vue'
 
 export default {
   name: 'TableProduct',
@@ -6,7 +6,7 @@ export default {
     listProduct: ''
   },
   components: {
-    // ProductModifyDropdown
+    CustomModal
   },
   data() {
     return {
@@ -15,15 +15,16 @@ export default {
         description: '',
         listPrice: '',
         offerPrice: '',
-        stock: ''
+        stock: '',
+        index: ''
       },
       quantity: 1,
       bookData: '',
-      index: ''
+      index: '',
+      showModalUpd: false
     }
   },
-  mounted () {
-    // this.$store.dispatch('getProducts')
+  mounted () { 
   },
   computed: {
  
@@ -32,14 +33,31 @@ export default {
 
   },
   methods: {
-    showModalUpdate (product, index) {
-      this.$bvModal.show('modalProductForm')
-      this.onUpdate(product, index)
+    onShowModal (product, index) {
+      this.showModalUpd = true
+      this.form = product
+      this.form.index = index
     },
-    onUpdate: function (product, index) {
-      this.$refs.form = product
+    onHandleSubmit () {
+      let product = this.form
+      this.onUpdate(product)
     },
-    resetForm : function () {
+    onUpdate (product) {
+      this.showModalUpd = false
+      this.$store.dispatch('updateProduct', product)
+    },
+    onConfirmDelete: function (product, index) {
+      const confirmDelete = confirm("Are you sure to delete this?");
+
+      if (confirmDelete) {
+          product.index = index
+          this.$store.dispatch('deleteProduct', product)
+      }
+    },
+    onReset () {
+      this.$refs.form.reset()
+    },
+    resetForm () {
       this.form = ''
     }
   },

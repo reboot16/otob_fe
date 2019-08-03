@@ -1,35 +1,34 @@
 <template>
-  <div name="TableProduct" class="container">
+  <div name="TableProduct" class="">
       
       <div class="tableContainer">
-
-        <table width="100%" class="table table-hover table-striped table-scroll small-first-col" style="table-layout: fixed;">
-
-          <thead class="fixedHeader"  style="background-color:white">
-            <th class="col-sm-12">
-              <td class="col-sm-1"><b>#</b></td>
-              <td class="col-sm-2">Name</td>
-              <td class="col-sm-2">Description</td>
-              <td class="col-sm-2">List Price</td>
-              <td class="col-sm-2">Offer Price</td>
-              <td class="col-sm-1">Stock</td>
-              <td class="col-sm-2">Action</td>
-            </th>
+        <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
+ 
+          <thead>
+            <tr class="col-sm-12">
+              <td width="5%"><b>#</b></td>
+              <td width="15%">Name</td>
+              <td width="25%">Description</td>
+              <td width="15%">List Price</td>
+              <td width="15%">Offer Price</td>
+              <td width="10%">Stock</td>
+              <td width="15%">Action</td>
+            </tr>
           </thead>
 
-          <tbody class="scrollContentProduct" style="background-color:white;">
+          <tbody>
             <tr class="col-sm-12" v-for="(product, index) in listProduct" :key="index">
-              <td class="col-sm-1"><b>{{ index+1 }}</b></td>
-              <td class="col-sm-2">{{ product.name }}</td>
-              <td class="col-sm-2">{{ product.description }}</td>
-              <td class="col-sm-2">{{ product.listPrice }}</td>
-              <td class="col-sm-2">{{ product.offerPrice }}</td>
-              <td class="col-sm-1">{{ product.stock }}</td>
-              <td class="col-sm-2">
+              <td class="5%"><b>{{ index+1 }}</b></td>
+              <td class="15%">{{ product.name }}</td>
+              <td class="25%">{{ product.description }}</td>
+              <td class="15%">{{ product.listPrice }}</td>
+              <td class="15%">{{ product.offerPrice }}</td>
+              <td class="10%">{{ product.stock }}</td>
+              <td class="15%">
                 <b-dropdown variant="outline-primary" size="sm" right name="dropdown">
                   <template slot="button-content"><li class="fa fa-eye"></li> </template>
-                  <b-dropdown-item @click="showModalUpdate(product, index)" name="edit"><li class="fa fa-edit"></li> Edit</b-dropdown-item>
-                  <b-dropdown-item v-on:click="onDelete(product, index)" name="delete"><li class="fa fa-trash"></li> Delete</b-dropdown-item>
+                  <b-dropdown-item @click="onShowModal(product, index)" name="edit"><li class="fa fa-edit"></li> Edit</b-dropdown-item>
+                  <b-dropdown-item v-on:click="onConfirmDelete(product, index)" name="delete"><li class="fa fa-trash"></li> Delete</b-dropdown-item>
                 </b-dropdown>
               </td>
             </tr>
@@ -37,6 +36,47 @@
 
         </table>
     </div>
+
+    <CustomModal v-if="showModalUpd" @close="showModalUpd=false">
+      <div slot="header">
+        Ubah Product
+      </div>
+
+      <div slot="body">
+        <b-form ref="form" @submit.prevent="onHandleSubmit">
+          <div class="row grup-input">
+            <label>Nama</label>
+            <b-form-input type="text" v-model="form.name" placeholder="Masukkan nama produk" required/>
+          </div>
+          <div class="row grup-input">
+            <label>Deskripsi</label>
+            <b-form-textarea  v-model="form.description" placeholder="Masukkan deskripsi produk" required rows="3"/>
+          </div>
+          <div class="row grup-input">
+            <label>Harga Awal</label>
+            <b-form-input v-model="form.listPrice" placeholder="Harga awal" required type="number"/>
+          </div>
+          <div class="row grup-input">
+            <label>Harga Akhir</label>
+            <b-form-input v-model="form.offerPrice" placeholder="Harga akhir" required type="number"/>
+          </div>
+          <div class="row grup-input">
+            <label>Stock</label>
+            <b-form-input v-model="form.stock" placeholder="Stock" required/>
+          </div>
+          
+          <div class="row grup-input">
+            <b-button type="submit" variant="success" style="width:100%">
+              Ubah Data Product
+            </b-button>
+          </div>
+          
+          <div style="text-align: right">
+            <b-button class="reset-btn" type="reset"> Reset </b-button>
+          </div>
+        </b-form>
+      </div>
+    </CustomModal>
 
     <!-- =============== Form Modal to Add Product ================= -->
     <b-modal ref="modalProductForm" id="modalProductForm" hide-footer>
@@ -79,7 +119,7 @@
           </b-row><br>
           <div id="r_button">
             <b-button type="submit" variant="success" style="width:100%">
-              Tambah Product
+              Ubah Data Product
             </b-button>
           </div>
         </b-form>
@@ -97,61 +137,7 @@
 <script src="./TableProduct.js"></script>
 
 <style>
-  .table-scroll{ 
-    display: block;
-    empty-cells: show;  
-  }
-
-  .table-scroll thead{ 
-    position:relative;
-    display: block;
-    width:100%;
-    overflow-y: scroll;
-  }
-
-  .table-scroll thead th {
-    display: flex;
-  }
-
-  .table-scroll tbody{
-    /* Position */
-    display: block; position:relative;
-    width:100%; overflow-y:scroll;
-    /* Decoration */
-    border-top: 1px solid rgba(0,0,0,0.2);
-  }
-
-  .table-scroll tr{
-    width: 100%;
-    display:flex;
-  }
-
-  .table-scroll td{
-    flex-basis:100%;
-    flex-grow:1;
-    display: block;
-    /* padding: 1rem; */
-    text-align:left;
-  }
-  
-  .body-half-screen{
-    max-height: 50vh;
-  }
-  
-  tbody.scrollContentProduct{
-    display: block;
-    height: 350px;
-    overflow: auto;
-  }
-
-  tbody.scrollContentCart{
-    display: block;
-    height: 200px;
-    overflow: auto;
-  }
- 
-   
-  #bookBtn{
+   #bookBtn{
     padding:0 0.5em 0 0.5em;
     margin-left:0.5em;
   }

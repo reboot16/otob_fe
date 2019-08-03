@@ -36,7 +36,7 @@ export default {
 
     getOrders ({commit}) {
       Axios
-          .get(API)
+          .get(config.API_ORDER)
           .then(response => {
             commit('SET_ORDERS',response.data.data)
           }).catch((e) => {
@@ -46,7 +46,7 @@ export default {
 
     acceptOrders ({commit}, payload) {
       Axios
-          .get(API + '/' + payload.ordId + '/accept')
+          .get(config.API_ORDER + '/' + payload.ordId + '/accept')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
             alert('Succes to Accept Order'+ payload.ordId)
@@ -57,7 +57,7 @@ export default {
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(API + '/' + payload.ordId + '/reject')
+          .get(config.API_ORDER + '/' + payload.ordId + '/reject')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
             alert('Succes to Reject Order'+ payload.ordId)

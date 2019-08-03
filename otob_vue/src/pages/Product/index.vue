@@ -11,32 +11,19 @@
             <SearchProduct/>
           </div>
           <div class="col-sm-2">
-              <ProductHeaderDropdown/>
+              <ProductHeaderDropdown @showModalForm="showModal = true"/>
           </div>
         </div>
 
         <TableProduct :listProduct="listProduct"/>
      </div>
-    </div>
- 
+    </div> 
+    
   </div> 
 </template>
 
 <style >
-  .block{
-    font-family: 'Glegoo', Helvetica, Arial, serif !important;
-    background-color:white;
-    padding: 1em;
-    border-radius:0.5em;
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
-    transition: transform 0.3s;
-  }
-
-  .block:hover {
-    box-shadow: 0 1px 10px #999;
-  }
+   
 </style>
 
 <script src="./product.js"></script>

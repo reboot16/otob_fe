@@ -1,66 +1,25 @@
-'use strict';
-
-let ls = require('local-storage');
-
 export default {
-  name: 'Cart', 
+  name: 'TableCart', 
   props: {
-    'listItemCart': '',
-    'listProduct': ''
-  },
-  data() {
-    return {  
-      form: {
-        productName : '',
-        productPrice: '',
-        qty: ''
-      },
-      total: ''
-    }
-  },
-  mounted () {
-    this.$store.dispatch('getProducts')
-
-    this.setStockSession()
-  },
-  computed: {
-    
-     
-  },
-  watch: {
-
+    listItemCart: ''
   },
   methods: {
-    setStockSession: function () {
-      this.listProduct.map(function(product, index) {
-        ls.set(product.name, product.stock);
-      });
-    },
-    decDisable: function (product) {
-      if (product.qty === 1) {
-        return true
-      } else {
-        return false
-      }
-    },
-    incDisable: function (product) {
-      if (product.qty === ls.get(product.productName)) {
-        return true
-      } else {
-        return false
-      }
-    },
     decrement: function(product, index) {
-      product.qty--
-      // product.email = this.email
-      product.index = index
-
-      this.$store.dispatch('updateItemCart', product)
+      if( product.qty == 1) {
+        this.onDelete(product, index)
+      }
+      else{
+        product.qty--
+        product.index = index
+        product.type = false
+  
+        this.$store.dispatch('updateItemCart', product)
+      }
     },
     increment: function(product, index) {
       product.qty++
-      product.email = this.email
       product.index = index
+      product.type = true
 
       this.$store.dispatch('updateItemCart', product)
     },
@@ -73,7 +32,7 @@ export default {
       }
     },
     onOrder: function () {
-      const confirmOrder= confirm("Are you sure want to order all item on cart?");
+      const confirmOrder= confirm("Are you sure want to Order all item on cart?");
 
       if (confirmOrder) {
         this.$store.dispatch('orderItemCart')
