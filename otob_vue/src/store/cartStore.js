@@ -1,10 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import Axios from 'axios'
-
-Vue.use(Vuex);
-
-const API = 'http://localhost:9000/api/carts'
 
 export default {
   state: {
@@ -32,7 +26,7 @@ export default {
   actions : {
     getCart ({commit}) {
       Axios
-        .get(API) 
+        .get(config.API_CART)
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
@@ -41,7 +35,7 @@ export default {
     },
     addToCart ({commit}, payload) {
       Axios
-        .post(API + '/' + payload.productId + '/' + payload.qty)
+        .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
             payload.productName = payload.name
@@ -60,7 +54,7 @@ export default {
     },
     updateItemCart ({commit}, payload) {
       Axios
-        .put(API + '/' + payload.productId + '/' + payload.qty)
+        .put(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
             alert('Success update cart')
@@ -81,7 +75,7 @@ export default {
     },
     deleteItemCart ({commit}, payload) {
       Axios
-        .delete(API + '/' + payload.productId)
+        .delete(config.API_CART + '/' + payload.productId)
         .then(response => {
           commit('DELETE_ITEM_CART', payload) 
           alert('Success delete from cart')
@@ -92,7 +86,7 @@ export default {
     },
     orderItemCart ({commit}) {
       Axios
-        .get(API + '/checkout') 
+        .get(config.API_CART + '/checkout')
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
           alert('success checkout')

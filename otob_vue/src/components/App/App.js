@@ -1,48 +1,51 @@
-'use strict'
 import Login from "@/pages/Main/Login";
-
-const adminRole = 'ROLE_ADMIN'
-const cashierRole = 'ROLE_CASHIER'
-const customerRole = 'ROLE_CUSTOMER'
 
 export default {
   data () {
     return { 
     }
   },
-  mounted () { 
+  mounted () {
+    this.$store.dispatch('checkAuthorized')
   },
   computed : {
     isAuth () {
-      return this.$store.getters.isAuth
+      return this.$store.getters.isAuthorized
     },
     isLogin () {
-      return this.isAuth.isLogin
+      if (this.isAuth.isLogin){
+        return true
+      }
+      return false
     },
     isAdmin () {
-      if (this.isAuth.userRole == adminRole){
+      if (this.isAuth.userRole == config.role_admin){
         return true
       }
       return false
     },
     isCashier () {
-      if (this.isAuth.userRole == cashierRole){
+      if (this.isAuth.userRole == config.role_cashier){
         return true
       }
       return false
     },
     isCustomer () {
-      if (this.isAuth.userRole == customerRole){
+      if (this.isAuth.userRole == config.role_customer){
         return true
       }
       return false
+    },
+    userId () {
+      return this.isAuth.userId
     },
     userAuth () {
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
         isCashier: this.isCashier,
-        isCustomer: this.isCustomer
+        isCustomer: this.isCustomer,
+        userId: this.userId
       }
       return auth
     }

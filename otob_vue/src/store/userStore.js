@@ -1,5 +1,4 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/users'
 
 export default {
   state: {
@@ -24,7 +23,7 @@ export default {
   actions : { 
     getUser  ({commit}) {  
       Axios
-        .get(API) 
+        .get(config.API_USER)
         .then(response => {
           commit('SET_USER', response.data.data)
         })
@@ -36,7 +35,7 @@ export default {
     registerCustomer ({commit}, payload) {
       console.log('masuk')
       Axios
-        .post(API + '/customer/register',
+        .post(config.API_USER + '/customer/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -55,7 +54,7 @@ export default {
     },
     registerCashier ({commit}, payload) {
       Axios
-        .post(API + '/cashier/register',
+        .post(config.API_USER + '/cashier/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -74,7 +73,7 @@ export default {
     },
     registerAdmin ({commit}, payload) {
       Axios
-        .post(API + '/admin/register',
+        .post(config.API_USER + '/admin/register',
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })

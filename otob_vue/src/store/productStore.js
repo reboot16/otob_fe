@@ -1,5 +1,4 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/products'
 
 export default {
   state: {
@@ -33,7 +32,7 @@ export default {
   actions : {
     getProducts  ({commit}) {  
       Axios
-        .get(API)
+        .get(config.API_PRODUCT)
         .then(response => {
           response.data.data.map(function(product) {
             product.qty = 1
@@ -46,7 +45,7 @@ export default {
     },
     addProduct ({commit}, payload) {
       Axios
-        .post(API,
+        .post(config.API_PRODUCT,
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -65,7 +64,7 @@ export default {
     },
     updateProduct ({commit}, payload) {
       Axios
-        .put(API + '/' + payload.productId,
+        .put(config.API_PRODUCT + '/' + payload.productId,
           JSON.stringify(payload),
           {'headers': {'Content-Type': 'application/json'}
         })
@@ -83,7 +82,7 @@ export default {
     },
     deleteProduct ({commit}, payload) {  
       Axios
-        .delete(API + '/' + payload.productId)
+        .delete(config.API_PRODUCT + '/' + payload.productId)
         .then(response => {
           if(response.data.code == 200){
             commit('DELETE_PRODUCT', payload)
@@ -99,13 +98,13 @@ export default {
     searchProduct({commit}, textSearch){
       if(textSearch == ''){
         Axios
-          .get(API)
+          .get(config.API_PRODUCT)
           .then(response => {
             commit('SET_PRODUCT', response.data.data)
           })
       }else{
         Axios
-          .get(API + '/name/' + textSearch)
+          .get(config.API_PRODUCT + '/name/' + textSearch)
           .then(response => {
             commit('SET_PRODUCT', response.data.data)
           })
@@ -113,7 +112,7 @@ export default {
     },
     uploadProduct({commit}, payload){ 
       Axios
-        .post(API + '/batch',
+        .post(config.API_PRODUCT + '/batch',
           payload,
           {'headers': {'Content-Type': 'multipart/form-data'}
         })

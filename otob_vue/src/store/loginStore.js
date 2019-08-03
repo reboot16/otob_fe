@@ -1,16 +1,11 @@
 import Axios from 'axios'
 
-const API = 'http://localhost:9000/api/auth'
 export default {
   state: {
-    isAuthorized: {
-      isLogin: true,
-      userId: 'nanihutagaol@gmail.com',
-      userRole: 'ROLE_CUSTOMER'
-    } 
+    isAuthorized: { }
   },
   getters : {
-    isAuth: state => {
+    isAuthorized: state => {
       return state.isAuthorized
     }
   },
@@ -20,61 +15,57 @@ export default {
     },
   },
   actions : {
-    autoSetAuth({commit}){
+    checkAuthorized({commit, dispatch}){
+      let isLoginExist = $cookies.isKey(config.key_login)
+      let isIdExist = $cookies.isKey(config.key_id)
+      let isRoleExist = $cookies.isKey(config.key_role)
+      
       let payload = []
-      payload.login = $cookies.get('is-login')
-      payload.userId = $cookies.get('User-id')
-      payload.role = $cookies.get('User-role')
-      
-      commit('SET_AUTH_AUTO', payload)
+      if(isLoginExist && isIdExist && isRoleExist){
+        dispatch('getCookie', payload)
+      }else {
+        dispatch('removeCookie')
+      }
+      commit('SET_AUTH', payload)
     },
-    checkCookieAuth({commit}) {
-      let isSessionExist = window.$cookies.isKey('SESSION')
-      let isIdExist = window.$cookies.isKey('User-id')
-      let isRoleExist = $cookies.isKey('User-role')
-      
-      alert(isSessionExist)
-      alert(isIdExist)
-      alert(isRoleExist)
-      if(isSessionExist == true && isIdExist == true && isRoleExist == true) {
-        $cookies.set('User-id', "null")
-        alert('done')
-      }
-      else{
-        $cookies.remove('SESSION')
-        $cookies.remove('User-id')
-        $cookies.remove('User-role')
-        alert('no')
-      }
+    getCookie({commit}, payload) {
+      payload.isLogin = $cookies.get(config.key_login)
+      payload.userId = $cookies.get(config.key_id)
+      payload.userRole = $cookies.get(config.key_role)
+      return payload
+    },
+    removeCookie({commit}) {
+      $cookies.remove(config.key_login)
+      $cookies.remove(config.key_id)
+      $cookies.remove(config.key_role)
     },
     doLogin({commit}, payload) {
       Axios
-        .post(API + '/login', payload)
+        .post(config.API_AUTH + '/login', payload)
         .then(response => {
-          if(response.data.code == 400){
-            alert('wrong username/password')
+          if(response.data.data === 'Unauthorized'){
+            alert('Sorry your username/password is unauthorized')
           }else{
             commit('SET_AUTH', response.data.data)
             alert('Login success')
           }
-          console.log(response)
         }).catch((e) => {
           console.log(e)
-          // commit('SET_AUTH', response.data.data)
-          alert('Login gagal')
         })
     },
-    doLogout({commit}) {
+    doLogout({commit, dispatch}) {
       Axios
-        .post(API + '/logout')
+        .post(config.API_AUTH + '/logout')
         .then(response => {
-          console.log(response.data)
-          response.data.data.isLogin = false
-          // commit('SET_AUTH', response.data.data)
-          alert('Logout success')
+          $router.push('/register')
+          if(response.data.code ==  200){
+            dispatch('removeCookie')
+            alert('Already logout')
+          }else{
+            alert("You're still not login")
+          }
         }).catch((e) => {
-          // console.log(e)
-          alert('Logout gagal')
+          console.log(e)
         })
     }
   }

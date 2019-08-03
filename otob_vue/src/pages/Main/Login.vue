@@ -24,9 +24,6 @@
 
 <script>
 import CustomForm from '@/components/CustomForm'
-import Cookies from 'js-cookie'
-
-const API = 'http://localhost:9000/api/auth'
 
 export default {
   name: 'Login',
@@ -51,15 +48,16 @@ export default {
     CustomForm
   }, 
   mounted () {
+    console.log(this.auth)
     if(this.auth.isLogin == true){
       if(this.auth.isAdmin == true){
-       this.$router.push('/Product')
+       this.$router.push('/product')
       }else if(this.auth.isCashier == true){
-       this.$router.push('/Order')
+       this.$router.push('/order')
       }else if(this.auth.isCustomer == true){
-       this.$router.push('/product_cust') 
+       this.$router.push('/product_cust')
       }
-    } 
+    }
   },
   computed: {
 
