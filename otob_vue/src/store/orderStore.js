@@ -1,12 +1,10 @@
 import Axios from 'axios'
-const API = 'http://localhost:9000/api/orders'
 
 export default {
   state: {
     orders: [],
   },
   getters : {
-
     ORDERS : state => {
       return state.orders;
     },
@@ -33,7 +31,6 @@ export default {
     updateStatusProduct({commit}, product) {
       commit("UPDATE_PRODUCT_STATUS", product);
     },
-
     getOrders ({commit}) {
       Axios
           .get(config.API_ORDER)
@@ -43,7 +40,6 @@ export default {
             console.error(e);
       })
     },
-
     acceptOrders ({commit}, payload) {
       Axios
           .get(config.API_ORDER + '/' + payload.ordId + '/accept')
@@ -66,5 +62,15 @@ export default {
             console.error(e)
           });
     },
+    searchOrderById ({commit}, payload) {
+      Axios
+          .get(config.API_ORDER,
+              JSON.stringify(payload))
+          .then(response => {
+            commit('SET_ORDERS', response.data.data)
+      }).catch((e) => {
+        console.error(e)
+      })
+    }
   }
 }

@@ -53,9 +53,9 @@ export const router = new VueRouter({
       component: () => import('@/pages/Main/PageNotFound.vue')
     },
     {
-      path: '*',
-      name: 'PageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      path: '/orders/customer',
+      name: 'customerOrder',
+      component: () => import('@/pages/order/Orders.vue')
     }
   ]
 })
