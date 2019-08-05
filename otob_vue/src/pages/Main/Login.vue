@@ -56,12 +56,11 @@ export default {
   },
   methods: {
     onLogin (evt) {
-
       let formData = new FormData();
       formData.append('email', this.form.username);
       formData.append('password', this.form.password);
-      return this.$store.dispatch('doLogin', formData).then(() => {
-        this.flagLogin = true
+      return this.$store.dispatch('doLogin', formData).then( () => {
+        // location.reload()
       })
     },
     onRoute () {
@@ -77,8 +76,8 @@ export default {
     }
   },
   watch: {
-    flagLogin () {
-      this.onRoute()
+    auth () {
+      this.$router.push('/')
     }
   }
 }

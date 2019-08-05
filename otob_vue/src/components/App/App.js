@@ -4,7 +4,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('checkAuthorized')
+    this.checkAuth()
   },
   computed : {
     isAuth () {
@@ -49,11 +49,15 @@ export default {
     }
   },
   methods : {
-    onLogout () {
-      return this.$store.dispatch('doLogout').then(() => {
-        this.$router.push('/')
-      })
+    checkAuth () {
+      this.$store.dispatch('checkAuthorized')
     },
+    onLogout () {
+      this.$store.dispatch('doLogout')
+      this.$router.push('/')
+    }
+  },
+  watch: {
   }
   
 }

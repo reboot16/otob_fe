@@ -12,9 +12,6 @@ export default {
   mutations: { 
     SET_AUTH : (state, payload) => {
       state.isAuthorized = payload
-    },
-    TEST: () => {
-      vm.$router.push('/register')
     }
   },
   actions : {

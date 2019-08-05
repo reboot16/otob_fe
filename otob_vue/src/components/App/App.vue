@@ -25,7 +25,9 @@
         </b-navbar>
       </div> 
 
-      <router-view id="content" :auth="userAuth"/> 
+      <div @checkAuth="checkAuth">
+        <router-view id="content" :auth="userAuth"/>
+      </div>
 
       <div id="footer" v-if="isLogin==true">
         <div class="fixed-bottom">

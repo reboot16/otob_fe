@@ -9,11 +9,27 @@ import FontAwesome from 'font-awesome/css/font-awesome.css'
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import config from '../config'
+import VueHtmlToPaper from 'vue-html-to-paper';
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.use(VueCookies)
+
+const options = {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
+}
+
+Vue.use(VueHtmlToPaper, options)
 window.config = config
 
 Axios.interceptors.request.use(
