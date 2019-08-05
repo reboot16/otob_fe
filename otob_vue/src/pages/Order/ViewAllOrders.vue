@@ -45,26 +45,47 @@
                     style="color: white;"
                     header-bg-variant="primary"
             >
-                <b-table
-                        :items="orders"
-                        :fields="fields"
-                        :filter="filters"
-                        bordered hover stripped responsive
-                        style="text-align: center"
-                >
-                    <template slot="index" slot-scope="data">{{data.index+1}}</template>
-                    <template slot="totalPrice" slot-scope="data">Rp {{data.item.totPrice}}</template>
-                    <template slot="action" slot-scope="data">
-                            <b-button
-                                    variant="outline-info"
-                                    size="sm"
-                                    v-on:click="viewDetail(data.item.ordId)"
-                                    class="mr-2">
-                                <icon name="eye" scale="1"></icon> View Details
-                            </b-button>
-                    </template>
-                </b-table>
-            </b-card>
+
+							<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
+
+								<thead>
+								<tr class="col-sm-12">
+									<th width="4%">No</th>
+									<th width="25%">order Number</th>
+									<th width="20%">Order Date</th>
+									<th width="6%">Total Items</th>
+									<th width="20%"> Total Price</th>
+									<th width="25%"> Action</th>
+								</tr>
+								</thead>
+
+								<tbody class="scrollContentCart">
+								<tr ref="listItemCart" class="col-sm-12" v-if="orders.length != 0" v-for="(order, index) in orders" :key="index" >
+									<td width="4%"><b>{{ index+1 }}</b></td>
+									<td width="30%">{{ order.orderId }}</td>
+									<td width="20%">{{ order.ordDate }}</td>
+									<td  width="6%" style="text-align: center">{{ order.totItem }}</td>
+									<td width="20%">Rp {{ order.totPrice }}</td>
+									<td width="15%">
+										<b-button
+											variant="outline-info"
+											size="sm"
+											v-on:click="viewDetail(order.ordId)"
+											class="mr-2">
+											<icon name="eye" scale="1"></icon> View Details
+										</b-button>
+									</td>
+								</tr>
+
+								<tr class="col-sm-12" v-else>
+									<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
+								</tr>
+								</tbody>
+
+							</table>
+
+
+						</b-card>
         </div>
 
     </div>

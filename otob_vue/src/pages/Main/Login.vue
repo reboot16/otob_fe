@@ -68,7 +68,7 @@ export default {
         if(this.auth.isAdmin == true){
           this.$router.push('/product')
         }else if(this.auth.isCashier == true){
-          this.$router.push('/order')
+          this.$router.push('/orders')
         }else if(this.auth.isCustomer == true){
           this.$router.push('/product_cust')
         }

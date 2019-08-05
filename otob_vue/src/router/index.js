@@ -18,7 +18,7 @@ export const router = new VueRouter({
       component: () => import('@/pages/Main/Register')
     },
     {
-      path: '/Product',
+      path: '/product',
       name: 'Product',
       component: () => import('@/pages/Product')
     },
@@ -28,7 +28,7 @@ export const router = new VueRouter({
       component: () => import('@/pages/ProductCustomer')
     },
     {
-      path: '/User',
+      path: '/user',
       name: 'User',
       component: () => import('@/pages/User/User.vue')
     },
@@ -39,8 +39,13 @@ export const router = new VueRouter({
     },
     {
       path: '/orders/approvement/:id',
-      name: 'Order-approvement',
+      name: 'order_approvement',
       component: () => import('@/pages/Order/Approvement.vue')
+    },
+    {
+      path: '/orders/customer',
+      name: 'customerOrder',
+      component: () => import('@/pages/Order/Orders.vue')
     },
     {
       path: '/thx',
@@ -51,11 +56,6 @@ export const router = new VueRouter({
       path: '/not-found',
       name: 'PageNotFound2',
       component: () => import('@/pages/Main/PageNotFound.vue')
-    },
-    {
-      path: '/orders/customer',
-      name: 'customerOrder',
-      component: () => import('@/pages/order/Orders.vue')
     }
   ]
 })
