@@ -67,5 +67,15 @@ export default{
             console.error(e)
           });
     },
+    searchOrderById ({commit}, payload) {
+      Axios
+          .get(API +'/',
+              JSON.stringify(payload))
+          .then(response => {
+            commit('SET_ORDERS', response.data.data)
+      }).catch((e) => {
+        console.error(e)
+      })
+    }
   }
 }

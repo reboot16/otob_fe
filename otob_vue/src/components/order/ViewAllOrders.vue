@@ -48,7 +48,7 @@
                 <b-table
                         :items="orders"
                         :fields="fields"
-                        :filter="filters.status"
+                        :filter="filters"
                         bordered hover stripped responsive
                         style="text-align: center"
                 >
@@ -79,10 +79,7 @@
             return{
                 listOrders: [],
                 format: "dd MM yyyy",
-                filters:{
-                    status: null,
-                    orderdate: null
-                },
+                filters: '',
                 fields: [
                     {
                         key: 'index',

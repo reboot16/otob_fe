@@ -67,6 +67,11 @@ export const router = new VueRouter({
       name: 'orders',
       component: () => import('@/components/order/ViewAllOrders.vue')
     },
+    {
+      path: '/orders/customer',
+      name: 'customerOrder',
+      component: () => import('@/pages/order/Orders.vue')
+    }
   ]
 })
 
