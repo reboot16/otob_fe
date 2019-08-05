@@ -13,6 +13,9 @@ export default {
     SET_AUTH : (state, payload) => {
       state.isAuthorized = payload
     },
+    TEST: () => {
+      vm.$router.push('/register')
+    }
   },
   actions : {
     checkAuthorized({commit, dispatch}){
@@ -57,7 +60,7 @@ export default {
       Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
-          $router.push('/register')
+          console.log(response)
           if(response.data.code ==  200){
             dispatch('removeCookie')
             alert('Already logout')

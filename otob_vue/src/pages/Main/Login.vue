@@ -41,23 +41,15 @@ export default {
         username: '',
         password: ''
       },
-      dataLogin: []
+      dataLogin: [],
+      flagLogin: ''
     }
   },
   components: {
     CustomForm
   }, 
   mounted () {
-    console.log(this.auth)
-    if(this.auth.isLogin == true){
-      if(this.auth.isAdmin == true){
-       this.$router.push('/product')
-      }else if(this.auth.isCashier == true){
-       this.$router.push('/order')
-      }else if(this.auth.isCustomer == true){
-       this.$router.push('/product_cust')
-      }
-    }
+    this.onRoute()
   },
   computed: {
 
@@ -68,9 +60,26 @@ export default {
       let formData = new FormData();
       formData.append('email', this.form.username);
       formData.append('password', this.form.password);
-
-      this.$store.dispatch('doLogin', formData)
-    }, 
+      return this.$store.dispatch('doLogin', formData).then(() => {
+        this.flagLogin = true
+      })
+    },
+    onRoute () {
+      if(this.auth.isLogin == true){
+        if(this.auth.isAdmin == true){
+          this.$router.push('/product')
+        }else if(this.auth.isCashier == true){
+          this.$router.push('/order')
+        }else if(this.auth.isCustomer == true){
+          this.$router.push('/product_cust')
+        }
+      }
+    }
+  },
+  watch: {
+    flagLogin () {
+      this.onRoute()
+    }
   }
 }
 </script>

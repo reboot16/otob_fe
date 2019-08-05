@@ -1,5 +1,3 @@
-import Login from "@/pages/Main/Login";
-
 export default {
   data () {
     return { 
@@ -52,7 +50,9 @@ export default {
   },
   methods : {
     onLogout () {
-      this.$store.dispatch('doLogout')
+      return this.$store.dispatch('doLogout').then(() => {
+        this.$router.push('/')
+      })
     },
   }
   

@@ -29,8 +29,20 @@ Axios.interceptors.request.use(
 
 Vue.config.productionTip = false
 
-new Vue({
+const vm = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+export { vm }
+
+// const vm = new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   components: { App },
+//   template: '<App/>'
+// })
+//
+// export { vm }
