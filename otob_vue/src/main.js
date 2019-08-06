@@ -10,6 +10,7 @@ import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import config from '../config'
 import VueHtmlToPaper from 'vue-html-to-paper';
+import { PDFJS } from 'pdfjs-dist'
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)

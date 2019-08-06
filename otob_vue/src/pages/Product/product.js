@@ -52,13 +52,7 @@ export default {
     },
     showModals () {
       this.showModal = true
-    },
-    // print() {
-    //   // Pass the element id here
-    //   this.$htmlToPaper('printMe', () => {
-    //     console.log('Printing done or got cancelled!');
-    //   });
-    // }
+    }
   },
   
 }

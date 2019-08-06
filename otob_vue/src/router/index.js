@@ -53,6 +53,11 @@ export const router = new VueRouter({
       component: () => import('@/pages/Thx-Order')
     },
     {
+      path: '/nota',
+      name: 'Nota',
+      component: () => import('@/components/Nota')
+    },
+    {
       path: '/not-found',
       name: 'PageNotFound2',
       component: () => import('@/pages/Main/PageNotFound.vue')

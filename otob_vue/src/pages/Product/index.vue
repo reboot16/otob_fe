@@ -19,24 +19,7 @@
      </div>
     </div>
 
-<!--    <div class="container" style="margin-bottom: 3em">-->
-<!--      &lt;!&ndash; SOURCE &ndash;&gt;-->
-<!--      <div id="printMe">-->
-<!--        <header>-->
-<!--          <img src="@/assets/bli-logo.png">-->
-<!--          <h3>Nota Transaksi</h3>-->
-<!--        </header>-->
-<!--        <div>-->
-<!--        <div>-->
-<!--          Hai {{ customername }},-->
-<!--        </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; OUTPUT &ndash;&gt;-->
-<!--      <button @click="print"></button>-->
-<!--    </div>-->
-
-  </div> 
+  </div>
 </template>
 
 <style >
