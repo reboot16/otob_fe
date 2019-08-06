@@ -8,32 +8,6 @@ export default {
         return {
             listOrders: [],
             filters: '',
-            fields: [
-                {
-                    key: 'index',
-                    label: 'No.'
-                },
-                {
-                    key: 'ordId',
-                    label: 'Order Number'
-                },
-                {
-                    key: 'ordDate',
-                    label: 'Order date'
-                },
-                {
-                    key: 'totItem',
-                    label: 'Total Items'
-                },
-                {
-                    key: 'totPrice',
-                    label: 'Total Price'
-                },
-                {
-                    key: 'ordStatus',
-                    label: 'Status'
-                }
-            ]
         }
     },
     props: {
@@ -46,13 +20,13 @@ export default {
         viewDetail(id){
             this.$router.push('orders/approvement/'+id)
         },
-        doFilter (value) {
+        doSearch (value) {
             this.filters = value
         }
 
     },
     mounted() {
-        this.$store.dispatch('searchOrderById', this.auth.userId)
+        this.$store.dispatch('searchOrderByUserId', this.auth.userId)
         this.getOrders()
     },
     computed: {

@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <search-order v-on:doFilter="doFilter"></search-order>
+                    <search-order v-on:doFilter="doSearch"></search-order>
                 </div>
                 <div class="col-sm-12">
                     <div class="filter">
