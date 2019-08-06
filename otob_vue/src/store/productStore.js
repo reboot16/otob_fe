@@ -100,12 +100,18 @@ export default {
         Axios
           .get(config.API_PRODUCT)
           .then(response => {
+            response.data.data.map(function(product) {
+              product.qty = 1
+            });
             commit('SET_PRODUCT', response.data.data)
           })
       }else{
         Axios
           .get(config.API_PRODUCT + '/name/' + textSearch)
           .then(response => {
+            response.data.data.map(function(product) {
+              product.qty = 1
+            });
             commit('SET_PRODUCT', response.data.data)
           })
       } 

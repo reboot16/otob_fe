@@ -19,7 +19,7 @@
         },
         methods: {
             doSearch () {
-                this.$emit('doFilter', this.searchText)
+                this.$emit('doSearch', this.searchText)
             }
         }
     }

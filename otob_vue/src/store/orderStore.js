@@ -11,6 +11,9 @@ export default {
     getOrderById : (state) => (id) => {
       return state.orders.find(order => order.ordId === id)
     },
+    getOrderByStatus: (state) => (status) => {
+      return state.orders.find(order => order.status === status)
+    },
     getProductsByOrderId :  (state) => (id) => {
       var orders =  state.orders.find(order=>order.orders_id === id);
       return orders.products;
@@ -25,6 +28,9 @@ export default {
     },
     ACCEPT_ORDER : (state,payload) => {
       state.orders[payload.index] = payload
+    },
+    GET_ORDER_BY_ID : (state, payload) => {
+      state.orders = payload
     }
   },
   actions : {
@@ -62,7 +68,17 @@ export default {
             console.error(e)
           });
     },
-    searchOrderById ({commit}, payload) {
+    getOrderByOrderId ({commit}, payload) {
+      Axios
+          .get(API+'/'+payload)
+          .then(response => {
+            commit('GET_ORDER_BY_ID', payload)
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+    },
+    searchOrderByUserId ({commit}, payload) {
       Axios
           .get(config.API_ORDER,
               JSON.stringify(payload))

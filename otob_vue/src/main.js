@@ -9,13 +9,16 @@ import FontAwesome from 'font-awesome/css/font-awesome.css'
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import config from '../config'
-import VueHtmlToPaper from 'vue-html-to-paper';
+import VueHtmlToPaper from 'vue-html-to-paper'
 import { PDFJS } from 'pdfjs-dist'
+// import jsPDF from 'jspdf'
+// import VueHtml2Canvas from 'vue-html2canvas'
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.use(VueCookies)
+// Vue.use(VueHtml2Canvas)
 
 const options = {
   name: '_blank',
