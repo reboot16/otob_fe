@@ -28,20 +28,30 @@
     border: 0;
     border-top: 2px solid #ddd;
     border-bottom: 2px solid #ddd;
-    width: 2em;
+    width: 3em;
     text-align: center;
     padding: 0.1em;
   }
   .quantity-toggle button {
-    border: 2px solid #ddd;
-    padding: .25em .5em .25em .5em;
-    font-size: 0.75em;
+    /*border: 2px solid #ddd;*/
+    padding: .5em .5em .5em .5em;
+    font-size: 1em;
     cursor: pointer;
-  }  
+  }
+
+  .quantity-toggle button.btn-right{
+    border-radius: 0 0.5em 0.5em 0;
+  }
+
+   .quantity-toggle button.btn-left{
+     border-radius: 0.5em 0 0 0.5em;
+   }
 
   #bookBtn{
     padding:0 0.5em 0 0.5em;
     margin-left:0.5em;
+    width: 5em;
+    border-radius: 0.5em;
   }
    /* ======================== END OF CSS FOR BUTTON MODIFY =========================== */
 

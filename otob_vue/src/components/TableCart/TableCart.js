@@ -3,6 +3,18 @@ export default {
   props: {
     listItemCart: ''
   },
+  computed: {
+    countOfItem () {
+      return this.listItemCart.length
+    },
+    sumOfPrice () {
+      let sum = 0
+      this.listItemCart.map(function(product) {
+        sum += product.productPrice
+      })
+      return sum
+    }
+  },
   methods: {
     decrement: function(product, index) {
       if( product.qty == 1) {

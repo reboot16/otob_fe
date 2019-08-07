@@ -62,6 +62,16 @@
   #content thead th, #content .btn-primary{
     color:white;
     background-color: rgb(38, 164, 218);
+    border-color: rgb(32, 145, 193);
+  }
+
+  #content .btn-primary:hover {
+    background-color: rgb(32, 145, 193);
+  }
+
+  #content .btn-checkout:hover {
+    color: #fff;
+    background-color: #de651b;
   }
    
   #content button:disabled {
@@ -75,6 +85,11 @@
   
   #content table{
     border: 1px solid #dee2e6;
+  }
+
+  #content .item-price{
+    font-size: 18px;
+    color: #f37021;
   }
   
   #loginFirst {
@@ -119,7 +134,8 @@
 
   tbody.scrollContentCart{
     display: block;
-    height: 200px;
+    min-height: 0px;
+    max-height: 130px;
     overflow: auto;
   }
 

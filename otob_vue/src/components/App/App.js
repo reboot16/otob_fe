@@ -55,6 +55,17 @@ export default {
     onLogout () {
       this.$store.dispatch('doLogout')
       this.$router.push('/')
+    },
+    onRoute () {
+      if(this.userAuth.isLogin == true){
+        if(this.userAuth.isAdmin == true){
+          this.$router.push('/products/manage')
+        }else if(this.userAuth.isCashier == true){
+          this.$router.push('/orders')
+        }else if(this.auth.isCustomer == true){
+          this.$router.push('/products')
+        }
+      }
     }
   },
   watch: {

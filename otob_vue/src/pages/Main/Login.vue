@@ -66,11 +66,11 @@ export default {
     onRoute () {
       if(this.auth.isLogin == true){
         if(this.auth.isAdmin == true){
-          this.$router.push('/product')
+          this.$router.push('/products/manage')
         }else if(this.auth.isCashier == true){
           this.$router.push('/orders')
         }else if(this.auth.isCustomer == true){
-          this.$router.push('/product_cust')
+          this.$router.push('/products')
         }
       }
     }

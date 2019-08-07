@@ -31,7 +31,7 @@
         </b-navbar>
       </div> 
 
-      <div @checkAuth="checkAuth">
+      <div>
         <router-view id="content" :auth="userAuth"/>
       </div>
 
