@@ -96,6 +96,8 @@ export default {
         }); 
     },
     searchProduct({commit}, textSearch){
+      this.$toasted.show('success !!')
+      
       if(textSearch == ''){
         Axios
           .get(config.API_PRODUCT)

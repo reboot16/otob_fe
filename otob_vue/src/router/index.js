@@ -8,7 +8,22 @@ export const router = new VueRouter({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/products',
+      name: 'ProductCustomer',
+      component: () => import('@/pages/ProductCustomer')
+    },
+    {
       path: '/',
+      name: 'DirectProductCustomer',
+      component: () => import('@/pages/ProductCustomer')
+    },
+    {
+      path: '/products/manage',
+      name: 'Product',
+      component: () => import('@/pages/Product')
+    },
+    {
+      path: '/login',
       name: 'Login',
       component: () => import('@/pages/Main/Login')
     },
@@ -18,17 +33,7 @@ export const router = new VueRouter({
       component: () => import('@/pages/Main/Register')
     },
     {
-      path: '/product',
-      name: 'Product',
-      component: () => import('@/pages/Product')
-    },
-    {
-      path: '/product_cust',
-      name: 'ProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
-    },
-    {
-      path: '/user',
+      path: '/users',
       name: 'User',
       component: () => import('@/pages/User/User.vue')
     },
@@ -48,18 +53,23 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/Orders.vue')
     },
     {
-      path: '/thx',
+      path: '/orders/thx',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
     },
     {
-      path: '/nota',
-      name: 'Nota',
+      path: '/orders/print-note',
+      name: 'PrintNote',
       component: () => import('@/components/Nota')
     },
     {
       path: '/not-found',
-      name: 'PageNotFound2',
+      name: 'PageNotFound',
+      component: () => import('@/pages/Main/PageNotFound.vue')
+    },
+    {
+      path: '*',
+      name: 'DirectPageNotFound',
       component: () => import('@/pages/Main/PageNotFound.vue')
     }
   ]

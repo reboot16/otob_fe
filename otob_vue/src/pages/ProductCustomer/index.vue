@@ -3,16 +3,12 @@
     <div class="container">
       <!-- Table Product -->
       <div class="block">
-        <TableProductCustomer class="tbl"
-          :listProduct="listProduct"
-        />
+        <TableProductCustomer class="tbl" :listProduct="listProduct"/>
       </div>
 
       <!-- Table Cart -->
-      <div class="block" style="margin-top:2em;">
-        <TableCart class="tbl"
-          :listItemCart="listItemCart" 
-        />
+      <div class="block" style="margin-top:2em;" v-if="auth.isLogin==true">
+        <TableCart class="tbl" :listItemCart="listItemCart"/>
       </div>
 
       <ProgressBar/>

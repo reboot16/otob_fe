@@ -57,7 +57,7 @@ export default {
   methods: {
     onLogin (evt) {
       let formData = new FormData();
-      formData.append('email', this.form.username);
+      formData.append('username', this.form.username);
       formData.append('password', this.form.password);
       return this.$store.dispatch('doLogin', formData).then( () => {
         // location.reload()
