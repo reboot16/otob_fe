@@ -3,7 +3,8 @@ import SearchProduct from '@/components/SearchProduct'
 export default {
   name: 'TableProductCustomer',
   props: {
-    'listProduct': ''
+    'listProduct': '',
+    'isLogin': false
   },
   components: {
     SearchProduct
@@ -58,9 +59,11 @@ export default {
     },
     increment: function(product) {
       product.qty++
+      product.type = true
     },
     decrement: function (product) {
       product.qty--
+      product.type = false
     }
   },
 

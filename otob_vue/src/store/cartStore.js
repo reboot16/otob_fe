@@ -7,7 +7,7 @@ export default {
   getters : {
     CARTS  : state => {
       return state.carts;
-    }
+    },
   },
   mutations: { 
     SET_CART : (state, payload) => {
@@ -17,7 +17,7 @@ export default {
       state.carts.push(payload)
     },
     UPDATE_ITEM_CART : (state, payload) => {
-      state.carts[payload.index] = payload
+      state.carts[payload.productId] = payload
     },
     DELETE_ITEM_CART : (state, payload) => { 
       state.carts.splice(payload.index, 1) 
@@ -33,39 +33,49 @@ export default {
         console.error(e)
       });
     },
-    addToCart ({commit}, payload) {
+    addToCart ({commit, dispatch, state}, payload) {
+      // if(state.carts.length > 0) {
+      //   state.carts.map(function(product) {
+      //     if(product.productId == payload.productId){
+      //       dispatch('updateItemCart', payload)
+      //     }else {
+      //       dispatch('addItemToCart', payload)
+      //     }
+      //   })
+      // }else{
+        dispatch('addItemToCart', payload)
+      // }
+    },
+    addItemToCart({commit}, payload) {
       Axios
         .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
             payload.productName = payload.name
             payload.productPrice = payload.offerPrice
-            
             commit('ADD_TO_CART', payload)
-            alert('Success add to cart')
           }
           else{
-            alert(response.data.message)
+            console.log(response.data.message)
           }
         })
         .catch((e) => {
-          console.error(e) 
-        }); 
+          console.error(e)
+        });
     },
     updateItemCart ({commit}, payload) {
       Axios
         .put(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
-            alert('Success update cart')
           }
           else{
-            alert(response.data.message)
             if(payload.type == true){
               payload.qty--
             }else{
               payload.qty++
             }
+            alert(response.data.message)
           }
           commit('UPDATE_ITEM_CART', payload)
         })
@@ -77,17 +87,17 @@ export default {
       Axios
         .delete(config.API_CART + '/' + payload.productId)
         .then(response => {
-          commit('DELETE_ITEM_CART', payload) 
-          alert('Success delete from cart')
+          commit('DELETE_ITEM_CART', payload)
         })
         .catch((e) => {
           console.error(e)
         }); 
     },
-    orderItemCart ({commit}) {
+    orderItemCart ({commit, dispatch}) {
       Axios
         .get(config.API_CART + '/checkout')
         .then(response => {
+          dispatch('setCurrentOrder', response.data.data)
           commit('SET_CART', response.data.data.cartItems)
           alert('success checkout')
         }).catch((e) => {

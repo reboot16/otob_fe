@@ -3,6 +3,7 @@ import Axios from 'axios'
 export default {
   state: {
     orders: [],
+    currentOrder: {}
   },
   getters : {
     ORDERS : state => {
@@ -17,6 +18,9 @@ export default {
     getProductsByOrderId :  (state) => (id) => {
       var orders =  state.orders.find(order=>order.orders_id === id);
       return orders.products;
+    },
+    getCurrentOrder: (state) => {
+      return state.currentOrder
     }
   },
   mutations: {
@@ -31,7 +35,10 @@ export default {
     },
     GET_ORDER_BY_ID : (state, payload) => {
       state.orders = payload
-    }
+    },
+    SET_CURRENT_ORDER: (state, payload) => [
+      state.currentOrder = payload
+    ]
   },
   actions : {
     updateStatusProduct({commit}, product) {
@@ -87,6 +94,9 @@ export default {
       }).catch((e) => {
         console.error(e)
       })
+    },
+    setCurrentOrder ({commit}, payload) {
+      commit('SET_CURRENT_ORDER', payload)
     }
   }
 }

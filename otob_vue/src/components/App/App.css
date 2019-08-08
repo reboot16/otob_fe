@@ -68,11 +68,6 @@
   #content .btn-primary:hover {
     background-color: rgb(32, 145, 193);
   }
-
-  #content .btn-checkout:hover {
-    color: #fff;
-    background-color: #de651b;
-  }
    
   #content button:disabled {
     cursor: not-allowed;
@@ -86,17 +81,67 @@
   #content table{
     border: 1px solid #dee2e6;
   }
-
-  #content .item-price{
-    font-size: 18px;
-    color: #f37021;
-  }
   
   #loginFirst {
     background-color: #d2d6de
   }
 
-  /* =============================== CSS FOR BLOCK CONTAINER ======================== */
+/* =============================== CSS FOR ALL COLOR ============================= */
+#content .color-orange {
+  color: #f99401;
+}
+
+/* =============================== CSS FOR ALL BUTTON ============================= */
+#content .btn-blue {
+  background-color: #17a1e0;
+  border-color: #0b8ecc;
+  color: white;
+}
+#content .btn-blue:hover{
+  background-color: #0b8ecc;
+}
+
+#content .btn-green {
+  background-color: #00b35e;
+  border-color: #078a49;
+  color: white;
+}
+#content .btn-green:hover{
+  background-color: #078a49;
+}
+
+#content .btn-orange {
+  background-color: #f99401;
+  border-color: #e88a00;
+  color: white;
+}
+#content .btn-orange:hover{
+  background-color: #e88a00;
+}
+
+#content .btn-gray{
+  background-color: #a7a7a7;
+  border-color: #929292;
+  color: white;
+}
+#content .btn-gray:hover{
+  background-color: #929292;
+}
+
+#content .btn-red{
+  background-color: #e20606;
+  border-color: #bf0202;
+  color: white;
+}
+#content .btn-red:hover{
+  background-color: #bf0202;
+}
+
+#content .input-gray {
+  background-color: #e4e4e4;
+  border-color: #c2c2c2;
+}
+/* =============================== CSS FOR BLOCK CONTAINER ======================== */
   .block{
     font-family: 'Glegoo', Helvetica, Arial, serif !important;
     background-color:white; 

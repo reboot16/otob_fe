@@ -1,6 +1,6 @@
 <template>
   <div id="Thanks" class="container col-sm-6" style="text-align:center;border:1px solid #6c757d;margin-top:3em">
-      <h3>Thank you, {{username}}</h3>
+      <h3>Hello, {{auth.userId}}</h3>
       <p>
         Terimakasih, karena telah berbelanja melalui Aplikasi OTOB (Offline to Online Bazaar).<br>
         Semoga anda senang dengan layanan yang kami berikan. <br>
@@ -30,7 +30,10 @@
 
 <script>
 export default {
-  name: 'Product', 
+  name: 'Product',
+  props: {
+    auth: {}
+  },
   data() {
     return{
       username : 'My Name'

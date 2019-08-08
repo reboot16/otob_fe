@@ -3,7 +3,7 @@
     <div class="container">
       <!-- Table Product -->
       <div class="block">
-        <TableProductCustomer class="tbl" :listProduct="listProduct"/>
+        <TableProductCustomer class="tbl" :listProduct="listProduct" :isLogin="auth.isLogin"/>
       </div>
 
       <!-- Table Cart -->
@@ -47,10 +47,10 @@
      border-radius: 0.5em 0 0 0.5em;
    }
 
-  #bookBtn{
+  .btn-blue{
     padding:0 0.5em 0 0.5em;
     margin-left:0.5em;
-    width: 5em;
+    width: 7em;
     border-radius: 0.5em;
   }
    /* ======================== END OF CSS FOR BUTTON MODIFY =========================== */

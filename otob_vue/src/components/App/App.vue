@@ -18,6 +18,7 @@
                 <b-nav-item v-if="isAdmin"><router-link to="/users">User</router-link></b-nav-item>
                 <b-nav-item v-if="isAdmin || isCashier"><router-link to="/products/manage">Product</router-link></b-nav-item>
                 <b-nav-item><router-link to="/products">Product</router-link></b-nav-item>
+                <b-nav-item><router-link to="/orders/customer">Order</router-link></b-nav-item>
                 <b-nav-item-dropdown v-if="isCashier">
                   <template slot="button-content">Order</template>
                   <router-link :to="{name: 'order_approvement'}" tag="b-dropdown-item">Approvement</router-link>
