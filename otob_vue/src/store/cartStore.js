@@ -34,19 +34,6 @@ export default {
       });
     },
     addToCart ({commit, dispatch, state}, payload) {
-      // if(state.carts.length > 0) {
-      //   state.carts.map(function(product) {
-      //     if(product.productId == payload.productId){
-      //       dispatch('updateItemCart', payload)
-      //     }else {
-      //       dispatch('addItemToCart', payload)
-      //     }
-      //   })
-      // }else{
-        dispatch('addItemToCart', payload)
-      // }
-    },
-    addItemToCart({commit}, payload) {
       Axios
         .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {

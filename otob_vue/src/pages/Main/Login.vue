@@ -59,9 +59,7 @@ export default {
       let formData = new FormData();
       formData.append('username', this.form.username);
       formData.append('password', this.form.password);
-      return this.$store.dispatch('doLogin', formData).then( () => {
-        // location.reload()
-      })
+      this.$store.dispatch('doLogin', formData)
     },
     onRoute () {
       if(this.auth.isLogin == true){

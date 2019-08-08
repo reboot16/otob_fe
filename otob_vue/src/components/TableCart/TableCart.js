@@ -44,11 +44,22 @@ export default {
 
       if (confirmOrder) {
         this.$store.dispatch('orderItemCart')
-        this.$router.push('/orders/customer')
+        this.$router.push('/orders/thx')
       }
     },
     bookDisable (sum) {
       return sum === 0;
+    },
+    getFormattedCurrency (value) {
+      let result = ''
+      value = value === null ? 0 : value
+      let reverseValue = value.toString().split('').reverse().join('')
+      for (let i = 0; i < reverseValue.length; i++) {
+        if (i % 3 === 0) {
+          result += reverseValue.substr(i, 3) + '.'
+        }
+      }
+      return 'Rp ' + result.split('', result.length - 1).reverse().join('')
     }
   },
   

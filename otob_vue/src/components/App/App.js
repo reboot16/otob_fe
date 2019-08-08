@@ -1,43 +1,59 @@
+import CustomModal from '@/components/CustomModal/CustomModal.vue'
+
 export default {
   data () {
-    return { 
+    return {
+      form: {
+        oldPassword: '',
+        newPassword: '',
+        newPassword2: ''
+      },
+      showChangePassword: false
     }
+  },
+  components: {
+    CustomModal
   },
   mounted () {
     this.checkAuth()
   },
   computed : {
     isAuth () {
+      console.log(this.$store.getters.isAuthorized)
       return this.$store.getters.isAuthorized
     },
     isLogin () {
-      if (this.isAuth.isLogin){
+      if (this.isAuth && this.isAuth.isLogin){
         return true
       }
       return false
     },
     isAdmin () {
-      if (this.isAuth.userRole == config.role_admin){
+      if (this.isAuth && this.isAuth.userRole == config.role_admin){
         return true
       }
       return false
     },
     isCashier () {
-      if (this.isAuth.userRole == config.role_cashier){
+      if (this.isAuth && this.isAuth.userRole == config.role_cashier){
         return true
       }
       return false
     },
     isCustomer () {
-      if (this.isAuth.userRole == config.role_customer){
+      if (this.isAuth && this.isAuth.userRole == config.role_customer){
         return true
       }
       return false
     },
     userId () {
-      return this.isAuth.userId
+      if (this.isAuth)
+        return this.isAuth.userId
+      console.log(this.isAuth)
+      return ''
     },
     userAuth () {
+      console.log('userAuth')
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -50,6 +66,7 @@ export default {
   },
   methods : {
     checkAuth () {
+      console.log('checkAuth')
       this.$store.dispatch('checkAuthorized')
     },
     onLogout () {
@@ -65,6 +82,20 @@ export default {
         }else if(this.auth.isCustomer == true){
           this.$router.push('/products')
         }
+      }
+    },
+    showModalChangePassword () {
+      this.showChangePassword = true
+    },
+    onChangePassword () {
+      if(this.form.newPassword !== this.form.newPassword){
+        alert('Password not match')
+      }else {
+        let formData = new FormData();
+        formData.append('oldPassword', this.form.oldPassword);
+        formData.append('newPassword', this.form.newPassword);
+  
+        this.$store.dispatch('doChangePassword', formData)
       }
     }
   },

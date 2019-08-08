@@ -86,6 +86,10 @@
     background-color: #d2d6de
   }
 
+  .dropdown-user {
+    min-width: 12em;
+  }
+
 /* =============================== CSS FOR ALL COLOR ============================= */
 #content .color-orange {
   color: #f99401;
@@ -101,12 +105,12 @@
   background-color: #0b8ecc;
 }
 
-#content .btn-green {
+#content .btn-green, .btn-green {
   background-color: #00b35e;
   border-color: #078a49;
   color: white;
 }
-#content .btn-green:hover{
+#content .btn-green:hover, .btn-green:hover{
   background-color: #078a49;
 }
 

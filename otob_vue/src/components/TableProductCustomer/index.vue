@@ -27,8 +27,8 @@
           <tr class="col-sm-12" v-for="(product, index) in listProduct" :key="index">
             <td class="col-sm-2">{{ product.name }}</td>
             <td class="col-sm-2">{{ product.description }}</td>
-            <td class="col-sm-2">Rp {{ product.listPrice }}</td>
-            <td class="col-sm-2">Rp {{ product.offerPrice }}</td>
+            <td class="col-sm-2"> {{ getFormattedCurrency (product.listPrice) }}</td>
+            <td class="col-sm-2"> {{ getFormattedCurrency (product.offerPrice) }}</td>
             <td class="col-sm-1">{{ product.stock }}</td>
             <td class="col-sm-3">
               <div class="quantity-toggle" v-if="isStockAvailable(product.stock)">

@@ -3,7 +3,10 @@ import Axios from 'axios'
 export default {
   state: {
     orders: [],
-    currentOrder: {}
+    currentOrder: {
+      order: {},
+      outOfStockProducts: []
+    }
   },
   getters : {
     ORDERS : state => {

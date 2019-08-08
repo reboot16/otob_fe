@@ -21,8 +21,8 @@
               <td class="5%"><b>{{ index+1 }}</b></td>
               <td class="15%">{{ product.name }}</td>
               <td class="25%">{{ product.description }}</td>
-              <td class="15%">{{ product.listPrice }}</td>
-              <td class="15%">{{ product.offerPrice }}</td>
+              <td class="15%">{{ getFormattedCurrency(product.listPrice) }}</td>
+              <td class="15%">{{ getFormattedCurrency(product.offerPrice) }}</td>
               <td class="10%">{{ product.stock }}</td>
               <td class="15%">
                 <b-dropdown variant="outline-primary" size="sm" right name="dropdown">
