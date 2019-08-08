@@ -72,6 +72,19 @@ export default {
         return this.currentOrder.outOfStockProducts
       return ''
     }
+  },
+  mounted (){
+    if (this.currentOrder.length == 0){
+      if(this.auth.isLogin == true){
+        if(this.auth.isAdmin == true){
+          this.$router.push('/products/manage')
+        }else if(this.auth.isCashier == true){
+          this.$router.push('/orders')
+        }else if(this.auth.isCustomer == true){
+          this.$router.push('/products')
+        }
+      }
+    }
   }
 }
 </script>

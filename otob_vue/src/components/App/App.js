@@ -94,8 +94,8 @@ export default {
         let formData = new FormData();
         formData.append('oldPassword', this.form.oldPassword);
         formData.append('newPassword', this.form.newPassword);
-  
-        this.$store.dispatch('doChangePassword', formData)
+
+        // this.$store.dispatch('doChangePassword', formData)
       }
     }
   },
