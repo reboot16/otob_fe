@@ -8,14 +8,17 @@
             <h3>Product</h3>
           </div>
           <div class="col-sm-7">
-            <SearchProduct/>
+            <SearchProduct @onFlagSearch="checkFlagSearch"/>
           </div>
           <div class="col-sm-2">
               <ProductHeaderDropdown @showModalForm="showModal = true"/>
           </div>
         </div>
 
-        <TableProduct :listProduct="listProduct"/>
+        <TableProduct
+          :listProduct="listProduct"
+          :totalPage="totalPage"
+          :tempFlagSearch="tempFlagSearch"/>
      </div>
     </div>
 

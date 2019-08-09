@@ -31,6 +31,9 @@ export default {
     listItemCart () {
       return this.$store.getters.CARTS
     },
+    totalPage () {
+      return this.$store.getters.TOTAL_PAGES
+    }
   },
   methods: {
   

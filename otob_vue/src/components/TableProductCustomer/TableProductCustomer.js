@@ -4,12 +4,16 @@ import CustomPagination from '@/components/CustomPagination/index.vue'
 export default {
   name: 'TableProductCustomer',
   props: {
-    'listProduct': '',
-    'isLogin': false
+    listProduct: '',
+    isLogin: false,
+    totalPage: 0
   },
   components: {
     SearchProduct,
     CustomPagination
+  },
+  mounted() {
+    console.log('tbl' + this.totalPage)
   },
   data() {
     return {
@@ -25,8 +29,6 @@ export default {
       quantity: 1,
       bookData: {},
     }
-  },
-  mounted () {
   },
   computed: {
  
@@ -77,7 +79,7 @@ export default {
         }
       }
       return 'Rp ' + result.split('', result.length - 1).reverse().join('')
-    }
+    },
   },
 
 }

@@ -8,7 +8,8 @@ export default {
         newPassword: '',
         newPassword2: ''
       },
-      showChangePassword: false
+      showChangePassword: false,
+      wrongPassword: false
     }
   },
   components: {
@@ -84,8 +85,9 @@ export default {
       this.showChangePassword = true
     },
     onChangePassword () {
-      if(this.form.newPassword !== this.form.newPassword){
+      if(this.form.newPassword != this.form.newPassword){
         alert('Password not match')
+        this.wrongPassword = true
       }else {
         let formData = new FormData();
         formData.append('oldPassword', this.form.oldPassword);

@@ -1,12 +1,16 @@
 import CustomModal from '@/components/CustomModal/CustomModal.vue'
+import CustomPagination from '@/components/CustomPagination/index.vue'
 
 export default {
   name: 'TableProduct',
   props: {
-    listProduct: ''
+    listProduct: '',
+    totalPage: 0,
+    tempFlagSearch: {}
   },
   components: {
-    CustomModal
+    CustomModal,
+    CustomPagination
   },
   data() {
     return {

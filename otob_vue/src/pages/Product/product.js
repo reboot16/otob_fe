@@ -14,7 +14,8 @@ export default {
   },  
   data() {
     return {
-      showModalUpd: false
+      showModalUpd: false,
+      tempFlagSearch: {}
     }
   },
   mounted () {
@@ -31,6 +32,9 @@ export default {
     listProduct: function () {
       return this.$store.getters.PRODUCTS
     },
+    totalPage () {
+      return this.$store.getters.TOTAL_PAGES
+    }
   },
   watch: {
 
@@ -52,6 +56,11 @@ export default {
     },
     showModals () {
       this.showModal = true
+    },
+    checkFlagSearch (dataFlag) {
+      this.tempFlagSearch = dataFlag
+  
+      console.log(this.tempFlagSearch)
     }
   },
   

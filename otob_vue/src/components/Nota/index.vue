@@ -94,6 +94,14 @@
 				}
 			}
 		},
+		mounted () {
+			// this.$store.dispatch('getOrderByOrderId', )
+		},
+		computed: {
+			// data () {
+			// 	return this.$store.getters.getOrderById
+			// }
+		},
 		methods: {
 			print() {
 				html2canvas(document.getElementById('transaction')).then(function (canvas) {

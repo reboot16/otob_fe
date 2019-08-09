@@ -3,7 +3,10 @@
     <div class="container">
       <!-- Table Product -->
       <div class="block">
-        <TableProductCustomer class="tbl" :listProduct="listProduct" :isLogin="auth.isLogin"/>
+        <TableProductCustomer class="tbl"
+          :listProduct="listProduct"
+          :isLogin="auth.isLogin"
+          :totalPage="totalPage"/>
       </div>
 
       <!-- Table Cart -->

@@ -2,10 +2,6 @@
 
   <div name="TableProductCustomer">
 
-      <CustomPagination
-        totalPages="5"
-      />
-
       <div class="row" style="margin-bottom: 0.5em">
         <div class="col-sm-4" >
           <h3>List of Product</h3>
@@ -50,6 +46,11 @@
 
         </table>
     </div>
+
+    <div style="text-align: center">
+      <CustomPagination :totalPage="totalPage"/>
+    </div>
+
   </div>
 </template>
 

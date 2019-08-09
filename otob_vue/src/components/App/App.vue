@@ -72,6 +72,7 @@
             <b-form-input v-model="form.newPassword2" placeholder="Enter your new password" required type="password"></b-form-input>
             <b-button type="submit" variant="primary" style="width: 100%;">Change Password</b-button>
           </b-form>
+          <p style="font-size: 12px; color: red" v-if="wrongPassword==true">Password not match</p>
         </div>
       </CustomModal>
 

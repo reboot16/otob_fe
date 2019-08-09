@@ -39,6 +39,8 @@ export default {
     onSubmit (product) {
       this.showModalAdd = false
       this.$store.dispatch('addProduct', product)
+  
+      this.resetForm()
     },
     onHandleUpload (event){
       let formData = new FormData();
@@ -54,6 +56,9 @@ export default {
     },
     onReset () {
       this.$refs.form.reset()
+    },
+    resetForm () {
+      this.form = ''
     }
   }
 

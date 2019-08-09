@@ -35,7 +35,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
-  display: table;
+  /*display: table;*/
   transition: opacity .3s ease;
 }
 
@@ -45,7 +45,8 @@
 }
 
 .modal-container {
-  width: 40%;
+  /*width: 40%;*/
+  width: 400px;
   margin: 0px auto;
   padding: 1em 0.5em;
   background-color: #fff;

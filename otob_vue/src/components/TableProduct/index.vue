@@ -130,6 +130,10 @@
       </div>
     </b-modal>
 
+    <div style="text-align: center">
+      <CustomPagination :totalPage="totalPage" :tempFlagSearch="tempFlagSearch"/>
+    </div>
+
   </div>
 </template>
 
