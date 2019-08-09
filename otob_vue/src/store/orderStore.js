@@ -90,8 +90,7 @@ export default {
     },
     searchOrderByUserId ({commit}, payload) {
       Axios
-          .get(config.API_ORDER,
-              JSON.stringify(payload))
+          .get(config.API_ORDER+'/user')
           .then(response => {
             commit('SET_ORDERS', response.data.data)
       }).catch((e) => {
@@ -100,6 +99,21 @@ export default {
     },
     setCurrentOrder ({commit}, payload) {
       commit('SET_CURRENT_ORDER', payload)
+    },
+    searchOrder ({commit}, payload) {
+      if (payload === '') {
+        Axios
+            .get(config.API_ORDER)
+            .then(response => {
+              commit('SET_ORDERS', response.data.data)
+            })
+      } else {
+        Axios
+            .get(config.API_ORDER +'/payload/'+'search')
+            .then(response => {
+              commit('SET_ORDERS', response.data.data)
+            })
+      }
     }
   }
 }
