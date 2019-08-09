@@ -1,6 +1,5 @@
 <template>
   <div name="TableProduct" class="">
-      
       <div class="tableContainer">
         <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
  

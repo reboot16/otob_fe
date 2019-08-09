@@ -1,5 +1,11 @@
 <template>
+
   <div name="TableProductCustomer">
+
+      <CustomPagination
+        totalPages="5"
+      />
+
       <div class="row" style="margin-bottom: 0.5em">
         <div class="col-sm-4" >
           <h3>List of Product</h3>

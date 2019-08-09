@@ -1,4 +1,5 @@
 import SearchProduct from '@/components/SearchProduct'
+import CustomPagination from '@/components/CustomPagination/index.vue'
 
 export default {
   name: 'TableProductCustomer',
@@ -7,7 +8,8 @@ export default {
     'isLogin': false
   },
   components: {
-    SearchProduct
+    SearchProduct,
+    CustomPagination
   },
   data() {
     return {

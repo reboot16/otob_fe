@@ -19,7 +19,6 @@ export default {
   },
   computed : {
     isAuth () {
-      console.log(this.$store.getters.isAuthorized)
       return this.$store.getters.isAuthorized
     },
     isLogin () {
@@ -49,11 +48,9 @@ export default {
     userId () {
       if (this.isAuth)
         return this.isAuth.userId
-      console.log(this.isAuth)
       return ''
     },
     userAuth () {
-      console.log('userAuth')
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -66,7 +63,6 @@ export default {
   },
   methods : {
     checkAuth () {
-      console.log('checkAuth')
       this.$store.dispatch('checkAuthorized')
     },
     onLogout () {

@@ -18,7 +18,6 @@ export default {
         stock: '',
         index: ''
       },
-      quantity: 1,
       bookData: '',
       index: '',
       showModalUpd: false
