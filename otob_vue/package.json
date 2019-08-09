@@ -13,11 +13,13 @@
     "core-js": "^2.6.5",
     "font-awesome": "^4.7.0",
     "jspdf": "^1.5.3",
+    "pdfjs-dist": "^2.1.266",
     "register-service-worker": "^1.6.2",
     "sessionstorage": "^0.1.0",
     "vue": "^2.6.10",
     "vue-config": "^1.0.0",
     "vue-cookies": "^1.5.13",
+    "vue-html-to-paper": "^1.1.0",
     "vue-router": "^3.0.7",
     "vuejs-datepicker": "^1.6.2",
     "vuex": "^3.0.1"
