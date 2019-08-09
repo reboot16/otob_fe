@@ -8,7 +8,7 @@
 					</div>
 				</div>
 				<div class="col-sm-12">
-					<search-order v-on:doSearch="doFilter"></search-order>
+					<search-order></search-order>
 				</div>
 				<div class="col-sm-12">
 					<div class="filter">
@@ -57,7 +57,7 @@
 	</div>
 </template>
 
-<scrispt src="./Orders.js"></scrispt>
+<script src="./Orders.js"></script>
 <style scoped>
 	.block{
 		font-family: 'Glegoo', Helvetica, Arial, serif !important;

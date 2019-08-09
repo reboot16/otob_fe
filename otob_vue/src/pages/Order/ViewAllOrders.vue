@@ -9,7 +9,7 @@
 						</div>
 						<div class="row content-header">
 							<div class="col-sm-6">
-									<search-order v-on:doSearch="doSearch"></search-order>
+									<search-order></search-order>
 							</div>
 							<div class="col-sm-6">
 									<filter-order v-on:doFilter="doFilter"></filter-order>
