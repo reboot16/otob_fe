@@ -51,7 +51,7 @@ export default {
       Axios
           .get(config.API_ORDER)
           .then(response => {
-            commit('SET_ORDERS',response.data.data)
+            commit('SET_ORDERS',response.data.data.orders)
           }).catch((e) => {
             console.error(e);
       })
@@ -92,7 +92,7 @@ export default {
       Axios
           .get(config.API_ORDER+'/user')
           .then(response => {
-            commit('SET_ORDERS', response.data.data)
+            commit('SET_ORDERS', response.data.data.orders)
       }).catch((e) => {
         console.error(e)
       })
@@ -105,13 +105,13 @@ export default {
         Axios
             .get(config.API_ORDER)
             .then(response => {
-              commit('SET_ORDERS', response.data.data)
+              commit('SET_ORDERS', response.data.data.orders)
             })
       } else {
         Axios
             .get(config.API_ORDER +'/payload/'+'search')
             .then(response => {
-              commit('SET_ORDERS', response.data.data)
+              commit('SET_ORDERS', response.data.data.orders)
             })
       }
     }
