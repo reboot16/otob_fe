@@ -87,6 +87,21 @@ export default {
       }).catch((e) => {
         console.error(e)
       })
+    },
+    searchOrder ({commit}, payload) {
+      if (payload === '') {
+        Axios
+            .get(config.API_ORDER)
+            .then(response => {
+              commit('SET_ORDERS', response.data.data)
+            })
+      } else {
+        Axios
+            .get(config.API_ORDER +'/ordId/'+payload)
+            .then(response => {
+              commit('SET_ORDERS', response.data.data)
+            })
+      }
     }
   }
 }

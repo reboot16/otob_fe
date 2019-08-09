@@ -1,4 +1,5 @@
 import SearchOrder from '@/components/SearchOrder'
+
 export default {
     name: 'Orders',
     components: {
@@ -18,11 +19,11 @@ export default {
             this.listOrders =  this.$store.getters.ORDERS
         },
         viewDetail(id){
-            this.$router.push('orders/approvement/'+id)
+            this.$router.push('orders/customer/'+id)
         },
         doSearch (value) {
             this.filters = value
-        }
+        },
 
     },
     mounted() {

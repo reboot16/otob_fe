@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        name: "search-order",
+        name: "searchOrder",
         data () {
             return {
                 searchText: ''
@@ -19,7 +19,12 @@
         },
         methods: {
             doSearch () {
-                this.$emit('doSearch', this.searchText)
+                this.$store.dispatch('searchOrder', this.searchText)
+            }
+        },
+        watch: {
+            searchText () {
+                this.doSearch
             }
         }
     }

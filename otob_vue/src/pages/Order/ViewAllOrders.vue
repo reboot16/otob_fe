@@ -78,11 +78,11 @@
                 filters: '',
             }
         },
-				computed: {
-					listOfOrder () {
-						return this.$store.getters.ORDERS
-					}
-				},
+		computed: {
+			listOfOrder () {
+				return this.$store.getters.ORDERS
+			}
+		},
         methods:{
             getAllOrders()
             {
@@ -99,9 +99,9 @@
             }
         },
         mounted() {
-            if(this.auth.isCashier == false){
-                this.$router.push('/forbidden')
-            }
+            // if(this.auth.isCashier == false){
+            //     this.$router.push('/forbidden')
+            // }
             this.$store.dispatch('getOrders')
         }
     }
