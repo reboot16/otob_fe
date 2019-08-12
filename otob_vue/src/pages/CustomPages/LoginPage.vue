@@ -47,7 +47,9 @@ export default {
     CustomForm
   }, 
   mounted () {
-    this.onRouteLoginTrue()
+    if(this.auth.isLogin == true) {
+      this.$router.push('/products')
+    }
   },
   methods: {
     onLogin (evt) {
@@ -55,6 +57,7 @@ export default {
       formData.append('username', this.form.username);
       formData.append('password', this.form.password);
       this.$store.dispatch('doLogin', formData)
+      this.$router.push('/products')
     }
   }
 }
