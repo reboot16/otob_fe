@@ -23,16 +23,16 @@
 </template>
 
 <script>
-import CustomForm from '@/components/CustomForm'
+import CustomForm from '@/components/CustomComponents/CustomForm.vue'
 
 export default {
   name: 'Login',
   props: {
     auth: {
-      isLogin: '',
-      isAdmin: '',
-      isCashier: '',
-      isCustomer: ''
+      isLogin: false,
+      isAdmin: false,
+      isCustomer: false,
+      isGuest: true
     }
   },
   data () {
@@ -40,19 +40,14 @@ export default {
       form: {
         username: '',
         password: ''
-      },
-      dataLogin: [],
-      flagLogin: ''
+      }
     }
   },
   components: {
     CustomForm
   }, 
   mounted () {
-    this.onRoute()
-  },
-  computed: {
-
+    this.onRouteLoginTrue()
   },
   methods: {
     onLogin (evt) {
@@ -60,22 +55,6 @@ export default {
       formData.append('username', this.form.username);
       formData.append('password', this.form.password);
       this.$store.dispatch('doLogin', formData)
-    },
-    onRoute () {
-      if(this.auth.isLogin == true){
-        if(this.auth.isAdmin == true){
-          this.$router.push('/products/manage')
-        }else if(this.auth.isCashier == true){
-          this.$router.push('/orders')
-        }else if(this.auth.isCustomer == true){
-          this.$router.push('/products')
-        }
-      }
-    }
-  },
-  watch: {
-    auth () {
-      this.$router.push('/')
     }
   }
 }

@@ -10,27 +10,22 @@ export const router = new VueRouter({
     {
       path: '/products',
       name: 'ProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
+      component: () => import('@/pages/Product')
     },
     {
       path: '/',
       name: 'DirectProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
-    },
-    {
-      path: '/products/manage',
-      name: 'Product',
       component: () => import('@/pages/Product')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/pages/Main/Login')
+      component: () => import('@/pages/CustomPages/LoginPage')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/Main/Register')
+      component: () => import('@/pages/CustomPages/RegisterPage')
     },
     {
       path: '/users',
@@ -53,7 +48,7 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/Orders.vue')
     },
     {
-      path: '/orders/thx',
+      path: '/orders/thank-you',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
     },
@@ -65,12 +60,12 @@ export const router = new VueRouter({
     {
       path: '/not-found',
       name: 'PageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     },
     {
       path: '*',
       name: 'DirectPageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
 })
