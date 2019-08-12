@@ -1,5 +1,4 @@
-import SearchProduct from '@/components/SearchProduct'
-import CustomPagination from '@/components/CustomPagination/index.vue'
+import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
 
 export default {
   name: 'TableProductCustomer',
@@ -9,7 +8,6 @@ export default {
     totalPage: 0
   },
   components: {
-    SearchProduct,
     CustomPagination
   },
   mounted() {
@@ -68,18 +66,7 @@ export default {
     decrement: function (product) {
       product.qty--
       product.type = false
-    },
-    getFormattedCurrency (value) {
-      let result = ''
-      value = value === null ? 0 : value
-      let reverseValue = value.toString().split('').reverse().join('')
-      for (let i = 0; i < reverseValue.length; i++) {
-        if (i % 3 === 0) {
-          result += reverseValue.substr(i, 3) + '.'
-        }
-      }
-      return 'Rp ' + result.split('', result.length - 1).reverse().join('')
-    },
+    }
   },
 
 }

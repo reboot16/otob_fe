@@ -9,28 +9,23 @@ export const router = new VueRouter({
   routes: [
     {
       path: '/products',
-      name: 'ProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
+      name: 'Products',
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/',
-      name: 'DirectProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
-    },
-    {
-      path: '/products/manage',
-      name: 'Product',
-      component: () => import('@/pages/Product')
+      name: 'DirectProducts',
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/pages/Main/Login')
+      component: () => import('@/pages/CustomPages/LoginPage')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/Main/Register')
+      component: () => import('@/pages/CustomPages/RegisterPage')
     },
     {
       path: '/users',
@@ -65,12 +60,17 @@ export const router = new VueRouter({
     {
       path: '/not-found',
       name: 'PageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     },
     {
       path: '*',
       name: 'DirectPageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = "Blibli Bazaar"
+  next()
 })

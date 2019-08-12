@@ -1,32 +1,23 @@
 import SearchProduct from '@/components/SearchProduct'
 import ProductHeaderDropdown from '@/components/ProductHeaderDropdown'
 import TableProduct from '@/components/TableProduct'
+import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
 
 export default {
-  name: 'Product',  
-  props: {
-    'auth': ''
-  },
+  name: 'ProductPages',
   components: {
     SearchProduct,
     ProductHeaderDropdown,
-    TableProduct
+    TableProduct,
+    CustomPagination,
   },  
   data() {
     return {
-      showModalUpd: false,
-      tempFlagSearch: {}
+      showModalUpd: false
     }
   },
   mounted () {
-    if(this.auth.isLogin === false){
-      this.$router.push('/')
-    }
-    if(this.auth.isAdmin === false){
-      this.$router.push('/not-found')
-    } 
-
-    this.$store.dispatch('getProducts')   
+    this.$store.dispatch('getProducts')
   },
   computed: {
     listProduct: function () {
@@ -35,9 +26,6 @@ export default {
     totalPage () {
       return this.$store.getters.TOTAL_PAGES
     }
-  },
-  watch: {
-
   },
   methods: {
     onDelete: function (product, index) {
@@ -56,11 +44,6 @@ export default {
     },
     showModals () {
       this.showModal = true
-    },
-    checkFlagSearch (dataFlag) {
-      this.tempFlagSearch = dataFlag
-  
-      console.log(this.tempFlagSearch)
     }
   },
   

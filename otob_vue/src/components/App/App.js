@@ -1,4 +1,4 @@
-import CustomModal from '@/components/CustomModal/CustomModal.vue'
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
 
 export default {
   data () {
@@ -16,7 +16,7 @@ export default {
     CustomModal
   },
   mounted () {
-    this.checkAuth()
+    this.$store.dispatch('checkAuthorized')
   },
   computed : {
     isAuth () {
@@ -51,7 +51,7 @@ export default {
         return this.isAuth.userId
       return ''
     },
-    userAuth () {
+    auth () {
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -63,23 +63,25 @@ export default {
     }
   },
   methods : {
-    checkAuth () {
-      this.$store.dispatch('checkAuthorized')
-    },
     onLogout () {
       this.$store.dispatch('doLogout')
       this.$router.push('/')
     },
-    onRoute () {
-      if(this.userAuth.isLogin == true){
-        if(this.userAuth.isAdmin == true){
-          this.$router.push('/products/manage')
-        }else if(this.userAuth.isCashier == true){
-          this.$router.push('/orders')
-        }else if(this.auth.isCustomer == true){
-          this.$router.push('/products')
-        }
+    onRouteLoginTrue () {
+      if(this.isLogin == true) {
+        this.$router.push('/products')
       }
+    },
+    onRoute () {
+      // if(this.userAuth.isLogin == true){
+      //   if(this.userAuth.isAdmin == true){
+      //     this.$router.push('/products/manage')
+      //   }else if(this.userAuth.isCashier == true){
+      //     this.$router.push('/orders')
+      //   }else if(this.auth.isCustomer == true){
+      //     this.$router.push('/products')
+      //   }
+      // }
     },
     showModalChangePassword () {
       this.showChangePassword = true
