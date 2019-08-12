@@ -53,7 +53,6 @@ export default {
           }else{
             // commit('SET_AUTH', response.data.data)
             dispatch('checkAuthorized')
-            console.log(response)
             // alert('Login success')
           }
         }).catch((e) => {
