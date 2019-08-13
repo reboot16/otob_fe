@@ -38,8 +38,8 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/ViewAllOrders.vue')
     },
     {
-      path: '/orders/approvement/:id',
-      name: 'order_approvement',
+      path: '/orders/:id/detail',
+      name: 'orderAprovement',
       component: () => import('@/pages/Order/Approvement.vue')
     },
     {
