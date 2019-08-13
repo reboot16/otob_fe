@@ -1,56 +1,72 @@
 <template> 
-  <div name="TableCart">  
-    <div class="row" style="margin-bottom: 0.5em">
-      <div class="col-sm-6">
-        <h3>My Cart</h3>
-      </div>
-      <div class="col-sm-6" style="text-align:right">
-        <button class="btn btn-primary" @click="onOrder">Order Now</button>
-      </div>
-    </div>
-
-    <div class="tableContainer">
-      <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
-
-        <thead>
-          <tr class="col-sm-12">
-            <th width="4%">#</th>
-            <th width="25%">Name</th>
-            <th width="25%">Price</th>
-            <th width="25%">Quantity</th>
-            <th width="20%"> Action</th>
-          </tr>
-        </thead>
-
-        <tbody class="scrollContentCart">
-          <tr ref="listItemCart" class="col-sm-12" v-if="listItemCart.length != 0" v-for="(product, index) in listItemCart" :key="index" >
-            <td width="4%"><b>{{ index+1 }}</b></td>
-            <td width="25%">{{ product.productName }}</td>
-            <td width="25%">{{ product.productPrice }}</td>
-            <td  width="25%">
-              <div class="quantity-toggle">
-                <button @click="decrement(product, index)" class="btn btn-primary">&mdash;</button>
-                <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" class="btn btn-primary">&#xff0b;</button>
+  <div name="TableCart">
+      <table width="100%" class="table">
+        <tbody>
+          <tr v-for="(product, index) in listItemCart" :key="index"  style="display: flex">
+            <td class="col-sm-8">{{ product.productName }}</td>
+            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ getFormattedCurrency (product.productPrice) }}</td>
+            <td class="col-sm-2" style="display: flex;">
+              <div  style="display: flex">
+                <div class=" qty">
+                  <button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>
+                  <input type="text" :value="product.qty" readonly class="input-gray">
+                  <button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>
+                </div>
               </div>
+              <button @click="onDelete(product, index)"
+                style="padding:0.1em 0.5em; color:white; font-size: 18px; margin-left: 3px"
+                class="btn btn-red">
+                <i class="fa fa-trash"></i>
+              </button>
             </td>
-            <td width="20%">
-              <button @click="onDelete(product, index)" style="color:red; padding:0.3em 0.5em; color:white; font-size: 12px" class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-
-          <tr class="col-sm-12" v-else>
-            <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty cart :(</h5></td>
           </tr>
         </tbody>
+      </table>
 
-      </table> 
-    </div>
+      <div class="row" style="margin-bottom: 0.5em">
+        <div class="col-sm-10" style="text-align:right">
+          <div style="font-size: 13px">Total Belanja <b> ({{ countOfItem }}) </b></div>
+          <span class="color-orange checkout-price"> {{ getFormattedCurrency(sumOfPrice) }}</span>
+        </div>
+        <div class="col-sm-2" style="text-align:right" >
+          <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)" width="100%">Order Now</button>
+        </div>
+      </div>
 
+      <CustomAlert v-if="showModalAlert"
+         @close="showModalAlert=false"
+         @continue="continueCheckout" >
+        <div slot="alert-name">
+          Are you sure to continue the checkout process ?
+        </div>
+      </CustomAlert>
   </div> 
  
 </template>
 
 <script src="./TableCart.js"></script>
 
-<style scoped> </style>
+<style scoped>
+  .checkout-price{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .item-price{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .cart-price{
+    font-size: 18px;
+  }
+
+  span {
+    color: #929292;
+  }
+
+  .btn-orange {
+    height: 50px;
+    border-radius: 0.5em;
+  }
+</style>

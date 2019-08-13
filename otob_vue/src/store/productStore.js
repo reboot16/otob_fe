@@ -3,11 +3,15 @@ import Axios from 'axios'
 export default {
   state: {
     products: [],
+    totalPages: 0
   },
   getters : {
     PRODUCTS  : state => {
       return state.products;
     },
+    TOTAL_PAGES : state => {
+      return state.totalPages
+    }
   },
   mutations: { 
     SET_PRODUCT : (state, payload) => {
@@ -28,20 +32,40 @@ export default {
     UPLOAD_PRODUCT : (state, payload) => {
       state.products.push(payload)
     },
+    SET_TOTAL_PAGES : (state, payload) => {
+      state.totalPages = payload
+    },
   },
   actions : {
     getProducts  ({commit}) {  
       Axios
         .get(config.API_PRODUCT)
         .then(response => {
-          response.data.data.map(function(product) {
+          let result = response.data.data
+          result.products.map(function(product) {
             product.qty = 1
           });
-          commit('SET_PRODUCT', response.data.data)
+          commit('SET_PRODUCT', result.products)
+          commit('SET_TOTAL_PAGES', result.totalPage)
         })
         .catch((e) => {
           console.error(e)
         }); 
+    },
+    getProductsPageable ({commit}, payload) {
+      Axios
+        .get(config.API_PRODUCT + '?page=' + payload.page + '&size=' + payload.size)
+        .then(response => {
+          let result = response.data.data
+          result.products.map(function(product) {
+            product.qty = 1
+          });
+          commit('SET_PRODUCT', result.products)
+          commit('SET_TOTAL_PAGES', result.totalPage)
+        })
+        .catch((e) => {
+          console.error(e)
+        });
     },
     addProduct ({commit}, payload) {
       Axios
@@ -100,15 +124,37 @@ export default {
         Axios
           .get(config.API_PRODUCT)
           .then(response => {
-            commit('SET_PRODUCT', response.data.data)
+            let result = response.data.data
+            result.products.map(function(product) {
+              product.qty = 1
+            });
+            commit('SET_PRODUCT', result.products)
+            commit('SET_TOTAL_PAGES', result.totalPage)
           })
       }else{
         Axios
           .get(config.API_PRODUCT + '/name/' + textSearch)
           .then(response => {
-            commit('SET_PRODUCT', response.data.data)
+            let result = response.data.data
+            result.products.map(function(product) {
+              product.qty = 1
+            });
+            commit('SET_PRODUCT', result.products)
+            commit('SET_TOTAL_PAGES', result.totalPage)
           })
       } 
+    },
+    searchProductPageable ({commit}, payload){
+      Axios
+        .get(config.API_PRODUCT + '/name/' + payload.textSearch + '?page=' + payload.page + '&size=' + payload.size)
+        .then(response => {
+          let result = response.data.data
+          result.products.map(function(product) {
+            product.qty = 1
+          });
+          commit('SET_PRODUCT', result.products)
+          commit('SET_TOTAL_PAGES', result.totalPage)
+        })
     },
     uploadProduct({commit}, payload){ 
       Axios

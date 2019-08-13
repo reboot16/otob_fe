@@ -9,11 +9,26 @@ import FontAwesome from 'font-awesome/css/font-awesome.css'
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import config from '../config'
+import mixins from './mixins/generalMixin.js'
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.use(VueCookies)
+
+const options = {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
+}
+
 window.config = config
 
 Axios.interceptors.request.use(
@@ -29,8 +44,11 @@ Axios.interceptors.request.use(
 
 Vue.config.productionTip = false
 
-new Vue({
+const vm = new Vue({
   router,
   store,
+  mixins,
   render: h => h(App)
 }).$mount('#app')
+
+export { vm }

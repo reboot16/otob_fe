@@ -1,81 +1,63 @@
 <template>
-    <div class="sec1">
-        <div>
-            <h2>Status Pesanan</h2>
-        </div>
-        <hr style="border: none;height: 4px;background-color: #166184">
-
-        <div id="sec2">
-            <b-row>
-                <b-col md="3">
-                    Tanggal Transaksi
-                </b-col>
-                <b-col md="3">
-                    : {{orders.ordDate}}
-                </b-col>
-                <b-col md="3">
-                    Total Pembayaran
-                </b-col>
-
-                <b-col md="3">
-                    : Rp {{orders.totPrice}}
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col md="3">
-                    Nomor Pesanan
-                </b-col>
-                <b-col md="3">
-                    : {{orders.ordId}}
-                </b-col>
-                <b-col md="3">
-                    Status Pesanan
-                </b-col>
-                <b-col md="3">
-                    : {{orders.ordStatus}}
-                </b-col>
-            </b-row>
-        </div>
-
-        <div class="sec3">
-            <b-card
-                    header="Product Yang Dipesan"
-                    header-tag="b"
-                    style="color: white;margin-bottom: 90px"
-                    header-bg-variant="primary"
-            >
-                <b-table
-                        :items="orders.ordItems"
-                        :fields="fields"
-                        bordered hover stripped responsive
-                        class="table"
-                >
-                    <template slot="index" slot-scope="data"> {{data.index + 1}}</template>
-                    <template slot="hargaTotal" slot-scope="data">Rp {{data.item.qty * data.item.productPrice}}</template>
-                </b-table>
-
-                <b-row id="sec4">
-                    <div v-if="orders.ordStatus === 'Waiting'">
-                        <b-button
-                                variant="success"
-                                class="mr-2"
-                                v-on:click="confirm(orders.ordId)"
-                        >
-                            Accepted
-                        </b-button>
+    <div class="orders">
+        <div class="container header-body">
+            <div class="block">
+                <div class="row content-header">
+                    <div class="col-sm-12">
+                        <span>Pesanan {{orders.orderId}}</span>
                     </div>
-                    <div v-if="orders.ordStatus === 'Waiting'">
-                        <b-button
-                                variant="danger"
-                                class="mr-2"
-                                v-on:click="reject(orders.ordId)"
-                        >
-                            Reject
-                        </b-button>
-                    </div>
-                </b-row>
+                </div>
+                <div class="col-sm-12">
+                    <div class="filter">
+                        <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
+                            <thead>
+                            <tr class="col-sm-12">
+                                <th width="5%">No</th>
+                                <th width="30%">Nama Produk</th>
+                                <th width="15%">Jumlah</th>
+                                <th width="25%">Harga Satuan</th>
+                                <th width="25%"> Harga Total</th>
+                            </tr>
+                            </thead>
 
-            </b-card>
+                            <tbody class="scrollContentCart">
+                            <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
+                                <td width="5%"><b>{{ index+1 }}</b></td>
+                                <td width="30%">{{ item.productName }}</td>
+                                <td width="15%">{{ item.qty }}</td>>
+                                <td width="25%">Rp {{ item.productPrice }}</td>
+                                <td width="25%">Rp {{item.qty * item.productPrice}}</td>
+                            </tr>
+
+                            <tr class="col-sm-12" v-else>
+                                <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <b-row id="sec4">
+                        <div v-if="orders.ordStatus === 'Waiting'">
+                            <b-button
+                                    variant="success"
+                                    class="mr-2"
+                                    v-on:click="confirm(orders.ordId)"
+                            >
+                                Accepted
+                            </b-button>
+                        </div>
+                        <div v-if="orders.ordStatus === 'Waiting'">
+                            <b-button
+                                    variant="danger"
+                                    class="mr-2"
+                                    v-on:click="reject(orders.ordId)"
+                            >
+                                Reject
+                            </b-button>
+                        </div>
+                    </b-row>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -160,26 +142,38 @@
 </script>
 
 <style scoped>
-    .sec1{
+    .block{
+        font-family: 'Glegoo', Helvetica, Arial, serif !important;
+        background-color:white;
+        padding: 1em;
+        border-radius:0.5em;
+        -webkit-box-shadow: 0 8px 6px -6px #999;
+        -moz-box-shadow: 0 8px 6px -6px #999;
+        box-shadow: 0 8px 6px -6px #999;
+        transition: transform 0.3s;
+    }
+
+    .block:hover {
+        box-shadow: 0 1px 10px #999;
+    }
+    .content-header {
         margin: auto;
-        margin-top: 80px;
-        max-width: 80%;
+        max-width: 100%;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .table {
+        margin: auto;
+        margin-top: 10px;
+        max-width: 100%;
         padding: 10px;
     }
-    .table{
-        margin: auto;
+    th {
         text-align: center;
-    }
-    #sec2{
-        font-size: larger;
-        margin-bottom: 30px;
     }
     #sec4{
         text-align: right;
         float: right;
-    }
-    hr{
-        border-color: #008800;
     }
 </style>
 © 2019 GitHub, Inc.
