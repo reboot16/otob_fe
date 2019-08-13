@@ -2,8 +2,7 @@
   <div>
     <div class="thx container col-sm-6">
       <div style="text-align: center">
-      <h1 style="color: rgb(38, 164, 218); font-weight: bold">Thank you</h1>
-      <hr style="border: 2px solid rgb(38, 164, 218)"/>
+      <h1 style="color: rgb(38, 164, 218); font-weight: bold">Terimakasih...</h1>
       </div>
 
       <p style="text-align: center">
@@ -60,6 +59,7 @@ export default {
   },
   computed: {
     currentOrder () {
+      let orderId = this.$route.params.id
       return this.$store.getters.getCurrentOrder
     },
     dataOrder () {

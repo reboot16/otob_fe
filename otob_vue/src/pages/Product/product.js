@@ -1,5 +1,5 @@
 import SearchProduct from '@/components/SearchProduct'
-import ProductHeaderDropdown from '@/components/ProductHeaderDropdown'
+import ButtonDropdown from '@/components/ProductHeaderDropdown'
 import TableProduct from '@/components/TableProduct'
 import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
 import TableCart from '@/components/TableCart'
@@ -16,7 +16,7 @@ export default {
   },
   components: {
     SearchProduct,
-    ProductHeaderDropdown,
+    ButtonDropdown,
     TableProduct,
     CustomPagination,
     TableCart

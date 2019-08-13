@@ -8,11 +8,11 @@
         </div>
 
         <div class="row" v-if="auth.isLogin == true && auth.isAdmin == true" style="margin-bottom: 0.5em;">
-          <div class="col-sm-9">
+          <div class="col-sm-11">
             <SearchProduct/>
           </div>
-          <div class="col-sm-1">
-            <ProductHeaderDropdown @showModalForm="showModal = true" />
+          <div class="col-sm-1" style="text-align: right; padding-left: 0">
+            <ButtonDropdown @showModalForm="showModal = true" />
           </div>
         </div>
 
