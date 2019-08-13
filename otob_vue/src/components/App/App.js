@@ -1,4 +1,4 @@
-import CustomModal from '@/components/CustomModal/CustomModal.vue'
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
 
 export default {
   data () {
@@ -8,7 +8,8 @@ export default {
         newPassword: '',
         newPassword2: ''
       },
-      showChangePassword: false
+      showChangePassword: false,
+      wrongPassword: false
     }
   },
   components: {
@@ -19,7 +20,6 @@ export default {
   },
   computed : {
     isAuth () {
-      console.log(this.$store.getters.isAuthorized)
       return this.$store.getters.isAuthorized
     },
     isLogin () {
@@ -49,11 +49,9 @@ export default {
     userId () {
       if (this.isAuth)
         return this.isAuth.userId
-      console.log(this.isAuth)
       return ''
     },
     userAuth () {
-      console.log('userAuth')
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -66,7 +64,6 @@ export default {
   },
   methods : {
     checkAuth () {
-      console.log('checkAuth')
       this.$store.dispatch('checkAuthorized')
     },
     onLogout () {
@@ -88,14 +85,15 @@ export default {
       this.showChangePassword = true
     },
     onChangePassword () {
-      if(this.form.newPassword !== this.form.newPassword){
+      if(this.form.newPassword != this.form.newPassword){
         alert('Password not match')
+        this.wrongPassword = true
       }else {
         let formData = new FormData();
         formData.append('oldPassword', this.form.oldPassword);
         formData.append('newPassword', this.form.newPassword);
-  
-        this.$store.dispatch('doChangePassword', formData)
+
+        // this.$store.dispatch('doChangePassword', formData)
       }
     }
   },

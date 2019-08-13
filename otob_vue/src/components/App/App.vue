@@ -18,14 +18,11 @@
                 <b-nav-item v-if="isAdmin">
                   <router-link to="/users">User</router-link>
                 </b-nav-item>
-                <b-nav-item v-if="isAdmin || isCashier">
-                  <router-link to="/products/manage">Product</router-link>
-                </b-nav-item>
                 <b-nav-item>
                   <router-link to="/products">Product</router-link>
                 </b-nav-item>
                 <b-nav-item v-if="isLogin==true">
-                  <router-link to="/orders/customer">Order</router-link>
+                  <router-link to="/orders/customer">My Order</router-link>
                 </b-nav-item>
                 <b-nav-item-dropdown v-if="isAdmin || isCashier" right>
                   <template slot="button-content">Order</template>
@@ -72,6 +69,7 @@
             <b-form-input v-model="form.newPassword2" placeholder="Enter your new password" required type="password"></b-form-input>
             <b-button type="submit" variant="primary" style="width: 100%;">Change Password</b-button>
           </b-form>
+          <p style="font-size: 12px; color: red" v-if="wrongPassword==true">Password not match</p>
         </div>
       </CustomModal>
 

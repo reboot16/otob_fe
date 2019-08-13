@@ -1,54 +1,60 @@
 import SearchProduct from '@/components/SearchProduct'
-import ProductHeaderDropdown from '@/components/ProductHeaderDropdown'
+import ButtonDropdown from '@/components/ProductHeaderDropdown'
 import TableProduct from '@/components/TableProduct'
+import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
+import TableCart from '@/components/TableCart'
 
 export default {
-  name: 'Product',  
+  name: 'ProductPages',
   props: {
-    'auth': ''
+    auth: {
+      isLogin: false,
+      isAdmin: false,
+      isCustomer: false,
+      isGuest: true
+    }
   },
   components: {
     SearchProduct,
-    ProductHeaderDropdown,
-    TableProduct
-  },  
+    ButtonDropdown,
+    TableProduct,
+    CustomPagination,
+    TableCart
+  },
   data() {
     return {
       showModalUpd: false
     }
   },
   mounted () {
-    if(this.auth.isLogin === false){
-      this.$router.push('/')
-    }
-    if(this.auth.isAdmin === false){
-      this.$router.push('/not-found')
-    } 
-
-    this.$store.dispatch('getProducts')   
+    this.$store.dispatch('getProducts')
+    this.$store.dispatch('getCart')
   },
   computed: {
     listProduct: function () {
       return this.$store.getters.PRODUCTS
     },
-  },
-  watch: {
-
+    listItemCart () {
+      return this.$store.getters.CARTS
+    },
+    totalPage () {
+      return this.$store.getters.TOTAL_PAGES
+    }
   },
   methods: {
     onDelete: function (product, index) {
       const confirmDelete = confirm("Are you sure to delete this?");
-
+      
       if (confirmDelete) {
         product.index = index
-        this.$store.dispatch('deleteProduct', product) 
+        this.$store.dispatch('deleteProduct', product)
       }
     },
     onUpdate: function (product, index) {
       // this.$refs['modal-add'].show()
       // this.submitButton = false
       this.isProductVisible = true
-      this.$refs.form = product 
+      this.$refs.form = product
     },
     showModals () {
       this.showModal = true

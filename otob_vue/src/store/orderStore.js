@@ -78,11 +78,11 @@ export default {
             console.error(e)
           });
     },
-    getOrderByOrderId ({commit}, payload) {
+    getOrderByOrderId ({commit}, orderId) {
       Axios
-          .get(API+'/'+payload)
+          .get(config.API_ORDER+'/'+ orderId + '/search')
           .then(response => {
-            commit('GET_ORDER_BY_ID', payload)
+            commit('GET_ORDER_BY_ID', orderId)
           })
           .catch((e) => {
             console.log(e)
