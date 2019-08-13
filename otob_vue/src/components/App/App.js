@@ -84,17 +84,13 @@ export default {
     showModalChangePassword () {
       this.showChangePassword = true
     },
-    onChangePassword () {
-      if(this.form.newPassword != this.form.newPassword){
-        alert('Password not match')
-        this.wrongPassword = true
-      }else {
-        let formData = new FormData();
-        formData.append('oldPassword', this.form.oldPassword);
-        formData.append('newPassword', this.form.newPassword);
-
-        // this.$store.dispatch('doChangePassword', formData)
-      }
+    async onChangePassword () {
+      let formData = new FormData();
+      formData.append('oldPassword', this.form.oldPassword);
+      formData.append('newPassword', this.form.newPassword);
+      await this.$store.dispatch('doChangePassword', formData)
+      this.showChangePassword = false
+      this.form = ''
     }
   },
   watch: {

@@ -90,6 +90,7 @@
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 0.3em;
+  font-size: 13px;
 }
 .modal-body label{
   color: #9c9e9f;

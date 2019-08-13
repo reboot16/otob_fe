@@ -1,7 +1,7 @@
 <template>
 	<div class="input-group">
 		<input type="search" class="form-control" placeholder="Enter Product Name Here"
-					 v-model="tempText">
+					 v-model="searchText">
 
 		<div class="input-group-append">
 			<button class="btn btn-primary" type="button" @click="onSearch">Search</button>
@@ -14,24 +14,12 @@
 		name: "SearchProduct",
 		data() {
 			return {
-				tempText: '',
-				flagSearch: false
+				searchText: ''
 			}
 		},
 		methods: {
 			onSearch: function(){
 				this.$store.dispatch('searchProduct', this.tempText)
-
-				if(this.tempText !== ''){
-					this.flagSearch = true
-				}else{
-					this.flagSearch = false
-				}
-				let dataFlagSearch = {
-					textSearch: this.tempText,
-					flagSearch: this.flagSearch
-				}
-				this.$emit('onFlagSearch', dataFlagSearch)
 			},
 		},
 		watch: {

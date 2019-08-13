@@ -62,14 +62,22 @@
           Change Password
         </div>
 
-        <div slot="body">
-          <b-form @submit.prevent="onChangePassword">
-            <b-form-input v-model="form.oldPassword" placeholder="Enter your old password" required type="password"></b-form-input>
-            <b-form-input v-model="form.newPassword" placeholder="Enter your new password" required type="password"></b-form-input>
-            <b-form-input v-model="form.newPassword2" placeholder="Enter your new password" required type="password"></b-form-input>
-            <b-button type="submit" variant="primary" style="width: 100%;">Change Password</b-button>
+        <div slot="body" style="padding:0">
+          <b-form @submit.prevent="onChangePassword" class="modal-password">
+            <div class="row grup-input">
+              <label>Old Password</label>
+              <b-form-input v-model="form.oldPassword" placeholder="Enter your old password" required type="password"></b-form-input>
+            </div>
+            <div class="row grup-input">
+              <label>New Password</label>
+              <b-form-input v-model="form.newPassword" placeholder="Enter your new password" required type="password"></b-form-input>
+            </div>
+            <div class="row grup-input">
+              <p style="font-size: 12px; color: red" v-if="wrongPassword==true">Password not match</p>
+              <b-button type="submit" variant="green" style="width: 100%; background-color: #00b35e; color: white">Change Password</b-button>
+            </div>
+
           </b-form>
-          <p style="font-size: 12px; color: red" v-if="wrongPassword==true">Password not match</p>
         </div>
       </CustomModal>
 

@@ -19,7 +19,7 @@ export default {
     }
   },
   actions : {
-    checkAuthorized({commit, dispatch}){
+    async checkAuthorized({commit, dispatch}){
       let isLoginExist = $cookies.isKey(config.key_login)
       let isIdExist = $cookies.isKey(config.key_id)
       let isRoleExist = $cookies.isKey(config.key_role)
@@ -30,7 +30,7 @@ export default {
       }else {
         dispatch('removeCookie')
       }
-      commit('SET_AUTH', payload)
+      await commit('SET_AUTH', payload)
     },
     getCookie({commit}, payload) {
       payload.isLogin = $cookies.get(config.key_login)
@@ -43,8 +43,8 @@ export default {
       $cookies.remove(config.key_id)
       $cookies.remove(config.key_role)
     },
-    doLogin({commit, dispatch}, payload) {
-      Axios
+    async doLogin({commit, dispatch}, payload) {
+      await Axios
         .post(config.API_AUTH + '/login', payload)
         .then(response => {
           console.log(response)
