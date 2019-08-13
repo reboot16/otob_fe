@@ -33,6 +33,12 @@
                                     <span class="status-rej" v-show="orders.ordStatus === 'Rejected'">{{orders.ordStatus}}</span>
                                     <span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
                                 </td>
+                                <td v-show="orders.ordStatus === 'Accepted'">
+                                    <button class="print-nota" v-on:click="printNota(orders.orderId)">
+                                        <i class="fa fa-print"></i>
+                                        Print Nota
+                                    </button>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -90,11 +96,21 @@
                 },
             };
         },
+        computed: {
+            getOrders () {
+                let par = ''
+                par = this.$route.params.id
+                this.orders = this.$store.getters.getOrderById(par);
+            }
+        },
         methods: {
             getOrders(){
                 let par = ''
                 par = this.$route.params.id
                 this.orders = this.$store.getters.getOrderById(par);
+            },
+            printNota (id) {
+                this.$router.push('/orders/'+id+'/print-note')
             }
         },
         mounted() {
@@ -156,6 +172,17 @@
         color: red;
         font-size: 1rem;
         font-weight: bold;
+    }
+    .print-nota {
+        border: 1px solid;
+        background: #F7931E;
+        color: #fff;
+        height: 48px;
+        width: 100%;
+        font-size: 1rem;
+    }
+    .print-nota:hover {
+        background: #F9a94b;
     }
 </style>
 © 2019 GitHub, Inc.

@@ -65,33 +65,11 @@
 		name: "print-note",
 		data () {
 			return {
-				data: {
-					"orderId": "ORD1564679880000",
-					"userEmail": "nanihutagaol@gmail.com",
-					"ordDate": "2019/08/02 00:18",
-					"ordItems": [
-						{
-							"productId": 63,
-							"productName": "new product",
-							"productPrice": 89,
-							"qty": 1
-						},
-						{
-							"productId": 1,
-							"productName": "product name ",
-							"productPrice": 9000,
-							"qty": 1
-						}
-					],
-					"totItem": 2,
-					"totPrice": 9089,
-					"ordStatus": "Waiting"
-				}
+				data: {}
 			}
 		},
 		mounted () {
-			// let orderId = this.$route.params.id
-			// this.$store.dispatch('getOrderByOrderId', orderId)
+			this.getOrders();
 		},
 		computed: {
 			// data () {
@@ -113,7 +91,13 @@
 					x.document.close();
 					doc.save("nota-transaksi.pdf");
 				});
-			}
+			},
+
+			getOrders(){
+				let par = ''
+				par = this.$route.params.id
+				this.data = this.$store.getters.getOrderById(par);
+			},
 		}
 	}
 </script>
