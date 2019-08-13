@@ -9,7 +9,7 @@
 						</div>
 						<div class="row content-header">
 							<div class="col-sm-6">
-									<search-order v-on:doSearch="doSearch"></search-order>
+									<search-order></search-order>
 							</div>
 							<div class="col-sm-6">
 									<filter-order v-on:doFilter="doFilter"></filter-order>
@@ -78,11 +78,11 @@
                 filters: '',
             }
         },
-				computed: {
-					listOfOrder () {
-						return this.$store.getters.ORDERS
-					}
-				},
+		computed: {
+			listOfOrder () {
+				return this.$store.getters.ORDERS
+			}
+		},
         methods:{
             getAllOrders()
             {
@@ -99,9 +99,9 @@
             }
         },
         mounted() {
-            if(this.auth.isCashier == false){
-                this.$router.push('/forbidden')
-            }
+            // if(this.auth.isCashier == false){
+            //     this.$router.push('/forbidden')
+            // }
             this.$store.dispatch('getOrders')
         }
     }

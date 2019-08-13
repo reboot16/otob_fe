@@ -10,10 +10,10 @@ export default {
   },
   getters : {
     ORDERS : state => {
-      return state.orders;
+      return state.orders.orders;
     },
     getOrderById : (state) => (id) => {
-      return state.orders.find(order => order.ordId === id)
+      return state.orders.orders.find(order => order.orderId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
@@ -90,8 +90,7 @@ export default {
     },
     searchOrderByUserId ({commit}, payload) {
       Axios
-          .get(config.API_ORDER,
-              JSON.stringify(payload))
+          .get(config.API_ORDER+'/user')
           .then(response => {
             commit('SET_ORDERS', response.data.data)
       }).catch((e) => {

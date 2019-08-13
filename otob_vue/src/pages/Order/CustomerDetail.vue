@@ -24,7 +24,7 @@
                             <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
                                 <td width="5%"><b>{{ index+1 }}</b></td>
                                 <td width="30%">{{ item.productName }}</td>
-                                <td width="15%">{{ item.qty }}</td>>
+                                <td width="15%">{{ item.qty }}</td>
                                 <td width="25%">Rp {{ item.productPrice }}</td>
                                 <td width="25%">Rp {{item.qty * item.productPrice}}</td>
                             </tr>
@@ -36,26 +36,6 @@
 
                         </table>
                     </div>
-                    <b-row id="sec4">
-                        <div v-if="orders.ordStatus === 'Waiting'">
-                            <b-button
-                                    variant="success"
-                                    class="mr-2"
-                                    v-on:click="confirm(orders.ordId)"
-                            >
-                                Accepted
-                            </b-button>
-                        </div>
-                        <div v-if="orders.ordStatus === 'Waiting'">
-                            <b-button
-                                    variant="danger"
-                                    class="mr-2"
-                                    v-on:click="reject(orders.ordId)"
-                            >
-                                Reject
-                            </b-button>
-                        </div>
-                    </b-row>
                 </div>
             </div>
         </div>
@@ -81,27 +61,6 @@
             };
         },
         methods: {
-            updateProductStatus(status, index){
-                this.products = this.orders.ordItem[index-1];
-                this.products.status = status;
-                try {
-                    this.$store.dispatch('updateStatusProduct',this.products);
-                }
-                catch(e)
-                {
-                    alert(e);
-                }
-            },
-            confirm(id){
-                let orderReq = []
-                orderReq = this.$store.getters.getOrderById(id);
-                return this.$store.dispatch('acceptOrders', orderReq)
-            },
-            reject(id){
-                let orderReq = []
-                orderReq = this.$store.getters.getOrderById(id);
-                return this.$store.dispatch('rejectOrders', orderReq)
-            },
             getOrders(){
                 let par = ''
                 par = this.$route.params.id
@@ -109,10 +68,6 @@
             }
         },
         mounted() {
-            if(this.auth.isCashier == false){
-                this.$router.push('/forbidden')
-            }
-            
             this.$store.dispatch('getOrders')
             this.getOrders();
         }
@@ -146,7 +101,7 @@
         max-width: 100%;
         padding: 10px;
     }
-    th {
+    th, td {
         text-align: center;
     }
     #sec4{

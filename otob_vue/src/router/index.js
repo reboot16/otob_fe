@@ -48,6 +48,11 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/Orders.vue')
     },
     {
+      path: '/orders/customer/:id/detail',
+      name: 'customer-order-detail',
+      component: () => import('@/pages/Order/CustomerDetail.vue')
+    },
+    {
       path: '/orders/thank-you',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
