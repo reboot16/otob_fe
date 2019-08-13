@@ -23,7 +23,10 @@ export default {
         sum += product.productPrice
       })
       return sum
-    }
+    },
+    currentOrder () {
+      return this.$store.getters.getCurrentOrder
+    },
   },
   methods: {
     decrement: function(product, index) {
@@ -52,9 +55,12 @@ export default {
     onOrder: function () {
       this.showModalAlert = true
     },
-    continueCheckout () {
-      this.$store.dispatch('checkout')
-      this.$router.push('/orders/thank-you')
+    async continueCheckout () {
+      await this.$store.dispatch('checkout')
+      let currentOrder = this.$store.getters.getCurrentOrderId
+      console.log('tbl cart')
+      console.log(currentOrder)
+      this.$router.push('/orders/thank-you/'+currentOrder)
     },
     bookDisable (sum) {
       return sum === 0;

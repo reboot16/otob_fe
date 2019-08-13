@@ -3,10 +3,7 @@ import Axios from 'axios'
 export default {
   state: {
     orders: [],
-    currentOrder: {
-      order: {},
-      outOfStockProducts: []
-    }
+    currentOrder: {}
   },
   getters : {
     ORDERS : state => {
@@ -24,6 +21,9 @@ export default {
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
+    },
+    getCurrentOrderId: (state) => {
+      return state.currentOrder.orderId
     }
   },
   mutations: {
@@ -97,8 +97,8 @@ export default {
         console.error(e)
       })
     },
-    setCurrentOrder ({commit}, payload) {
-      commit('SET_CURRENT_ORDER', payload)
+    async setCurrentOrder ({commit}, payload) {
+      await commit('SET_CURRENT_ORDER', payload)
     }
   }
 }

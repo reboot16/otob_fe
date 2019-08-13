@@ -6,14 +6,14 @@
       </div>
 
       <p style="text-align: center">
-        Hai {{ dataOrder.userEmail }},<br>
-        Terimakasih telah berbelanja di Blibli Bazaar.
+        Hai <b>{{ dataOrder.userEmail }},</b><br>
+        Terimakasih telah berbelanja di Blibli Bazaar.<br>
         Jangan lupa menyelesaikan pembayaran pesanannya ya...
         <br>
       </p>
       <div style="border: 2px dashed rgb(38, 164, 218); padding: 0.5em; text-align: center; background-color: white">
         Id pesanan saat ini:
-        <h2><a href="/login">{{ dataOrder.orderId }}</a></h2>
+        <h2 class="order-now" @click="viewDetail(dataOrder.orderId)">{{ dataOrder.orderId }}</h2>
       </div>
       <div>
         <br>
@@ -44,6 +44,9 @@
     border-radius: 1em;
     margin-top:3em;
   }
+  .order-now:hover{
+    cursor: pointer;
+  }
 </style>
 
 <script>
@@ -64,27 +67,27 @@ export default {
     },
     dataOrder () {
       if(this.currentOrder)
-        return this.currentOrder.order
-      return ''
-    },
-    outOfStock () {
-      if(this.currentOrder)
-        return this.currentOrder.outOfStockProducts
-      return ''
+        return this.currentOrder
+      else{
+        this.$router.push('/products')
+      }
     }
   },
   mounted (){
-    if (this.currentOrder.length == 0){
-      if(this.auth.isLogin == true){
-        if(this.auth.isAdmin == true){
-          this.$router.push('/products/manage')
-        }else if(this.auth.isCashier == true){
-          this.$router.push('/orders')
-        }else if(this.auth.isCustomer == true){
-          this.$router.push('/products')
-        }
-      }
+    let ordId = this.$route.params.id
+
+    if(ordId == '' || ordId == undefined || this.currentOrder.length == 0){
+      this.$router.push('/products')
     }
+    if (this.currentOrder.length == 0){
+      this.$router.push('/products')
+    }
+    this.$router.push('/orders/thank-you/'+this.dataOrder.orderId)
+  },
+  methods: {
+    viewDetail(id){
+      this.$router.push('/orders/customer/'+id+'/detail')
+    },
   }
 }
 </script>

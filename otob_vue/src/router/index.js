@@ -53,7 +53,7 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/CustomerDetail.vue')
     },
     {
-      path: '/orders/thank-you',
+      path: '/orders/thank-you/:id',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
     },
@@ -73,4 +73,9 @@ export const router = new VueRouter({
       component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = "Blibli Bazaar"
+  next()
 })

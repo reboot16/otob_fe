@@ -90,14 +90,16 @@ export default {
           console.error(e)
         }); 
     },
-    checkout ({commit, dispatch}) {
-      Axios
+    async checkout ({commit, dispatch}) {
+      return await Axios
         .get(config.API_CART + '/checkout')
         .then(response => {
           // dispatch('setCurrentOrder', response.data.data)
           // commit('SET_CART', response.data.data.cartItems)
           if(response.data.code == 400) {
             alert(response.data.message)
+          }else{
+            dispatch('setCurrentOrder', response.data.data)
           }
         }).catch((e) => {
           console.error(e)
