@@ -71,7 +71,7 @@ export default {
       Axios
           .get(config.API_ORDER + '/' + payload.orderId + '/reject')
           .then(response => {
-            commit('ACCEPT_ORDER', payload)
+            commit('REJECT_ORDER', payload)
             alert('Succes to Reject Order'+ payload.orderId)
           })
           .catch((e) => {

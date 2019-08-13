@@ -60,7 +60,7 @@ export const router = new VueRouter({
     {
       path: '/orders/:id/print-note',
       name: 'PrintNote',
-      component: () => import('@/components/Nota')
+      component: () => import('@/pages/Nota')
     },
     {
       path: '/not-found',

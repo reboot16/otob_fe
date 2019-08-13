@@ -21,7 +21,7 @@
                 <b-nav-item>
                   <router-link to="/products">Product</router-link>
                 </b-nav-item>
-                <b-nav-item v-if="isLogin==true">
+                <b-nav-item v-if="isLogin == true && isCustomer == true">
                   <router-link to="/orders/customer">My Order</router-link>
                 </b-nav-item>
                 <b-nav-item-dropdown v-if="isAdmin || isCashier" right>

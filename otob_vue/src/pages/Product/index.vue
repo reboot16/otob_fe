@@ -3,7 +3,7 @@
     <div class="container">
       <div class="block">
 
-        <div class="col-sm-12" style="padding: 0">
+        <div>
           <h3>Manage Product</h3>
         </div>
 

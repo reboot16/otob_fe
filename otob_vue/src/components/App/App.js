@@ -68,7 +68,7 @@ export default {
     },
     onLogout () {
       this.$store.dispatch('doLogout')
-      this.$router.push('/')
+      this.$router.push('/login')
     },
     onRoute () {
       if(this.userAuth.isLogin == true){
