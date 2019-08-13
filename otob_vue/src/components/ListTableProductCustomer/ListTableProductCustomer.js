@@ -38,8 +38,27 @@ export default {
 		},
 		addToCart: function (product, index) {
 			product.index = index
-			this.$store.dispatch('addToCart', product)
+      let productExist = this.isProductExist(product)
+
+      if(productExist) {
+        productExist.qty = productExist.qty + product.qty
+        this.$store.dispatch('updateItemCart', product)
+      }else {
+        this.$store.dispatch('addToCart', product)
+      }
 		},
+    isProductExist (product) {
+		  let cartItems = this.$store.getters.CARTS
+      let productExist = ''
+      
+      cartItems.forEach(function (cart) {
+        if(cart.productId == product.productId) {
+          productExist = cart
+        }
+      })
+      
+      return productExist
+    },
 		decDisable: function (product) {
 			if (product.stock === 0 || product.qty === 1) {
 				return true
@@ -55,6 +74,7 @@ export default {
 			}
 		},
 		increment: function(product) {
+		  console.log('testing')
 			product.qty++
 			product.type = true
 		},
