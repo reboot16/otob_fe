@@ -2,7 +2,11 @@ import Axios from 'axios'
 
 export default {
   state: {
-    isAuthorized: { }
+    isAuthorized: {
+      isLogin: false,
+      userId: '',
+      userRole: ''
+    }
   },
   getters : {
     isAuthorized: state => {
@@ -20,7 +24,7 @@ export default {
       let isIdExist = $cookies.isKey(config.key_id)
       let isRoleExist = $cookies.isKey(config.key_role)
       
-      let payload = []
+      let payload = {}
       if(isLoginExist && isIdExist && isRoleExist){
         dispatch('getCookie', payload)
       }else {
@@ -39,15 +43,17 @@ export default {
       $cookies.remove(config.key_id)
       $cookies.remove(config.key_role)
     },
-    doLogin({commit}, payload) {
+    doLogin({commit, dispatch}, payload) {
       Axios
         .post(config.API_AUTH + '/login', payload)
         .then(response => {
-          if(response.data.data === 'Unauthorized'){
+          console.log(response)
+          if(response.data.data !== 'Accepted'){
             alert('Sorry your username/password is unauthorized')
           }else{
-            commit('SET_AUTH', response.data.data)
-            alert('Login success')
+            // commit('SET_AUTH', response.data.data)
+            dispatch('checkAuthorized')
+            // alert('Login success')
           }
         }).catch((e) => {
           console.log(e)
@@ -57,13 +63,14 @@ export default {
       Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
-          console.log(response)
-          if(response.data.code ==  200){
-            dispatch('removeCookie')
-            alert('Already logout')
-          }else{
-            alert("You're still not login")
-          }
+          dispatch('checkAuthorized')
+          // console.log(response)
+          // if(response.data.code ==  200){
+          //   dispatch('removeCookie')
+          //   // alert('Already logout')
+          // }else{
+          //   // alert("You're still not login")
+          // }
         }).catch((e) => {
           console.log(e)
         })

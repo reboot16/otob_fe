@@ -3,13 +3,17 @@ import Axios from 'axios'
 export default {
   state: {
     orders: [],
+    currentOrder: {
+      order: {},
+      outOfStockProducts: []
+    }
   },
   getters : {
     ORDERS : state => {
-      return state.orders;
+      return state.orders.orders;
     },
     getOrderById : (state) => (id) => {
-      return state.orders.find(order => order.ordId === id)
+      return state.orders.orders.find(order => order.orderId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
@@ -17,6 +21,9 @@ export default {
     getProductsByOrderId :  (state) => (id) => {
       var orders =  state.orders.find(order=>order.orders_id === id);
       return orders.products;
+    },
+    getCurrentOrder: (state) => {
+      return state.currentOrder
     }
   },
   mutations: {
@@ -31,7 +38,10 @@ export default {
     },
     GET_ORDER_BY_ID : (state, payload) => {
       state.orders = payload
-    }
+    },
+    SET_CURRENT_ORDER: (state, payload) => [
+      state.currentOrder = payload
+    ]
   },
   actions : {
     updateStatusProduct({commit}, product) {
@@ -68,11 +78,11 @@ export default {
             console.error(e)
           });
     },
-    getOrderByOrderId ({commit}, payload) {
+    getOrderByOrderId ({commit}, orderId) {
       Axios
-          .get(API+'/'+payload)
+          .get(config.API_ORDER+'/'+ orderId + '/search')
           .then(response => {
-            commit('GET_ORDER_BY_ID', payload)
+            commit('GET_ORDER_BY_ID', orderId)
           })
           .catch((e) => {
             console.log(e)
@@ -87,20 +97,8 @@ export default {
         console.error(e)
       })
     },
-    searchOrder ({commit}, payload) {
-      if (payload === '') {
-        Axios
-            .get(config.API_ORDER)
-            .then(response => {
-              commit('SET_ORDERS', response.data.data)
-            })
-      } else {
-        Axios
-            .get(config.API_ORDER +'/payload/'+'search')
-            .then(response => {
-              commit('SET_ORDERS', response.data.data)
-            })
-      }
+    setCurrentOrder ({commit}, payload) {
+      commit('SET_CURRENT_ORDER', payload)
     }
   }
 }

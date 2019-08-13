@@ -24,7 +24,7 @@
                             <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
                                 <td width="5%"><b>{{ index+1 }}</b></td>
                                 <td width="30%">{{ item.productName }}</td>
-                                <td width="15%">{{ item.qty }}</td>>
+                                <td width="15%">{{ item.qty }}</td>
                                 <td width="25%">Rp {{ item.productPrice }}</td>
                                 <td width="25%">Rp {{item.qty * item.productPrice}}</td>
                             </tr>
@@ -101,7 +101,7 @@
         max-width: 100%;
         padding: 10px;
     }
-    th {
+    th, td {
         text-align: center;
     }
     #sec4{

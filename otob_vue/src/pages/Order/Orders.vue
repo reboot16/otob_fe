@@ -39,7 +39,7 @@
 											size="sm"
 											v-on:click="viewDetail(order.orderId)"
 											class="mr-2">
-										<icon name="eye" scale="1"></icon> View Details
+										<icon name="eye" scale="1"></icon>Details
 									</b-button>
 								</td>
 							</tr>
