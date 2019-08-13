@@ -29,8 +29,9 @@
 			</tbody>
 		</table>
 
-		<CustomAlert v-if="showModalAlert" @close="showModalAlert=false"
-			:deletedProduct="deletedProduct"/>
+		<CustomAlert v-if="showModalAlert"
+			 @close="showModalAlert=false"
+			 @continue="continueDelete" />
 
 		<CustomModal v-if="showModalUpd" @close="showModalUpd=false">
 			<div slot="header">

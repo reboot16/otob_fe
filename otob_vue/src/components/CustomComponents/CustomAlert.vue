@@ -2,15 +2,15 @@
 	<div id="modal-alert" class="container">
 		<CustomModal>
 			<div slot="top" style="color: black;">
-				Are you sure want to delete this item?
+				<slot name="alert-name"> Are you sure want to delete this item? </slot>
 			</div>
 
 			<div slot="body" class="row">
 				<div class="col-sm-6" style="padding: 0">
-					<button class="btn btn-gray" @click="onClose"> Cancel </button>
+					<button class="btn btn-gray" @click="onCancel"> Cancel </button>
 				</div>
 				<div class="col-sm-6" style="padding: 0; text-align: right;">
-					<button class="btn btn-orange" @click="onDelete"> Delete </button>
+					<button class="btn btn-orange" @click="onContinue"> Continue </button>
 				</div>
 			</div>
 		</CustomModal>
@@ -21,18 +21,15 @@
 	import CustomModal from '@/components/CustomComponents/CustomModal.vue'
 
 	export default {
-		props: {
-			deletedProduct: {}
-		},
 		components: {
 			CustomModal
 		},
 		methods: {
-			onClose () {
+			onCancel () {
 				this.$emit('close')
 			},
-			onDelete () {
-				this.$store.dispatch('deleteProduct', this.deletedProduct)
+			onContinue () {
+				this.$emit('continue')
 				this.onClose()
 			}
 		}

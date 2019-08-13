@@ -6,7 +6,7 @@ export default {
 	components: {
 	},
 	mounted() {
-		console.log('tbl' + this.totalPage)
+		// console.log('tbl' + this.totalPage)
 	},
 	data() {
 		return {

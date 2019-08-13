@@ -22,6 +22,7 @@
           </tr>
         </tbody>
       </table>
+
       <div class="row" style="margin-bottom: 0.5em">
         <div class="col-sm-10" style="text-align:right">
           <div style="font-size: 13px">Total Belanja <b> ({{ countOfItem }}) </b></div>
@@ -31,6 +32,14 @@
           <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)" width="100%">Order Now</button>
         </div>
       </div>
+
+      <CustomAlert v-if="showModalAlert"
+         @close="showModalAlert=false"
+         @continue="continueCheckout" >
+        <div slot="alert-name">
+          Are you sure to continue the checkout process ?
+        </div>
+      </CustomAlert>
   </div> 
  
 </template>

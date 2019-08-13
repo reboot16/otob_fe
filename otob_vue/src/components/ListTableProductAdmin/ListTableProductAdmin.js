@@ -49,11 +49,14 @@ export default {
 			this.showModalUpd = false
 			this.$store.dispatch('updateProduct', product)
 		},
-		onConfirmDelete: function (product, index) {
+		onConfirmDelete (product, index) {
 			this.showModalAlert = true
 			
 			this.deletedProduct = product
 			this.deletedProduct.index = index
+		},
+		continueDelete () {
+			this.$store.dispatch('deleteProduct', this.deletedProduct)
 		},
 		onReset () {
 			this.$refs.form.reset()

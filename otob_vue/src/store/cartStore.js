@@ -33,22 +33,33 @@ export default {
         console.error(e)
       });
     },
+    isProductExist ({state}, _productId) {
+      return state.carts.find(cart => {
+        if(cart.productId === _productId){
+          console.log('ya')
+          return true
+        }else{
+          console.log('no')
+        }
+      })
+    },
     addToCart ({commit, dispatch, state}, payload) {
-      Axios
-        .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
-        .then(response => {
-          if(response.data.code == 200) {
-            payload.productName = payload.name
-            payload.productPrice = payload.offerPrice
-            commit('ADD_TO_CART', payload)
-          }
-          else{
-            console.log(response.data.message)
-          }
-        })
-        .catch((e) => {
-          console.error(e)
-        });
+      console.log (dispatch('isProductExist', payload.productId))
+      // Axios
+      //   .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
+      //   .then(response => {
+      //     if(response.data.code == 200) {
+      //       payload.productName = payload.name
+      //       payload.productPrice = payload.offerPrice
+      //       commit('ADD_TO_CART', payload)
+      //     }
+      //     else{
+      //       console.log(response.data.message)
+      //     }
+      //   })
+      //   .catch((e) => {
+      //     console.error(e)
+      //   });
     },
     updateItemCart ({commit}, payload) {
       Axios
@@ -80,13 +91,15 @@ export default {
           console.error(e)
         }); 
     },
-    orderItemCart ({commit, dispatch}) {
+    checkout ({commit, dispatch}) {
       Axios
         .get(config.API_CART + '/checkout')
         .then(response => {
-          dispatch('setCurrentOrder', response.data.data)
-          commit('SET_CART', response.data.data.cartItems)
-          alert('success checkout')
+          // dispatch('setCurrentOrder', response.data.data)
+          // commit('SET_CART', response.data.data.cartItems)
+          if(response.data.code == 400) {
+            alert(response.data.message)
+          }
         }).catch((e) => {
           console.error(e)
         });

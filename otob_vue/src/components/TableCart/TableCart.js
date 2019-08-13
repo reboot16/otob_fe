@@ -1,7 +1,17 @@
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+
 export default {
   name: 'TableCart', 
   props: {
     listItemCart: ''
+  },
+  components: {
+    CustomAlert
+  },
+  data () {
+    return {
+      showModalAlert: false
+    }
   },
   computed: {
     countOfItem () {
@@ -40,26 +50,14 @@ export default {
       this.$store.dispatch('deleteItemCart', product)
     },
     onOrder: function () {
-      const confirmOrder= confirm("Are you sure want to Order all item on cart?");
-
-      if (confirmOrder) {
-        this.$store.dispatch('orderItemCart')
-        this.$router.push('/orders/thx')
-      }
+      this.showModalAlert = true
+    },
+    continueCheckout () {
+      this.$store.dispatch('checkout')
+      this.$router.push('/orders/thank-you')
     },
     bookDisable (sum) {
       return sum === 0;
-    },
-    getFormattedCurrency (value) {
-      let result = ''
-      value = value === null ? 0 : value
-      let reverseValue = value.toString().split('').reverse().join('')
-      for (let i = 0; i < reverseValue.length; i++) {
-        if (i % 3 === 0) {
-          result += reverseValue.substr(i, 3) + '.'
-        }
-      }
-      return 'Rp ' + result.split('', result.length - 1).reverse().join('')
     }
   },
   

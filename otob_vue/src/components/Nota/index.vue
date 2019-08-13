@@ -63,47 +63,47 @@
 
 	export default {
 		name: "print-note",
-		// data () {
-		// 	return {
-		// 		data: {
-		// 			"orderId": "ORD1564679880000",
-		// 			"userEmail": "nanihutagaol@gmail.com",
-		// 			"ordDate": "2019/08/02 00:18",
-		// 			"ordItems": [
-		// 				{
-		// 					"productId": 63,
-		// 					"productName": "new product",
-		// 					"productPrice": 89,
-		// 					"qty": 1
-		// 				},
-		// 				{
-		// 					"productId": 1,
-		// 					"productName": "product name ",
-		// 					"productPrice": 9000,
-		// 					"qty": 1
-		// 				}
-		// 			],
-		// 			"totItem": 2,
-		// 			"totPrice": 9089,
-		// 			"ordStatus": "Waiting"
-		// 		}
-		// 	}
-		// },
+		data () {
+			return {
+				data: {
+					"orderId": "ORD1564679880000",
+					"userEmail": "nanihutagaol@gmail.com",
+					"ordDate": "2019/08/02 00:18",
+					"ordItems": [
+						{
+							"productId": 63,
+							"productName": "new product",
+							"productPrice": 89,
+							"qty": 1
+						},
+						{
+							"productId": 1,
+							"productName": "product name ",
+							"productPrice": 9000,
+							"qty": 1
+						}
+					],
+					"totItem": 2,
+					"totPrice": 9089,
+					"ordStatus": "Waiting"
+				}
+			}
+		},
 		mounted () {
-			let orderId = this.$route.params.id
-			this.$store.dispatch('getOrderByOrderId', orderId)
+			// let orderId = this.$route.params.id
+			// this.$store.dispatch('getOrderByOrderId', orderId)
 		},
 		computed: {
-			data () {
-				// return this.$store.getters.ORDERS
-			}
+			// data () {
+			// 	// return this.$store.getters.ORDERS
+			// }
 		},
 		methods: {
 			print() {
 				html2canvas(document.getElementById('transaction')).then(function (canvas) {
 					var img = canvas.toDataURL("image/png");
 					var doc = new jsPDF();
-					doc.addImage(img, 'PNG', 3, 15, 200, 70);
+					doc.addImage(img, 'PNG', 5, 15, 200, 70);
 
 					let source = doc.output('datauristring');
 					let embed = "<embed width='100%' height='100%' src='" + source + "'/>";
