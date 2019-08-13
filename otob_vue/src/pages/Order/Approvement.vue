@@ -4,7 +4,37 @@
             <div class="block">
                 <div class="row content-header">
                     <div class="col-sm-12">
-                        <span>Pesanan {{orders.orderId}}</span>
+                        <span>Detail Pesanan</span>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="filter">
+                        <table width="100%" class="table table-striped">
+                            <tr class="col-sm-12">
+                                <td>
+                                    <span class="label">Nomor Pesanan:</span><br>
+                                    <span class="value">{{orders.orderId}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Tanggal Transaksi:</span><br>
+                                    <span class="value">{{orders.ordDate}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Jumlah Pesanan:</span><br>
+                                    <span class="value">{{orders.totItem}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Total Harga:</span><br>
+                                    <span class="value">Rp {{orders.totPrice}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Status:</span><br>
+                                    <span class="status-waiting" v-show="orders.ordStatus === 'Waiting'">{{orders.ordStatus}}</span>
+                                    <span class="status-rej" v-show="orders.ordStatus === 'Rejected'">{{orders.ordStatus}}</span>
+                                    <span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -24,7 +54,7 @@
                             <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
                                 <td width="5%"><b>{{ index+1 }}</b></td>
                                 <td width="30%">{{ item.productName }}</td>
-                                <td width="15%">{{ item.qty }}</td>>
+                                <td width="15%">{{ item.qty }}</td>
                                 <td width="25%">Rp {{ item.productPrice }}</td>
                                 <td width="25%">Rp {{item.qty * item.productPrice}}</td>
                             </tr>
@@ -36,12 +66,12 @@
 
                         </table>
                     </div>
-                    <b-row id="sec4">
+                    <div class="col-sm-12 row" style="margin-top: 20px;">
                         <div v-if="orders.ordStatus === 'Waiting'">
                             <b-button
                                     variant="success"
                                     class="mr-2"
-                                    v-on:click="confirm(orders.ordId)"
+                                    v-on:click="confirm(orders.orderId)"
                             >
                                 Accepted
                             </b-button>
@@ -50,12 +80,12 @@
                             <b-button
                                     variant="danger"
                                     class="mr-2"
-                                    v-on:click="reject(orders.ordId)"
+                                    v-on:click="reject(orders.orderId)"
                             >
                                 Reject
                             </b-button>
                         </div>
-                    </b-row>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,6 +109,13 @@
                     status: '',
                 },
             };
+        },
+        computed: {
+            getOrders () {
+                let par = ''
+                par = this.$route.params.id
+                this.orders = this.$store.getters.getOrderById(par);
+            }
         },
         methods: {
             updateProductStatus(status, index){
@@ -109,10 +146,6 @@
             }
         },
         mounted() {
-            if(this.auth.isCashier == false){
-                this.$router.push('/forbidden')
-            }
-            
             this.$store.dispatch('getOrders')
             this.getOrders();
         }
@@ -146,12 +179,35 @@
         max-width: 100%;
         padding: 10px;
     }
-    th {
+    th, td {
         text-align: center;
     }
     #sec4{
         text-align: right;
         float: right;
+    }
+    .label {
+        color: dimgrey;
+        font-size: 0.8rem;
+    }
+    .value {
+        color: black;
+        font-size: 1rem;
+    }
+    .status-acc {
+        color: forestgreen;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .status-waiting {
+        color: dodgerblue;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .status-rej {
+        color: red;
+        font-size: 1rem;
+        font-weight: bold;
     }
 </style>
 © 2019 GitHub, Inc.

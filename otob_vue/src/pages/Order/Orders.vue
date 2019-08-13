@@ -4,7 +4,7 @@
 			<div class="block">
 				<div class="row content-header">
 					<div class="col-sm-12">
-						<span>Pesanan Anda</span>
+						<span>Riwayat Pesanan Anda</span>
 					</div>
 				</div>
 				<div class="col-sm-12">

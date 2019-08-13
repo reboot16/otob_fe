@@ -58,10 +58,10 @@ export default {
     },
     acceptOrders ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.ordId + '/accept')
+          .get(config.API_ORDER + '/' + payload.orderId + '/accept')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
-            alert('Succes to Accept Order'+ payload.ordId)
+            alert('Succes to Accept Order'+ payload.orderId)
           })
           .catch((e) => {
             console.error(e)
@@ -69,10 +69,10 @@ export default {
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.ordId + '/reject')
+          .get(config.API_ORDER + '/' + payload.orderId + '/reject')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
-            alert('Succes to Reject Order'+ payload.ordId)
+            alert('Succes to Reject Order'+ payload.orderId)
           })
           .catch((e) => {
             console.error(e)

@@ -4,7 +4,43 @@
             <div class="block">
                 <div class="row content-header">
                     <div class="col-sm-12">
-                        <span>Pesanan {{orders.orderId}}</span>
+                        <span>Detail Pesanan</span>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="filter">
+                        <table width="100%" class="table table-striped">
+                            <tr class="col-sm-12">
+                                <td>
+                                    <span class="label">Nomor Pesanan:</span><br>
+                                    <span class="value">{{orders.orderId}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Tanggal Transaksi:</span><br>
+                                    <span class="value">{{orders.ordDate}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Jumlah Pesanan:</span><br>
+                                    <span class="value">{{orders.totItem}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Total Harga:</span><br>
+                                    <span class="value">Rp {{orders.totPrice}}</span>
+                                </td>
+                                <td>
+                                    <span class="label">Status:</span><br>
+                                    <span class="status-waiting" v-show="orders.ordStatus === 'Waiting'">{{orders.ordStatus}}</span>
+                                    <span class="status-rej" v-show="orders.ordStatus === 'Rejected'">{{orders.ordStatus}}</span>
+                                    <span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
+                                </td>
+                                <td v-show="orders.ordStatus === 'Accepted'">
+                                    <button class="print-nota" v-on:click="printNota(orders.orderId)">
+                                        <i class="fa fa-print"></i>
+                                        Print Nota
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -60,11 +96,21 @@
                 },
             };
         },
+        computed: {
+            getOrders () {
+                let par = ''
+                par = this.$route.params.id
+                this.orders = this.$store.getters.getOrderById(par);
+            }
+        },
         methods: {
             getOrders(){
                 let par = ''
                 par = this.$route.params.id
                 this.orders = this.$store.getters.getOrderById(par);
+            },
+            printNota (id) {
+                this.$router.push('/orders/'+id+'/print-note')
             }
         },
         mounted() {
@@ -104,9 +150,39 @@
     th, td {
         text-align: center;
     }
-    #sec4{
-        text-align: right;
-        float: right;
+    .label {
+        color: dimgrey;
+        font-size: 0.8rem;
+    }
+    .value {
+        color: black;
+        font-size: 1rem;
+    }
+    .status-acc {
+        color: lawngreen;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .status-waiting {
+        color: dodgerblue;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .status-rej {
+        color: red;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .print-nota {
+        border: 1px solid;
+        background: #F7931E;
+        color: #fff;
+        height: 48px;
+        width: 100%;
+        font-size: 1rem;
+    }
+    .print-nota:hover {
+        background: #F9a94b;
     }
 </style>
 © 2019 GitHub, Inc.
