@@ -1,5 +1,5 @@
 <template>
-  <div id="app"> 
+  <div id="app">
       <div id="header">
         <b-navbar toggleable="lg" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
           <div class="container">
@@ -78,6 +78,19 @@
             </div>
 
           </b-form>
+        </div>
+      </CustomModal>
+
+      <CustomModal v-show="customAlert==true">
+        <div slot="main">
+          <div style="display: flex; justify-content: space-between">
+            <div class="alertText">
+              {{ customTextAlert }}
+            </div>
+            <div class="alertClose" @click="customAlert=false">
+              <li class="fa fa-times"></li>
+            </div>
+          </div>
         </div>
       </CustomModal>
 

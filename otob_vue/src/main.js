@@ -15,21 +15,17 @@ Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.use(VueCookies)
-
-const options = {
-  name: '_blank',
-  specs: [
-    'fullscreen=yes',
-    'titlebar=yes',
-    'scrollbars=yes'
-  ],
-  styles: [
-    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
-    'https://unpkg.com/kidlat-css/css/kidlat.css'
-  ]
-}
-
 window.config = config
+Vue.config.productionTip = false
+Vue.mixin(mixins)
+
+const vm = new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')
+
+export { vm }
 
 Axios.interceptors.request.use(
   function (config) {
@@ -41,14 +37,3 @@ Axios.interceptors.request.use(
     return config
   }
 )
-
-Vue.config.productionTip = false
-
-const vm = new Vue({
-  router,
-  store,
-  mixins,
-  render: h => h(App)
-}).$mount('#app')
-
-export { vm }

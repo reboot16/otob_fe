@@ -1,4 +1,5 @@
 import CustomModal from '@/components/CustomComponents/CustomModal.vue'
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
 
 export default {
   data () {
@@ -13,7 +14,8 @@ export default {
     }
   },
   components: {
-    CustomModal
+    CustomModal,
+    CustomAlert
   },
   mounted () {
     this.checkAuth()

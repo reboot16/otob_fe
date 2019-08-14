@@ -19,11 +19,12 @@
 		},
 		methods: {
 			onSearch: function(){
-				this.$store.dispatch('searchProduct', this.tempText)
+				this.$store.dispatch('searchProduct', this.searchText)
+				this.showCustomAlert('hei ini jalan')
 			},
 		},
 		watch: {
-			tempText () {
+			searchText () {
 				this.onSearch()
 			}
 		}
