@@ -1,41 +1,26 @@
 <template> 
-  <div name="TableCart">  
-    <div class="row" style="margin-bottom: 0.5em">
-      <div class="col-sm-6">
-        <h3>My Cart</h3>
-      </div>
-      <div class="col-sm-6" style="text-align:right">
-        <button class="btn btn-primary" @click="onOrder">Order Now</button>
-      </div>
-    </div>
+  <div name="TableCart">
 
     <div class="tableContainer">
-      <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
-
-        <thead>
-          <tr class="col-sm-12">
-            <th width="4%">#</th>
-            <th width="25%">Name</th>
-            <th width="25%">Price</th>
-            <th width="25%">Quantity</th>
-            <th width="20%"> Action</th>
-          </tr>
-        </thead>
-
+      <table width="100%" class="table table-scroll small-first-col" style="border-radius: 1em; ">
         <tbody class="scrollContentCart">
-          <tr ref="listItemCart" class="col-sm-12" v-if="listItemCart.length != 0" v-for="(product, index) in listItemCart" :key="index" >
-            <td width="4%"><b>{{ index+1 }}</b></td>
-            <td width="25%">{{ product.productName }}</td>
-            <td width="25%">{{ product.productPrice }}</td>
-            <td  width="25%">
+          <tr ref="listItemCart" class="col-sm-12" v-if="listItemCart.length != 0"
+              v-for="(product, index) in listItemCart" :key="index" >
+            <td class="col-sm-7">{{ product.productName }}</td>
+            <td class="col-sm-2 color-orange cart-price" width="25%">Rp {{ product.productPrice }}</td>
+            <td class="col-sm-2" style="text-align: center;">
               <div class="quantity-toggle">
-                <button @click="decrement(product, index)" class="btn btn-primary">&mdash;</button>
-                <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" class="btn btn-primary">&#xff0b;</button>
+                <button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>
+                <input type="text" :value="product.qty" readonly class="input-gray">
+                <button @click="increment(product, index)" class="btn btn-gray btn-right">&#xff0b;</button>
               </div>
             </td>
-            <td width="20%">
-              <button @click="onDelete(product, index)" style="color:red; padding:0.3em 0.5em; color:white; font-size: 12px" class="btn btn-danger">Delete</button>
+            <td class="col-sm-1" style="text-align: right;">
+              <button @click="onDelete(product, index)"
+                style="padding:0.25em 0.5em; color:white; font-size: 18px"
+                class="btn btn-red">
+                <i class="fa fa-trash"></i>
+              </button>
             </td>
           </tr>
 
@@ -44,7 +29,16 @@
           </tr>
         </tbody>
 
-      </table> 
+      </table>
+    </div>
+    <div class="row" style="margin-bottom: 0.5em">
+      <div class="col-sm-10" style="text-align:right">
+        <div style="font-size: 13px">Total Belanja <b> ({{ getFormattedCurrency(countOfItem) }}) </b></div>
+        <span class="color-orange checkout-price"> {{ getFormattedCurrency(sumOfPrice) }}</span>
+      </div>
+      <div class="col-sm-2" style="text-align:right" >
+        <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)">Order Now</button>
+      </div>
     </div>
 
   </div> 
@@ -53,4 +47,22 @@
 
 <script src="./TableCart.js"></script>
 
-<style scoped> </style>
+<style scoped>
+  .checkout-price{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .cart-price{
+    font-size: 18px;
+  }
+
+  span {
+    color: #929292;
+  }
+
+  .btn-orange {
+    height: 50px;
+    border-radius: 0.5em;
+  }
+</style>

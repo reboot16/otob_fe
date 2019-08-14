@@ -15,14 +15,5 @@ export default new Vuex.Store({
     product,
     cart,
     order
-  },
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
   }
 })

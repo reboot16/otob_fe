@@ -3,16 +3,24 @@
     <div class="container">
       <!-- Table Product -->
       <div class="block">
+        <div class="row" style="margin-bottom: 0.5em">
+          <div class="col-sm-4" >
+            <h3>List of Product</h3>
+          </div>
+          <div class="col-sm-8" style="text-align:right">
+            <SearchProduct/>
+          </div>
+        </div>
+
         <TableProductCustomer class="tbl"
           :listProduct="listProduct"
-        />
+          :isLogin="auth.isLogin"
+          :totalPage="totalPage"/>
       </div>
 
       <!-- Table Cart -->
-      <div class="block" style="margin-top:2em;">
-        <TableCart class="tbl"
-          :listItemCart="listItemCart" 
-        />
+      <div class="block" style="margin-top:2em;" v-if="auth.isLogin==true && listItemCart.length > 0">
+        <TableCart class="tbl" :listItemCart="listItemCart"/>
       </div>
 
       <ProgressBar/>
@@ -23,31 +31,6 @@
 
 <style >
    
-   /* ============================== CSS FOR BUTTON MODIFY =========================== */
-  .quantity-toggle {
-    display: flex;
-  }
-
-  .quantity-toggle input {
-    border: 0;
-    border-top: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
-    width: 2em;
-    text-align: center;
-    padding: 0.1em;
-  }
-  .quantity-toggle button {
-    border: 2px solid #ddd;
-    padding: .25em .5em .25em .5em;
-    font-size: 0.75em;
-    cursor: pointer;
-  }  
-
-  #bookBtn{
-    padding:0 0.5em 0 0.5em;
-    margin-left:0.5em;
-  }
-   /* ======================== END OF CSS FOR BUTTON MODIFY =========================== */
 
 </style>
 

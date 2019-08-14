@@ -1,4 +1,4 @@
-#app {
+  #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -62,6 +62,11 @@
   #content thead th, #content .btn-primary{
     color:white;
     background-color: rgb(38, 164, 218);
+    border-color: rgb(32, 145, 193);
+  }
+
+  #content .btn-primary:hover {
+    background-color: rgb(32, 145, 193);
   }
    
   #content button:disabled {
@@ -69,19 +74,70 @@
     pointer-events: all !important;
   }
   
-  #content table, #content input{
-    font-size: 14px;
-  }
-  
-  #content table{
-    border: 1px solid #dee2e6;
-  }
-  
   #loginFirst {
     background-color: #d2d6de
   }
 
-  /* =============================== CSS FOR BLOCK CONTAINER ======================== */
+  .dropdown-user {
+    min-width: 12em;
+  }
+
+/* =============================== CSS FOR ALL COLOR ============================= */
+#content .color-orange {
+  color: #f99401;
+}
+
+/* =============================== CSS FOR ALL BUTTON ============================= */
+#content .btn-blue {
+  background-color: #17a1e0;
+  border-color: #0b8ecc;
+  color: white;
+}
+#content .btn-blue:hover{
+  background-color: #0b8ecc;
+}
+
+#content .btn-green, .btn-green {
+  background-color: #00b35e;
+  border-color: #05ab58;
+  color: white;
+}
+#content .btn-green:hover, .btn-green:hover{
+  background-color: #078a49;
+}
+
+#content .btn-orange {
+  background-color: #f99401;
+  border-color: #e88a00;
+  color: white;
+}
+#content .btn-orange:hover{
+  background-color: #e88a00;
+}
+
+#content .btn-gray{
+  background-color: #a7a7a7;
+  border-color: #929292;
+  color: white;
+}
+#content .btn-gray:hover{
+  background-color: #929292;
+}
+
+#content .btn-red{
+  background-color: #e20606;
+  border-color: #bf0202;
+  color: white;
+}
+#content .btn-red:hover{
+  background-color: #bf0202;
+}
+
+#content .input-gray {
+  background-color: #e4e4e4;
+  border-color: #c2c2c2;
+}
+/* =============================== CSS FOR BLOCK CONTAINER ======================== */
   .block{
     font-family: 'Glegoo', Helvetica, Arial, serif !important;
     background-color:white; 
@@ -99,116 +155,59 @@
   }
    /* ======================== END OF CSS FOR BLOCK CONTAINER ======================== */
 
-   /* =============================== CSS FOR SCROLL TABLE =========================== */
-  .table-scroll {
-    table-layout: fixed;
+   /* =============================== CSS FOR TABLE =========================== */
+  .table, #content input{
+    font-size: 13px;
   }
 
+  .table{
+    border: 1px solid #dee2e6;
+  }
   thead {
     background-color: rgb(38, 164, 218);
     color: white;
     font-weight: bold;
   }
 
-  tbody{
-    display: block;
-    height: 350px;
-    overflow: auto;
-    background-color:white;
-  }
-
-  tbody.scrollContentCart{
-    display: block;
-    height: 200px;
-    overflow: auto;
-  }
-
   tbody tr td{
    word-break: break-all;
   }
-  
-  .table-scroll tr{
-    width: 100%;
-    display:flex;
+
+  thead tr td{
+    word-break: break-all;
+  }
+   /* ======================== END OF CSS FOR TABLE =========================== */
+
+  /* ============================== CSS FOR BUTTON MODIFY =========================== */
+  .qty {
+    display: flex;
   }
 
-  .table-scroll td,.table-scroll th{
-    flex-basis:100%;
-    flex-grow:2;
-    display: block;
-    padding: 1rem;
-    text-align:left;
+  .qty input {
+    border: 0;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    width: 2.3em;
+    text-align: center;
+  }
+  .qty button {
+    padding: 0 0.75em;
+    font-size: 0.5em;
+    cursor: pointer;
   }
 
-  .table-scroll.small-first-col td:first-child,
-  .table-scroll.small-first-col th:first-child{
-    flex-basis:20%;
-    flex-grow:1;
+  .qty button.btn-right{
+    border-radius: 0 0.5em 0.5em 0;
   }
 
-  .empty-cart {
-      height: 200px;
+  .qty button.btn-left{
+    border-radius: 0.5em 0 0 0.5em;
   }
-  .empty-cart h5{
-      margin-top: 3em;
-  }
-   /* ======================== END OF CSS FOR SCROLL TABLE =========================== */
 
-   /* ================================ CSS FOR TABLE ================================= */
-   .modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    display: table;
-    transition: opacity .3s ease;
+  .btn-book{
+    margin-left:1px;
+    width: 5em;
+    border-radius: 0.5em;
+    height: 30px;
   }
-  
-  .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  
-  .modal-container {
-    width: 300px;
-    margin: 0px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-    transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-  }
-  
-  .modal-header h3 {
-    margin-top: 0;
-    color: #42b983;
-  }
-  
-  .modal-body {
-    margin: 20px 0;
-  }
-  
-  .modal-default-button {
-    float: right;
-  }
-  
-  .modal-enter {
-    opacity: 0;
-  }
-  
-  .modal-leave-active {
-    opacity: 0;
-  }
-  
-  .modal-enter .modal-container,
-  .modal-leave-active .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-   /* =============================== END OF CSS FOR TABLE ============================== */
-
-  
+  /* ======================== END OF CSS FOR BUTTON MODIFY =========================== */

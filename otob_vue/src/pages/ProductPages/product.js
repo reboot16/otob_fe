@@ -1,16 +1,15 @@
 import SearchProduct from '@/components/SearchProduct'
 import ProductHeaderDropdown from '@/components/ProductHeaderDropdown'
 import TableProduct from '@/components/TableProduct'
+import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
 
 export default {
-  name: 'Product',  
-  props: {
-    'auth': ''
-  },
+  name: 'ProductPages',
   components: {
     SearchProduct,
     ProductHeaderDropdown,
-    TableProduct
+    TableProduct,
+    CustomPagination,
   },  
   data() {
     return {
@@ -18,22 +17,15 @@ export default {
     }
   },
   mounted () {
-    if(this.auth.isLogin === false){
-      this.$router.push('/')
-    }
-    if(this.auth.isAdmin === false){
-      this.$router.push('/not-found')
-    } 
-
-    this.$store.dispatch('getProducts')   
+    this.$store.dispatch('getProducts')
   },
   computed: {
     listProduct: function () {
       return this.$store.getters.PRODUCTS
     },
-  },
-  watch: {
-
+    totalPage () {
+      return this.$store.getters.TOTAL_PAGES
+    }
   },
   methods: {
     onDelete: function (product, index) {

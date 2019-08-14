@@ -1,12 +1,17 @@
-import SearchProduct from '@/components/SearchProduct'
+import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
 
 export default {
   name: 'TableProductCustomer',
   props: {
-    'listProduct': ''
+    listProduct: '',
+    isLogin: false,
+    totalPage: 0
   },
   components: {
-    SearchProduct
+    CustomPagination
+  },
+  mounted() {
+    console.log('tbl' + this.totalPage)
   },
   data() {
     return {
@@ -22,8 +27,6 @@ export default {
       quantity: 1,
       bookData: {},
     }
-  },
-  mounted () {
   },
   computed: {
  
@@ -58,9 +61,11 @@ export default {
     },
     increment: function(product) {
       product.qty++
+      product.type = true
     },
     decrement: function (product) {
       product.qty--
+      product.type = false
     }
   },
 

@@ -1,51 +1,47 @@
 <template>
   <div name="TableProductCustomer">
-      <div class="row" style="margin-bottom: 0.5em">
-        <div class="col-sm-4" >
-          <h3>List of Product</h3>
-        </div>
-        <div class="col-sm-8" style="text-align:right">
-          <SearchProduct/>
-        </div>
-      </div>
 
-      <div class="tableContainer">
-        <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
-
-        <thead>
-          <tr class="col-sm-12">
-            <td width="5%"><b>#</b></td>
-            <td width="15%">Name</td>
-            <td width="15%">Description</td>
-            <td width="15%">List Price</td>
-            <td width="15%">Offer Price</td>
-            <td width="10%">Stock</td>
-            <td width="25%">Action</td>
-          </tr>
-          </thead>
-
-          <tbody>
-          <tr class="col-sm-12" v-for="(product, index) in listProduct" :key="index">
-            <td width="5%"><b>{{ index+1 }}</b></td>
-            <td width="15%">{{ product.name }}</td>
-            <td width="15%">{{ product.description }}</td>
-            <td width="15%">{{ product.listPrice }}</td>
-            <td width="15%">{{ product.offerPrice }}</td>
-            <td width="10%">{{ product.stock }}</td>
-            <td width="25%">
-              <div class="quantity-toggle" v-if="isStockAvailable(product.stock)">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
-                <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
-                <button @click="addToCart(product, index)" class="btn btn-primary" id="bookBtn">Book</button>
+    <table width="100%" class="table">
+      <thead>
+      <tr  style="display: flex">
+        <td class="col-sm-2">Name</td>
+        <td class="col-sm-3">Description</td>
+        <td class="col-sm-2">List Price</td>
+        <td class="col-sm-2">Offer Price</td>
+        <td class="col-sm-1">Stock</td>
+        <td class="col-sm-2">Action</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(product, index) in listProduct" :key="index" style="display: flex">
+        <td class="col-sm-2">{{ product.name }}</td>
+        <td class="col-sm-3">{{ product.description }}</td>
+        <td class="col-sm-2"> {{ getFormattedCurrency (product.listPrice) }}</td>
+        <td class="col-sm-2"> {{ getFormattedCurrency (product.offerPrice) }}</td>
+        <td class="col-sm-1">{{ product.stock }}</td>
+        <td class="col-sm-2">
+          <div v-if="isStockAvailable(product.stock)">
+            <div  style="display: flex" class="row">
+              <div class=" qty">
+                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-gray btn-left">&mdash;</button>
+                <input type="text" :value="product.qty" readonly class="input-gray">
+                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-gray btn-right">&#xff0b;</button>
               </div>
-              <div v-else style="text-align: center; color: red; font-style: italic">Stock Habis</div>
-            </td>
-          </tr>
-          </tbody>
+              <div class="">
+                <button @click="addToCart(product, index)" class="btn btn-blue btn-book" style="font-size: 13px">Add</button>
+              </div>
+            </div>
+          </div>
+          <div v-else style="text-align: center; color: red; font-style: italic">Stock Habis</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
-        </table>
+    <div style="text-align: center">
+      <CustomPagination :totalPage="totalPage"/>
     </div>
+
   </div>
 </template>
 
