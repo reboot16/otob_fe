@@ -82,7 +82,7 @@
       </CustomModal>
 
       <CustomModal v-show="customAlert==true">
-        <div slot="main">
+        <div slot="main" style="padding: 0.5em 0">
           <div style="display: flex; justify-content: space-between">
             <div class="alertText">
               {{ customTextAlert }}

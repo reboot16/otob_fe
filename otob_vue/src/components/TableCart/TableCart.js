@@ -1,4 +1,5 @@
 import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+import ModifyCart from '@/components/ModifyCart'
 
 export default {
   name: 'TableCart', 
@@ -6,7 +7,8 @@ export default {
     listItemCart: ''
   },
   components: {
-    CustomAlert
+    CustomAlert,
+    ModifyCart
   },
   data () {
     return {

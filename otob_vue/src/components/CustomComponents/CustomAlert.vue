@@ -38,6 +38,6 @@
 
 <style>
 	.modal-container{
-		width: 25%;
+		width: 30%;
 	}
 </style>

@@ -9,7 +9,10 @@ export default {
 	},
 	methods: {
 		showCustomAlert(text) {
+			console.log(this.customAlert)
 			this.customAlert = true
+			console.log(this.customAlert)
+			
 			this.customTextAlert = text
 		},
 		getFormattedCurrency (value) {
