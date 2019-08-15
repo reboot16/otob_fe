@@ -7,7 +7,7 @@
           <h3>Manage Product</h3>
         </div>
 
-        <div class="row" v-if="isAdmin == true" style="margin-bottom: 0.5em;">
+        <div class="row" v-if="auth.isAdmin == true" style="margin-bottom: 0.5em;">
           <div class="col-sm-9">
             <SearchProduct/>
           </div>

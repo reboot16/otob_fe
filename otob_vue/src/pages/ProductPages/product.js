@@ -29,7 +29,7 @@ export default {
   mounted () {
     this.showCustomAlert()
     this.$store.dispatch('getProducts')
-    this.$store.dispatch('getCart')
+    
   },
   computed: {
     listProduct: function () {
