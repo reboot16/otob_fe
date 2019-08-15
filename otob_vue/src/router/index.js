@@ -10,12 +10,12 @@ export const router = new VueRouter({
     {
       path: '/products',
       name: 'ProductCustomer',
-      component: () => import('@/pages/Product')
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/',
       name: 'DirectProductCustomer',
-      component: () => import('@/pages/Product')
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/login',

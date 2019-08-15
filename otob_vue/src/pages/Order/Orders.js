@@ -11,9 +11,6 @@ export default {
             filters: '',
         }
     },
-    props: {
-      auth: ''
-    },
     methods: {
         getOrders () {
             this.listOrders =  this.$store.getters.ORDERS

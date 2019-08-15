@@ -48,7 +48,7 @@
       </div> 
 
       <div>
-        <router-view id="content" :auth="userAuth"/>
+        <router-view id="content" :auth="auth"/>
       </div>
 
       <div id="footer" v-if="isLogin==true">

@@ -21,6 +21,9 @@
 	import CustomModal from '@/components/CustomComponents/CustomModal.vue'
 
 	export default {
+		props: {
+			deletedProduct: {}
+		},
 		components: {
 			CustomModal
 		},
