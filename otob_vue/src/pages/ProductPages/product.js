@@ -27,9 +27,9 @@ export default {
     }
   },
   mounted () {
-    this.showCustomAlert()
+    console.log(this.auth)
     this.$store.dispatch('getProducts')
-    
+    this.dispatchCart()
   },
   computed: {
     listProduct: function () {
@@ -43,6 +43,13 @@ export default {
     }
   },
   methods: {
+    dispatchCart() {
+      let isLogin = this.auth.isLogin
+      let isCustomer = this.auth.isCustomer
+      if(isLogin == true && isCustomer == true) {
+        this.$store.dispatch('getCart')
+      }
+    },
     onDelete: function (product, index) {
       const confirmDelete = confirm("Are you sure to delete this?");
       

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -77,5 +78,8 @@ export const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = "Blibli Bazaar"
+  
+  // store.dispatch('checkAuthorized')
+  
   next()
 })

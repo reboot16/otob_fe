@@ -10,8 +10,7 @@ export default {
     auth: {
       isLogin: false,
       isAdmin: false,
-      isCustomer: false,
-      isGuest: true
+      isCustomer: false
     }
   },
   components: {
@@ -19,5 +18,8 @@ export default {
     TableAdmin,
     TableCustomer,
     TableGuest
+  },
+  mounted () {
+    console.log(this.auth)
   }
 }

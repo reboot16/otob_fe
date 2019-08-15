@@ -3,8 +3,7 @@ import Axios from 'axios'
 export default {
   state: {
     products: [],
-    totalPages: 0,
-    flagSearch: {}
+    totalPages: 0
   },
   getters : {
     PRODUCTS  : state => {
@@ -12,9 +11,6 @@ export default {
     },
     TOTAL_PAGES : state => {
       return state.totalPages
-    },
-    FLAG_SEARCH : state => {
-      return state.flagSearch;
     }
   },
   mutations: { 
@@ -38,16 +34,15 @@ export default {
     },
     SET_TOTAL_PAGES : (state, payload) => {
       state.totalPages = payload
-    },
-    SET_FLAG_SEARCH : (state, payload) => {
-      state.flagSearch = payload
     }
   },
   actions : {
-    getProducts  ({commit}) {  
+    getProducts  ({commit}) {
+      console.log(config.API_PRODUCT)
       Axios
         .get(config.API_PRODUCT)
         .then(response => {
+          console.log(response.data.data.products)
           let result = response.data.data
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)

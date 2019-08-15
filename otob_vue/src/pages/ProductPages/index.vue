@@ -21,7 +21,7 @@
         </div>
 
         <div class="tbl-product">
-          <TableProduct :listProduct="listProduct"/>
+          <TableProduct :listProduct="listProduct" :auth="auth"/>
         </div>
 
         <div style="text-align: center">

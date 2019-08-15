@@ -2,9 +2,9 @@
 		<div  style="display: flex" class="row">
 			<div  style="display: flex">
 				<div class=" qty">
-					<button @click="decrement(product)" class="btn btn-gray btn-left">&mdash;</button>
+					<button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>
 					<input type="text" :value="product.qty" readonly class="input-gray">
-					<button @click="increment(product)"class="btn btn-gray btn-right">&#xff0b;</button>
+					<button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>
 				</div>
 			</div>
 			<button @click="onDelete(product)"
@@ -41,8 +41,7 @@
 					this.$store.dispatch('updateItemCart', product)
 				}
 			},
-			increment: function(product) {
-				let index = this.index
+			increment: function(product, index) {
 				product.qty++
 				product.index = index
 				product.type = true

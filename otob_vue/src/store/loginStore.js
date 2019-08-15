@@ -6,16 +6,23 @@ export default {
       isLogin: false,
       userId: '',
       userRole: ''
-    }
+    },
+    doNeedLogout: false
   },
   getters : {
     isAuthorized: state => {
       return state.isAuthorized
+    },
+    doNeedLogout: state => {
+      return state.doNeedLogout
     }
   },
   mutations: { 
     SET_AUTH : (state, payload) => {
       state.isAuthorized = payload
+    },
+    SET_DO_NEED_LOGOUT: (state, payload) => {
+      state.doNeedLogout = payload
     }
   },
   actions : {
@@ -27,8 +34,11 @@ export default {
       let payload = {}
       if(isLoginExist && isIdExist && isRoleExist){
         dispatch('getCookie', payload)
+        console.log('cookie found' + payload)
       }else {
         dispatch('removeCookie')
+        // dispatch('doLogout')
+        console.log('cookie remove')
       }
       await commit('SET_AUTH', payload)
     },
@@ -63,7 +73,20 @@ export default {
       Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
-          dispatch('checkAuthorized')
+          
+          if(response.data.code == 200){
+            console.log('ini logout')
+            console.log(response)
+  
+            let isAuthorized = {
+              isLogin: false,
+              userId: '',
+              userRole: ''
+            }
+            commit('SET_AUTH', isAuthorized)
+          }
+          
+          // dispatch('checkAuthorized')
           // console.log(response)
           // if(response.data.code ==  200){
           //   dispatch('removeCookie')
