@@ -51,7 +51,7 @@ export default {
       Axios
           .get(config.API_ORDER)
           .then(response => {
-            commit('SET_ORDERS',response.data.data)
+            commit('SET_ORDERS',response.data.data.orders)
           }).catch((e) => {
             console.error(e);
       })
