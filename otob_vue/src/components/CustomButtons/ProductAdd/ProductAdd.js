@@ -26,12 +26,6 @@ export default {
 
   },
   methods: {
-    onShowModal () {
-      this.showModalAdd = true
-    },
-    onShowModalBatch () {
-      this.showModalBatch = true
-    },
     onHandleSubmit () {
       let product = this.form
       this.onSubmit(product)
@@ -39,7 +33,8 @@ export default {
     onSubmit (product) {
       this.showModalAdd = false
       this.$store.dispatch('addProduct', product)
-  
+      
+      this.onReset()
       this.resetForm()
     },
     onHandleUpload (event){
@@ -58,7 +53,11 @@ export default {
       this.$refs.form.reset()
     },
     resetForm () {
-      this.form = ''
+      this.form.name = ''
+      this.form.description = ''
+      this.form.listPrice = ''
+      this.form.offerPrice = ''
+      this.form.stock = ''
     }
   }
 

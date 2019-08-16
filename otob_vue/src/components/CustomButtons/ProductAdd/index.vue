@@ -3,8 +3,8 @@
     <!-- =============== Dropdown Button to Trigger Modal ================= -->
     <b-dropdown right variant="primary" size="sm">
         <template slot="button-content"> <li class="fa fa-plus" style="padding: 0 0.5em"></li> </template>
-        <b-dropdown-item @click="onShowModal">Tambah Data Baru</b-dropdown-item>
-        <b-dropdown-item @click="onShowModalBatch">Upload Data Excel</b-dropdown-item>
+        <b-dropdown-item @click="showModalAdd = true">Tambah Data Baru</b-dropdown-item>
+        <b-dropdown-item @click="showModalBatch = true">Upload Data Excel</b-dropdown-item>
 <!--        <b-dropdown-item >Download Template Excel</b-dropdown-item>-->
     </b-dropdown>
 
@@ -78,7 +78,7 @@
   
 </template>
 
-<script src="./ProductHeaderDropdown.js"></script>
+<script src="./ProductAdd.js"></script>
 
-<style src="./ProductHeaderDropdown.css"></style>
+<style src="./ProductAdd.css"></style>
 

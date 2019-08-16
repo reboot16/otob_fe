@@ -12,7 +12,7 @@
             <SearchProduct/>
           </div>
           <div class="col-sm-1" style="text-align: right; padding-left: 0">
-            <ButtonDropdown @showModalForm="showModal = true" />
+            <ButtonAdd />
           </div>
         </div>
 

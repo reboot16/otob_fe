@@ -15,7 +15,7 @@
 
 <script>
 	export default {
-		name: 'ModifyButton',
+		name: 'ButtonAdd',
 		props: {
 			product: {},
 		},

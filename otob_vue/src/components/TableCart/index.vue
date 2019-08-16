@@ -4,9 +4,10 @@
         <tbody>
           <tr v-for="(product, index) in listItemCart" :key="index"  style="display: flex">
             <td class="col-sm-8">{{ product.name }}</td>
-            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ getFormattedCurrency (product.offerPrice) }}</td>
+            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ formatCurrency
+							(product.offerPrice) }}</td>
             <td class="col-sm-2" style="display: flex;">
-              <ModifyCart :product="product" :index="index"/>
+              <CustomButton :product="product" :index="index"/>
 <!--              <div  style="display: flex">-->
 <!--                <div class=" qty">-->
 <!--                  <button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>-->
@@ -27,7 +28,7 @@
       <div class="row" style="margin-bottom: 0.5em">
         <div class="col-sm-10" style="text-align:right">
           <div style="font-size: 13px">Total Belanja <b> ({{ countOfItem }}) </b></div>
-          <span class="color-orange checkout-price"> {{ getFormattedCurrency(sumOfPrice) }}</span>
+          <span class="color-orange checkout-price"> {{ formatCurrency(sumOfPrice) }}</span>
         </div>
         <div class="col-sm-2" style="text-align:right" >
           <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)" width="100%">Order Now</button>

@@ -15,12 +15,12 @@
 			<tr v-for="(product, index) in listProduct" :key="index" style="display: flex">
 				<td class="col-sm-2">{{ product.name }}</td>
 				<td class="col-sm-3">{{ product.description }}</td>
-				<td class="col-sm-2"> {{ getFormattedCurrency (product.listPrice) }}</td>
-				<td class="col-sm-2"> {{ getFormattedCurrency (product.offerPrice) }}</td>
+				<td class="col-sm-2"> {{ formatCurrency (product.listPrice) }}</td>
+				<td class="col-sm-2"> {{ formatCurrency (product.offerPrice) }}</td>
 				<td class="col-sm-1">{{ product.stock }}</td>
 				<td class="col-sm-2">
 					<div v-if="isStockAvailable(product.stock)">
-						<ModifyProduct :product="product"/>
+						<CustomButton :product="product"/>
 <!--						<div  style="display: flex" class="row">-->
 <!--							<div class=" qty">-->
 <!--								<button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-gray btn-left">&mdash;</button>-->

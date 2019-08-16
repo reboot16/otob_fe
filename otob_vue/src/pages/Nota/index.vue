@@ -40,13 +40,13 @@
 						<tr v-for="product in data.ordItems" style="display: flex">
 							<td class="col-sm-7"><span> Nama Produk: </span> {{ product.productName}}</td>
 							<td class="col-sm-2"><span> Jumlah: </span> {{ product.qty }}</td>
-							<td class="col-sm-3"><span> Harga: </span> {{getFormattedCurrency(product.productPrice)}}</td>
+							<td class="col-sm-3"><span> Harga: </span> {{formatCurrency(product.productPrice)}}</td>
 						</tr>
 					</table>
 
 					<div style="text-align: right" class="footer-nota">
 						Total pembayaran:
-						<label style="font-size: 24px; font-weight: bold;">{{ getFormattedCurrency(data.totPrice)}}</label> <br>
+						<label style="font-size: 24px; font-weight: bold;">{{ formatCurrency(data.totPrice)}}</label> <br>
 						{{ formatDate }}
 					</div>
 				</div>

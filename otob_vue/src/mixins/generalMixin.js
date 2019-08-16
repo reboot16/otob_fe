@@ -15,7 +15,7 @@ export default {
 			
 			this.customTextAlert = text
 		},
-		getFormattedCurrency (value) {
+		formatCurrency (value) {
 			let result = ''
 			value = value === null ? 0 : value
 			let reverseValue = value.toString().split('').reverse().join('')
