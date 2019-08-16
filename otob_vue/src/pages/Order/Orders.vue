@@ -6,7 +6,6 @@
 				<div class="col-sm-12" style="padding: 0">
 					<h3>Riwayat Pesanan Anda</h3>
 				</div>
-
 				<div>
 					<search-order></search-order>
 				</div>

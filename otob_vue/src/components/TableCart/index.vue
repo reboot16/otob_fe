@@ -23,7 +23,6 @@
           </tr>
         </tbody>
       </table>
-
       <div class="row" style="margin-bottom: 0.5em">
         <div class="col-sm-10" style="text-align:right">
           <div style="font-size: 13px">Total Belanja <b> ({{ countOfItem }}) </b></div>
