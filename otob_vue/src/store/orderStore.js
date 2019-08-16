@@ -10,14 +10,10 @@ export default {
       return state.orders.orders;
     },
     getOrderById : (state) => (id) => {
-      return state.orders.orders.find(order => order.orderId === id)
+      return state.orders.orders.find(order => order.ordId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
-    },
-    getProductsByOrderId :  (state) => (id) => {
-      var orders =  state.orders.find(order=>order.orders_id === id);
-      return orders.products;
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
@@ -55,10 +51,10 @@ export default {
     },
     acceptOrders ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.orderId + '/accept')
+          .get(config.API_ORDER + '/' + payload.ordId + '/accept')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
-            alert('Succes to Accept Order'+ payload.orderId)
+            alert('Succes to Accept Order'+ payload.ordId)
           })
           .catch((e) => {
             console.error(e)
@@ -66,18 +62,18 @@ export default {
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.orderId + '/reject')
+          .get(config.API_ORDER + '/' + payload.ordId + '/reject')
           .then(response => {
             commit('REJECT_ORDER', payload)
-            alert('Succes to Reject Order'+ payload.orderId)
+            alert('Succes to Reject Order'+ payload.ordId)
           })
           .catch((e) => {
             console.error(e)
           });
     },
-    getOrderByOrderId ({commit}, orderId) {
+    getOrderByOrderId ({commit}, ordId) {
       Axios
-          .get(config.API_ORDER+'/'+ orderId + '/search')
+          .get(config.API_ORDER+'/'+ ordId + '/search')
           .then(response => {
             commit('SET_CURRENT_ORDER', response.data.data)
           })

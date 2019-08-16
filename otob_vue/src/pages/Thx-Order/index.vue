@@ -9,7 +9,7 @@
       </p>
       <div style="border: 2px dashed rgb(38, 164, 218); padding: 0.5em; text-align: center; background-color: white">
         Id pesanan saat ini:
-        <h2 class="order-now" @click="viewDetail(orderId)">{{ orderId }}</h2>
+        <h2 class="order-now" @click="viewDetail(ordId)">{{ ordId }}</h2>
       </div>
       <div>
         <br>
@@ -41,12 +41,12 @@
 
 <script>
 export default {
-  name: 'Product',
+  name: 'ThanksOrder',
   props: {
     auth: {}
   },
   computed: {
-    orderId () {
+    ordId () {
       return this.$route.params.id
     },
     currentOrder () {
@@ -55,17 +55,19 @@ export default {
     dataOrder () {
       if(this.currentOrder)
         return this.currentOrder
-      else{
-        this.$router.push('/products')
-      }
+
+      console.log(this.currentOrder)
+      // else{
+      //   this.$router.push('/products')
+      // }
     }
   },
   mounted (){
-    if(this.auth.isLogin == true && this.auth.isCustomer == true){
-      this.$store.dispatch('getOrderByOrderId', this.orderId)
-    } else{
-      this.$router.push('/products')
-    }
+    // if(this.auth.isLogin == true && this.auth.isCustomer == true){
+      this.$store.dispatch('getOrderByOrderId', this.ordId)
+    // } else{
+    //   this.$router.push('/products')
+    // }
   },
   methods: {
     viewDetail(id){

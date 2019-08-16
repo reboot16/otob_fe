@@ -13,7 +13,7 @@
 							<tr class="col-sm-12">
 								<td>
 									<span class="label">Nomor Pesanan:</span><br>
-									<span class="value">{{orders.orderId}}</span>
+									<span class="value">{{orders.ordId}}</span>
 								</td>
 								<td>
 									<span class="label">Tanggal Transaksi:</span><br>
@@ -34,7 +34,7 @@
 									<span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
 								</td>
 								<td v-show="orders.ordStatus === 'Accepted'">
-									<button class="print-nota" v-on:click="printNota(orders.orderId)">
+									<button class="print-nota" v-on:click="printNota(orders.ordId)">
 										<i class="fa fa-print"></i>
 										Print Nota
 									</button>
@@ -57,14 +57,12 @@
 							</thead>
 
 							<tbody class="scrollContentCart">
-							<tr ref="listItemCart" class="col-sm-12"
-									v-if="orders.ordItems.length != 0"
-									v-for="(item, index) in orders.ordItems" :key="index" >
+							<tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
 								<td width="5%"><b>{{ index+1 }}</b></td>
 								<td width="30%">{{ item.name }}</td>
 								<td width="15%">{{ item.qty }}</td>
 								<td width="25%">Rp {{ item.offerPrice }}</td>
-								<td width="25%">Rp {{item.qty * item.offerPrice}}</td>
+								<td width="25%">Rp {{item.qty * item.productPrice}}</td>
 							</tr>
 
 							<tr class="col-sm-12" v-else>
@@ -80,48 +78,7 @@
 	</div>
 </template>
 
-<script>
-	export default {
-		name: "Approvement",
-		props: {
-			auth: ''
-		},
-		data(){
-			return{
-				products: {
-					products_id: 0,
-					products_name: '',
-					jumlah: 0,
-					harga: 0,
-					status: '',
-				},
-			};
-		},
-		computed: {
-			orderId () {
-				return this.$route.params.id
-			},
-			currentOrder () {
-				return this.$store.getters.getCurrentOrder
-			},
-			orders () {
-				if(this.currentOrder)
-					return this.currentOrder
-				else{
-					this.$router.push('/products')
-				}
-			}
-		},
-		methods: {
-			printNota (id) {
-				this.$router.push('/orders/'+id+'/print-note')
-			}
-		},
-		mounted() {
-			this.$store.dispatch('getOrderByOrderId', this.orderId)
-		}
-	}
-</script>
+<script src="./Approvement.js"></script>
 
 <style scoped>
 	.block{
@@ -187,4 +144,3 @@
 		background: #F9a94b;
 	}
 </style>
-© 2019 GitHub, Inc.

@@ -30,7 +30,7 @@
 			},
 			onContinue () {
 				this.$emit('continue')
-				this.onClose()
+				this.onCancel()
 			}
 		}
 	}

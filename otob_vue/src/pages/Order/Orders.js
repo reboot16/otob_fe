@@ -1,4 +1,5 @@
 import SearchOrder from '@/components/SearchOrder'
+import moment from 'moment'
 
 export default {
     name: 'Orders',
@@ -12,7 +13,7 @@ export default {
         }
     },
     props: {
-      auth: ''
+        auth: ''
     },
     methods: {
         getOrders () {
@@ -24,7 +25,12 @@ export default {
         doSearch (value) {
             this.filters = value
         },
-
+        formatDate (date) {
+            let newDate = ''
+            newDate += ''+moment(date).format('DD MMM YYYY (h:mm)')
+            return newDate
+        }
+        
     },
     mounted() {
         this.$store.dispatch('searchOrderByUserId', this.auth.userId)
@@ -35,5 +41,5 @@ export default {
             return this.$store.getters.ORDERS
         }
     }
-
+    
 }
