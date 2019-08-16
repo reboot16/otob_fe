@@ -34,18 +34,18 @@
 									<tbody class="scrollContentCart">
 										<tr ref="listItemCart" class="col-sm-12" v-if="listOfOrder.length != 0" v-for="(order, index) in listOfOrder" :key="index" >
 												<td width="4%"><b>{{ index+1 }}</b></td>
-												<td width="20%">{{ order.orderId }}</td>
+												<td width="20%">{{ order.ordId }}</td>
 												<td width="17%">{{ formatDate (order.ordDate) }}</td>
 												<td  width="11%" style="text-align: center">{{ order.totItem }}</td>
 												<td width="20%">{{ getFormattedCurrency (order.totPrice) }}</td>
-												<td width="8%" class="status-pending" v-if="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
+												<td width="8%" class="status-waiting" v-if="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
 												<td width="8%" class="status-acc" v-if="order.ordStatus === 'Accepted'">{{ order.ordStatus }}</td>
 												<td width="8%" class="status-rej" v-if="order.ordStatus === 'Rejected'">{{ order.ordStatus }}</td>
 												<td width="10%">
 														<b-button
 																		variant="outline-info"
 																		size="sm"
-																		v-on:click="viewDetail(order.orderId)"
+																		v-on:click="viewDetail(order.ordId)"
 																		class="mr-2">
 															Detail
 														</b-button>

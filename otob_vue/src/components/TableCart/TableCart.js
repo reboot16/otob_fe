@@ -70,7 +70,7 @@ export default {
     async continueCheckout () {
       await this.$store.dispatch('checkout')
       let currentOrder = this.$store.getters.getCurrentOrder
-      this.$router.push('/orders/thank-you/'+currentOrder.orderId)
+      this.$router.push('/orders/thank-you/'+currentOrder.ordId)
     },
     bookDisable (sum) {
       return sum === 0;

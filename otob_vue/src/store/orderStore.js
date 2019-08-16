@@ -2,16 +2,13 @@ import Axios from 'axios'
 
 export default {
   state: {
-    orders: [],
-    currentOrder: {
-      order: {},
-      outOfStockProducts: []
-    },
+    orders: {},
+    currentOrder: {},
     orderDetail: {}
   },
   getters : {
     ORDERS : state => {
-      return state.orders.orders;
+        return state.orders.orders;
     },
     getOrderById : (state) => (id) => {
       return state.orders.orders.find(order => order.orderId === id)
@@ -45,7 +42,11 @@ export default {
     },
     SET_CURRENT_ORDER: (state, payload) => [
       state.currentOrder = payload
-    ]
+    ],
+    SET_ORDERS_SEARCH: (state, payload) => {
+        state.orders.orders = {}
+        state.orders.orders[''] = payload;
+    }
   },
   actions : {
     updateStatusProduct({commit}, product) {
@@ -105,7 +106,7 @@ export default {
       commit('SET_CURRENT_ORDER', payload)
     },
     searchOrder ({commit}, textSearch) {
-        if (textSearch === '') {
+        if (textSearch === '' || textSearch == null) {
             Axios
                 .get(config.API_ORDER)
                 .then(response => {
@@ -114,6 +115,10 @@ export default {
         } else {
             Axios
                 .get(config.API_ORDER+'/'+textSearch+'/search')
+                .then(response => {
+                    console.log(response.data.data)
+                    commit('SET_ORDERS_SEARCH', response.data.data)
+                })
         }
     }
   }

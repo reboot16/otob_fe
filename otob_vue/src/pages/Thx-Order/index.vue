@@ -9,7 +9,7 @@
       </p>
       <div style="border: 2px dashed rgb(38, 164, 218); padding: 0.5em; text-align: center; background-color: white">
         Id pesanan saat ini:
-        <h2 class="order-now" @click="viewDetail(orderId)">{{ orderId }}</h2>
+        <h2 class="order-now" @click="viewDetail(ordId)">{{ ordId }}</h2>
       </div>
       <div>
         <br>
@@ -46,7 +46,7 @@ export default {
     auth: {}
   },
   computed: {
-    orderId () {
+    ordId () {
       return this.$route.params.id
     },
     currentOrder () {

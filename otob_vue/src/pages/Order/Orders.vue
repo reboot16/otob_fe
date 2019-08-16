@@ -29,18 +29,19 @@
 							<tbody class="scrollContentCart">
 							<tr ref="listItemCart" class="col-sm-12" v-if="orders.length != 0" v-for="(order, index) in orders" :key="index" >
 								<td width="4%"><b>{{ index+1 }}</b></td>
-								<td width="20%">{{ order.orderId }}</td>
+								<td width="20%">{{ order.ordId }}</td>
 								<td width="17%">{{ formatDate (order.ordDate) }}</td>
 								<td  width="11%" style="text-align: center">{{ order.totItem }}</td>
 								<td width="20%">Rp {{ order.totPrice }}</td>
-								<td width="8%">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-waiting" v-if="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-acc" v-if="order.ordStatus === 'Accepted'">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-rej" v-if="order.ordStatus === 'Rejected'">{{ order.ordStatus }}</td>
 								<td width="10%">
 									<b-button
 											variant="outline-info"
 											size="sm"
 											v-on:click="viewDetail(order.orderId)"
-											class="mr-2">
-										<icon name="eye" scale="1"></icon>Details
+											class="mr-2">Details
 									</b-button>
 								</td>
 							</tr>
@@ -89,5 +90,20 @@
 	.search {
 		margin: auto;
 		max-width: 90%;
+	}
+	.status-acc {
+		color: forestgreen;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.status-waiting {
+		color: dodgerblue;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.status-rej {
+		color: red;
+		font-size: 0.8rem;
+		font-weight: bold;
 	}
 </style>

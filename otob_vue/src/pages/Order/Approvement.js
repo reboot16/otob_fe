@@ -12,6 +12,7 @@ export default {
     },
     computed: {
         orderDetail () {
+            this.dispatchCart()
             return this.$store.getters.getOrderDetail
         }
     },
@@ -19,22 +20,26 @@ export default {
         confirm(id){
             let orderReq = []
             orderReq = this.$store.getters.getOrderById(id);
-            return this.$store.dispatch('acceptOrders', orderReq)
+            this.$store.dispatch('acceptOrders', orderReq)
         },
         reject(id){
             let orderReq = []
             orderReq = this.$store.getters.getOrderById(id);
-            return this.$store.dispatch('rejectOrder', orderReq)
+            this.$store.dispatch('rejectOrder', orderReq)
+            this.dispatchCart()
         },
         formatDate (date) {
             let newDate = ''
             newDate += ''+moment(date).format('DD MMM YYYY (h:mm)')
             return newDate
+        },
+        dispatchCart () {
+            let par = ''
+            par = this.$route.params.id
+            this.$store.dispatch('getOrderByOrderId', par)
         }
     },
     mounted() {
-        let par = ''
-        par = this.$route.params.id
-        this.$store.dispatch('getOrderByOrderId', par)
+        this.dispatchCart()
     }
 }

@@ -13,7 +13,7 @@
                             <tr class="col-sm-12">
                                 <td>
                                     <span class="label">Nomor Pesanan:</span><br>
-                                    <span class="value">{{orderDetail.orderId}}</span>
+                                    <span class="value">{{orderDetail.ordId}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Tanggal Transaksi:</span><br>

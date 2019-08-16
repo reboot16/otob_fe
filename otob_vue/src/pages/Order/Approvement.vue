@@ -13,7 +13,7 @@
                             <tr class="col-sm-12">
                                 <td>
                                     <span class="label">Nomor Pesanan:</span><br>
-                                    <span class="value">{{orderDetail.orderId}}</span>
+                                    <span class="value">{{orderDetail.ordId}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Tanggal Transaksi:</span><br>
@@ -71,7 +71,7 @@
                             <b-button
                                     variant="success"
                                     class="mr-2"
-                                    v-on:click="confirm(orderDetail.orderId)"
+                                    v-on:click="confirm(orderDetail.ordId)"
                             >
                                 Accepted
                             </b-button>
@@ -80,7 +80,7 @@
                             <b-button
                                     variant="danger"
                                     class="mr-2"
-                                    v-on:click="reject(orderDetail.orderId)"
+                                    v-on:click="reject(orderDetail.ordId)"
                             >
                                 Reject
                             </b-button>
