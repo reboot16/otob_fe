@@ -1,5 +1,5 @@
 <template>
-  <div id="app"> 
+  <div id="app">
       <div id="header">
         <b-navbar toggleable="lg" class="fixed-top" style="border-bottom:1px solid #ced4da; background-color:white">
           <div class="container">
@@ -18,14 +18,11 @@
                 <b-nav-item v-if="isAdmin">
                   <router-link to="/users">User</router-link>
                 </b-nav-item>
-                <b-nav-item v-if="isAdmin || isCashier">
-                  <router-link to="/products/manage">Product</router-link>
-                </b-nav-item>
                 <b-nav-item>
                   <router-link to="/products">Product</router-link>
                 </b-nav-item>
-                <b-nav-item v-if="isLogin==true">
-                  <router-link to="/orders/customer">Order</router-link>
+                <b-nav-item v-if="isLogin == true && isCustomer == true">
+                  <router-link to="/orders/customer">My Order</router-link>
                 </b-nav-item>
                 <b-nav-item-dropdown v-if="isAdmin || isCashier" right>
                   <template slot="button-content">Order</template>
@@ -51,7 +48,7 @@
       </div> 
 
       <div>
-        <router-view id="content" :auth="userAuth"/>
+        <router-view id="content" :auth="auth"/>
       </div>
 
       <div id="footer" v-if="isLogin==true">
@@ -65,13 +62,35 @@
           Change Password
         </div>
 
-        <div slot="body">
-          <b-form @submit.prevent="onChangePassword">
-            <b-form-input v-model="form.oldPassword" placeholder="Enter your old password" required type="password"></b-form-input>
-            <b-form-input v-model="form.newPassword" placeholder="Enter your new password" required type="password"></b-form-input>
-            <b-form-input v-model="form.newPassword2" placeholder="Enter your new password" required type="password"></b-form-input>
-            <b-button type="submit" variant="primary" style="width: 100%;">Change Password</b-button>
+        <div slot="body" style="padding:0">
+          <b-form @submit.prevent="onChangePassword" class="modal-password">
+            <div class="row grup-input">
+              <label>Old Password</label>
+              <b-form-input v-model="form.oldPassword" placeholder="Enter your old password" required type="password"></b-form-input>
+            </div>
+            <div class="row grup-input">
+              <label>New Password</label>
+              <b-form-input v-model="form.newPassword" placeholder="Enter your new password" required type="password"></b-form-input>
+            </div>
+            <div class="row grup-input">
+              <p style="font-size: 12px; color: red" v-if="wrongPassword==true">Password not match</p>
+              <b-button type="submit" variant="green" style="width: 100%; background-color: #00b35e; color: white">Change Password</b-button>
+            </div>
+
           </b-form>
+        </div>
+      </CustomModal>
+
+      <CustomModal v-show="customAlert==true">
+        <div slot="main" style="padding: 0.5em 0">
+          <div style="display: flex; justify-content: space-between">
+            <div class="alertText">
+              {{ customTextAlert }}
+            </div>
+            <div class="alertClose" @click="customAlert=false">
+              <li class="fa fa-times"></li>
+            </div>
+          </div>
         </div>
       </CustomModal>
 

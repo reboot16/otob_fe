@@ -33,9 +33,7 @@
 <style scoped>
 
     .input-group {
-        margin: auto;
         margin-top: 10px;
-        max-width: 90%;
     }
     .input-group-append button{
         margin-left:0;padding:0.25em
