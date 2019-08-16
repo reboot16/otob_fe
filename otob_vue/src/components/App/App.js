@@ -1,67 +1,104 @@
-'use strict'
-
-import NavbarAdmin from '@/components/Navbar/NavbarAdmin'
-import NavbarCustomer from '@/components/Navbar/NavbarCustomer'
-import NavbarCashier from '@/components/Navbar/NavbarCashier'
-import Login from "@/pages/main/Login";
-
-const adminRole = 'ROLE_ADMIN'
-const cashierRole = 'ROLE_CASHIER'
-const customerRole = 'ROLE_CUSTOMER'
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
 
 export default {
-  components: {
-    NavbarAdmin,
-    NavbarCustomer,
-    NavbarCashier
-  }, 
   data () {
-    return { 
+    return {
+      form: {
+        oldPassword: '',
+        newPassword: '',
+        newPassword2: ''
+      },
+      showChangePassword: false,
+      wrongPassword: false
     }
   },
-  mounted () { 
+  components: {
+    CustomModal,
+    CustomAlert
+  },
+  mounted () {
+    this.$store.dispatch('checkAuthorized')
   },
   computed : {
     isAuth () {
-      return this.$store.getters.isAuth
+      return this.$store.getters.isAuthorized
     },
     isLogin () {
-      return this.isAuth.isLogin
+      if (this.isAuth && this.isAuth.isLogin){
+        return true
+      }
+      return false
     },
     isAdmin () {
-      if (this.isAuth.userRole == adminRole){
+      if (this.isAuth && this.isAuth.userRole == config.role_admin){
         return true
       }
       return false
     },
     isCashier () {
-      if (this.isAuth.userRole == cashierRole){
+      if (this.isAuth && this.isAuth.userRole == config.role_cashier){
         return true
       }
       return false
     },
     isCustomer () {
-      if (this.isAuth.userRole == customerRole){
+      if (this.isAuth && this.isAuth.userRole == config.role_customer){
         return true
       }
       return false
     },
-    userAuth () {
+    userId () {
+      if (this.isAuth)
+        return this.isAuth.userId
+      return ''
+    },
+    auth () {
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
         isCashier: this.isCashier,
-        isCustomer: this.isCustomer
+        isCustomer: this.isCustomer,
+        userId: this.userId
       }
       return auth
     }
   },
   methods : {
-    onLogout (evt) {
-      evt.preventDefault()
- 
+    onLogout () {
       this.$store.dispatch('doLogout')
+      this.$router.push('/login')
     },
+    onRouteLoginTrue () {
+      if(this.isLogin == true) {
+        this.$router.push('/products')
+      }
+    },
+    onRoute () {
+      // if(this.userAuth.isLogin == true){
+      //   if(this.userAuth.isAdmin == true){
+      //     this.$router.push('/products/manage')
+      //   }else if(this.userAuth.isCashier == true){
+      //     this.$router.push('/orders')
+      //   }else if(this.auth.isCustomer == true){
+      //     this.$router.push('/products')
+      //   }
+      // }
+    },
+    showModalChangePassword () {
+      this.showChangePassword = true
+    },
+    async onChangePassword () {
+      let formData = new FormData();
+      formData.append('oldPassword', this.form.oldPassword);
+      formData.append('newPassword', this.form.newPassword);
+      await this.$store.dispatch('doChangePassword', formData)
+      this.showChangePassword = false
+      this.form = ''
+    }
+  },
+  watch: {
+  
   }
   
 }

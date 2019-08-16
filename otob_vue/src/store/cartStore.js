@@ -1,10 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import Axios from 'axios'
-
-Vue.use(Vuex);
-
-const API = 'http://localhost:9000/api/carts'
 
 export default {
   state: {
@@ -13,7 +7,7 @@ export default {
   getters : {
     CARTS  : state => {
       return state.carts;
-    }
+    },
   },
   mutations: { 
     SET_CART : (state, payload) => {
@@ -23,7 +17,7 @@ export default {
       state.carts.push(payload)
     },
     UPDATE_ITEM_CART : (state, payload) => {
-      state.carts[payload.index] = payload
+      state.carts[payload.productId] = payload
     },
     DELETE_ITEM_CART : (state, payload) => { 
       state.carts.splice(payload.index, 1) 
@@ -32,79 +26,84 @@ export default {
   actions : {
     getCart ({commit}) {
       Axios
-        .get(API) 
+        .get(config.API_CART)
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
-          alert(e)
-        });
+        console.error(e)
+      });
     },
-    addToCart ({commit}, payload) {
-      console.log(API + '/' + payload.productId + '/' + payload.qty)
+    isProductExist ({state}, _productId) {
+      return state.carts.find(cart => {
+        if(cart.productId === _productId){
+          console.log('ya')
+          return true
+        }else{
+          console.log('no')
+        }
+      })
+    },
+    addToCart ({commit, dispatch, state}, payload) {
       Axios
-        .post(API + '/' + payload.productId + '/' + payload.qty)
+        .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
-          if(response.data.code == 200) {
-            payload.productName = payload.name
-            payload.productPrice = payload.offerPrice
-            
-            commit('ADD_TO_CART', payload)
-            alert('Success add to cart')
-          }
-          else{
-            console.log(payload.name)
-            alert(response.data.message)
-          }
+          console.log(response.data.data)
+          // if(response.data.code == 200) {
+          //   payload.productName = payload.name
+          //   payload.productPrice = payload.offerPrice
+          //   commit('ADD_TO_CART', payload)
+          // }
+          // else{
+          //   console.log(response.data.message)
+          // }
         })
         .catch((e) => {
-          alert(e)
-          console.error(e) 
-        }); 
+          console.error(e)
+        });
     },
     updateItemCart ({commit}, payload) {
-      console.log(API + '/' + payload.productId + '/' + payload.qty)
-  
       Axios
-        .put(API + '/' + payload.productId + '/' + payload.qty)
+        .put(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           if(response.data.code == 200) {
-            alert('Success update cart')
           }
           else{
-            alert(response.data.message)
             if(payload.type == true){
               payload.qty--
             }else{
               payload.qty++
             }
+            alert(response.data.message)
           }
           commit('UPDATE_ITEM_CART', payload)
         })
         .catch((e) => {
-          alert(e)
           console.error(e) 
         }); 
     },
     deleteItemCart ({commit}, payload) {
       Axios
-        .delete(API + '/' + payload.productId)
+        .delete(config.API_CART + '/' + payload.productId)
         .then(response => {
-          commit('DELETE_ITEM_CART', payload) 
-          alert('Success delete from cart')
+          commit('DELETE_ITEM_CART', payload)
         })
         .catch((e) => {
-          alert(e)
           console.error(e)
         }); 
     },
-    orderItemCart ({commit}) {
-      Axios
-        .get(API + '/checkout') 
+    async checkout ({commit, dispatch}) {
+      return await Axios
+        .get(config.API_CART + '/checkout')
         .then(response => {
-          alert('okk')
-          commit('SET_CART', response.data.data.cartItems)
+          // dispatch('setCurrentOrder', response.data.data)
+          // commit('SET_CART', response.data.data.cartItems)
+          if(response.data.code == 400) {
+            alert(response.data.message)
+          }else{
+            dispatch('setCurrentOrder', response.data.data)
+          }
         }).catch((e) => {
-          alert(e)
+          console.error(e)
         });
     },
   }  

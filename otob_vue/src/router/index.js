@@ -1,120 +1,85 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
-
 
 Vue.use(VueRouter)
 
-const initProject = (to, from, next) => {
-  // jika project id dari url sebelum dan sesudah berbeda, maka fetch ulang datanya
-  if(from.params.projectId !== to.params.projectId){
-    // store.dispatch('project/fetchProjectData',to.params.projectId)
-    alert('a')
-  }
-  next()
-}
-
-
 export const router = new VueRouter({
   mode: 'history',
-  // base: process.env.BASE_URL,
+  base: process.env.BASE_URL,
   routes: [
     {
+      path: '/products',
+      name: 'ProductCustomer',
+      component: () => import('@/pages/ProductPages')
+    },
+    {
       path: '/',
+      name: 'DirectProductCustomer',
+      component: () => import('@/pages/ProductPages')
+    },
+    {
+      path: '/login',
       name: 'Login',
-      component: () => import('@/pages/main/Login'),
-      meta: {
-        requiredAuth: false
-      }
+      component: () => import('@/pages/CustomPages/LoginPage')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/main/Register')
+      component: () => import('@/pages/CustomPages/RegisterPage')
     },
     {
-      path: '/user',
+      path: '/users',
       name: 'User',
-      component: () => import('@/pages/user/User.vue'),
-      meta: {
-        requiredAuth: true, adminAuth: true, cashierAuth: false, customerAuth: false
-      }
-    },
-    {
-      path: '/thx',
-      name: 'Thanks',
-      component: () => import('@/pages/order/Thanks')
-    },
-    {
-      path: '/product',
-      name: 'Product',
-      component: () => import('@/pages/product/Product.vue'),
-      meta: {
-        requiredAuth: true, adminAuth: true, cashierAuth: false, customerAuth: false
-      }
-    },
-    {
-      path: '/product_cust',
-      name: 'ProductCustomer',
-      component: () => import('@/pages/product/ProductCustomer.vue'),
-      meta: {
-        requiredAuth: true, adminAuth: false, cashierAuth: false, customerAuth: true
-      }
-    },
-    {
-      path: '/orders/approvement/:id',
-      name: 'order-approvement',
-      component: () => import('@/components/order/Approvement.vue'),
-      meta: {
-        requiredAuth: true, adminAuth: false, cashierAuth: true, customerAuth: false
-      }
+      component: () => import('@/pages/User/User.vue')
     },
     {
       path: '/orders',
       name: 'orders',
-      component: () => import('@/components/order/ViewAllOrders.vue'),
-      meta: {
-        requiredAuth: true, adminAuth: false, cashierAuth: true, customerAuth: false
-      }
+      component: () => import('@/pages/Order/ViewAllOrders.vue')
     },
     {
-      path: '/forbidden',
-      name: 'ForbiddenAccess',
-      component: () => import('@/pages/main/ForbiddenAccess.vue')
+      path: '/orders/:id/detail',
+      name: 'orderAprovement',
+      component: () => import('@/pages/Order/Approvement.vue')
     },
     {
-      path: '/page-not-found',
-      name: 'PageNotFound2',
-      component: () => import('@/pages/main/PageNotFound.vue')
+      path: '/orders/customer',
+      name: 'customerOrder',
+      component: () => import('@/pages/Order/Orders.vue')
+    },
+    {
+      path: '/orders/customer/:id/detail',
+      name: 'customer-order-detail',
+      component: () => import('@/pages/Order/CustomerDetail.vue')
+    },
+    {
+      path: '/orders/thank-you/:id',
+      name: 'Thanks',
+      component: () => import('@/pages/Thx-Order')
+    },
+    {
+      path: '/orders/:id/print-note',
+      name: 'PrintNote',
+      component: () => import('@/pages/Nota')
+    },
+    {
+      path: '/not-found',
+      name: 'PageNotFound',
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     },
     {
       path: '*',
-      name: 'PageNotFound',
-      component: () => import('@/pages/main/PageNotFound.vue')
+      name: 'DirectPageNotFound',
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  // const userType = $cookies.get('bazaar-role')  
-  const userType = 'ROLE_ADMIN'
-  const admin = 'ROLE_ADMIN'
-  const cashier = 'ROLE_CASHIER'
-  const customer = 'ROLE_CUSTOMER'
-
-  if(!to.meta.requiredAuth){
-    
-  }
-  if(to.meta.requiredAuth && to.meta.adminAuth && userType == admin) {
-    next()
-  }
-  if(to.meta.requiredAuth && to.meta.cashierAuth && userType == cashier){
-    next()
-  }
-  if(to.meta.requiredAuth && to.meta.customerAuth && userType == customer){
-    next()
-  }
-  if(userType != admin && userType != cashier && userType != customer){
-     
-  }
-  next();
+  document.title = "Blibli Bazaar"
+  
+  // store.dispatch('checkAuthorized')
+  
+  next()
 })
