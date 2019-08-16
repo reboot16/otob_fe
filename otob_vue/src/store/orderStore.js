@@ -103,6 +103,18 @@ export default {
     },
     setCurrentOrder ({commit}, payload) {
       commit('SET_CURRENT_ORDER', payload)
+    },
+    searchOrder ({commit}, textSearch) {
+        if (textSearch === '') {
+            Axios
+                .get(config.API_ORDER)
+                .then(response => {
+                    commit('SET_ORDERS', response.data.data)
+                })
+        } else {
+            Axios
+                .get(config.API_ORDER+'/'+textSearch+'/search')
+        }
     }
   }
 }

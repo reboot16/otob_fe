@@ -24,7 +24,7 @@
 		},
 		watch: {
 			searchText () {
-				this.doSearch
+				this.doSearch()
 			}
 		}
 	}

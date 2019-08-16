@@ -7,12 +7,11 @@
 						<span>Riwayat Pesanan Anda</span>
 					</div>
 				</div>
-				<div class="col-sm-12">
+				<div class="col-sm-12 search">
 					<search-order></search-order>
 				</div>
 				<div class="col-sm-12">
 					<div class="filter">
-
 						<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 
 							<thead>
@@ -86,5 +85,9 @@
 		margin-top: 10px;
 		max-width: 90%;
 		padding: 10px;
+	}
+	.search {
+		margin: auto;
+		max-width: 90%;
 	}
 </style>

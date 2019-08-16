@@ -16,10 +16,8 @@ export default {
         };
     },
     computed: {
-        getOrders () {
-            let par = ''
-            par = this.$route.params.id
-            this.orders = this.$store.getters.getOrderById(par);
+        orderDetail () {
+            return this.$store.getters.getOrderDetail
         }
     },
     methods: {
@@ -33,7 +31,8 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('searchOrderByUserId')
-        this.getOrders();
+        let par = ''
+        par = this.$route.params.id
+        this.$store.dispatch('getOrderByOrderId', par)
     }
 }

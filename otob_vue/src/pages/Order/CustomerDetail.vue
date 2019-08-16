@@ -13,28 +13,28 @@
                             <tr class="col-sm-12">
                                 <td>
                                     <span class="label">Nomor Pesanan:</span><br>
-                                    <span class="value">{{orders.orderId}}</span>
+                                    <span class="value">{{orderDetail.orderId}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Tanggal Transaksi:</span><br>
-                                    <span class="value">{{orders.ordDate}}</span>
+                                    <span class="value">{{orderDetail.ordDate}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Jumlah Pesanan:</span><br>
-                                    <span class="value">{{orders.totItem}}</span>
+                                    <span class="value">{{orderDetail.totItem}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Total Harga:</span><br>
-                                    <span class="value">Rp {{orders.totPrice}}</span>
+                                    <span class="value"> {{ getFormattedCurrency (orderDetail.totPrice) }}</span>
                                 </td>
                                 <td>
                                     <span class="label">Status:</span><br>
-                                    <span class="status-waiting" v-show="orders.ordStatus === 'Waiting'">{{orders.ordStatus}}</span>
-                                    <span class="status-rej" v-show="orders.ordStatus === 'Rejected'">{{orders.ordStatus}}</span>
-                                    <span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
+                                    <span class="status-waiting" v-show="orderDetail.ordStatus === 'Waiting'">{{orderDetail.ordStatus}}</span>
+                                    <span class="status-rej" v-show="orderDetail.ordStatus === 'Rejected'">{{orderDetail.ordStatus}}</span>
+                                    <span class="status-acc" v-show="orderDetail.ordStatus === 'Accepted'">{{orderDetail.ordStatus}}</span>
                                 </td>
-                                <td v-show="orders.ordStatus === 'Accepted'">
-                                    <button class="print-nota" v-on:click="printNota(orders.orderId)">
+                                <td v-show="orderDetail.ordStatus === 'Accepted'">
+                                    <button class="print-nota" v-on:click="printNota(orderDetail.orderId)">
                                         <i class="fa fa-print"></i>
                                         Print Nota
                                     </button>
@@ -52,17 +52,17 @@
                                 <th width="30%">Nama Produk</th>
                                 <th width="15%">Jumlah</th>
                                 <th width="25%">Harga Satuan</th>
-                                <th width="25%"> Harga Total</th>
+                                <th width="25%"> Harga Keseluruhan</th>
                             </tr>
                             </thead>
 
                             <tbody class="scrollContentCart">
-                            <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
+                            <tr ref="listItemCart" class="col-sm-12" v-if="orderDetail.ordItems.length != 0" v-for="(item, index) in orderDetail.ordItems" :key="index" >
                                 <td width="5%"><b>{{ index+1 }}</b></td>
                                 <td width="30%">{{ item.name }}</td>
                                 <td width="15%">{{ item.qty }}</td>
-                                <td width="25%">Rp {{ item.offerPrice }}</td>
-                                <td width="25%">Rp {{item.qty * item.productPrice}}</td>
+                                <td width="25%"> {{ getFormattedCurrency (item.offerPrice) }}</td>
+                                <td width="25%"> {{ getFormattedCurrency (item.qty * item.offerPrice) }}</td>
                             </tr>
 
                             <tr class="col-sm-12" v-else>
@@ -78,7 +78,7 @@
     </div>
 </template>
 
-<script src="./Approvement.js"></script>
+<script src="./CustomerDetail.js"></script>
 
 <style scoped>
     .block{
