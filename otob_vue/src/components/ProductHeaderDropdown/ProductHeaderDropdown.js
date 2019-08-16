@@ -1,60 +1,65 @@
- export default {
-    name: 'product-header-button',
-    components: {
-    },
-    data () {
-        return {
-            form: {
-                name: '',
-                description: '',
-                listPrice: '',
-                offerPrice: '',
-                stock: ''
-            },
-            file: '',
-        }
-    },
-    mounted () {
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
 
-    },
-    computed: {
-
-    },
-    methods: {
-        showModalAdd () { 
-            this.$bvModal.show('modalProductForm')
-        },
-        showModalBatch () { 
-            this.$bvModal.show('modalBatchUpload')
-        },
-        onHandleSubmit (event) {
-            let data = this.form
-            this.form = ''
-            this.onSubmit(data)
-
-            event.preventDefault()
-        },
-        onSubmit (data) {
-            this.$store.dispatch('addProduct', data)
-            this.$refs.modalProductForm.hide()
-        },
-        onUpload: function(event){
-            let formData = new FormData();
-            formData.append('file', this.file);
-
-            this.$store.dispatch('uploadProduct', formData)
-            event.preventDefault()
-            this.$refs.modalBatchUpload.hide()
-        },
-        onChangeFileUpload: function(){
-            this.file = this.$refs.file.files[0];
-        },
-        close () {
-            this.close();
-        },
-        onReset () {
-            this.$refs.form.reset()
-        }
+export default {
+  name: 'header-dropdown',
+  components: {
+    CustomModal
+  },
+  data () {
+    return {
+      form: {
+        name: '',
+        description: '',
+        listPrice: '',
+        offerPrice: '',
+        stock: ''
+      },
+      file: '',
+      showModalAdd: false,
+      showModalBatch: false
     }
+  },
+  mounted () {
+
+  },
+  computed: {
+
+  },
+  methods: {
+    onShowModal () {
+      this.showModalAdd = true
+    },
+    onShowModalBatch () {
+      this.showModalBatch = true
+    },
+    onHandleSubmit () {
+      let product = this.form
+      this.onSubmit(product)
+    },
+    onSubmit (product) {
+      this.showModalAdd = false
+      this.$store.dispatch('addProduct', product)
+  
+      this.resetForm()
+    },
+    onHandleUpload (event){
+      let formData = new FormData();
+      formData.append('file', this.file);
+      this.onUpload(formData)
+    },
+    onChangeFileUpload (){
+        this.file = this.$refs.file.files[0];
+    },
+    onUpload (formData) {
+      this.showModalBatch = false
+      this.$store.dispatch('uploadProduct', formData)
+    },
+    onReset () {
+      this.$refs.form.reset()
+    },
+    resetForm () {
+      this.form = ''
+    }
+  }
 
 }

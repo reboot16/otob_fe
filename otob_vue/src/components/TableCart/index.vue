@@ -1,135 +1,73 @@
 <template> 
-  <div name="Cart">  
-    <div class="row" style="margin-bottom: 0.5em">
-      <div class="col-sm-6">
-        <h3>My Cart</h3>
-      </div>
-      <div class="col-sm-6" style="text-align:right">
-        <button class="btn btn-primary" @click="onOrder">Order Now</button>
-      </div>
-    </div>
-
-    <div class="tableContainer">
-      <table width="100%" class="table table-hover table-striped table-scroll small-first-col" style="table-layout: fixed;">
-
-      <thead class="fixedHeader"  style="background-color:white">
-          <tr class="col-sm-12">
-            <th width="4%">#</th>
-            <th width="25%">Name</th>
-            <th width="25%">Price</th>
-            <th width="25%">Quantity</th>
-            <th width="20%"> Action</th>
-          </tr>
-        </thead>
-
-        <tbody class="scrollContentCart" style="background-color:white">
-          <tr class="col-sm-12" v-for="(product, index) in listItemCart" :key="index" >
-            <td width="4%"><b>{{ index+1 }}</b></td>
-            <td width="25%">{{ product.productName }}</td>
-            <td width="25%">{{ product.productPrice }}</td>
-            <td  width="25%">
-              <div class="quantity-toggle">
-                <button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-primary">&mdash;</button>
-                <input type="text" :value="product.qty" readonly>
-                <button @click="increment(product, index)" :disabled="incDisable(product)" class="btn btn-primary">&#xff0b;</button>
-              </div>
-            </td>
-            <td width="20%">
-              <b-link @click="onDelete(product, index)" style="color:red" >Delete</b-link>
+  <div name="TableCart">
+      <table width="100%" class="table">
+        <tbody>
+          <tr v-for="(product, index) in listItemCart" :key="index"  style="display: flex">
+            <td class="col-sm-8">{{ product.productName }}</td>
+            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ getFormattedCurrency (product.productPrice) }}</td>
+            <td class="col-sm-2" style="display: flex;">
+              <ModifyCart :product="product" :index="index"/>
+<!--              <div  style="display: flex">-->
+<!--                <div class=" qty">-->
+<!--                  <button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>-->
+<!--                  <input type="text" :value="product.qty" readonly class="input-gray">-->
+<!--                  <button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <button @click="onDelete(product, index)"-->
+<!--                style="padding:0.1em 0.5em; color:white; font-size: 18px; margin-left: 3px"-->
+<!--                class="btn btn-red">-->
+<!--                <i class="fa fa-trash"></i>-->
+<!--              </button>-->
             </td>
           </tr>
         </tbody>
+      </table>
 
-      </table> 
-    </div>
+      <div class="row" style="margin-bottom: 0.5em">
+        <div class="col-sm-10" style="text-align:right">
+          <div style="font-size: 13px">Total Belanja <b> ({{ countOfItem }}) </b></div>
+          <span class="color-orange checkout-price"> {{ getFormattedCurrency(sumOfPrice) }}</span>
+        </div>
+        <div class="col-sm-2" style="text-align:right" >
+          <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)" width="100%">Order Now</button>
+        </div>
+      </div>
 
+      <CustomAlert v-if="showModalAlert"
+         @close="showModalAlert=false"
+         @continue="continueCheckout" >
+        <div slot="alert-name">
+          Are you sure to continue the checkout process ?
+        </div>
+      </CustomAlert>
   </div> 
  
 </template>
 
-<style scoped>
-  .table-scroll{
-    /*width:100%; */
-    display: block;
-    empty-cells: show;
-
-    /* Decoration */
-    border-spacing: 0;
-    border: 1px solid;
-  }
-
-  .table-scroll thead{
-    /*background-color: #f1f1f1;*/
-    position:relative;
-    display: block;
-    width:100%;
-    overflow-y: scroll;
-  }
-
-  .table-scroll tbody{
-    /* Position */
-    display: block; position:relative;
-    width:100%; overflow-y:scroll;
-    /* Decoration */
-    border-top: 1px solid rgba(0,0,0,0.2);
-  }
-
-  .table-scroll tr{
-    width: 100%;
-    display:flex;
-  }
-
-  .table-scroll td,.table-scroll th{
-    flex-basis:100%;
-    flex-grow:2;
-    display: block;
-    padding: 1rem;
-    text-align:left;
-  }
-
-  /* Other options */
-
-  .table-scroll.small-first-col td:first-child,
-  .table-scroll.small-first-col th:first-child{
-    flex-basis:20%;
-    flex-grow:1;
-  }
-
-  .table-scroll tbody tr:nth-child(2n){
-    /*background-color: rgba(130,130,170,0.1);*/
-  }
-h5 {
-  text-align: center;
-}
-img{
-  height:30px; 
-  border-radius:50%; 
-  border:1px solid #999999; 
-  padding:0.1em;
-}
-tr td a{
-  font-size: 14px;
-  color:#0096D9;
-}
-
-.quantity-toggle {
-  display: flex;
-}
-
-.quantity-toggle input {
-    border: 0;
-    border-top: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
-    width: 2em;
-    text-align: center;
-    padding: 0.1em;
-}
-.quantity-toggle button {
-    border: 2px solid #ddd;
-    padding: .25em .5em .25em .5em;
-    font-size: 0.75em;
-    cursor: pointer;
-} 
-</style>
-
 <script src="./TableCart.js"></script>
+
+<style scoped>
+  .checkout-price{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .item-price{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .cart-price{
+    font-size: 18px;
+  }
+
+  span {
+    color: #929292;
+  }
+
+  .btn-orange {
+    height: 50px;
+    border-radius: 0.5em;
+  }
+</style>

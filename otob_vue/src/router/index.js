@@ -1,84 +1,85 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
-
 
 Vue.use(VueRouter)
 
-// const initProject = (to, from, next) => {
-//   // jika project id dari url sebelum dan sesudah berbeda, maka fetch ulang datanya
-//   if(from.params.projectId !== to.params.projectId){
-//     store.dispatch('project/fetchProjectData',to.params.projectId)
-//   }
-//   next()
-// }
-
-
 export const router = new VueRouter({
   mode: 'history',
-  // base: process.env.BASE_URL,
+  base: process.env.BASE_URL,
   routes: [
     {
+      path: '/products',
+      name: 'ProductCustomer',
+      component: () => import('@/pages/ProductPages')
+    },
+    {
       path: '/',
+      name: 'DirectProductCustomer',
+      component: () => import('@/pages/ProductPages')
+    },
+    {
+      path: '/login',
       name: 'Login',
-      component: () => import('@/pages/main/Login')
+      component: () => import('@/pages/CustomPages/LoginPage')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/main/Register')
+      component: () => import('@/pages/CustomPages/RegisterPage')
     },
     {
-      path: '/user',
+      path: '/users',
       name: 'User',
-      component: () => import('@/pages/user/User.vue')
-    },
-    {
-      path: '/thx',
-      name: 'Thanks',
-      component: () => import('@/pages/order/Thanks')
-    },
-    {
-      path: '/product',
-      name: 'Product',
-      component: () => import('@/pages/product/Product.vue')
-    },
-    {
-      path: '/product_cust',
-      name: 'ProductCustomer',
-      component: () => import('@/pages/product/ProductCustomer.vue')
-    },
-    {
-      path: '/test',
-      name: 'ProdCust',
-      component: () => import('@/components/TableProductCustomer')
-    },
-    {
-      path: '/button',
-      name: 'ProdCustHeader',
-      component: () => import('@/components/ProductModifyDropdown')
-    },
-    {
-      path: '/orders/approvement/:id',
-      name: 'order-approvement',
-      component: () => import('@/components/order/Approvement.vue')
+      component: () => import('@/pages/User/User.vue')
     },
     {
       path: '/orders',
       name: 'orders',
-      component: () => import('@/components/order/ViewAllOrders.vue')
+      component: () => import('@/pages/Order/ViewAllOrders.vue')
+    },
+    {
+      path: '/orders/:id/detail',
+      name: 'orderAprovement',
+      component: () => import('@/pages/Order/Approvement.vue')
     },
     {
       path: '/orders/customer',
       name: 'customerOrder',
-      component: () => import('@/pages/order/Orders.vue')
+      component: () => import('@/pages/Order/Orders.vue')
+    },
+    {
+      path: '/orders/customer/:id/detail',
+      name: 'customer-order-detail',
+      component: () => import('@/pages/Order/CustomerDetail.vue')
+    },
+    {
+      path: '/orders/thank-you/:id',
+      name: 'Thanks',
+      component: () => import('@/pages/Thx-Order')
+    },
+    {
+      path: '/orders/:id/print-note',
+      name: 'PrintNote',
+      component: () => import('@/pages/Nota')
+    },
+    {
+      path: '/not-found',
+      name: 'PageNotFound',
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
+    },
+    {
+      path: '*',
+      name: 'DirectPageNotFound',
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
 })
 
-// redirect to login if not logged in
 router.beforeEach((to, from, next) => {
-  //redirect to login if not logged in and trying to access restricted page
-  // http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example#loginpage-vue
+  document.title = "Blibli Bazaar"
   
-  next();
+  // store.dispatch('checkAuthorized')
+  
+  next()
 })
