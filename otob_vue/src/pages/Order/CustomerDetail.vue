@@ -59,9 +59,9 @@
                             <tbody class="scrollContentCart">
                             <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
                                 <td width="5%"><b>{{ index+1 }}</b></td>
-                                <td width="30%">{{ item.productName }}</td>
+                                <td width="30%">{{ item.name }}</td>
                                 <td width="15%">{{ item.qty }}</td>
-                                <td width="25%">Rp {{ item.productPrice }}</td>
+                                <td width="25%">Rp {{ item.offerPrice }}</td>
                                 <td width="25%">Rp {{item.qty * item.productPrice}}</td>
                             </tr>
 
@@ -78,47 +78,7 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: "Approvement",
-        props: {
-            'auth': ''
-        },
-        data(){
-            return{
-                orders: [],
-                products: {
-                    products_id: 0,
-                    products_name: '',
-                    jumlah: 0,
-                    harga: 0,
-                    status: '',
-                },
-            };
-        },
-        computed: {
-            getOrders () {
-                let par = ''
-                par = this.$route.params.id
-                this.orders = this.$store.getters.getOrderById(par);
-            }
-        },
-        methods: {
-            getOrders(){
-                let par = ''
-                par = this.$route.params.id
-                this.orders = this.$store.getters.getOrderById(par);
-            },
-            printNota (id) {
-                this.$router.push('/orders/'+id+'/print-note')
-            }
-        },
-        mounted() {
-            this.$store.dispatch('getOrders')
-            this.getOrders();
-        }
-    }
-</script>
+<script src="./Approvement.js"></script>
 
 <style scoped>
     .block{

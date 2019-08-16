@@ -15,7 +15,7 @@
 									<filter-order v-on:doFilter="doFilter"></filter-order>
 							</div>
 						</div>
-						<div class="col-sm-12">
+							<div class="col-sm-12">
 							<div class="filter">
 								<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 
@@ -35,19 +35,19 @@
 										<tr ref="listItemCart" class="col-sm-12" v-if="listOfOrder.length != 0" v-for="(order, index) in listOfOrder" :key="index" >
 												<td width="4%"><b>{{ index+1 }}</b></td>
 												<td width="20%">{{ order.orderId }}</td>
-												<td width="17%">{{ order.ordDate }}</td>
+												<td width="17%">{{ formatDate (order.ordDate) }}</td>
 												<td  width="11%" style="text-align: center">{{ order.totItem }}</td>
-												<td width="20%">Rp {{ order.totPrice }}</td>
-												<td width="8%" class="status-pending" v-show="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
-												<td width="8%" class="status-acc" v-show="order.ordStatus === 'Accepted'">{{ order.ordStatus }}</td>
-												<td width="8%" class="status-rej" v-show="order.ordStatus === 'Rejected'">{{ order.ordStatus }}</td>
+												<td width="20%">{{ getFormattedCurrency (order.totPrice) }}</td>
+												<td width="8%" class="status-pending" v-if="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
+												<td width="8%" class="status-acc" v-if="order.ordStatus === 'Accepted'">{{ order.ordStatus }}</td>
+												<td width="8%" class="status-rej" v-if="order.ordStatus === 'Rejected'">{{ order.ordStatus }}</td>
 												<td width="10%">
 														<b-button
 																		variant="outline-info"
 																		size="sm"
 																		v-on:click="viewDetail(order.orderId)"
 																		class="mr-2">
-																<icon name="eye" scale="1"></icon> Detail
+															Detail
 														</b-button>
 												</td>
 										</tr>
@@ -66,50 +66,7 @@
     </div>
 </template>
 
-<script>
-    import FilterOrder from '@/components/FilterOrder'
-    import SearchOrder from '@/components/SearchOrder'
-    export default {
-        name: "ViewAllOrders",
-        props: {
-            'auth': ''
-        },
-        components: {FilterOrder, SearchOrder},
-        data(){
-            return{
-                listOrders: [],
-                format: "dd MM yyyy",
-                filters: '',
-            }
-        },
-		computed: {
-			listOfOrder () {
-				return this.$store.getters.ORDERS
-			}
-		},
-        methods:{
-            getAllOrders()
-            {
-                this.listOrders = this.$store.getters.ORDERS;
-            },
-            viewDetail(id){
-                this.$router.push('orders/'+id+'/detail')
-            },
-            doFilter(value) {
-                this.listOrders =  this.$store.getters.getOrderByStatus(value)
-            },
-            doSearch(value) {
-                this.listOrders =  this.$store.getters.getOrderById(value)
-            }
-        },
-        mounted() {
-            // if(this.auth.isCashier == false){
-            //     this.$router.push('/forbidden')
-            // }
-            this.$store.dispatch('getOrders')
-        }
-    }
-</script>
+<script src="./ViewAllOrders.js"></script>
 
 <style scoped>
     .block{

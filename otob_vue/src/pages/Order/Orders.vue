@@ -18,10 +18,11 @@
 							<thead>
 							<tr class="col-sm-12">
 								<th width="4%">No</th>
-								<th width="25%">Order Number</th>
-								<th width="20%">Order Date</th>
+								<th width="20%">Order Number</th>
+								<th width="17%">Order Date</th>
 								<th width="11%">Total Items</th>
 								<th width="20%"> Total Price</th>
+								<th width="8%"> Status</th>
 								<th width="10%"> Action</th>
 							</tr>
 							</thead>
@@ -29,10 +30,11 @@
 							<tbody class="scrollContentCart">
 							<tr ref="listItemCart" class="col-sm-12" v-if="orders.length != 0" v-for="(order, index) in orders" :key="index" >
 								<td width="4%"><b>{{ index+1 }}</b></td>
-								<td width="30%">{{ order.orderId }}</td>
-								<td width="20%">{{ order.ordDate }}</td>
+								<td width="20%">{{ order.orderId }}</td>
+								<td width="17%">{{ formatDate (order.ordDate) }}</td>
 								<td  width="11%" style="text-align: center">{{ order.totItem }}</td>
 								<td width="20%">Rp {{ order.totPrice }}</td>
+								<td width="8%">{{ order.ordStatus }}</td>
 								<td width="10%">
 									<b-button
 											variant="outline-info"

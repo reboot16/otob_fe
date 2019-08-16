@@ -1,4 +1,5 @@
 import SearchOrder from '@/components/SearchOrder'
+import moment from 'moment'
 
 export default {
     name: 'Orders',
@@ -24,6 +25,11 @@ export default {
         doSearch (value) {
             this.filters = value
         },
+        formatDate (date) {
+            let newDate = ''
+            newDate += ''+moment(date).format('DD MMM YYYY (h:mm)')
+            return newDate
+        }
 
     },
     mounted() {

@@ -39,7 +39,7 @@ export const router = new VueRouter({
     },
     {
       path: '/orders/:id/detail',
-      name: 'orderAprovement',
+      name: 'order_approvement',
       component: () => import('@/pages/Order/Approvement.vue')
     },
     {

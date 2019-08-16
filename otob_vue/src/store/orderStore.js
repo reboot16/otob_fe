@@ -6,7 +6,8 @@ export default {
     currentOrder: {
       order: {},
       outOfStockProducts: []
-    }
+    },
+    orderDetail: {}
   },
   getters : {
     ORDERS : state => {
@@ -24,6 +25,9 @@ export default {
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
+    },
+    getOrderDetail: (state) => {
+      return state.orderDetail
     }
   },
   mutations: {
@@ -37,7 +41,7 @@ export default {
       state.orders[payload.index] = payload
     },
     GET_ORDER_BY_ID : (state, payload) => {
-      state.orders = payload
+      state.orderDetail = payload
     },
     SET_CURRENT_ORDER: (state, payload) => [
       state.currentOrder = payload
@@ -82,7 +86,7 @@ export default {
       Axios
           .get(config.API_ORDER+'/'+ orderId + '/search')
           .then(response => {
-            commit('GET_ORDER_BY_ID', orderId)
+            commit('GET_ORDER_BY_ID', response.data.data)
           })
           .catch((e) => {
             console.log(e)

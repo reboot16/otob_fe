@@ -13,25 +13,25 @@
                             <tr class="col-sm-12">
                                 <td>
                                     <span class="label">Nomor Pesanan:</span><br>
-                                    <span class="value">{{orders.orderId}}</span>
+                                    <span class="value">{{orderDetail.orderId}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Tanggal Transaksi:</span><br>
-                                    <span class="value">{{orders.ordDate}}</span>
+                                    <span class="value">{{ formatDate (orderDetail.ordDate) }}</span>
                                 </td>
                                 <td>
                                     <span class="label">Jumlah Pesanan:</span><br>
-                                    <span class="value">{{orders.totItem}}</span>
+                                    <span class="value">{{orderDetail.totItem}}</span>
                                 </td>
                                 <td>
                                     <span class="label">Total Harga:</span><br>
-                                    <span class="value">Rp {{orders.totPrice}}</span>
+                                    <span class="value">{{ getFormattedCurrency (orderDetail.totPrice) }}</span>
                                 </td>
                                 <td>
                                     <span class="label">Status:</span><br>
-                                    <span class="status-waiting" v-show="orders.ordStatus === 'Waiting'">{{orders.ordStatus}}</span>
-                                    <span class="status-rej" v-show="orders.ordStatus === 'Rejected'">{{orders.ordStatus}}</span>
-                                    <span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
+                                    <span class="status-waiting" v-show="orderDetail.ordStatus === 'Waiting'">{{orderDetail.ordStatus}}</span>
+                                    <span class="status-rej" v-show="orderDetail.ordStatus === 'Rejected'">{{orderDetail.ordStatus}}</span>
+                                    <span class="status-acc" v-show="orderDetail.ordStatus === 'Accepted'">{{orderDetail.ordStatus}}</span>
                                 </td>
                             </tr>
                         </table>
@@ -51,12 +51,12 @@
                             </thead>
 
                             <tbody class="scrollContentCart">
-                            <tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
+                            <tr ref="listItemCart" class="col-sm-12" v-if="orderDetail.ordItems.length != 0" v-for="(item, index) in orderDetail.ordItems" :key="index" >
                                 <td width="5%"><b>{{ index+1 }}</b></td>
-                                <td width="30%">{{ item.productName }}</td>
+                                <td width="30%">{{ item.name }}</td>
                                 <td width="15%">{{ item.qty }}</td>
-                                <td width="25%">Rp {{ item.productPrice }}</td>
-                                <td width="25%">Rp {{item.qty * item.productPrice}}</td>
+                                <td width="25%">{{ getFormattedCurrency (item.offerPrice) }}</td>
+                                <td width="25%">{{ getFormattedCurrency (item.qty * item.offerPrice)}}</td>
                             </tr>
 
                             <tr class="col-sm-12" v-else>
@@ -67,20 +67,20 @@
                         </table>
                     </div>
                     <div class="col-sm-12 row" style="margin-top: 20px;">
-                        <div v-if="orders.ordStatus === 'Waiting'">
+                        <div v-if="orderDetail.ordStatus === 'Waiting'">
                             <b-button
                                     variant="success"
                                     class="mr-2"
-                                    v-on:click="confirm(orders.orderId)"
+                                    v-on:click="confirm(orderDetail.orderId)"
                             >
                                 Accepted
                             </b-button>
                         </div>
-                        <div v-if="orders.ordStatus === 'Waiting'">
+                        <div v-if="orderDetail.ordStatus === 'Waiting'">
                             <b-button
                                     variant="danger"
                                     class="mr-2"
-                                    v-on:click="reject(orders.orderId)"
+                                    v-on:click="reject(orderDetail.orderId)"
                             >
                                 Reject
                             </b-button>
@@ -92,65 +92,7 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: "Approvement",
-        props: {
-            'auth': ''
-        },
-        data(){
-            return{
-                orders: [],
-                products: {
-                    products_id: 0,
-                    products_name: '',
-                    jumlah: 0,
-                    harga: 0,
-                    status: '',
-                },
-            };
-        },
-        computed: {
-            getOrders () {
-                let par = ''
-                par = this.$route.params.id
-                this.orders = this.$store.getters.getOrderById(par);
-            }
-        },
-        methods: {
-            updateProductStatus(status, index){
-                this.products = this.orders.ordItem[index-1];
-                this.products.status = status;
-                try {
-                    this.$store.dispatch('updateStatusProduct',this.products);
-                }
-                catch(e)
-                {
-                    alert(e);
-                }
-            },
-            confirm(id){
-                let orderReq = []
-                orderReq = this.$store.getters.getOrderById(id);
-                return this.$store.dispatch('acceptOrders', orderReq)
-            },
-            reject(id){
-                let orderReq = []
-                orderReq = this.$store.getters.getOrderById(id);
-                return this.$store.dispatch('rejectOrders', orderReq)
-            },
-            getOrders(){
-                let par = ''
-                par = this.$route.params.id
-                this.orders = this.$store.getters.getOrderById(par);
-            }
-        },
-        mounted() {
-            this.$store.dispatch('getOrders')
-            this.getOrders();
-        }
-    }
-</script>
+<script src="./Approvement.js"></script>
 
 <style scoped>
     .block{
@@ -193,6 +135,7 @@
     .value {
         color: black;
         font-size: 1rem;
+        font-weight: bold;
     }
     .status-acc {
         color: forestgreen;
