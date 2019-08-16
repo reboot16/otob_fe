@@ -1,4 +1,4 @@
-import CustomModal from '@/components/CustomModal/CustomModal.vue'
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
 
 export default {
     name: 'User',

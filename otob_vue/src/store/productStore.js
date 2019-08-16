@@ -3,11 +3,15 @@ import Axios from 'axios'
 export default {
   state: {
     products: [],
+    totalPages: 0
   },
   getters : {
     PRODUCTS  : state => {
       return state.products;
     },
+    TOTAL_PAGES : state => {
+      return state.totalPages
+    }
   },
   mutations: { 
     SET_PRODUCT : (state, payload) => {
@@ -28,20 +32,39 @@ export default {
     UPLOAD_PRODUCT : (state, payload) => {
       state.products.push(payload)
     },
+    SET_TOTAL_PAGES : (state, payload) => {
+      state.totalPages = payload
+    }
   },
   actions : {
-    getProducts  ({commit}) {  
+    getProducts  ({commit}) {
+      console.log(config.API_PRODUCT)
       Axios
         .get(config.API_PRODUCT)
         .then(response => {
-          response.data.data.map(function(product) {
-            product.qty = 1
-          });
-          commit('SET_PRODUCT', response.data.data)
+          console.log(response.data.data.products)
+          let result = response.data.data
+          commit('SET_PRODUCT', result.products)
+          commit('SET_TOTAL_PAGES', result.totalPage)
         })
         .catch((e) => {
           console.error(e)
         }); 
+    },
+    getProductsPageable ({commit}, payload) {
+      Axios
+        .get(config.API_PRODUCT + '?page=' + payload.page + '&size=' + payload.size)
+        .then(response => {
+          let result = response.data.data
+          result.products.map(function(product) {
+            product.qty = 1
+          });
+          commit('SET_PRODUCT', result.products)
+          commit('SET_TOTAL_PAGES', result.totalPage)
+        })
+        .catch((e) => {
+          console.error(e)
+        });
     },
     addProduct ({commit}, payload) {
       Axios
@@ -52,9 +75,9 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('ADD_PRODUCT', payload)
-            alert('Success add data')
+            console.log('add product: success')
           }else{
-            alert('access denied')
+            console.log('add product: failed')
           }
         })
         .catch((e) => {
@@ -71,16 +94,17 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('UPDATE_PRODUCT', payload)
-            alert('Success update data')
+            console.log('upd product: success')
           }else{
-            alert('access denied')
+            console.log('upd product: failed')
           }
         })
         .catch((e) => {
           console.error(e) 
         }); 
     },
-    deleteProduct ({commit}, payload) {  
+    deleteProduct ({commit}, payload) {
+      console.log(config.API_PRODUCT + '/' + payload.productId)
       Axios
         .delete(config.API_PRODUCT + '/' + payload.productId)
         .then(response => {
@@ -95,26 +119,42 @@ export default {
           console.error(e) 
         }); 
     },
-    searchProduct({commit}, textSearch){
+    searchProduct({commit, dispatch}, textSearch){
       if(textSearch == ''){
         Axios
           .get(config.API_PRODUCT)
           .then(response => {
-            response.data.data.map(function(product) {
+            let result = response.data.data
+            result.products.map(function(product) {
               product.qty = 1
             });
-            commit('SET_PRODUCT', response.data.data)
+            commit('SET_PRODUCT', result.products)
+            commit('SET_TOTAL_PAGES', result.totalPage)
           })
       }else{
         Axios
           .get(config.API_PRODUCT + '/name/' + textSearch)
           .then(response => {
-            response.data.data.map(function(product) {
+            let result = response.data.data
+            result.products.map(function(product) {
               product.qty = 1
             });
-            commit('SET_PRODUCT', response.data.data)
+            commit('SET_PRODUCT', result.products)
+            commit('SET_TOTAL_PAGES', result.totalPage)
           })
-      } 
+      }
+    },
+    searchProductPageable ({commit}, payload){
+      Axios
+        .get(config.API_PRODUCT + '/name/' + payload.textSearch + '?page=' + payload.page + '&size=' + payload.size)
+        .then(response => {
+          let result = response.data.data
+          result.products.map(function(product) {
+            product.qty = 1
+          });
+          commit('SET_PRODUCT', result.products)
+          commit('SET_TOTAL_PAGES', result.totalPage)
+        })
     },
     uploadProduct({commit}, payload){ 
       Axios
