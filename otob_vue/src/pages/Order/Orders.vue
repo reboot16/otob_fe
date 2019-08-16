@@ -32,12 +32,8 @@
 							<td class="col-sm-1" style="text-align: center">{{ order.totItem }}</td>
 							<td class="col-sm-2">Rp {{ order.totPrice }}</td>
 							<td class="col-sm-2">
-								<b-button
-										variant="outline-info"
-										size="sm"
-										v-on:click="viewDetail(order.orderId)"
-										class="mr-2">
-									<icon name="eye" scale="1"></icon>Details
+								<b-button variant="outline-info" size="sm" v-on:click="viewDetail(order.orderId)" class="mr-2">
+									Details
 								</b-button>
 							</td>
 						</tr>

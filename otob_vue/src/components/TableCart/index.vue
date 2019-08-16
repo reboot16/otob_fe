@@ -3,8 +3,8 @@
       <table width="100%" class="table">
         <tbody>
           <tr v-for="(product, index) in listItemCart" :key="index"  style="display: flex">
-            <td class="col-sm-8">{{ product.productName }}</td>
-            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ getFormattedCurrency (product.productPrice) }}</td>
+            <td class="col-sm-8">{{ product.name }}</td>
+            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ getFormattedCurrency (product.offerPrice) }}</td>
             <td class="col-sm-2" style="display: flex;">
               <ModifyCart :product="product" :index="index"/>
 <!--              <div  style="display: flex">-->

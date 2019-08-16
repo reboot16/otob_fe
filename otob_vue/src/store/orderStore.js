@@ -78,24 +78,15 @@ export default {
             console.error(e)
           });
     },
-    getOrderByOrderId ({commit}, orderId) {
-      Axios
-          .get(config.API_ORDER+'/'+ orderId + '/search')
-          .then(response => {
-            commit('GET_ORDER_BY_ID', orderId)
-          })
-          .catch((e) => {
-            console.log(e)
-          })
-    },
     searchOrderByUserId ({commit}, payload) {
       Axios
-          .get(config.API_ORDER+'/user')
-          .then(response => {
-            commit('SET_ORDERS', response.data.data)
-      }).catch((e) => {
-        console.error(e)
-      })
+        .get(config.API_ORDER+'/user')
+        .then(response => {
+          console.log(response)
+          commit('SET_ORDERS', response.data.data)
+        }).catch((e) => {
+          console.error(e)
+        })
     },
     async setCurrentOrder ({commit}, payload) {
       await commit('SET_CURRENT_ORDER', payload)

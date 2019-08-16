@@ -7,25 +7,44 @@ export default {
       userId: '',
       userRole: ''
     },
-    doNeedLogout: false
+    isValid: false
   },
   getters : {
     isAuthorized: state => {
       return state.isAuthorized
     },
-    doNeedLogout: state => {
-      return state.doNeedLogout
+    isValid: state => {
+      return state.isValid
     }
   },
   mutations: { 
     SET_AUTH : (state, payload) => {
       state.isAuthorized = payload
     },
-    SET_DO_NEED_LOGOUT: (state, payload) => {
-      state.doNeedLogout = payload
+    SET_IS_VALID: (state, payload) => {
+      state.isValid = payload
     }
   },
   actions : {
+    async validateClient({commit, dispatch}){
+      await Axios
+        .get(config.API_PRODUCT)
+        .then(response => {
+          if(response.data.data.message == 'Invalid client'){
+            dispatch('setValidate', false)
+          }
+          else{
+            dispatch('setValidate', true)
+          }
+        }).catch((e) => {
+          dispatch('setValidate', false)
+        })
+    },
+    async setValidate ({commit}, payload) {
+      console.log('set valid')
+      console.log(payload)
+      await commit('SET_IS_VALID', payload)
+    },
     async checkAuthorized({commit, dispatch}){
       let isLoginExist = $cookies.isKey(config.key_login)
       let isIdExist = $cookies.isKey(config.key_id)
@@ -70,30 +89,16 @@ export default {
         })
     },
     doLogout({commit, dispatch}) {
+      console.log('syudah logout')
       Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
-          
-          if(response.data.code == 200){
-            console.log('ini logout')
-            console.log(response)
-  
-            let isAuthorized = {
-              isLogin: false,
-              userId: '',
-              userRole: ''
-            }
-            commit('SET_AUTH', isAuthorized)
+          let payload = {
+            isLogin: false,
+            userId: '',
+            userRole: ''
           }
-          
-          // dispatch('checkAuthorized')
-          // console.log(response)
-          // if(response.data.code ==  200){
-          //   dispatch('removeCookie')
-          //   // alert('Already logout')
-          // }else{
-          //   // alert("You're still not login")
-          // }
+          commit('SET_AUTH', payload)
         }).catch((e) => {
           console.log(e)
         })

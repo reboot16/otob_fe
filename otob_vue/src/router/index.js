@@ -79,7 +79,16 @@ export const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   document.title = "Blibli Bazaar"
   
-  // store.dispatch('checkAuthorized')
-  
+  // store.dispatch('validateClient')
+  // let isvalid = store.getters.isValid
+  // console.log('isValid:' + isvalid)
+  // if(isvalid == true){
+  //   console.log('valid')
+  // }else if(isvalid == false){
+  //   // store.dispatch('doLogout')
+  //   next('/login')
+  //   console.log('logout')
+  //   console.log('not-valid')
+  // }
   next()
 })

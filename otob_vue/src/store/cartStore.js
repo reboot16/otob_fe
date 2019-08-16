@@ -30,7 +30,7 @@ export default {
         .then(response => {
           commit('SET_CART', response.data.data.cartItems)
         }).catch((e) => {
-        console.error(e)
+        console.log(e)
       });
     },
     isProductExist ({state}, _productId) {
@@ -44,6 +44,7 @@ export default {
       })
     },
     addToCart ({commit, dispatch, state}, payload) {
+      console.log(config.API_CART + '/' + payload.productId + '/' + payload.qty)
       Axios
         .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {

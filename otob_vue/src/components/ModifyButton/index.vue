@@ -35,15 +35,15 @@
 				let data = product
 				data.qty = this.qty
 
-				let productExist = this.isProductExist(data)
+				// let productExist = this.isProductExist(data)
 
-				console.log(productExist.productId)
-				if(productExist == ''){
+				// console.log(productExist.productId)
+				// if(productExist == ''){
 					this.$store.dispatch('addToCart', data)
-				}
-				else{
-					this.$store.dispatch('updateItemCart', productExist)
-				}
+				// }
+				// else{
+				// 	this.$store.dispatch('updateItemCart', productExist)
+				// }
 			},
 			isProductExist (product) {
 				let cartItems = this.$store.getters.CARTS

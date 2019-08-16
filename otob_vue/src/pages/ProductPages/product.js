@@ -11,6 +11,7 @@ export default {
       isLogin: false,
       isAdmin: false,
       isCustomer: false,
+      isCashier: false,
       isGuest: true
     }
   },

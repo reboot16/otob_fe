@@ -22,7 +22,7 @@ export default {
     sumOfPrice () {
       let sum = 0
       this.listItemCart.map(function(product) {
-        sum += product.productPrice
+        sum += product.offerPrice
       })
       return sum
     },

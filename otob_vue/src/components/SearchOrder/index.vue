@@ -4,7 +4,7 @@
 					 v-model="searchText" @keyup.enter="doSearch">
 
 		<div class="input-group-append">
-			<button class="btn btn-primary" type="button" @click="doSearch">Search</button>
+			<button class="btn btn-green" type="button" @click="doSearch">Search</button>
 		</div>
 	</div>
 </template>
