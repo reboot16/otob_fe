@@ -1,8 +1,8 @@
 <template>
   <div name="product-header-button">
     <!-- =============== Dropdown Button to Trigger Modal ================= -->
-    <b-dropdown right variant="primary" size="sm">
-        <template slot="button-content"> Tambah </template> 
+    <b-dropdown right variant="green" size="sm" style="height: 35px; padding: 0 0 0 1em" class="col-sm-12;">
+        <template slot="button-content"> Tambah </template>
         <b-dropdown-item @click="onShowModal">Tambah Data Baru</b-dropdown-item>
         <b-dropdown-item @click="onShowModalBatch">Upload Data Excel</b-dropdown-item>
 <!--        <b-dropdown-item >Download Template Excel</b-dropdown-item>-->

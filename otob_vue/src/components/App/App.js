@@ -1,43 +1,59 @@
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+
 export default {
   data () {
-    return { 
+    return {
+      form: {
+        oldPassword: '',
+        newPassword: '',
+        newPassword2: ''
+      },
+      showChangePassword: false,
+      wrongPassword: false
     }
   },
+  components: {
+    CustomModal,
+    CustomAlert
+  },
   mounted () {
-    this.checkAuth()
+    this.$store.dispatch('checkAuthorized')
   },
   computed : {
     isAuth () {
       return this.$store.getters.isAuthorized
     },
     isLogin () {
-      if (this.isAuth.isLogin){
+      if (this.isAuth && this.isAuth.isLogin){
         return true
       }
       return false
     },
     isAdmin () {
-      if (this.isAuth.userRole == config.role_admin){
+      if (this.isAuth && this.isAuth.userRole == config.role_admin){
         return true
       }
       return false
     },
     isCashier () {
-      if (this.isAuth.userRole == config.role_cashier){
+      if (this.isAuth && this.isAuth.userRole == config.role_cashier){
         return true
       }
       return false
     },
     isCustomer () {
-      if (this.isAuth.userRole == config.role_customer){
+      if (this.isAuth && this.isAuth.userRole == config.role_customer){
         return true
       }
       return false
     },
     userId () {
-      return this.isAuth.userId
+      if (this.isAuth)
+        return this.isAuth.userId
+      return ''
     },
-    userAuth () {
+    auth () {
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -49,23 +65,36 @@ export default {
     }
   },
   methods : {
-    checkAuth () {
-      this.$store.dispatch('checkAuthorized')
-    },
     onLogout () {
       this.$store.dispatch('doLogout')
-      this.$router.push('/')
+      this.$router.push('/login')
+    },
+    onRouteLoginTrue () {
+      if(this.isLogin == true) {
+        this.$router.push('/products')
+      }
     },
     onRoute () {
-      if(this.userAuth.isLogin == true){
-        if(this.userAuth.isAdmin == true){
-          this.$router.push('/products/manage')
-        }else if(this.userAuth.isCashier == true){
-          this.$router.push('/orders')
-        }else if(this.auth.isCustomer == true){
-          this.$router.push('/products')
-        }
-      }
+      // if(this.userAuth.isLogin == true){
+      //   if(this.userAuth.isAdmin == true){
+      //     this.$router.push('/products/manage')
+      //   }else if(this.userAuth.isCashier == true){
+      //     this.$router.push('/orders')
+      //   }else if(this.auth.isCustomer == true){
+      //     this.$router.push('/products')
+      //   }
+      // }
+    },
+    showModalChangePassword () {
+      this.showChangePassword = true
+    },
+    async onChangePassword () {
+      let formData = new FormData();
+      formData.append('oldPassword', this.form.oldPassword);
+      formData.append('newPassword', this.form.newPassword);
+      await this.$store.dispatch('doChangePassword', formData)
+      this.showChangePassword = false
+      this.form = ''
     }
   },
   watch: {

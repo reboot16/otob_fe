@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -10,27 +11,22 @@ export const router = new VueRouter({
     {
       path: '/products',
       name: 'ProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/',
       name: 'DirectProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
-    },
-    {
-      path: '/products/manage',
-      name: 'Product',
-      component: () => import('@/pages/Product')
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/pages/Main/Login')
+      component: () => import('@/pages/CustomPages/LoginPage')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/Main/Register')
+      component: () => import('@/pages/CustomPages/RegisterPage')
     },
     {
       path: '/users',
@@ -43,8 +39,8 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/ViewAllOrders.vue')
     },
     {
-      path: '/orders/approvement/:id',
-      name: 'order_approvement',
+      path: '/orders/:id/detail',
+      name: 'orderAprovement',
       component: () => import('@/pages/Order/Approvement.vue')
     },
     {
@@ -53,29 +49,37 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/Orders.vue')
     },
     {
-      path: '/orders/customer/:id',
-      name: 'customerDetail',
+      path: '/orders/customer/:id/detail',
+      name: 'customer-order-detail',
       component: () => import('@/pages/Order/CustomerDetail.vue')
     },
     {
-      path: '/orders/thx',
+      path: '/orders/thank-you/:id',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
     },
     {
-      path: '/orders/print-note',
+      path: '/orders/:id/print-note',
       name: 'PrintNote',
-      component: () => import('@/components/Nota')
+      component: () => import('@/pages/Nota')
     },
     {
       path: '/not-found',
       name: 'PageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     },
     {
       path: '*',
       name: 'DirectPageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = "Blibli Bazaar"
+  
+  // store.dispatch('checkAuthorized')
+  
+  next()
 })

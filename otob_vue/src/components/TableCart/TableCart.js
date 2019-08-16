@@ -1,7 +1,19 @@
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+import ModifyCart from '@/components/ModifyCart'
+
 export default {
   name: 'TableCart', 
   props: {
     listItemCart: ''
+  },
+  components: {
+    CustomAlert,
+    ModifyCart
+  },
+  data () {
+    return {
+      showModalAlert: false
+    }
   },
   computed: {
     countOfItem () {
@@ -13,7 +25,10 @@ export default {
         sum += product.productPrice
       })
       return sum
-    }
+    },
+    currentOrder () {
+      return this.$store.getters.getCurrentOrder
+    },
   },
   methods: {
     decrement: function(product, index) {
@@ -36,20 +51,22 @@ export default {
       this.$store.dispatch('updateItemCart', product)
     },
     onDelete: function (product, index) {
-      const confirmDelete = confirm("Are you sure to remove from cart?");
-
-      if (confirmDelete) {
-        product.index = index
-        this.$store.dispatch('deleteItemCart', product)
-      }
+      product.index = index
+      this.$store.dispatch('deleteItemCart', product)
     },
     onOrder: function () {
-      const confirmOrder= confirm("Are you sure want to Order all item on cart?");
-
-      if (confirmOrder) {
-        this.$store.dispatch('orderItemCart')
-      }
+      this.showModalAlert = true
     },
+    async continueCheckout () {
+      await this.$store.dispatch('checkout')
+      let currentOrder = this.$store.getters.getCurrentOrderId
+      console.log('tbl cart')
+      console.log(currentOrder)
+      this.$router.push('/orders/thank-you/'+currentOrder)
+    },
+    bookDisable (sum) {
+      return sum === 0;
+    }
   },
   
 }
