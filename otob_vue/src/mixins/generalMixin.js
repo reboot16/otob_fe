@@ -16,7 +16,7 @@ export default {
 			//
 			// this.customTextAlert = text
 		},
-		getFormattedCurrency (value) {
+		formatCurrency (value) {
 			let result = ''
 			value = value === null ? 0 : value
 			let reverseValue = value.toString().split('').reverse().join('')
@@ -26,16 +26,7 @@ export default {
 				}
 			}
 			return 'Rp ' + result.split('', result.length - 1).reverse().join('')
-		},
-		getDateNow () {
-			let today = new Date();
-			let dd = String(today.getDate()).padStart(2, '0');
-			let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-			let yyyy = today.getFullYear();
-			
-			today = mm + '/' + dd + '/' + yyyy;
-			return today
-		},
+		}
 		
 		
 	}

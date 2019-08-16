@@ -10,24 +10,24 @@
 </template>
 
 <script>
-	export default {
-		name: "searchOrder",
-		data () {
-			return {
-				searchText: ''
-			}
-		},
-		methods: {
-			doSearch () {
-				this.$store.dispatch('searchOrder', this.searchText)
-			}
-		},
-		watch: {
-			searchText () {
-				this.doSearch
-			}
-		}
-	}
+    export default {
+        name: "searchOrder",
+        data () {
+            return {
+                searchText: ''
+            }
+        },
+        methods: {
+            doSearch () {
+                this.$store.dispatch('searchOrder', this.searchText)
+            }
+        },
+        watch: {
+            searchText () {
+                this.doSearch()
+            }
+        }
+    }
 </script>
 
 <style scoped>

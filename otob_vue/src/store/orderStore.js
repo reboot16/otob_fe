@@ -80,13 +80,12 @@ export default {
     },
     searchOrderByUserId ({commit}, payload) {
       Axios
-        .get(config.API_ORDER+'/user')
-        .then(response => {
-          console.log(response)
-          commit('SET_ORDERS', response.data.data)
-        }).catch((e) => {
-          console.error(e)
-        })
+          .get(config.API_ORDER+'/user')
+          .then(response => {
+            commit('SET_ORDERS', response.data.data.orders)
+      }).catch((e) => {
+        console.error(e)
+      })
     },
     async setCurrentOrder ({commit}, payload) {
       await commit('SET_CURRENT_ORDER', payload)
