@@ -44,22 +44,22 @@ export default {
       })
     },
     addToCart ({commit, dispatch, state}, payload) {
-      console.log (dispatch('isProductExist', payload.productId))
-      // Axios
-      //   .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
-      //   .then(response => {
-      //     if(response.data.code == 200) {
-      //       payload.productName = payload.name
-      //       payload.productPrice = payload.offerPrice
-      //       commit('ADD_TO_CART', payload)
-      //     }
-      //     else{
-      //       console.log(response.data.message)
-      //     }
-      //   })
-      //   .catch((e) => {
-      //     console.error(e)
-      //   });
+      Axios
+        .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
+        .then(response => {
+          console.log(response.data.data)
+          if(response.data.code == 200) {
+            // payload.productName = payload.name
+            // payload.productPrice = payload.offerPrice
+            commit('ADD_TO_CART', payload)
+          }
+          else{
+            console.log(response.data.message)
+          }
+        })
+        .catch((e) => {
+          console.error(e)
+        });
     },
     updateItemCart ({commit}, payload) {
       Axios
@@ -91,14 +91,16 @@ export default {
           console.error(e)
         }); 
     },
-    checkout ({commit, dispatch}) {
-      Axios
+    async checkout ({commit, dispatch}) {
+      return await Axios
         .get(config.API_CART + '/checkout')
         .then(response => {
           // dispatch('setCurrentOrder', response.data.data)
           // commit('SET_CART', response.data.data.cartItems)
           if(response.data.code == 400) {
             alert(response.data.message)
+          }else{
+            dispatch('setCurrentOrder', response.data.data)
           }
         }).catch((e) => {
           console.error(e)

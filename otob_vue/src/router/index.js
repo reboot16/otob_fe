@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -53,14 +54,14 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/CustomerDetail.vue')
     },
     {
-      path: '/orders/thank-you',
+      path: '/orders/thank-you/:id',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
     },
     {
       path: '/orders/:id/print-note',
       name: 'PrintNote',
-      component: () => import('@/components/Nota')
+      component: () => import('@/pages/Nota')
     },
     {
       path: '/not-found',
@@ -73,4 +74,12 @@ export const router = new VueRouter({
       component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = "Blibli Bazaar"
+  
+  // store.dispatch('checkAuthorized')
+  
+  next()
 })

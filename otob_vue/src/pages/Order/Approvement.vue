@@ -59,10 +59,10 @@
                                 <td width="25%">{{ getFormattedCurrency (item.qty * item.offerPrice)}}</td>
                             </tr>
 
-                            <tr class="col-sm-12" v-else>
-                                <td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
-                            </tr>
-                            </tbody>
+						<tr class="col-sm-12" v-else>
+							<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
+						</tr>
+						</tbody>
 
                         </table>
                     </div>

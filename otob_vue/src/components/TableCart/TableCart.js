@@ -1,31 +1,46 @@
 import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+import ModifyCart from '@/components/ModifyCart'
 
 export default {
   name: 'TableCart', 
-  props: {
-    listItemCart: ''
-  },
+  // props: {
+  //   listItemCart: ''
+  // },
   components: {
-    CustomAlert
+    CustomAlert,
+    ModifyCart
   },
   data () {
     return {
       showModalAlert: false
     }
   },
+  mounted () {
+    this.dispatchCart()
+  },
   computed: {
+    listItemCart () {
+      this.dispatchCart()
+      return this.$store.getters.CARTS
+    },
     countOfItem () {
       return this.listItemCart.length
     },
     sumOfPrice () {
       let sum = 0
       this.listItemCart.map(function(product) {
-        sum += product.productPrice
+        sum += product.offerPrice
       })
       return sum
-    }
+    },
+    currentOrder () {
+      return this.$store.getters.getCurrentOrder
+    },
   },
   methods: {
+    dispatchCart() {
+      this.$store.dispatch('getCart')
+    },
     decrement: function(product, index) {
       if( product.qty == 1) {
         this.onDelete(product, index)
@@ -52,9 +67,10 @@ export default {
     onOrder: function () {
       this.showModalAlert = true
     },
-    continueCheckout () {
-      this.$store.dispatch('checkout')
-      this.$router.push('/orders/thank-you')
+    async continueCheckout () {
+      await this.$store.dispatch('checkout')
+      let currentOrder = this.$store.getters.getCurrentOrder
+      this.$router.push('/orders/thank-you/'+currentOrder.orderId)
     },
     bookDisable (sum) {
       return sum === 0;

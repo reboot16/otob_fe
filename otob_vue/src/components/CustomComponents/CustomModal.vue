@@ -3,9 +3,11 @@
     <transition name="modal">
       <div class="modal-mask">
         <div class="modal-wrapper">
-            <div class="modal-container">
+          <div class="modal-container">
 
+            <slot name="main">
               <div class="modal-header" style="padding: 1em 0">
+
                 <slot name="top">
                   <img id="imgModal" src="@/assets/blibli.jpeg" class="modal-title">
                   <slot name="header">
@@ -19,9 +21,10 @@
                 <slot name="body">
                 default body
                 </slot>
-              </div> 
+              </div>
+            </slot>
 
-            </div>
+          </div>
         </div>
       </div>
     </transition>
@@ -90,6 +93,7 @@
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 0.3em;
+  font-size: 13px;
 }
 .modal-body label{
   color: #9c9e9f;

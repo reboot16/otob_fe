@@ -1,12 +1,11 @@
+import ModifyProduct from '@/components/ModifyProduct'
 export default {
 	name: 'listTableProductCustomer',
 	props: {
 		listProduct: {}
 	},
 	components: {
-	},
-	mounted() {
-		// console.log('tbl' + this.totalPage)
+		ModifyProduct
 	},
 	data() {
 		return {
@@ -23,44 +22,12 @@ export default {
 			bookData: {},
 		}
 	},
-	computed: {
-	
-	},
-	watch: {
-	
-	},
 	methods: {
 		isStockAvailable(stock){
 			if(stock <= 0){
 				return false;
 			}
 			return true;
-		},
-		addToCart: function (product, index) {
-			product.index = index
-			this.$store.dispatch('addToCart', product)
-		},
-		decDisable: function (product) {
-			if (product.stock === 0 || product.qty === 1) {
-				return true
-			} else {
-				return false
-			}
-		},
-		incDisable: function (product) {
-			if (product.stock === 0 || product.stock === product.qty) {
-				return true
-			} else {
-				return false
-			}
-		},
-		increment: function(product) {
-			product.qty++
-			product.type = true
-		},
-		decrement: function (product) {
-			product.qty--
-			product.type = false
 		}
 	},
 	

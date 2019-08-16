@@ -8,7 +8,7 @@
       <TableCustomer :listProduct="listProduct"/>
     </div>
 
-    <div class="tbl-guest" v-if="auth.isLogin == false">
+    <div class="tbl-guest" v-if="auth.isLogin == false || auth.isCashier == true">
       <TableGuest :listProduct="listProduct"/>
     </div>
   </div>

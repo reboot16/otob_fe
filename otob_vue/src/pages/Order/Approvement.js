@@ -36,6 +36,5 @@ export default {
         let par = ''
         par = this.$route.params.id
         this.$store.dispatch('getOrderByOrderId', par)
-        console.log(this.$store.getters.getOrderDetail)
     }
 }

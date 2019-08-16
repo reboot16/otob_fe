@@ -41,10 +41,8 @@ export default {
       Axios
         .get(config.API_PRODUCT)
         .then(response => {
+          console.log(response.data.data.products)
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
