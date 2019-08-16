@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {router} from "./router/index.js"
 Vue.use(Vuex)
 
 import login from '@/store/loginStore'
@@ -15,7 +14,6 @@ export default new Vuex.Store({
     user,
     product,
     cart,
-    order,
-    router
+    order
   }
 })

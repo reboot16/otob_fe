@@ -42,9 +42,6 @@ export default {
         .get(config.API_PRODUCT)
         .then(response => {
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
@@ -75,10 +72,10 @@ export default {
         })
         .then(response => {
           if(response.data.code == 200){
-            commit('ADD_PRODUCT', payload)
+            commit('ADD_PRODUCT', response.data.data)
             alert('Success add data')
           }else{
-            alert('access denied')
+            alert('Something wrong')
           }
         })
         .catch((e) => {
@@ -135,6 +132,7 @@ export default {
         Axios
           .get(config.API_PRODUCT + '/name/' + textSearch)
           .then(response => {
+            console.log(response)
             let result = response.data.data
             result.products.map(function(product) {
               product.qty = 1

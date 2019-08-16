@@ -1,5 +1,5 @@
 import SearchProduct from '@/components/SearchProduct'
-import ButtonDropdown from '@/components/ProductHeaderDropdown'
+import ButtonAdd from '@/components/CustomButtons/ProductAdd'
 import TableProduct from '@/components/TableProduct'
 import CustomPagination from '@/components/CustomComponents/CustomPagination.vue'
 import TableCart from '@/components/TableCart'
@@ -16,7 +16,7 @@ export default {
   },
   components: {
     SearchProduct,
-    ButtonDropdown,
+    ButtonAdd,
     TableProduct,
     CustomPagination,
     TableCart
@@ -28,7 +28,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('getProducts')
-    this.$store.dispatch('getCart')
+    this.dispatchCart()
   },
   computed: {
     listProduct: function () {
@@ -42,6 +42,12 @@ export default {
     }
   },
   methods: {
+    dispatchCart() {
+      let isLogin = this.auth.isLogin
+      if(isLogin == true) {
+        this.$store.dispatch('getCart')
+      }
+    },
     onDelete: function (product, index) {
       const confirmDelete = confirm("Are you sure to delete this?");
       

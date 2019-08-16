@@ -1,8 +1,21 @@
 import Vue from 'vue'
 
-Vue.mixin({
+export default {
+	data () {
+		return {
+			customAlert: false,
+			customTextAlert: 'Default alert from mixin'
+		}
+	},
 	methods: {
-		getFormattedCurrency (value) {
+		showCustomAlert(text) {
+			// console.log(this.customAlert)
+			this.customAlert = true
+			// console.log(this.customAlert)
+			
+			this.customTextAlert = text
+		},
+		formatCurrency (value) {
 			let result = ''
 			value = value === null ? 0 : value
 			let reverseValue = value.toString().split('').reverse().join('')
@@ -25,4 +38,4 @@ Vue.mixin({
 		
 		
 	}
-})
+}

@@ -30,7 +30,7 @@
 			},
 			onContinue () {
 				this.$emit('continue')
-				this.onClose()
+				this.onCancel()
 			}
 		}
 	}
@@ -38,6 +38,6 @@
 
 <style>
 	.modal-container{
-		width: 25%;
+		width: 30%;
 	}
 </style>
