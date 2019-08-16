@@ -18,7 +18,7 @@ export default {
     CustomAlert
   },
   mounted () {
-    // this.checkAuth()
+    this.checkAuth()
   },
   computed : {
     isAuth () {

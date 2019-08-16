@@ -3,9 +3,9 @@ import ModifyCart from '@/components/ModifyCart'
 
 export default {
   name: 'TableCart', 
-  props: {
-    listItemCart: ''
-  },
+  // props: {
+  //   listItemCart: ''
+  // },
   components: {
     CustomAlert,
     ModifyCart
@@ -15,14 +15,21 @@ export default {
       showModalAlert: false
     }
   },
+  mounted () {
+    this.dispatchCart()
+  },
   computed: {
+    listItemCart () {
+      this.dispatchCart()
+      return this.$store.getters.CARTS
+    },
     countOfItem () {
       return this.listItemCart.length
     },
     sumOfPrice () {
       let sum = 0
       this.listItemCart.map(function(product) {
-        sum += product.productPrice
+        sum += product.offerPrice
       })
       return sum
     },
@@ -31,6 +38,9 @@ export default {
     },
   },
   methods: {
+    dispatchCart() {
+      this.$store.dispatch('getCart')
+    },
     decrement: function(product, index) {
       if( product.qty == 1) {
         this.onDelete(product, index)

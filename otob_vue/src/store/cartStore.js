@@ -48,14 +48,14 @@ export default {
         .post(config.API_CART + '/' + payload.productId + '/' + payload.qty)
         .then(response => {
           console.log(response.data.data)
-          // if(response.data.code == 200) {
-          //   payload.productName = payload.name
-          //   payload.productPrice = payload.offerPrice
-          //   commit('ADD_TO_CART', payload)
-          // }
-          // else{
-          //   console.log(response.data.message)
-          // }
+          if(response.data.code == 200) {
+            // payload.productName = payload.name
+            // payload.productPrice = payload.offerPrice
+            commit('ADD_TO_CART', payload)
+          }
+          else{
+            console.log(response.data.message)
+          }
         })
         .catch((e) => {
           console.error(e)

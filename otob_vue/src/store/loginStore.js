@@ -36,9 +36,9 @@ export default {
         dispatch('getCookie', payload)
         console.log('cookie found' + payload)
       }else {
-        dispatch('removeCookie')
-        dispatch('doLogout')
-        console.log('cookie remove')
+        // dispatch('removeCookie')
+        // dispatch('doLogout')
+        // console.log('cookie remove')
       }
       await commit('SET_AUTH', payload)
     },

@@ -4,7 +4,7 @@
       <div class="block">
 
         <div>
-          <h3>{{ auth.isLogin == true ? 'Manage Product' : 'Product' }}</h3>
+          <h3>{{ auth.isAdmin == true ? 'Manage Product' : 'Product List' }}</h3>
         </div>
 
         <div class="row" v-if="auth.isLogin == true && auth.isAdmin == true" style="margin-bottom: 0.5em;">
@@ -31,7 +31,7 @@
 
       <!-- Table Cart -->
       <div class="block" style="margin-top:2em;" v-if="auth.isLogin == true && auth.isCustomer == true && listItemCart.length > 0">
-        <TableCart class="tbl" :listItemCart="listItemCart"/>
+        <TableCart class="tbl" />
       </div>
 
     </div>
