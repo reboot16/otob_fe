@@ -1,87 +1,72 @@
-'use strict';
-
-let ls = require('local-storage');
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+import ModifyCart from '@/components/ModifyCart'
 
 export default {
-  name: 'Cart', 
-  data() {
-    return { 
-      email : this.$store.getters.USER_LOGIN.email,
-      form: {
-        productName : '',
-        productPrice: '',
-        qty: ''
-      },
-      total: ''
+  name: 'TableCart', 
+  props: {
+    listItemCart: ''
+  },
+  components: {
+    CustomAlert,
+    ModifyCart
+  },
+  data () {
+    return {
+      showModalAlert: false
     }
   },
-  mounted () {
-    this.$store.dispatch('getCart', this.email)
-    this.$store.dispatch('getProducts')
-
-    this.setStockSession()
-  },
   computed: {
-    listItemCart: function () {
-      return this.$store.getters.CARTS
+    countOfItem () {
+      return this.listItemCart.length
     },
-    listProduct: function () {
-      return this.$store.getters.PRODUCTS
+    sumOfPrice () {
+      let sum = 0
+      this.listItemCart.map(function(product) {
+        sum += product.productPrice
+      })
+      return sum
     },
-  },
-  watch: {
-
+    currentOrder () {
+      return this.$store.getters.getCurrentOrder
+    },
   },
   methods: {
-    setStockSession: function () {
-      this.listProduct.map(function(product, index) {
-        ls.set(product.name, product.stock);
-      });
-    },
-    decDisable: function (product) {
-      if (product.qty === 1) {
-        return true
-      } else {
-        return false
-      }
-    },
-    incDisable: function (product) {
-      if (product.qty === ls.get(product.productName)) {
-        return true
-      } else {
-        return false
-      }
-    },
     decrement: function(product, index) {
-      product.qty--
-      product.email = this.email
-      product.index = index
-
-      this.$store.dispatch('updateItemCart', product)
+      if( product.qty == 1) {
+        this.onDelete(product, index)
+      }
+      else{
+        product.qty--
+        product.index = index
+        product.type = false
+  
+        this.$store.dispatch('updateItemCart', product)
+      }
     },
     increment: function(product, index) {
       product.qty++
-      product.email = this.email
       product.index = index
+      product.type = true
 
       this.$store.dispatch('updateItemCart', product)
     },
     onDelete: function (product, index) {
-      const confirmDelete = confirm("Are you sure to remove from cart?");
-
-      if (confirmDelete) {
-        product.email = this.email
-        product.index = index
-        this.$store.dispatch('deleteItemCart', product) 
-      }
+      product.index = index
+      this.$store.dispatch('deleteItemCart', product)
     },
     onOrder: function () {
-      const confirmOrder= confirm("Are you sure want to order all item on cart?");
-
-      if (confirmOrder) {
-        this.$store.dispatch('orderItemCart', this.email) 
-      }
+      this.showModalAlert = true
     },
+    async continueCheckout () {
+      await this.$store.dispatch('checkout')
+      let currentOrder = this.$store.getters.getCurrentOrderId
+      console.log('tbl cart')
+      console.log(currentOrder)
+      this.$router.push('/orders/thank-you/'+currentOrder)
+    },
+    bookDisable (sum) {
+      return sum === 0;
+    }
   },
   
 }
