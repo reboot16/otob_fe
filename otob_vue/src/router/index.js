@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -8,27 +9,27 @@ export const router = new VueRouter({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/products',
+      name: 'ProductCustomer',
+      component: () => import('@/pages/ProductPages')
+    },
+    {
       path: '/',
+      name: 'DirectProductCustomer',
+      component: () => import('@/pages/ProductPages')
+    },
+    {
+      path: '/login',
       name: 'Login',
-      component: () => import('@/pages/Main/Login')
+      component: () => import('@/pages/CustomPages/LoginPage')
     },
     {
       path: '/register',
       name: 'Register',
-      component: () => import('@/pages/Main/Register')
+      component: () => import('@/pages/CustomPages/RegisterPage')
     },
     {
-      path: '/Product',
-      name: 'Product',
-      component: () => import('@/pages/Product')
-    },
-    {
-      path: '/product_cust',
-      name: 'ProductCustomer',
-      component: () => import('@/pages/ProductCustomer')
-    },
-    {
-      path: '/User',
+      path: '/users',
       name: 'User',
       component: () => import('@/pages/User/User.vue')
     },
@@ -38,24 +39,47 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/ViewAllOrders.vue')
     },
     {
-      path: '/orders/approvement/:id',
-      name: 'Order-approvement',
+      path: '/orders/:id/detail',
+      name: 'orderAprovement',
       component: () => import('@/pages/Order/Approvement.vue')
     },
     {
-      path: '/thx',
+      path: '/orders/customer',
+      name: 'customerOrder',
+      component: () => import('@/pages/Order/Orders.vue')
+    },
+    {
+      path: '/orders/customer/:id/detail',
+      name: 'customer-order-detail',
+      component: () => import('@/pages/Order/CustomerDetail.vue')
+    },
+    {
+      path: '/orders/thank-you/:id',
       name: 'Thanks',
       component: () => import('@/pages/Thx-Order')
     },
     {
+      path: '/orders/:id/print-note',
+      name: 'PrintNote',
+      component: () => import('@/pages/Nota')
+    },
+    {
       path: '/not-found',
-      name: 'PageNotFound2',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      name: 'PageNotFound',
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     },
     {
       path: '*',
-      name: 'PageNotFound',
-      component: () => import('@/pages/Main/PageNotFound.vue')
+      name: 'DirectPageNotFound',
+      component: () => import('@/pages/CustomPages/NotFoundPage.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = "Blibli Bazaar"
+  
+  // store.dispatch('checkAuthorized')
+  
+  next()
 })

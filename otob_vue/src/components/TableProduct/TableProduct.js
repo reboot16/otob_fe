@@ -1,65 +1,25 @@
-import CustomModal from '@/components/CustomModal/CustomModal.vue'
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
+import TableAdmin from '@/components/ListTableProductAdmin'
+import TableCustomer from '@/components/ListTableProductCustomer'
+import TableGuest from '@/components/ListTableProductGuest'
 
 export default {
   name: 'TableProduct',
   props: {
-    listProduct: ''
+    listProduct: {},
+    auth: {
+      isLogin: false,
+      isAdmin: false,
+      isCustomer: false
+    }
   },
   components: {
-    CustomModal
+    CustomModal,
+    TableAdmin,
+    TableCustomer,
+    TableGuest
   },
-  data() {
-    return {
-      form: {
-        name: '',
-        description: '',
-        listPrice: '',
-        offerPrice: '',
-        stock: '',
-        index: ''
-      },
-      quantity: 1,
-      bookData: '',
-      index: '',
-      showModalUpd: false
-    }
-  },
-  mounted () { 
-  },
-  computed: {
- 
-  },
-  watch: {
-
-  },
-  methods: {
-    onShowModal (product, index) {
-      this.showModalUpd = true
-      this.form = product
-      this.form.index = index
-    },
-    onHandleSubmit () {
-      let product = this.form
-      this.onUpdate(product)
-    },
-    onUpdate (product) {
-      this.showModalUpd = false
-      this.$store.dispatch('updateProduct', product)
-    },
-    onConfirmDelete: function (product, index) {
-      const confirmDelete = confirm("Are you sure to delete this?");
-
-      if (confirmDelete) {
-          product.index = index
-          this.$store.dispatch('deleteProduct', product)
-      }
-    },
-    onReset () {
-      this.$refs.form.reset()
-    },
-    resetForm () {
-      this.form = ''
-    }
-  },
-
+  mounted () {
+    console.log(this.auth)
+  }
 }

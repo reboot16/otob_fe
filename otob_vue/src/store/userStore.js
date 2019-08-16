@@ -89,7 +89,21 @@ export default {
           console.error(e) 
           alert(e)
         }); 
-    }
+    },
+    async doChangePassword ({commit, dispatch}, payload) {
+      await Axios
+        .put(config.API_USER + '/password/change', payload)
+        .then(response => {
+          console.log(response)
+          if(response.data.code === 200){
+            alert('Success change password')
+          }else{
+            alert(response.data.message)
+          }
+        }).catch((e) => {
+        console.log(e)
+      })
+    },
   }  
 
 }

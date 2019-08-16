@@ -23,16 +23,16 @@
 </template>
 
 <script>
-import CustomForm from '@/components/CustomForm'
+import CustomForm from '@/components/CustomComponents/CustomForm.vue'
 
 export default {
   name: 'Login',
   props: {
     auth: {
-      isLogin: '',
-      isAdmin: '',
-      isCashier: '',
-      isCustomer: ''
+      isLogin: false,
+      isAdmin: false,
+      isCustomer: false,
+      isGuest: true
     }
   },
   data () {
@@ -40,44 +40,24 @@ export default {
       form: {
         username: '',
         password: ''
-      },
-      dataLogin: [],
-      flagLogin: ''
+      }
     }
   },
   components: {
     CustomForm
   }, 
   mounted () {
-    this.onRoute()
-  },
-  computed: {
-
+    if(this.auth.isLogin == true) {
+      this.$router.push('/products')
+    }
   },
   methods: {
     onLogin (evt) {
       let formData = new FormData();
-      formData.append('email', this.form.username);
+      formData.append('username', this.form.username);
       formData.append('password', this.form.password);
-      return this.$store.dispatch('doLogin', formData).then( () => {
-        // location.reload()
-      })
-    },
-    onRoute () {
-      if(this.auth.isLogin == true){
-        if(this.auth.isAdmin == true){
-          this.$router.push('/product')
-        }else if(this.auth.isCashier == true){
-          this.$router.push('/order')
-        }else if(this.auth.isCustomer == true){
-          this.$router.push('/product_cust')
-        }
-      }
-    }
-  },
-  watch: {
-    auth () {
-      this.$router.push('/')
+      this.$store.dispatch('doLogin', formData)
+      this.$router.push('/products')
     }
   }
 }
