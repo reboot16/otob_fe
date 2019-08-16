@@ -1,4 +1,5 @@
-import CustomModal from '@/components/CustomModal/CustomModal.vue'
+import CustomModal from '@/components/CustomComponents/CustomModal.vue'
+import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
 
 export default {
   data () {
@@ -13,10 +14,11 @@ export default {
     }
   },
   components: {
-    CustomModal
+    CustomModal,
+    CustomAlert
   },
   mounted () {
-    this.checkAuth()
+    this.$store.dispatch('checkAuthorized')
   },
   computed : {
     isAuth () {
@@ -51,7 +53,7 @@ export default {
         return this.isAuth.userId
       return ''
     },
-    userAuth () {
+    auth () {
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -63,38 +65,36 @@ export default {
     }
   },
   methods : {
-    checkAuth () {
-      this.$store.dispatch('checkAuthorized')
-    },
     onLogout () {
       this.$store.dispatch('doLogout')
-      this.$router.push('/')
+      this.$router.push('/login')
+    },
+    onRouteLoginTrue () {
+      if(this.isLogin == true) {
+        this.$router.push('/products')
+      }
     },
     onRoute () {
-      if(this.userAuth.isLogin == true){
-        if(this.userAuth.isAdmin == true){
-          this.$router.push('/products/manage')
-        }else if(this.userAuth.isCashier == true){
-          this.$router.push('/orders')
-        }else if(this.auth.isCustomer == true){
-          this.$router.push('/products')
-        }
-      }
+      // if(this.userAuth.isLogin == true){
+      //   if(this.userAuth.isAdmin == true){
+      //     this.$router.push('/products/manage')
+      //   }else if(this.userAuth.isCashier == true){
+      //     this.$router.push('/orders')
+      //   }else if(this.auth.isCustomer == true){
+      //     this.$router.push('/products')
+      //   }
+      // }
     },
     showModalChangePassword () {
       this.showChangePassword = true
     },
-    onChangePassword () {
-      if(this.form.newPassword != this.form.newPassword){
-        alert('Password not match')
-        this.wrongPassword = true
-      }else {
-        let formData = new FormData();
-        formData.append('oldPassword', this.form.oldPassword);
-        formData.append('newPassword', this.form.newPassword);
-
-        // this.$store.dispatch('doChangePassword', formData)
-      }
+    async onChangePassword () {
+      let formData = new FormData();
+      formData.append('oldPassword', this.form.oldPassword);
+      formData.append('newPassword', this.form.newPassword);
+      await this.$store.dispatch('doChangePassword', formData)
+      this.showChangePassword = false
+      this.form = ''
     }
   },
   watch: {

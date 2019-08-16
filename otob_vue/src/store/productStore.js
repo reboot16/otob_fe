@@ -34,17 +34,16 @@ export default {
     },
     SET_TOTAL_PAGES : (state, payload) => {
       state.totalPages = payload
-    },
+    }
   },
   actions : {
-    getProducts  ({commit}) {  
+    getProducts  ({commit}) {
+      console.log(config.API_PRODUCT)
       Axios
         .get(config.API_PRODUCT)
         .then(response => {
+          console.log(response.data.data.products)
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
@@ -76,9 +75,9 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('ADD_PRODUCT', payload)
-            alert('Success add data')
+            console.log('add product: success')
           }else{
-            alert('access denied')
+            console.log('add product: failed')
           }
         })
         .catch((e) => {
@@ -95,16 +94,17 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('UPDATE_PRODUCT', payload)
-            alert('Success update data')
+            console.log('upd product: success')
           }else{
-            alert('access denied')
+            console.log('upd product: failed')
           }
         })
         .catch((e) => {
           console.error(e) 
         }); 
     },
-    deleteProduct ({commit}, payload) {  
+    deleteProduct ({commit}, payload) {
+      console.log(config.API_PRODUCT + '/' + payload.productId)
       Axios
         .delete(config.API_PRODUCT + '/' + payload.productId)
         .then(response => {
@@ -119,7 +119,7 @@ export default {
           console.error(e) 
         }); 
     },
-    searchProduct({commit}, textSearch){
+    searchProduct({commit, dispatch}, textSearch){
       if(textSearch == ''){
         Axios
           .get(config.API_PRODUCT)
@@ -142,7 +142,7 @@ export default {
             commit('SET_PRODUCT', result.products)
             commit('SET_TOTAL_PAGES', result.totalPage)
           })
-      } 
+      }
     },
     searchProductPageable ({commit}, payload){
       Axios

@@ -22,18 +22,10 @@
 </template>
 
 <script>
-import CustomForm from '@/components/CustomForm'
+import CustomForm from '@/components/CustomComponents/CustomForm.vue'
 
 export default {
   name: 'Register',
-  props: {
-    auth: {
-      isLogin: '',
-      isAdmin: '',
-      isCashier: '',
-      isCustomer: ''
-    }
-  },
   data () {
     return {
       form: {
@@ -45,15 +37,7 @@ export default {
     CustomForm
   },
   mounted () {
-    if(this.auth.isLogin == true){
-      if(this.auth.isAdmin == true){
-        this.$router.push('/Product')
-      }else if(this.auth.isCashier == true){
-        this.$router.push('/Order')
-      }else if(this.auth.isCustomer == true){
-        this.$router.push('/product_cust')
-      }
-    }
+    this.onRouteLoginTrue()
   },
   methods: {
     onRegister () {

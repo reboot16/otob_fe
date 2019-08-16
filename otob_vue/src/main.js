@@ -9,29 +9,23 @@ import FontAwesome from 'font-awesome/css/font-awesome.css'
 import Axios from 'axios'
 import VueCookies from 'vue-cookies'
 import config from '../config'
-// import jsPDF from 'jspdf'
-// import VueHtml2Canvas from 'vue-html2canvas'
+import mixins from './mixins/generalMixin.js'
 
 Vue.use(Bootstrap)
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.use(VueCookies)
-// Vue.use(VueHtml2Canvas)
-
-const options = {
-  name: '_blank',
-  specs: [
-    'fullscreen=yes',
-    'titlebar=yes',
-    'scrollbars=yes'
-  ],
-  styles: [
-    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
-    'https://unpkg.com/kidlat-css/css/kidlat.css'
-  ]
-}
-
 window.config = config
+Vue.config.productionTip = false
+Vue.mixin(mixins)
+
+const vm = new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')
+
+export { vm }
 
 Axios.interceptors.request.use(
   function (config) {
@@ -43,23 +37,3 @@ Axios.interceptors.request.use(
     return config
   }
 )
-
-Vue.config.productionTip = false
-
-const vm = new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
-
-export { vm }
-
-// const vm = new Vue({
-//   el: '#app',
-//   router,
-//   store,
-//   components: { App },
-//   template: '<App/>'
-// })
-//
-// export { vm }

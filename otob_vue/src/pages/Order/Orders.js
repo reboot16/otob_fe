@@ -11,15 +11,12 @@ export default {
             filters: '',
         }
     },
-    props: {
-      auth: ''
-    },
     methods: {
         getOrders () {
             this.listOrders =  this.$store.getters.ORDERS
         },
         viewDetail(id){
-            this.$router.push('orders/customer/'+id)
+            this.$router.push('customer/'+id+'/detail')
         },
         doSearch (value) {
             this.filters = value

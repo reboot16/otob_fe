@@ -3,17 +3,14 @@ import Axios from 'axios'
 export default {
   state: {
     orders: [],
-    currentOrder: {
-      order: {},
-      outOfStockProducts: []
-    }
+    currentOrder: {}
   },
   getters : {
     ORDERS : state => {
-      return state.orders;
+      return state.orders.orders;
     },
     getOrderById : (state) => (id) => {
-      return state.orders.find(order => order.ordId === id)
+      return state.orders.orders.find(order => order.orderId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
@@ -24,6 +21,9 @@ export default {
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
+    },
+    getCurrentOrderId: (state) => {
+      return state.currentOrder.orderId
     }
   },
   mutations: {
@@ -58,10 +58,10 @@ export default {
     },
     acceptOrders ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.ordId + '/accept')
+          .get(config.API_ORDER + '/' + payload.orderId + '/accept')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
-            alert('Succes to Accept Order'+ payload.ordId)
+            alert('Succes to Accept Order'+ payload.orderId)
           })
           .catch((e) => {
             console.error(e)
@@ -69,10 +69,10 @@ export default {
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.ordId + '/reject')
+          .get(config.API_ORDER + '/' + payload.orderId + '/reject')
           .then(response => {
-            commit('ACCEPT_ORDER', payload)
-            alert('Succes to Reject Order'+ payload.ordId)
+            commit('REJECT_ORDER', payload)
+            alert('Succes to Reject Order'+ payload.orderId)
           })
           .catch((e) => {
             console.error(e)
@@ -97,23 +97,8 @@ export default {
         console.error(e)
       })
     },
-    setCurrentOrder ({commit}, payload) {
-      commit('SET_CURRENT_ORDER', payload)
-    },
-    searchOrder ({commit}, payload) {
-      if (payload === '') {
-        Axios
-            .get(config.API_ORDER)
-            .then(response => {
-              commit('SET_ORDERS', response.data.data.orders)
-            })
-      } else {
-        Axios
-            .get(config.API_ORDER +'/payload/'+'search')
-            .then(response => {
-              commit('SET_ORDERS', response.data.data.orders)
-            })
-      }
+    async setCurrentOrder ({commit}, payload) {
+      await commit('SET_CURRENT_ORDER', payload)
     }
   }
 }
