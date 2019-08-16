@@ -57,12 +57,14 @@
 							</thead>
 
 							<tbody class="scrollContentCart">
-							<tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
+							<tr ref="listItemCart" class="col-sm-12"
+									v-if="orders.ordItems.length != 0"
+									v-for="(item, index) in orders.ordItems" :key="index" >
 								<td width="5%"><b>{{ index+1 }}</b></td>
-								<td width="30%">{{ item.productName }}</td>
+								<td width="30%">{{ item.name }}</td>
 								<td width="15%">{{ item.qty }}</td>
-								<td width="25%">Rp {{ item.productPrice }}</td>
-								<td width="25%">Rp {{item.qty * item.productPrice}}</td>
+								<td width="25%">Rp {{ item.offerPrice }}</td>
+								<td width="25%">Rp {{item.qty * item.offerPrice}}</td>
 							</tr>
 
 							<tr class="col-sm-12" v-else>
@@ -82,11 +84,10 @@
 	export default {
 		name: "Approvement",
 		props: {
-			'auth': ''
+			auth: ''
 		},
 		data(){
 			return{
-				orders: [],
 				products: {
 					products_id: 0,
 					products_name: '',
@@ -97,25 +98,27 @@
 			};
 		},
 		computed: {
-			getOrders () {
-				let par = ''
-				par = this.$route.params.id
-				this.orders = this.$store.getters.getOrderById(par);
+			orderId () {
+				return this.$route.params.id
+			},
+			currentOrder () {
+				return this.$store.getters.getCurrentOrder
+			},
+			orders () {
+				if(this.currentOrder)
+					return this.currentOrder
+				else{
+					this.$router.push('/products')
+				}
 			}
 		},
 		methods: {
-			getOrders(){
-				let par = ''
-				par = this.$route.params.id
-				this.orders = this.$store.getters.getOrderById(par);
-			},
 			printNota (id) {
 				this.$router.push('/orders/'+id+'/print-note')
 			}
 		},
 		mounted() {
-			this.$store.dispatch('getOrders')
-			this.getOrders();
+			this.$store.dispatch('getOrderByOrderId', this.orderId)
 		}
 	}
 </script>

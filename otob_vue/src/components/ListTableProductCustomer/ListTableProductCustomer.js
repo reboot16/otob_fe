@@ -1,11 +1,11 @@
-import ModifyButton from '@/components/ModifyButton'
+import ModifyProduct from '@/components/ModifyProduct'
 export default {
 	name: 'listTableProductCustomer',
 	props: {
 		listProduct: {}
 	},
 	components: {
-		ModifyButton
+		ModifyProduct
 	},
 	data() {
 		return {

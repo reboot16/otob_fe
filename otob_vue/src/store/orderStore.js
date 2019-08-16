@@ -21,9 +21,6 @@ export default {
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
-    },
-    getCurrentOrderId: (state) => {
-      return state.currentOrder.orderId
     }
   },
   mutations: {
@@ -82,7 +79,7 @@ export default {
       Axios
           .get(config.API_ORDER+'/'+ orderId + '/search')
           .then(response => {
-            commit('GET_ORDER_BY_ID', orderId)
+            commit('SET_CURRENT_ORDER', response.data.data)
           })
           .catch((e) => {
             console.log(e)

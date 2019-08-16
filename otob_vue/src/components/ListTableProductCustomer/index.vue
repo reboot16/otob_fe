@@ -20,7 +20,7 @@
 				<td class="col-sm-1">{{ product.stock }}</td>
 				<td class="col-sm-2">
 					<div v-if="isStockAvailable(product.stock)">
-						<ModifyButton :product="product"/>
+						<ModifyProduct :product="product"/>
 <!--						<div  style="display: flex" class="row">-->
 <!--							<div class=" qty">-->
 <!--								<button @click="decrement(product, index)" :disabled="decDisable(product)" class="btn btn-gray btn-left">&mdash;</button>-->

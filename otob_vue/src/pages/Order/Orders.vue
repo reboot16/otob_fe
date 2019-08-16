@@ -36,8 +36,7 @@
 										variant="outline-info"
 										size="sm"
 										v-on:click="viewDetail(order.orderId)"
-										class="mr-2">
-									<icon name="eye" scale="1"></icon>Details
+										class="mr-2"> Details
 								</b-button>
 							</td>
 						</tr>

@@ -69,10 +69,8 @@ export default {
     },
     async continueCheckout () {
       await this.$store.dispatch('checkout')
-      let currentOrder = this.$store.getters.getCurrentOrderId
-      console.log('tbl cart')
-      console.log(currentOrder)
-      this.$router.push('/orders/thank-you/'+currentOrder)
+      let currentOrder = this.$store.getters.getCurrentOrder
+      this.$router.push('/orders/thank-you/'+currentOrder.orderId)
     },
     bookDisable (sum) {
       return sum === 0;
