@@ -8,18 +8,6 @@
 							(product.offerPrice) }}</td>
             <td class="col-sm-2" style="display: flex;">
               <CustomButton :product="product" :index="index"/>
-<!--              <div  style="display: flex">-->
-<!--                <div class=" qty">-->
-<!--                  <button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>-->
-<!--                  <input type="text" :value="product.qty" readonly class="input-gray">-->
-<!--                  <button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <button @click="onDelete(product, index)"-->
-<!--                style="padding:0.1em 0.5em; color:white; font-size: 18px; margin-left: 3px"-->
-<!--                class="btn btn-red">-->
-<!--                <i class="fa fa-trash"></i>-->
-<!--              </button>-->
             </td>
           </tr>
         </tbody>
@@ -31,7 +19,7 @@
           <span class="color-orange checkout-price"> {{ formatCurrency(sumOfPrice) }}</span>
         </div>
         <div class="col-sm-2" style="text-align:right" >
-          <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)" width="100%">Order Now</button>
+          <button class="btn btn-orange" @click="onOrder" width="100%" id="btnOrder">Order Now</button>
         </div>
       </div>
 

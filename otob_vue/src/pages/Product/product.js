@@ -47,23 +47,6 @@ export default {
       if(isLogin == true) {
         this.$store.dispatch('getCart')
       }
-    },
-    onDelete: function (product, index) {
-      const confirmDelete = confirm("Are you sure to delete this?");
-      
-      if (confirmDelete) {
-        product.index = index
-        this.$store.dispatch('deleteProduct', product)
-      }
-    },
-    onUpdate: function (product, index) {
-      // this.$refs['modal-add'].show()
-      // this.submitButton = false
-      this.isProductVisible = true
-      this.$refs.form = product
-    },
-    showModals () {
-      this.showModal = true
     }
   },
   

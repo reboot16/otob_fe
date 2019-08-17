@@ -78,8 +78,6 @@ export const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = "Blibli Bazaar"
-  
-  // store.dispatch('checkAuthorized')
-  
+  store.dispatch('validateCookie')
   next()
 })

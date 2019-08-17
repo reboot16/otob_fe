@@ -4,7 +4,7 @@ import moment from 'moment'
 export default {
 	name: "ViewAllOrders",
 	props: {
-		'auth': ''
+		auth: ''
 	},
 	components: {FilterOrder, SearchOrder},
 	data(){
@@ -37,6 +37,9 @@ export default {
 			let newDate = ''
 			newDate += ''+moment(date).format('DD MMM YYYY, HH:mm')
 			return newDate
+		},
+		doShowModal () {
+			this.showModal = true
 		}
 	},
 	mounted() {

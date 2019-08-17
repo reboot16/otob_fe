@@ -55,19 +55,17 @@ export default {
     dataOrder () {
       if(this.currentOrder)
         return this.currentOrder
-
-      console.log(this.currentOrder)
-      // else{
-      //   this.$router.push('/products')
-      // }
+      else{
+        this.$router.push('/products')
+      }
     }
   },
   mounted (){
-    // if(this.auth.isLogin == true && this.auth.isCustomer == true){
+    if(this.auth.isLogin == true && this.auth.isCustomer == true){
       this.$store.dispatch('getOrderByOrderId', this.ordId)
-    // } else{
-    //   this.$router.push('/products')
-    // }
+    } else{
+      this.$router.push('/products')
+    }
   },
   methods: {
     viewDetail(id){

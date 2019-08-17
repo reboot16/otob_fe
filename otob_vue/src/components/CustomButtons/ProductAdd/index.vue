@@ -15,7 +15,7 @@
       </div>
 
       <div slot="body">
-        <b-form ref="form" @submit.prevent="onHandleSubmit">
+        <b-form ref="form" @submit.prevent="onHandleSubmit" @reset="resetForm">
           <div class="row grup-input">
             <label>Nama</label>
             <b-form-input type="text" v-model="form.name" placeholder="Masukkan nama produk" required/>

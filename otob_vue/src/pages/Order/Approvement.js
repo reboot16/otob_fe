@@ -3,38 +3,43 @@ import moment from 'moment'
 export default {
 	name: "Approvement",
 	props: {
-		'auth': ''
+		auth: ''
 	},
-	data() {
-		return {
+	data(){
+		return{
 			orders: [],
 		};
 	},
 	computed: {
-		orderDetail() {
+		orderDetail () {
+			this.dispatchCart()
 			return this.$store.getters.getOrderDetail
 		}
 	},
 	methods: {
-		confirm(id) {
+		acceptOrder(id){
 			let orderReq = []
 			orderReq = this.$store.getters.getOrderById(id);
-			return this.$store.dispatch('acceptOrders', orderReq)
+			this.$store.dispatch('acceptOrders', orderReq)
 		},
-		reject(id) {
+		reject(id){
 			let orderReq = []
 			orderReq = this.$store.getters.getOrderById(id);
-			return this.$store.dispatch('rejectOrder', orderReq)
+			this.$store.dispatch('rejectOrder', orderReq)
+			this.dispatchCart()
 		},
-		formatDate(date) {
+		formatDate (date) {
 			let newDate = ''
-			newDate += '' + moment(date).format('DD MMM YYYY (h:mm)')
+			newDate += ''+moment(date).format('DD MMM YYYY (h:mm)')
 			return newDate
+		},
+		dispatchCart () {
+			let par = ''
+			par = this.$route.params.id
+			this.$store.dispatch('getOrderByOrderId', par)
 		}
 	},
 	mounted() {
-		let par = ''
-		par = this.$route.params.id
-		this.$store.dispatch('getOrderByOrderId', par)
+		this.dispatchCart()
 	}
 }

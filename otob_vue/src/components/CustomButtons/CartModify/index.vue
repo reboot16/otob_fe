@@ -1,7 +1,7 @@
 <template>
 		<div  style="display: flex" class="row">
 			<div  style="display: flex">
-				<div class=" qty">
+				<div class="qty">
 					<button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>
 					<input type="text" :value="product.qty" readonly class="input-gray">
 					<button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>
@@ -9,7 +9,7 @@
 			</div>
 			<button @click="onDelete(product)"
 				style="padding:0.1em 0.5em; color:white; font-size: 18px; margin-left: 3px"
-				class="btn btn-red">
+				class="btn btn-red" id="btnDelete">
 				<i class="fa fa-trash"></i>
 			</button>
 		</div>
@@ -62,9 +62,6 @@
 				console.log('tbl cart')
 				console.log(currentOrder)
 				this.$router.push('/orders/thank-you/'+currentOrder)
-			},
-			bookDisable (sum) {
-				return sum === 0;
 			}
 		}
 	}

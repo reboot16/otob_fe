@@ -2,10 +2,7 @@ import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
 import CustomButton from '@/components/CustomButtons/CartModify'
 
 export default {
-  name: 'TableCart', 
-  // props: {
-  //   listItemCart: ''
-  // },
+  name: 'TableCart',
   components: {
     CustomAlert,
     CustomButton
@@ -41,29 +38,6 @@ export default {
     dispatchCart() {
       this.$store.dispatch('getCart')
     },
-    decrement: function(product, index) {
-      if( product.qty == 1) {
-        this.onDelete(product, index)
-      }
-      else{
-        product.qty--
-        product.index = index
-        product.type = false
-  
-        this.$store.dispatch('updateItemCart', product)
-      }
-    },
-    increment: function(product, index) {
-      product.qty++
-      product.index = index
-      product.type = true
-
-      this.$store.dispatch('updateItemCart', product)
-    },
-    onDelete: function (product, index) {
-      product.index = index
-      this.$store.dispatch('deleteItemCart', product)
-    },
     onOrder: function () {
       this.showModalAlert = true
     },
@@ -71,9 +45,6 @@ export default {
       await this.$store.dispatch('checkout')
       let currentOrder = this.$store.getters.getCurrentOrder
       this.$router.push('/orders/thank-you/'+currentOrder.ordId)
-    },
-    bookDisable (sum) {
-      return sum === 0;
     }
   },
   

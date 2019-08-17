@@ -25,7 +25,7 @@
 								</td>
 								<td>
 									<span class="label">Total Harga:</span><br>
-									<span class="value">{{ getFormattedCurrency (orderDetail.totPrice) }}</span>
+									<span class="value">{{ formatCurrency (orderDetail.totPrice) }}</span>
 								</td>
 								<td>
 									<span class="label">Status:</span><br>
@@ -55,8 +55,8 @@
 								<td width="5%"><b>{{ index+1 }}</b></td>
 								<td width="30%">{{ item.name }}</td>
 								<td width="15%">{{ item.qty }}</td>
-								<td width="25%">{{ getFormattedCurrency (item.offerPrice) }}</td>
-								<td width="25%">{{ getFormattedCurrency (item.qty * item.offerPrice)}}</td>
+								<td width="25%">{{ formatCurrency (item.offerPrice) }}</td>
+								<td width="25%">{{ formatCurrency (item.qty * item.offerPrice)}}</td>
 							</tr>
 
 							<tr class="col-sm-12" v-else>
@@ -71,7 +71,7 @@
 							<b-button
 								variant="success"
 								class="mr-2"
-								v-on:click="confirm(orderDetail.ordId)"
+								v-on:click="acceptOrder(orderDetail.ordId)"
 							>
 								Accepted
 							</b-button>

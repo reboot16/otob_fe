@@ -36,9 +36,6 @@ export default {
   components: {
     CustomForm
   },
-  mounted () {
-    this.onRouteLoginTrue()
-  },
   methods: {
     onRegister () {
       this.$store.dispatch('registerCustomer', this.form)

@@ -7,22 +7,22 @@ export default {
       userId: '',
       userRole: ''
     },
-    doNeedLogout: false
+    isValid: false
   },
   getters : {
     isAuthorized: state => {
       return state.isAuthorized
     },
-    doNeedLogout: state => {
-      return state.doNeedLogout
+    isValid: state => {
+      return state.isValid
     }
   },
   mutations: { 
     SET_AUTH : (state, payload) => {
       state.isAuthorized = payload
     },
-    SET_DO_NEED_LOGOUT: (state, payload) => {
-      state.doNeedLogout = payload
+    SET_IS_VALID: (state, payload) => {
+      state.isValid = payload
     }
   },
   actions : {
@@ -36,7 +36,7 @@ export default {
         dispatch('getCookie', payload)
         console.log('cookie found' + payload)
       }else {
-        // dispatch('removeCookie')
+        dispatch('removeCookie')
         // dispatch('doLogout')
         // console.log('cookie remove')
       }
@@ -52,6 +52,7 @@ export default {
       $cookies.remove(config.key_login)
       $cookies.remove(config.key_id)
       $cookies.remove(config.key_role)
+      $cookies.remove('SESSION')
     },
     async doLogin({commit, dispatch}, payload) {
       await Axios
@@ -73,29 +74,32 @@ export default {
       Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
-          
           if(response.data.code == 200){
-            console.log('ini logout')
-            console.log(response)
-  
-            let isAuthorized = {
-              isLogin: false,
-              userId: '',
-              userRole: ''
-            }
+            let isAuthorized = {}
             commit('SET_AUTH', isAuthorized)
           }
-          
-          // dispatch('checkAuthorized')
-          // console.log(response)
-          // if(response.data.code ==  200){
-          //   dispatch('removeCookie')
-          //   // alert('Already logout')
-          // }else{
-          //   // alert("You're still not login")
-          // }
         }).catch((e) => {
           console.log(e)
+        })
+    },
+    validateCookie ({commit, dispatch}) {
+      console.log('check is valid')
+      Axios
+        .post(config.API_PRODUCT)
+        .then(response => {
+          console.log('is valid true' + response.data.code)
+          
+          if(response.data.code == 400) {
+            // $cookies.remove(config.key_login)
+            // $cookies.remove(config.key_id)
+            // $cookies.remove(config.key_role)
+            // console.log('cookie deleted')
+            // dispatch('doLogout')
+          }
+        }).catch((e) => {
+          console.log('is valid false')
+          let isAuthorized = {}
+          commit('SET_AUTH', isAuthorized)
         })
     }
   }

@@ -2,15 +2,16 @@
 	<div class="orders">
 		<div class="container header-body">
 			<div class="block">
+				<div class="row content-header">
 					<div class="col-sm-12">
-						<h3>Riwayat Pesanan Anda</h3>
+						<span>Riwayat Pesanan Anda</span>
 					</div>
-				<div class="col-sm-12">
+				</div>
+				<div class="col-sm-12 search">
 					<search-order></search-order>
 				</div>
 				<div class="col-sm-12">
 					<div class="filter">
-
 						<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 
 							<thead>
@@ -32,14 +33,15 @@
 								<td width="17%">{{ formatDate (order.ordDate) }}</td>
 								<td  width="11%" style="text-align: center">{{ order.totItem }}</td>
 								<td width="20%">Rp {{ order.totPrice }}</td>
-								<td width="8%">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-waiting" v-if="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-acc" v-if="order.ordStatus === 'Accepted'">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-rej" v-if="order.ordStatus === 'Rejected'">{{ order.ordStatus }}</td>
 								<td width="10%">
 									<b-button
 										variant="outline-info"
 										size="sm"
-										v-on:click="viewDetail(order.ordId)"
-										class="mr-2">
-										Details
+										v-on:click="viewDetail(order.orderId)"
+										class="mr-2">Details
 									</b-button>
 								</td>
 							</tr>
@@ -83,5 +85,24 @@
 		margin-top: 10px;
 		max-width: 90%;
 		padding: 10px;
+	}
+	.search {
+		margin: auto;
+		max-width: 90%;
+	}
+	.status-acc {
+		color: forestgreen;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.status-waiting {
+		color: dodgerblue;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.status-rej {
+		color: red;
+		font-size: 0.8rem;
+		font-weight: bold;
 	}
 </style>
