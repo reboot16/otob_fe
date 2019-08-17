@@ -1,16 +1,14 @@
 <template>
-    <div class="input-group">
-        <b-form-select
-                v-model="status"
-                placeholder="Cari berdasarkan status">
-            <option value="waiting">Waiting</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-        </b-form-select>
-
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" @click="doFilter">Search</button>
-        </div>
+    <div class="table">
+        <div class="input-group">
+            <b-form-select
+                    v-model="status"
+                    placeholder="Cari berdasarkan status">
+                <option value="waiting">Waiting</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </b-form-select>
+    </div>
     </div>
 </template>
 
@@ -37,5 +35,11 @@
     }
     .input-group-append button{
         margin-left:0;padding:0.25em
+    }
+    .table {
+        margin: auto;
+        margin-top: 10px;
+        max-width: 100%;
+        padding: 10px;
     }
 </style>

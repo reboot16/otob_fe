@@ -8,16 +8,17 @@ export default {
   },
   getters : {
     ORDERS : state => {
+        console.log(state.orders)
         return state.orders.orders;
     },
     getOrderById : (state) => (id) => {
-      return state.orders.orders.find(order => order.orderId === id)
+      return state.orders.orders.find(order => order.ordId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
     },
     getProductsByOrderId :  (state) => (id) => {
-      var orders =  state.orders.find(order=>order.orders_id === id);
+      var orders =  state.orders.find(order=>order.ordid === id);
       return orders.products;
     },
     getCurrentOrder: (state) => {
@@ -49,9 +50,6 @@ export default {
     }
   },
   actions : {
-    updateStatusProduct({commit}, product) {
-      commit("UPDATE_PRODUCT_STATUS", product);
-    },
     getOrders ({commit}) {
       Axios
           .get(config.API_ORDER)
@@ -63,10 +61,10 @@ export default {
     },
     acceptOrders ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.orderId + '/accept')
+          .get(config.API_ORDER + '/' + payload.ordId + '/accept')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
-            alert('Succes to Accept Order'+ payload.orderId)
+            alert('Succes to Accept Order'+ payload.ordId)
           })
           .catch((e) => {
             console.error(e)
@@ -74,10 +72,10 @@ export default {
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.orderId + '/reject')
+          .get(config.API_ORDER + '/' + payload.ordId + '/reject')
           .then(response => {
             commit('ACCEPT_ORDER', payload)
-            alert('Succes to Reject Order'+ payload.orderId)
+            alert('Succes to Reject Order'+ payload.ordId)
           })
           .catch((e) => {
             console.error(e)
@@ -120,6 +118,38 @@ export default {
                     commit('SET_ORDERS_SEARCH', response.data.data)
                 })
         }
-    }
+    },
+      printExcel ({commit}, payload) {
+        Axios({
+            url: config.API_ORDER+'/export?month='+payload.month+'&year='+payload.year,
+            method: 'GET',
+            responseType: 'blob',
+            }).then( response => {
+                const url = window.URL.createObjectURL(new Blob([response.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.setAttribute('download', 'Laporan Pesanan '+payload.month+' '+payload.year+'.xlsx')
+                document.body.appendChild(link)
+                link.click()
+            })
+      },
+     filterOrder ({commit}, payload) {
+        if ((payload.status === '' || payload.status === null) && (payload.date === '' || payload.date === null)) {
+            alert('ehm')
+            Axios
+                .get(config.API_ORDER)
+                .then(response => {
+                    commit('SET_ORDERS', response.data.data)
+                })
+        }  else {
+            alert('uhuk')
+            Axios
+                .get(config.API_ORDER+'/filter?date='+payload.date+'&status='+payload.status)
+                .then(response => {
+                    console.log(response)
+                    commit('SET_ORDERS', response.data.data)
+                })
+        }
+     }
   }
 }

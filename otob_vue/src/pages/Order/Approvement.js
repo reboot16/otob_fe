@@ -17,7 +17,7 @@ export default {
         }
     },
     methods: {
-        confirm(id){
+        acceptOrder(id){
             let orderReq = []
             orderReq = this.$store.getters.getOrderById(id);
             this.$store.dispatch('acceptOrders', orderReq)

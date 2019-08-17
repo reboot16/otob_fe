@@ -71,7 +71,7 @@
                             <b-button
                                     variant="success"
                                     class="mr-2"
-                                    v-on:click="confirm(orderDetail.ordId)"
+                                    v-on:click="acceptOrder(orderDetail.ordId)"
                             >
                                 Accepted
                             </b-button>
