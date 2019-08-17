@@ -21,11 +21,14 @@ if(workbox) {
             plugins: [
                 new workbox.cacheableResponse.Plugin({
                     statuses: [200]
+                }),
+                new workbox.expiration.Plugin({
+                    maxEntries: 50,
+                    maxAgeSeconds: 7 * 24 * 60 * 60
                 })
             ]
         })
     )
-
 } else {
     console.log('workbox not loadded')
 }
