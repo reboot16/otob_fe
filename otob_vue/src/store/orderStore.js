@@ -69,6 +69,16 @@ export default {
             console.log(e)
       })
     },
+    getCustomerOrderByPage ({commit}, payload) {
+      Axios
+          .get(config.API_ORDER+'/user?page='+payload.page+'&size='+payload.size)
+          .then(response => {
+            commit('SET_ORDERS',response.data.data)
+            commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+          }).catch((e) => {
+        console.log(e)
+      })
+    },
     acceptOrders ({commit}, payload) {
       Axios
         .get(config.API_ORDER + '/' + payload.ordId + '/accept')
@@ -106,6 +116,7 @@ export default {
         .get(config.API_ORDER+'/user')
         .then(response => {
           commit('SET_ORDERS', response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
         }).catch((e) => {
         console.error(e)
       })
@@ -119,7 +130,7 @@ export default {
           .get(config.API_ORDER+'/user')
           .then(response => {
             commit('SET_ORDERS', response.data.data)
-          })
+            commit('SET_TOTAL_PAGES', response.data.data.totalPage)          })
       } else {
         Axios
           .get(config.API_ORDER+'/'+textSearch+'/search')

@@ -64,7 +64,7 @@
 					</table>
 				</div>
 				<div style="text-align: center">
-					<order-pagination :totalPage="totalPage"/>
+					<order-pagination :totalPage="totalPage" type="admin"/>
 				</div>
 			</div>
 		</div>

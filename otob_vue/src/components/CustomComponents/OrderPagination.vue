@@ -1,18 +1,29 @@
 <template>
-    <div class="group-pagination">
-        <div class="pagination" v-for="index in totalPage">
-            <button class="btn-pagination" @click="onClickPaging(index)" :disabled="pagingDisable(index)">
-                {{ index }}
-            </button>
+    <div>
+        <div class="group-pagination" v-if="type === 'admin'">
+            <div class="pagination" v-for="index in totalPage">
+                <button class="btn-pagination" @click="onClickPaging(index)" :disabled="pagingDisable(index)">
+                    {{ index }}
+                </button>
+            </div>
+        </div>
+        <div class="group-pagination" v-if="type === 'customer'">
+            <div class="pagination" v-for="index in totalPage">
+                <button class="btn-pagination" @click="onClickPagingCustomer(index)" :disabled="pagingDisable(index)">
+                    {{ index }}
+                </button>
+            </div>
         </div>
     </div>
+
 </template>
 
 <script>
     export default {
         name: "OrderPagination",
         props: {
-            totalPage: 0
+            totalPage: 0,
+            type: ''
         },
         data () {
             return{
@@ -30,6 +41,17 @@
                     size: size
                 }
                 this.$store.dispatch('getOrderByPage', payload)
+            },
+            onClickPagingCustomer (index, size) {
+                this.currentPage = index
+                if(size == undefined){
+                    size = 5
+                }
+                let payload = {
+                    page: index,
+                    size: size
+                }
+                this.$store.dispatch('getCustomerOrderByPage', payload)
             },
             pagingDisable (index) {
                 if (this.currentPage == index) {

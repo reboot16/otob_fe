@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default {
     name: "CheckOrder",
     data () {
@@ -19,6 +21,11 @@ export default {
             } else {
                 this.isResult = false
             }
+        },
+        formatDate (date) {
+            let newDate = ''
+            newDate += ''+moment(date).format('DD MMM YYYY, HH:mm')
+            return newDate
         },
     },
     watch: {

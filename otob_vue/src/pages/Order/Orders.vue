@@ -47,8 +47,11 @@
 								<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
 							</tr>
 							</tbody>
-
 						</table>
+				</div>
+
+				<div style="text-align: center">
+					<order-pagination :totalPage="totalPage" type="customer"/>
 				</div>
 			</div>
 		</div>

@@ -17,7 +17,7 @@
 							<h2> Nota Transaksi </h2>
 						</div>
 						<div class="com-sm-4 header-nota" style="text-align: right">
-							Tgl Waktu Pemesanan    : <b>{{ data.ordDate }}</b> <br>
+							Tgl Waktu Pemesanan    : <b>{{ formatDate(data.ordDate) }}</b> <br>
 							Order id Pesanan : <b>{{ data.ordId }}</b><br>
 							Status Pesanan : <b>{{ data.ordStatus }}</b>
 						</div>
@@ -59,6 +59,7 @@
 <script>
 	import jsPDF from 'jspdf'
 	import html2canvas from 'html2canvas'
+	import moment from 'moment'
 
 	export default {
 		name: "print-note",
@@ -90,6 +91,11 @@
 				let ordId = ''
 				ordId = this.$route.params.id
 				this.$store.dispatch('getOrderByOrderId', ordId)
+			},
+			formatDate (date) {
+				let newDate = ''
+				newDate += ''+moment(date).format('DD MMM YYYY, HH:mm')
+				return newDate
 			},
 		}
 	}
