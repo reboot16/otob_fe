@@ -3,7 +3,7 @@ import moment from 'moment'
 export default {
 	name: "Approvement",
 	props: {
-		auth: ''
+		'auth': ''
 	},
 	data(){
 		return{
@@ -37,6 +37,13 @@ export default {
 			let par = ''
 			par = this.$route.params.id
 			this.$store.dispatch('getOrderByOrderId', par)
+		},
+		checkCashier() {
+			if (auth.isCashier) {
+				return true;
+			} else {
+				return false
+			}
 		}
 	},
 	mounted() {

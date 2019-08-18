@@ -6,7 +6,7 @@
 					<h3>Riwayat Pesanan Saya</h3>
 				</div>
 				<div>
-					<search-order></search-order>
+					<search-order userType="customer"></search-order>
 				</div>
 					<div class="filter">
 						<table width="100%" class="table table-hover table-striped table-scroll small-first-col">

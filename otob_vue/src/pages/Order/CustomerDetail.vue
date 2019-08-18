@@ -134,6 +134,7 @@
 		height: 48px;
 		width: 100%;
 		font-size: 1rem;
+		border-radius: 5px;
 	}
 	.print-nota:hover {
 		background: #F9a94b;

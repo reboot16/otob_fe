@@ -8,9 +8,9 @@
 						<h3>Daftar Pesanan</h3>
 					</div>
 
-					<div class="col-sm-3 print">
+					<div class="col-sm-3 print" v-if="checkCashier === true">
 						<button class="print-excel" v-on:click="doShowModal">
-							<i class="fa fa-file"></i>
+							<i class="fa fa-file-excel-o"></i>
 							Cetak Laporan
 						</button>
 					</div>
@@ -18,7 +18,7 @@
 
 				<div class="row content-header">
 					<div class="col-sm-12">
-						<search-order></search-order>
+						<search-order userType="admin"></search-order>
 					</div>
 				</div>
 					<div class="filter">
@@ -56,14 +56,16 @@
 							</td>
 						</tr>
 
-						<tr class="col-sm-12" v-if="listOfOrder.length === 0">
+						<tr class="col-sm-12" v-if="listOfOrder === null">
 							<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
 						</tr>
 						</tbody>
 
 					</table>
 				</div>
-
+				<div style="text-align: center">
+					<order-pagination :totalPage="totalPage"/>
+				</div>
 			</div>
 		</div>
 
