@@ -16,6 +16,7 @@
     "jspdf": "^1.5.3",
     "pdfjs-dist": "^2.1.266",
     "register-service-worker": "^1.6.2",
+    "moment": "^2.19.1",
     "sessionstorage": "^0.1.0",
     "vue": "^2.6.10",
     "vue-config": "^1.0.0",

@@ -63,7 +63,7 @@
 					</table>
 				</div>
 
-				<div class="col-sm-12 row" style="margin-top: 20px;">
+				<div class="col-sm-12 row" style="margin-top: 20px;" v-if="checkCashier">
 					<div v-if="orderDetail.ordStatus === 'Waiting'">
 						<b-button
 							variant="success"
@@ -84,9 +84,8 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-	</div>
+		</div>
 </template>
 
 <script src="./Approvement.js"></script>

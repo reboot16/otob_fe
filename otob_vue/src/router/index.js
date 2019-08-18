@@ -11,12 +11,12 @@ export const router = new VueRouter({
     {
       path: '/products',
       name: 'ProductCustomer',
-      component: () => import('@/pages/Product')
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/',
       name: 'DirectProductCustomer',
-      component: () => import('@/pages/Product')
+      component: () => import('@/pages/ProductPages')
     },
     {
       path: '/login',
@@ -37,6 +37,11 @@ export const router = new VueRouter({
       path: '/orders',
       name: 'orders',
       component: () => import('@/pages/Order/ViewAllOrders.vue')
+    },
+    {
+      path: '/orders/check',
+      name: 'checkOrder',
+      component: () => import('@/pages/Order/CheckOrder.vue')
     },
     {
       path: '/orders/:id/detail',

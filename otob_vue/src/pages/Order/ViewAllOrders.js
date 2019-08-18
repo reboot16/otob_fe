@@ -2,6 +2,7 @@ import FilterOrder from '@/components/FilterOrder'
 import SearchOrder from '@/components/SearchOrder'
 import moment from 'moment'
 import CustomModal from '@/components/CustomComponents/CustomModal.vue'
+import OrderPagination from '@/components/CustomComponents/OrderPagination.vue'
 
 export default {
 	name: "ViewAllOrders",
@@ -11,7 +12,8 @@ export default {
 	components: {
 		FilterOrder,
 		SearchOrder,
-		CustomModal
+		CustomModal,
+		OrderPagination
 	},
 	data(){
 		return{
@@ -28,6 +30,9 @@ export default {
 		listOfOrder () {
 			return this.$store.getters.ORDERS
 		},
+		totalPage () {
+			return this.$store.getters.TOTAL_ORDER_PAGES
+		}
 	},
 	methods:{
 		getAllOrders()
@@ -71,6 +76,13 @@ export default {
 			}
 			this.$store.dispatch('printExcel', payload)
 			this.doShowModal()
+		},
+		checkCashier () {
+			if (auth.isCashier) {
+				return true;
+			} else {
+				return false
+			}
 		}
 	},
 	mounted() {

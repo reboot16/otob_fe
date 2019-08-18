@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default {
 	name: "Approvement",
 	props: {
@@ -28,7 +30,12 @@ export default {
 		},
 		printNota (id) {
 			this.$router.push('/orders/'+id+'/print-note')
-		}
+		},
+		formatDate (date) {
+			let newDate = ''
+			newDate += ''+moment(date).format('DD MMM YYYY, HH:mm')
+			return newDate
+		},
 	},
 	mounted() {
 		let par = ''

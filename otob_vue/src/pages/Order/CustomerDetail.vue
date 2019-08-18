@@ -14,7 +14,7 @@
 							</td>
 							<td>
 								<span class="label">Tanggal Transaksi:</span><br>
-								<span class="value">{{orderDetail.ordDate}}</span>
+								<span class="value">{{ formatDate (orderDetail.ordDate) }}</span>
 							</td>
 							<td>
 								<span class="label">Jumlah Pesanan:</span><br>
@@ -134,6 +134,7 @@
 		height: 48px;
 		width: 100%;
 		font-size: 1rem;
+		border-radius: 5px;
 	}
 	.print-nota:hover {
 		background: #F9a94b;

@@ -4,22 +4,21 @@ export default {
   state: {
     orders: {},
     currentOrder: {},
-    orderDetail: {}
+    orderDetail: {},
+    totalPages: 0
   },
   getters : {
     ORDERS : state => {
-      console.log(state.orders)
       return state.orders.orders;
+    },
+    TOTAL_ORDER_PAGES: state => {
+      return state.totalPages
     },
     getOrderById : (state) => (id) => {
       return state.orders.orders.find(order => order.ordId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
-    },
-    getProductsByOrderId :  (state) => (id) => {
-      var orders =  state.orders.find(order=>order.ordid === id);
-      return orders.products;
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
@@ -29,11 +28,11 @@ export default {
     }
   },
   mutations: {
-    UPDATE_PRODUCT_STATUS : (state,product) => {
-      state.orders[0].products[0] = product
-    },
     SET_ORDERS : (state, payload) => {
       state.orders = payload;
+    },
+    SET_TOTAL_PAGES: (state, payload) => {
+      state.totalPages = payload
     },
     ACCEPT_ORDER : (state,payload) => {
       state.orders[payload.index] = payload
@@ -55,8 +54,29 @@ export default {
         .get(config.API_ORDER)
         .then(response => {
           commit('SET_ORDERS',response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
         }).catch((e) => {
         console.error(e);
+      })
+    },
+    getOrderByPage ({commit}, payload) {
+      Axios
+          .get(config.API_ORDER+'?page='+payload.page+'&size='+payload.size)
+          .then(response => {
+            commit('SET_ORDERS',response.data.data)
+            commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+          }).catch((e) => {
+            console.log(e)
+      })
+    },
+    getCustomerOrderByPage ({commit}, payload) {
+      Axios
+          .get(config.API_ORDER+'/user?page='+payload.page+'&size='+payload.size)
+          .then(response => {
+            commit('SET_ORDERS',response.data.data)
+            commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+          }).catch((e) => {
+        console.log(e)
       })
     },
     acceptOrders ({commit}, payload) {
@@ -96,6 +116,7 @@ export default {
         .get(config.API_ORDER+'/user')
         .then(response => {
           commit('SET_ORDERS', response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
         }).catch((e) => {
         console.error(e)
       })
@@ -106,10 +127,10 @@ export default {
     searchOrder ({commit}, textSearch) {
       if (textSearch === '' || textSearch == null) {
         Axios
-          .get(config.API_ORDER)
+          .get(config.API_ORDER+'/user')
           .then(response => {
             commit('SET_ORDERS', response.data.data)
-          })
+            commit('SET_TOTAL_PAGES', response.data.data.totalPage)          })
       } else {
         Axios
           .get(config.API_ORDER+'/'+textSearch+'/search')
@@ -146,7 +167,6 @@ export default {
         Axios
           .get(config.API_ORDER+'/filter?date='+payload.date+'&status='+payload.status)
           .then(response => {
-            console.log(response)
             commit('SET_ORDERS', response.data.data)
           })
       }

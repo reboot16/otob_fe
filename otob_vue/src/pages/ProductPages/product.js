@@ -11,6 +11,7 @@ export default {
       isLogin: false,
       isAdmin: false,
       isCustomer: false,
+      isCashier: false,
       isGuest: true
     }
   },
@@ -27,6 +28,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.auth)
     this.$store.dispatch('getProducts')
     this.dispatchCart()
   },
@@ -44,7 +46,8 @@ export default {
   methods: {
     dispatchCart() {
       let isLogin = this.auth.isLogin
-      if(isLogin == true) {
+      let isCustomer = this.auth.isCustomer
+      if(isLogin == true && isCustomer == true) {
         this.$store.dispatch('getCart')
       }
     }

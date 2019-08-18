@@ -1,10 +1,12 @@
 import SearchOrder from '@/components/SearchOrder'
 import moment from 'moment'
+import OrderPagination from '@/components/CustomComponents/OrderPagination.vue'
 
 export default {
     name: 'Orders',
     components: {
-        SearchOrder
+        SearchOrder,
+        OrderPagination
     },
     data () {
         return {
@@ -34,11 +36,13 @@ export default {
     },
     mounted() {
         this.$store.dispatch('searchOrderByUserId', this.auth.userId)
-        this.getOrders()
     },
     computed: {
         orders: function () {
             return this.$store.getters.ORDERS
+        },
+        totalPage () {s
+            return this.$store.getters.TOTAL_ORDER_PAGES
         }
     }
     
