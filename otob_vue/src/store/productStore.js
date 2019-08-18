@@ -54,9 +54,6 @@ export default {
         .get(config.API_PRODUCT + '?page=' + payload.page + '&size=' + payload.size)
         .then(response => {
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
@@ -73,7 +70,7 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('ADD_PRODUCT', response.data.data)
-            alert('Success add data')
+            // alert('Success add data')
           }else{
             alert('Something wrong')
           }
@@ -92,7 +89,7 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('UPDATE_PRODUCT', payload)
-            alert('Success update data')
+            // alert('Success update data')
           }else{
             alert('access denied')
           }
@@ -107,7 +104,7 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('DELETE_PRODUCT', payload)
-            alert('Success delete data')
+            // alert('Success delete data')
           }else{
             alert('access denied')
           }
@@ -122,9 +119,6 @@ export default {
           .get(config.API_PRODUCT)
           .then(response => {
             let result = response.data.data
-            result.products.map(function(product) {
-              product.qty = 1
-            });
             commit('SET_PRODUCT', result.products)
             commit('SET_TOTAL_PAGES', result.totalPage)
           })
@@ -134,9 +128,6 @@ export default {
           .then(response => {
             console.log(response)
             let result = response.data.data
-            result.products.map(function(product) {
-              product.qty = 1
-            });
             commit('SET_PRODUCT', result.products)
             commit('SET_TOTAL_PAGES', result.totalPage)
           })
@@ -147,9 +138,6 @@ export default {
         .get(config.API_PRODUCT + '/name/' + payload.textSearch + '?page=' + payload.page + '&size=' + payload.size)
         .then(response => {
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
@@ -161,7 +149,6 @@ export default {
           {'headers': {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
-          console.log()
           if(response.data.code == 200){
             var length = response.data.data.length
             var i = 0
@@ -176,7 +163,7 @@ export default {
             }
             alert('Success upload data')
           }else{
-            alert('access denied')
+            alert(response.data.message)
           }
         })
         .catch((e) => {

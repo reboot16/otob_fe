@@ -96,7 +96,7 @@ export default {
         .then(response => {
           console.log(response)
           if(response.data.code == 200){
-            alert('Success change password')
+            // alert('Success change password')
           }else{
             alert(response.data.message)
           }

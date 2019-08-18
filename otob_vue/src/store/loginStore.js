@@ -52,7 +52,6 @@ export default {
       $cookies.remove(config.key_login)
       $cookies.remove(config.key_id)
       $cookies.remove(config.key_role)
-      $cookies.remove('SESSION')
     },
     async doLogin({commit, dispatch}, payload) {
       await Axios
@@ -70,8 +69,8 @@ export default {
           console.log(e)
         })
     },
-    doLogout({commit, dispatch}) {
-      Axios
+    async doLogout({commit, dispatch}) {
+      await Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
           if(response.data.code == 200){

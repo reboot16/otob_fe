@@ -70,6 +70,7 @@ export default {
     },
     onLogout () {
       this.$store.dispatch('doLogout')
+      location.reload()
       this.$router.push('/login')
     },
     onRoute () {
