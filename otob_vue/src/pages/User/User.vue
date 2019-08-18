@@ -35,7 +35,7 @@
       </div>
 
       <div slot="body">
-        <b-form ref="form" @submit.prevent="onSubmit">
+        <b-form ref="form" @submit.prevent="onSubmit" @reset="onReset">
           <div class="row grup-input">
             <label>Email</label>
             <b-form-input v-model="form.email" placeholder="Masukkan email" required type="email"></b-form-input>

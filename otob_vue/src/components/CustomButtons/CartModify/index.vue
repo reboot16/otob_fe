@@ -1,7 +1,7 @@
 <template>
 		<div  style="display: flex" class="row">
 			<div  style="display: flex">
-				<div class="qty">
+				<div class="quantity">
 					<button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>
 					<input type="text" :value="product.qty" readonly class="input-gray">
 					<button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>

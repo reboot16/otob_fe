@@ -47,6 +47,7 @@
 					size: size
 				}
 				this.$store.dispatch('getProductsPageable', payload)
+				return size
 			},
 			pagingDisable (index) {
 				if (this.currentPage == index) {

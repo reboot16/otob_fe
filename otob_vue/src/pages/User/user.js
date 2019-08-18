@@ -55,7 +55,8 @@ export default {
         this.showModalForm = false
       },
       onReset () {
-        this.$refs.form.reset()
+        this.form.email = ''
+        this.form.role = ''
       }
     },
     

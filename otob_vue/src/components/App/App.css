@@ -179,28 +179,28 @@ thead tr td{
 /* ======================== END OF CSS FOR TABLE =========================== */
 
 /* ============================== CSS FOR BUTTON MODIFY =========================== */
-.qty {
+.quantity {
   display: flex;
 }
 
-.qty input {
+.quantity input {
   border: 0;
   border-top: 2px solid #ddd;
   border-bottom: 2px solid #ddd;
   width: 2.3em;
   text-align: center;
 }
-.qty button {
+.quantity button {
   padding: 0 0.75em;
   font-size: 0.5em;
   cursor: pointer;
 }
 
-.qty button.btn-right{
+.quantity button.btn-right{
   border-radius: 0 0.5em 0.5em 0;
 }
 
-.qty button.btn-left{
+.quantity button.btn-left{
   border-radius: 0.5em 0 0 0.5em;
 }
 

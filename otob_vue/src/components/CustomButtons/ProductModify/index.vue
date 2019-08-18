@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<div  style="display: flex" class="row">
-			<div class=" qty">
-				<button @click="decrement(product)" :disabled="decDisable(product)" class="btn btn-gray btn-left">&mdash;</button>
+			<div class="quantity">
+				<button @click="decrement(product)" :disabled="decDisable()" class="btn btn-gray btn-left">&mdash;</button>
 				<input type="text" :value="qty" readonly class="input-gray">
-				<button @click="increment(product)" :disabled="incDisable(product)" class="btn btn-gray btn-right">&#xff0b;</button>
+				<button @click="increment(product)" :disabled="incDisable(product.stock)" class="btn btn-gray btn-right">&#xff0b;</button>
 			</div>
 			<div class="">
 				<button @click="addToCart(product)" class="btn btn-blue btn-book" style="font-size: 13px">Tambah</button>
@@ -58,15 +58,15 @@
 
 				return productExist
 			},
-			decDisable: function (product) {
+			decDisable: function () {
 				if (this.qty === 1) {
 					return true
 				} else {
 					return false
 				}
 			},
-			incDisable: function (product) {
-				if (product.stock === this.qty) {
+			incDisable: function (stock) {
+				if (stock === this.qty) {
 					return true
 				} else {
 					return false
