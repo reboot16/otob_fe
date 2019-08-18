@@ -1,46 +1,63 @@
-import { createLocalVue, shallowMount } from '@vue/test-utils'
+import {createLocalVue, shallowMount} from '@vue/test-utils'
 import TableCart from '@/components/TableCart/index.vue'
+import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue'
 
 const localVue = createLocalVue()
+
+localVue.use(Vuex)
 localVue.use(BootstrapVue)
 
+const mockStore = {
+  dispatch: jest.fn(),
+  getters: {
+    CARTS: () => []
+  }
+}
+
 describe('TableCart', () => {
-  it('props: set listItemCart', () => {
-    // const listItemCart = []
-    //
-    // const wrapper = shallowMount(TableCart, {
-    //   propsData: {
-    //     listItemCart
-    //   }
-    // })
-    // const list = wrapper.findAll('tr').at(1)
-    // expect(list).toHaveLength(listItemCart)
-  })
+  let wrapper
   
-  it('methods: onDelete', () => {
-    const onDelete = jest.fn()
-    const mockStore = {
-      dispatch: jest.fn()
-    }
-    const products = {
-      name: 'Product name',
-      description: 'Product description',
-      listPrice: 'Product listPrice',
-      offerPrice: 'Product offerPrice',
-      stock: 'Product stock'
-    }
-    
-    const wrapper = shallowMount(TableCart, {
+  beforeEach (() => {
+    wrapper = shallowMount( TableCart, {
       localVue,
-      methods: {
-        onDelete
-      },
       mocks: {
         $store: mockStore
+      },
+      router,
+      computed: {
+        listItemCart: function () {
+          return [
+            {
+              name: 'sfdgs',
+              description: 'gsdh',
+              listPrice: '132',
+              offerPrice: '131',
+              stock: '5'
+            }
+          ]
+        }
+      },
+      methods: {
+        formatCurrency: () => jest.fn()
       }
     })
-    wrapper.vm.confirmDelete = true
-    expect(mockStore.dispatch).toHaveBeenCalledWith('deleteItemCart', products)
   })
+  
+  test('methods: dispatchCart', () => {
+    wrapper.vm.dispatchCart()
+    expect(mockStore.dispatch).toHaveBeenCalledWith('getCart')
+  })
+  
+  test('methods: onOrder', () => {
+    wrapper.vm.onOrder()
+    expect(wrapper.vm.showModalAlert).toEqual(true)
+  })
+  
+  test('methods: continueCheckout', () => {
+    wrapper.vm.continueCheckout()
+    expect(mockStore.dispatch).toHaveBeenCalledWith('checkout')
+    expect(wrapper).toHaveRouteName('Thanks')
+  })
+  
 })
