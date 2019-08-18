@@ -19,27 +19,10 @@ export default {
       showModalBatch: false
     }
   },
-  mounted () {
-
-  },
-  computed: {
-
-  },
   methods: {
-    onShowModal () {
-      this.showModalAdd = true
-    },
-    onShowModalBatch () {
-      this.showModalBatch = true
-    },
     onHandleSubmit () {
-      let product = this.form
-      this.onSubmit(product)
-    },
-    onSubmit (product) {
       this.showModalAdd = false
-      this.$store.dispatch('addProduct', product)
-  
+      this.$store.dispatch('addProduct', this.form)
       this.resetForm()
     },
     onHandleUpload (event){
@@ -54,11 +37,14 @@ export default {
       this.showModalBatch = false
       this.$store.dispatch('uploadProduct', formData)
     },
-    onReset () {
-      this.$refs.form.reset()
-    },
     resetForm () {
-      this.form = ''
+      this.form = {
+        name: '',
+        description: '',
+        listPrice: '',
+        offerPrice: '',
+        stock: ''
+      }
     }
   }
 

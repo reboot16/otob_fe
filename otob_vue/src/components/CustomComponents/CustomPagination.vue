@@ -46,7 +46,6 @@
 					page: index,
 					size: size
 				}
-				// console.log(payload)
 				this.$store.dispatch('getProductsPageable', payload)
 			},
 			pagingDisable (index) {

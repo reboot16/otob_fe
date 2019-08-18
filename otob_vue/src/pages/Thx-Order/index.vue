@@ -1,10 +1,6 @@
 <template>
   <div>
     <div class="thx container col-sm-6">
-      <div style="text-align: center">
-      <h1 style="color: rgb(38, 164, 218); font-weight: bold">Terimakasih...</h1>
-      </div>
-
       <p style="text-align: center">
         Hai <b>{{ dataOrder.userEmail }},</b><br>
         Terimakasih telah berbelanja di Blibli Bazaar.<br>
@@ -13,7 +9,7 @@
       </p>
       <div style="border: 2px dashed rgb(38, 164, 218); padding: 0.5em; text-align: center; background-color: white">
         Id pesanan saat ini:
-        <h2 class="order-now" @click="viewDetail(dataOrder.orderId)">{{ dataOrder.orderId }}</h2>
+        <h2 class="order-now" @click="viewDetail(ordId)">{{ ordId }}</h2>
       </div>
       <div>
         <br>
@@ -24,9 +20,6 @@
           <li>Tunjukkan nota pada cashier</li>
           <li>Bayarkan sesuai jumlah tertera pada nota</li>
         </ol>
-<!--        <div style="font-size: 11px">-->
-<!--          Karena keterbatasan stock, beberapa produk berikut tidak dapat masuk dalam bagian pemesanan anda-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -38,9 +31,6 @@
     font-size: 13px;
   }
   .thx {
-    /*background-color: rgb(38, 164, 218);*/
-    /*text-align:center;*/
-    /*border:1px solid white;*/
     border-radius: 1em;
     margin-top:3em;
   }
@@ -51,38 +41,25 @@
 
 <script>
 export default {
-  name: 'Product',
+  name: 'ThanksOrder',
   props: {
     auth: {}
   },
-  data() {
-    return{
-      username : 'My Name'
-    }
-  },
   computed: {
-    currentOrder () {
-      let orderId = this.$route.params.id
-      return this.$store.getters.getCurrentOrder
+    ordId () {
+      return this.$route.params.id
     },
     dataOrder () {
-      if(this.currentOrder)
-        return this.currentOrder
-      else{
-        this.$router.push('/products')
-      }
+      return this.$store.getters.getOrderDetail
     }
   },
   mounted (){
-    let ordId = this.$route.params.id
+    if(this.auth.isLogin == true && this.auth.isCustomer == true){
+      this.$store.dispatch('getOrderByOrderId', this.ordId)
+    } else{
+      this.$router.push('/products')
+    }
 
-    if(ordId == '' || ordId == undefined || this.currentOrder.length == 0){
-      this.$router.push('/products')
-    }
-    if (this.currentOrder.length == 0){
-      this.$router.push('/products')
-    }
-    this.$router.push('/orders/thank-you/'+this.dataOrder.orderId)
   },
   methods: {
     viewDetail(id){

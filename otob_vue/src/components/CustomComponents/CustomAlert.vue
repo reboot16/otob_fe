@@ -1,16 +1,16 @@
 <template>
 	<div id="modal-alert" class="container">
 		<CustomModal>
-			<div slot="top" style="color: black;">
-				<slot name="alert-name"> Are you sure want to delete this item? </slot>
+			<div slot="top" style="color: black; text-align: center">
+				<slot name="alert-name"> Yakin ingin menghapus produk? </slot>
 			</div>
 
 			<div slot="body" class="row">
 				<div class="col-sm-6" style="padding: 0">
-					<button class="btn btn-gray" @click="onCancel"> Cancel </button>
+					<button class="btn btn-gray" @click="onCancel"> Batal </button>
 				</div>
 				<div class="col-sm-6" style="padding: 0; text-align: right;">
-					<button class="btn btn-orange" @click="onContinue"> Continue </button>
+					<button class="btn btn-orange" @click="onContinue"> Lanjut </button>
 				</div>
 			</div>
 		</CustomModal>
@@ -33,7 +33,7 @@
 			},
 			onContinue () {
 				this.$emit('continue')
-				this.onClose()
+				this.onCancel()
 			}
 		}
 	}

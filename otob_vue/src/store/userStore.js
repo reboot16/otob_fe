@@ -40,11 +40,11 @@ export default {
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          if(response.data.code == 403) {
-            alert(response.data.message)
-          }else{
+          if(response.data.code == 200) {
             alert('Success add new User')
             commit('ADD_USER', payload)
+          }else{
+            alert(response.data.message)
           }
         })
         .catch((e) => {
@@ -59,11 +59,11 @@ export default {
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          if(response.data.code == 403) {
-            alert(response.data.message)
-          }else{
+          if(response.data.code == 200) {
             alert('Success add new User')
             commit('ADD_USER', payload)
+          }else{
+            alert(response.data.message)
           }
         })
         .catch((e) => {
@@ -78,11 +78,11 @@ export default {
           {'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
-          if(response.data.code == 403) {
-            alert(response.data.message)
-          }else{
+          if(response.data.code == 200) {
             alert('Success add new User')
             commit('ADD_USER', payload)
+          }else{
+            alert(response.data.message)
           }
         })
         .catch((e) => {
@@ -95,7 +95,7 @@ export default {
         .put(config.API_USER + '/password/change', payload)
         .then(response => {
           console.log(response)
-          if(response.data.code === 200){
+          if(response.data.code == 200){
             alert('Success change password')
           }else{
             alert(response.data.message)

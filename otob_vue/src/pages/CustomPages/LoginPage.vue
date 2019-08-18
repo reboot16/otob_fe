@@ -1,21 +1,21 @@
 <template>
   <div name="login">
 
-    <CustomForm>
+    <CustomForm class="col-sm-12">
       <div slot="slot-title">
-        Welcome to Blibli Bazaar
+        Selamat Datang di Blibli Bazaar
       </div>
 
       <div slot="slot-form">
         <b-form @submit.prevent="onLogin">
           <b-form-input v-model="form.username" placeholder="Enter your username" required></b-form-input>
           <b-form-input v-model="form.password" placeholder="Enter your password" required type="password"></b-form-input>       
-          <b-button type="submit" variant="primary" style="width: 100%;">Login</b-button>
+          <b-button type="submit" variant="primary" style="width: 100%;">Masuk</b-button>
         </b-form> 
       </div>
 
       <div slot="slot-notif">
-        If you don't have an account, <a href="/register" >Register Here</a> <br> 
+        Jika anda belum punya akun, <a href="/register" >Daftar Disini</a> <br>
       </div>
     </CustomForm>
     

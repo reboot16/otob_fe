@@ -6,11 +6,11 @@
       </div>
 
       <div class="boxTitle">
-        <h2>
+        <h3>
             <slot name="slot-title">
                 Default
             </slot>
-        </h2>
+        </h3>
       </div>
 
       <div class="boxForm">
@@ -29,7 +29,7 @@
 </template>
 
 <style>
-h2{
+h3{
   color: rgb(2, 122, 200);
 }
 .boxMain{ 

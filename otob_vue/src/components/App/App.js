@@ -18,7 +18,7 @@ export default {
     CustomAlert
   },
   mounted () {
-    this.$store.dispatch('checkAuthorized')
+    this.checkAuth()
   },
   computed : {
     isAuth () {
@@ -53,7 +53,7 @@ export default {
         return this.isAuth.userId
       return ''
     },
-    auth () {
+    userAuth () {
       let auth = {
         isLogin: this.isLogin,
         isAdmin: this.isAdmin,
@@ -65,25 +65,23 @@ export default {
     }
   },
   methods : {
+    checkAuth () {
+      this.$store.dispatch('checkAuthorized')
+    },
     onLogout () {
       this.$store.dispatch('doLogout')
       this.$router.push('/login')
     },
-    onRouteLoginTrue () {
-      if(this.isLogin == true) {
-        this.$router.push('/products')
-      }
-    },
     onRoute () {
-      // if(this.userAuth.isLogin == true){
-      //   if(this.userAuth.isAdmin == true){
-      //     this.$router.push('/products/manage')
-      //   }else if(this.userAuth.isCashier == true){
-      //     this.$router.push('/orders')
-      //   }else if(this.auth.isCustomer == true){
-      //     this.$router.push('/products')
-      //   }
-      // }
+      if(this.userAuth.isLogin == true){
+        if(this.userAuth.isAdmin == true){
+          this.$router.push('/products/manage')
+        }else if(this.userAuth.isCashier == true){
+          this.$router.push('/orders')
+        }else if(this.auth.isCustomer == true){
+          this.$router.push('/products')
+        }
+      }
     },
     showModalChangePassword () {
       this.showChangePassword = true

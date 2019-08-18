@@ -54,14 +54,6 @@ export default {
         }
         this.showModalForm = false
       },
-      onDelete: function (user, index) {
-        const confirmDelete = confirm("Are you sure to delete this?");
-  
-        if (confirmDelete) {
-          user.index = index
-          this.$store.dispatch('deleteUser', user) 
-        }
-      },
       onReset () {
         this.$refs.form.reset()
       }

@@ -7,14 +7,19 @@ export default {
 			customTextAlert: 'Default alert from mixin'
 		}
 	},
+	mounted () {
+		let checkValid = false
+	},
 	methods: {
-		showCustomAlert() {
-			alert('custom alert')
-			// // console.log(this.customAlert)
-			// this.customAlert = true
-			// // console.log(this.customAlert)
-			//
-			// this.customTextAlert = text
+		dispatchIsValid() {
+			// this.
+		},
+		showCustomAlert(text) {
+			// console.log(this.customAlert)
+			this.customAlert = true
+			// console.log(this.customAlert)
+			
+			this.customTextAlert = text
 		},
 		formatCurrency (value) {
 			let result = ''

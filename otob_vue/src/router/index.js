@@ -11,12 +11,12 @@ export const router = new VueRouter({
     {
       path: '/products',
       name: 'ProductCustomer',
-      component: () => import('@/pages/ProductPages')
+      component: () => import('@/pages/Product')
     },
     {
       path: '/',
       name: 'DirectProductCustomer',
-      component: () => import('@/pages/ProductPages')
+      component: () => import('@/pages/Product')
     },
     {
       path: '/login',
@@ -78,17 +78,6 @@ export const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = "Blibli Bazaar"
-  
-  // store.dispatch('validateClient')
-  // let isvalid = store.getters.isValid
-  // console.log('isValid:' + isvalid)
-  // if(isvalid == true){
-  //   console.log('valid')
-  // }else if(isvalid == false){
-  //   // store.dispatch('doLogout')
-  //   next('/login')
-  //   console.log('logout')
-  //   console.log('not-valid')
-  // }
+  // store.dispatch('validateCookie')
   next()
 })

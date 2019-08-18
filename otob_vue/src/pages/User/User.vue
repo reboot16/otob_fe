@@ -4,25 +4,25 @@
       <div class="block">
         <b-row>
           <div class="col-sm-6">
-            <h3>List User</h3>
+            <h3>Daftar Pengguna</h3>
           </div>
           <div class="col-sm-6" style="text-align:right">
-             <b-button variant="success" @click="showModalUser()"><b>&#xff0b;</b> User</b-button>
+             <b-button variant="blue" @click="showModalUser()"><b>&#xff0b;</b> User</b-button>
           </div>
         </b-row>
 
         <table width="100%" class="table table-hover table-striped table-scroll small-first-col">
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Email</th>
+            <tr style="display: flex">
+              <th class="col-sm-1" style="text-align: center">#</th>
+              <th class="col-sm-11">Email</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr v-for="(user, index) in listUser" :key="index" >
-              <td align="center"><b>{{ index+1 }}</b></td>
-              <td v-text="user.email"></td>
+            <tr v-for="(user, index) in listUser" :key="index" style="display: flex">
+              <td class="col-sm-1" align="center"><b>{{ index+1 }}</b></td>
+              <td class="col-sm-11" v-text="user.email"></td>
             </tr>
           </tbody>
         </table>
@@ -31,7 +31,7 @@
 
     <CustomModal v-if="showModalForm" @close="showModalForm=false">
       <div slot="header">
-        Register Pengguna Baru
+        <h4>Register Pengguna Baru</h4>
       </div>
 
       <div slot="body">
@@ -41,7 +41,7 @@
             <b-form-input v-model="form.email" placeholder="Masukkan email" required type="email"></b-form-input>
           </div>
           <div class="row grup-input">
-            <label>Deskripsi</label>
+            <label>Hak Akses Pengguna</label>
             <b-form-select v-model="form.role" :options="options" required  placeholder="Role pengguna"></b-form-select>
           </div>
 

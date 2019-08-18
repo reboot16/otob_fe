@@ -1,21 +1,25 @@
 import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
-import ModifyCart from '@/components/ModifyCart'
+import CustomButton from '@/components/CustomButtons/CartModify'
 
 export default {
-  name: 'TableCart', 
-  props: {
-    listItemCart: ''
-  },
+  name: 'TableCart',
   components: {
     CustomAlert,
-    ModifyCart
+    CustomButton
   },
   data () {
     return {
       showModalAlert: false
     }
   },
+  mounted () {
+    this.dispatchCart()
+  },
   computed: {
+    listItemCart () {
+      this.dispatchCart()
+      return this.$store.getters.CARTS
+    },
     countOfItem () {
       return this.listItemCart.length
     },
@@ -31,41 +35,16 @@ export default {
     },
   },
   methods: {
-    decrement: function(product, index) {
-      if( product.qty == 1) {
-        this.onDelete(product, index)
-      }
-      else{
-        product.qty--
-        product.index = index
-        product.type = false
-  
-        this.$store.dispatch('updateItemCart', product)
-      }
-    },
-    increment: function(product, index) {
-      product.qty++
-      product.index = index
-      product.type = true
-
-      this.$store.dispatch('updateItemCart', product)
-    },
-    onDelete: function (product, index) {
-      product.index = index
-      this.$store.dispatch('deleteItemCart', product)
+    dispatchCart() {
+      this.$store.dispatch('getCart')
     },
     onOrder: function () {
       this.showModalAlert = true
     },
     async continueCheckout () {
       await this.$store.dispatch('checkout')
-      let currentOrder = this.$store.getters.getCurrentOrderId
-      console.log('tbl cart')
-      console.log(currentOrder)
-      this.$router.push('/orders/thank-you/'+currentOrder)
-    },
-    bookDisable (sum) {
-      return sum === 0;
+      let currentOrder = this.$store.getters.getCurrentOrder
+      this.$router.push('/orders/thank-you/'+currentOrder.ordId)
     }
   },
   

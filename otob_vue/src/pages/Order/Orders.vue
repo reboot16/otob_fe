@@ -2,49 +2,54 @@
 	<div class="orders">
 		<div class="container header-body">
 			<div class="block">
-
-				<div class="col-sm-12" style="padding: 0">
-					<h3>Riwayat Pesanan Anda</h3>
+				<div>
+					<h3>Riwayat Pesanan Saya</h3>
 				</div>
 				<div>
 					<search-order></search-order>
 				</div>
+					<div class="filter">
+						<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 
-				<div class="filter">
-					<table width="100%" class="table table-hover table-striped">
-						<thead>
-						<tr >
-							<th class="col-sm-1">No</th>
-							<th class="col-sm-3">Order Number</th>
-							<th class="col-sm-3">Order Date</th>
-							<th class="col-sm-1">Quantity</th>
-							<th class="col-sm-2"> Total Price</th>
-							<th class="col-sm-2"> Action</th>
-						</tr>
-						</thead>
+							<thead>
+							<tr class="col-sm-12">
+								<th width="4%">No</th>
+								<th width="20%">Nomor Pesanan</th>
+								<th width="17%">Tanggal Pesanan</th>
+								<th width="11%">Total Produk</th>
+								<th width="20%">Total Harga</th>
+								<th width="8%">Status</th>
+								<th width="10%"></th>
+							</tr>
+							</thead>
 
-						<tbody>
-						<tr ref="listItemCart" class="col-sm-12" v-if="orders.length != 0" v-for="(order, index) in orders" :key="index" >
-							<td class="col-sm-1"><b>{{ index+1 }}</b></td>
-							<td class="col-sm-3">{{ order.orderId }}</td>
-							<td class="col-sm-3">{{ order.ordDate }}</td>
-							<td class="col-sm-1" style="text-align: center">{{ order.totItem }}</td>
-							<td class="col-sm-2">Rp {{ order.totPrice }}</td>
-							<td class="col-sm-2">
-								<b-button variant="outline-info" size="sm" v-on:click="viewDetail(order.orderId)" class="mr-2">
-									Details
-								</b-button>
-							</td>
-						</tr>
+							<tbody class="scrollContentCart">
+							<tr ref="listItemCart" class="col-sm-12" v-if="orders.length != 0" v-for="(order, index) in orders" :key="index" >
+								<td width="4%"><b>{{ index+1 }}</b></td>
+								<td width="20%">{{ order.ordId }}</td>
+								<td width="17%">{{ formatDate (order.ordDate) }}</td>
+								<td  width="11%" style="text-align: center">{{ order.totItem }}</td>
+								<td width="20%">Rp {{ order.totPrice }}</td>
+								<td width="8%" class="status-waiting" v-if="order.ordStatus === 'Waiting'">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-acc" v-if="order.ordStatus === 'Accepted'">{{ order.ordStatus }}</td>
+								<td width="8%" class="status-rej" v-if="order.ordStatus === 'Rejected'">{{ order.ordStatus }}</td>
+								<td width="10%">
+									<b-button
+										variant="outline-info"
+										size="sm"
+										v-on:click="viewDetail(order.ordId)"
+										class="mr-2">Detail
+									</b-button>
+								</td>
+							</tr>
 
-						<tr class="col-sm-12" v-else>
-							<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
-						</tr>
-						</tbody>
+							<tr class="col-sm-12" v-else>
+								<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
+							</tr>
+							</tbody>
 
-					</table>
+						</table>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -53,11 +58,34 @@
 <script src="./Orders.js"></script>
 <style scoped>
 
-	.table {
-		margin-top: 10px;
+	.content-header {
+		margin: auto;
+		max-width: 90%;
+		font-size: 1.8rem;
+		font-weight: bold;
 	}
-
-	tr{
-		display: flex;
+	.table {
+		margin: auto;
+		margin-top: 10px;
+		padding: 10px;
+	}
+	.search {
+		margin: auto;
+		max-width: 90%;
+	}
+	.status-acc {
+		color: forestgreen;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.status-waiting {
+		color: dodgerblue;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	.status-rej {
+		color: red;
+		font-size: 0.8rem;
+		font-weight: bold;
 	}
 </style>
