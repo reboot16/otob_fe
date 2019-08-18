@@ -38,10 +38,8 @@ describe('Product', () => {
 	
 	test('methods: dispatchCart', () => {
 		wrapper.vm.dispatchCart()
-		wrapper.vm.auth.isLogin = true
-		let isLogin = wrapper.vm.auth.isLogin
+		wrapper.vm.auth.islogin = true
 		expect(mockStore.dispatch).toHaveBeenCalledWith('getProducts')
-		expect(isLogin).toEqual(true)
 	})
 	
 })

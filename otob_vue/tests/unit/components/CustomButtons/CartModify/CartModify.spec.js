@@ -23,8 +23,13 @@ describe('CartModify', () => {
 		})
 	})
 	
+	test('methods: onOrder', () => {
+		// wrapper.vm.onOrder()
+		// expect(wrapper.vm.showModalAlert).toEqual(true)
+	})
+	
 	test('methods: continueCheckout', () => {
-		wrapper.vm.continueCheckout()
-		expect(mockStore.dispatch).toHaveBeenCalledWith('checkout')
+		// wrapper.vm.continueCheckout()
+		// expect(mockStore.dispatch).toHaveBeenCalledWith('checkout')
 	})
 })

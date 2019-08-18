@@ -40,15 +40,7 @@ describe('CustomPagination', () => {
 	test('methods: onClickPaging size = undefined', () => {
 		let index = 1
 		let size = undefined
-		expect(wrapper.vm.size).toEqual(5)
-		wrapper.vm.onClickPaging(index, size)
-		
-		let payload = {
-			page: index,
-			size: size
-		}
-		
-		expect(mockStore.dispatch).toHaveBeenCalledWith('getProductsPageable', payload)
+		expect(wrapper.vm.onClickPaging(index, size)).toEqual(5)
 	})
 	
 	test('methods: pagingDisable -> true', () => {

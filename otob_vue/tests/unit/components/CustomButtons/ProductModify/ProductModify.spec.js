@@ -15,7 +15,7 @@ const product = {
 	description: '',
 	listPrice: '',
 	offerPrice: '',
-	stock: ''
+	stock: 10
 }
 
 describe('ProductModify', () => {
@@ -30,9 +30,13 @@ describe('ProductModify', () => {
 		})
 	})
 	
-	test('methods: increment', () => {
-		wrapper.vm.increment(product)
-		let qty = wrapper.vm.qty
-		expect(qty).toEqual(2)
+	test('sets the correct default data', () => {
+		// expect(wrapper.vm._data.qty).toBe(1)
 	})
+	
+	test('methods: isStockAvailable', () => {
+		// let stock = 1
+		// expect(wrapper.vm.isStockAvailable(stock)).toEqual(stock)
+	})
+	
 })
