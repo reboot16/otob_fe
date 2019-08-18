@@ -19,15 +19,15 @@
           <span class="color-orange checkout-price"> {{ formatCurrency(sumOfPrice) }}</span>
         </div>
         <div class="col-sm-2" style="text-align:right" >
-          <button class="btn btn-orange" @click="onOrder" width="100%" id="btnOrder">Order Now</button>
+          <button class="btn btn-orange" @click="onOrder" width="100%" id="btnOrder">Pesan Sekarang</button>
         </div>
       </div>
 
       <CustomAlert v-if="showModalAlert"
          @close="showModalAlert=false"
          @continue="continueCheckout" >
-        <div slot="alert-name">
-          Are you sure to continue the checkout process ?
+        <div slot="alert-name" style="text-align: center">
+          Lanjutkan proses pemesanan produk ?
         </div>
       </CustomAlert>
   </div> 

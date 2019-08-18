@@ -41,9 +41,7 @@
 		max-height: 35px;
 	}
 	.table {
-		margin: auto;
 		margin-top: 10px;
-		max-width: 100%;
 	}
 	.button-filter {
 		border: 1px solid;

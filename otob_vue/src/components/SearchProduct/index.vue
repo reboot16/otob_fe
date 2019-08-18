@@ -1,10 +1,10 @@
 <template>
 	<div class="input-group">
-		<input type="search" class="form-control" placeholder="Enter Product Name Here"
+		<input type="search" class="form-control" placeholder="Masukkan nama produk disini"
 					 v-model="searchText">
 
 		<div class="input-group-append">
-			<button class="btn btn-primary" type="button" @click="onSearch">Search</button>
+			<button class="btn btn-primary" type="button" @click="onSearch"> Cari </button>
 		</div>
 	</div>
 </template>

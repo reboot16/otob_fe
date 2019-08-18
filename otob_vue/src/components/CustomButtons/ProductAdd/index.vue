@@ -11,7 +11,7 @@
     <!-- =============== Form Modal to Add Product ================= -->
     <CustomModal v-if="showModalAdd" @close="showModalAdd=false">
       <div slot="header">
-        Tambah Product
+        <h4>Tambah Product</h4>
       </div>
 
       <div slot="body">
@@ -53,16 +53,16 @@
     <!-- =============== Form Modal to Upload Product ================= -->
     <CustomModal v-if="showModalBatch" @close="showModalBatch=false">
       <div slot="header">
-        Upload Product
+        <h4>Upload Product</h4>
       </div>
 
       <div slot="body">
         <b-form @submit.prevent="onHandleUpload" ref="formBatch" style="text-align:left" >
-          <b-row style="padding:0 1em 0 1em">
+          <div style="padding-top: 1em">
 <!--            <b-form-file v-model="file" ref="file" id="file" v-on:change="onChangeFileUpload()" required></b-form-file>-->
             <input type="file" id="file" ref="file" multiple v-on:change="onChangeFileUpload()"/>
-          </b-row><br>
-          <div id="r_button2">
+          </div><br>
+          <div>
             <b-button type="submit" variant="success" style="width:100%">
               Upload File
             </b-button>

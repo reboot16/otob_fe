@@ -7,7 +7,7 @@
 				<button @click="increment(product)" :disabled="incDisable(product)" class="btn btn-gray btn-right">&#xff0b;</button>
 			</div>
 			<div class="">
-				<button @click="addToCart(product)" class="btn btn-blue btn-book" style="font-size: 13px">Add</button>
+				<button @click="addToCart(product)" class="btn btn-blue btn-book" style="font-size: 13px">Tambah</button>
 			</div>
 		</div>
 	</div>

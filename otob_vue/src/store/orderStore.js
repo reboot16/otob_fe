@@ -1,4 +1,3 @@
-
 import Axios from 'axios'
 
 export default {
@@ -17,6 +16,10 @@ export default {
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
+    },
+    getProductsByOrderId :  (state) => (id) => {
+      var orders =  state.orders.find(order=>order.ordid === id);
+      return orders.products;
     },
     getCurrentOrder: (state) => {
       return state.currentOrder
@@ -51,7 +54,7 @@ export default {
       Axios
         .get(config.API_ORDER)
         .then(response => {
-          commit('SET_ORDERS',response.data.data.orders)
+          commit('SET_ORDERS',response.data.data)
         }).catch((e) => {
         console.error(e);
       })
@@ -132,14 +135,14 @@ export default {
     },
     filterOrder ({commit}, payload) {
       if ((payload.status === '' || payload.status === null) && (payload.date === '' || payload.date === null)) {
-        alert('ehm')
+        // alert('ehm')
         Axios
           .get(config.API_ORDER)
           .then(response => {
             commit('SET_ORDERS', response.data.data)
           })
       }  else {
-        alert('uhuk')
+        // alert('uhuk')
         Axios
           .get(config.API_ORDER+'/filter?date='+payload.date+'&status='+payload.status)
           .then(response => {

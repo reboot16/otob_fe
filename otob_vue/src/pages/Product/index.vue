@@ -4,7 +4,7 @@
       <div class="block">
 
         <div>
-          <h3>{{ auth.isAdmin == true ? 'Manage Product' : 'Product List' }}</h3>
+          <h3>Daftar Produk</h3>
         </div>
 
         <div class="row" v-if="auth.isLogin == true && auth.isAdmin == true" style="margin-bottom: 0.5em;">

@@ -49,15 +49,8 @@ export default {
     ordId () {
       return this.$route.params.id
     },
-    currentOrder () {
-      return this.$store.getters.getCurrentOrder
-    },
     dataOrder () {
-      if(this.currentOrder)
-        return this.currentOrder
-      else{
-        this.$router.push('/products')
-      }
+      return this.$store.getters.getOrderDetail
     }
   },
   mounted (){
@@ -66,6 +59,7 @@ export default {
     } else{
       this.$router.push('/products')
     }
+
   },
   methods: {
     viewDetail(id){
