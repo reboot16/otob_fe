@@ -106,6 +106,7 @@ export default {
         .get(config.API_ORDER+'/'+ orderId + '/search')
         .then(response => {
           commit('GET_ORDER_BY_ID', response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
         })
         .catch((e) => {
           console.log(e)
