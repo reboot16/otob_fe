@@ -21,7 +21,7 @@
 						<search-order userType="admin"></search-order>
 					</div>
 				</div>
-					<div class="filter">
+				<div class="filter">
 					<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
 						<thead>
 						<tr class="col-sm-12">

@@ -110,7 +110,6 @@
     .search {
         margin: 10px 0px 20px 0px;
     }
-
     .label {
         color: dimgrey;
         font-size: 0.8rem;

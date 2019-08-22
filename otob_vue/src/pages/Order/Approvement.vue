@@ -85,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-		</div>
+	</div>
 </template>
 
 <script src="./Approvement.js"></script>

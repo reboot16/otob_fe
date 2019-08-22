@@ -68,7 +68,6 @@
     .group-pagination {
         display: flex;
     }
-
     .group-pagination button {
         background-color: #17a1e0;
         border: 1px solid #9bc4d8;
@@ -79,7 +78,6 @@
         color: white;
         font-size: 12px;
     }
-
     .group-pagination button:hover{
         background-color: #0b8ecc;
     }

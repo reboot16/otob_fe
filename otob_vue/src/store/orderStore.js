@@ -61,21 +61,21 @@ export default {
     },
     getOrderByPage ({commit}, payload) {
       Axios
-          .get(config.API_ORDER+'?page='+payload.page+'&size='+payload.size)
-          .then(response => {
-            commit('SET_ORDERS',response.data.data)
-            commit('SET_TOTAL_PAGES', response.data.data.totalPage)
-          }).catch((e) => {
-            console.log(e)
+        .get(config.API_ORDER+'?page='+payload.page+'&size='+payload.size)
+        .then(response => {
+          commit('SET_ORDERS',response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+        }).catch((e) => {
+        console.log(e)
       })
     },
     getCustomerOrderByPage ({commit}, payload) {
       Axios
-          .get(config.API_ORDER+'/user?page='+payload.page+'&size='+payload.size)
-          .then(response => {
-            commit('SET_ORDERS',response.data.data)
-            commit('SET_TOTAL_PAGES', response.data.data.totalPage)
-          }).catch((e) => {
+        .get(config.API_ORDER+'/user?page='+payload.page+'&size='+payload.size)
+        .then(response => {
+          commit('SET_ORDERS',response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+        }).catch((e) => {
         console.log(e)
       })
     },
@@ -115,6 +115,7 @@ export default {
       Axios
         .get(config.API_ORDER+'/user')
         .then(response => {
+          console.log(response)
           commit('SET_ORDERS', response.data.data)
           commit('SET_TOTAL_PAGES', response.data.data.totalPage)
         }).catch((e) => {

@@ -3,7 +3,7 @@
 		<div class="input-group row" v-if="userType === 'customer'">
 			<div class="col-sm-12">
 				<input type="search" class="form-control" placeholder="Enter Your Order Id Here"
-					   v-model="searchText" @keyup.enter="doSearch">
+							 v-model="searchText" @keyup.enter="doSearch">
 			</div>
 		</div>
 

@@ -25,7 +25,8 @@ export default {
       Axios
         .get(config.API_USER)
         .then(response => {
-          commit('SET_USER', response.data.data)
+          console.log(response)
+          commit('SET_USER', response.data.data.users)
         })
         .catch((e) => {
           console.error(e)

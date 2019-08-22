@@ -41,9 +41,10 @@ export default {
         orders: function () {
             return this.$store.getters.ORDERS
         },
-        totalPage () {s
+        totalPage () {
             return this.$store.getters.TOTAL_ORDER_PAGES
         }
     }
     
 }
+

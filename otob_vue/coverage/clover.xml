@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566140731241" clover="3.2.0">
-  <project timestamp="1566140731241" name="All files">
-    <metrics statements="169" coveredstatements="115" conditionals="28" coveredconditionals="16" methods="18" coveredmethods="9" elements="215" coveredelements="140" complexity="0" loc="169" ncloc="169" packages="14" files="15" classes="15">
+<coverage generated="1566190327697" clover="3.2.0">
+  <project timestamp="1566190327697" name="All files">
+    <metrics statements="174" coveredstatements="104" conditionals="34" coveredconditionals="16" methods="17" coveredmethods="9" elements="225" coveredelements="129" complexity="0" loc="174" ncloc="174" packages="13" files="15" classes="15">
       <package name="components.CustomButtons.CartModify">
         <metrics statements="21" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/CustomButtons/CartModify/index.vue">
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/CustomButtons/CartModify/index.vue">
           <metrics statements="21" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-          <line num="19" count="3" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
           <line num="32" count="0" type="stmt"/>
           <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="34" count="0" type="stmt"/>
@@ -31,9 +31,9 @@
       </package>
       <package name="components.CustomButtons.ProductAdd">
         <metrics statements="12" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/CustomButtons/ProductAdd/index.vue">
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/CustomButtons/ProductAdd/index.vue">
           <metrics statements="12" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="2" type="stmt"/>
+          <line num="1" count="1" type="stmt"/>
           <line num="9" count="3" type="stmt"/>
           <line num="24" count="1" type="stmt"/>
           <line num="25" count="1" type="stmt"/>
@@ -48,9 +48,9 @@
         </file>
       </package>
       <package name="components.CustomButtons.ProductModify">
-        <metrics statements="24" coveredstatements="3" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="1"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/CustomButtons/ProductModify/index.vue">
-          <metrics statements="24" coveredstatements="3" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="1"/>
+        <metrics statements="24" coveredstatements="4" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="2"/>
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/CustomButtons/ProductModify/index.vue">
+          <metrics statements="24" coveredstatements="4" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="2"/>
           <line num="23" count="2" type="stmt"/>
           <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
           <line num="30" count="0" type="stmt"/>
@@ -68,7 +68,7 @@
           <line num="62" count="2" type="cond" truecount="1" falsecount="1"/>
           <line num="63" count="2" type="stmt"/>
           <line num="65" count="0" type="stmt"/>
-          <line num="69" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="69" count="2" type="cond" truecount="0" falsecount="2"/>
           <line num="70" count="0" type="stmt"/>
           <line num="72" count="0" type="stmt"/>
           <line num="76" count="0" type="stmt"/>
@@ -78,34 +78,50 @@
         </file>
       </package>
       <package name="components.CustomComponents">
-        <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="0" coveredmethods="0"/>
-        <file name="CustomAlert.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/CustomComponents/CustomAlert.vue">
+        <metrics statements="27" coveredstatements="12" conditionals="10" coveredconditionals="4" methods="0" coveredmethods="0"/>
+        <file name="CustomAlert.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/CustomComponents/CustomAlert.vue">
           <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="21" count="6" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="32" count="1" type="stmt"/>
-          <line num="33" count="1" type="stmt"/>
+          <line num="21" count="5" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
         </file>
-        <file name="CustomPagination.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/CustomComponents/CustomPagination.vue">
-          <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="0" coveredmethods="0"/>
+        <file name="CustomPagination.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/CustomComponents/CustomPagination.vue">
+          <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="0" coveredmethods="0"/>
           <line num="30" count="4" type="stmt"/>
           <line num="41" count="2" type="stmt"/>
           <line num="42" count="2" type="cond" truecount="2" falsecount="0"/>
           <line num="43" count="1" type="stmt"/>
           <line num="45" count="2" type="stmt"/>
           <line num="49" count="2" type="stmt"/>
-          <line num="50" count="2" type="stmt"/>
-          <line num="53" count="4" type="cond" truecount="2" falsecount="0"/>
-          <line num="54" count="3" type="stmt"/>
-          <line num="56" count="1" type="stmt"/>
+          <line num="52" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="53" count="3" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+        </file>
+        <file name="OrderPagination.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/CustomComponents/OrderPagination.vue">
+          <metrics statements="14" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="58" count="0" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
         </file>
       </package>
       <package name="components.ListTableProductAdmin">
         <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/ListTableProductAdmin/index.vue">
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/ListTableProductAdmin/index.vue">
           <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="3" type="stmt"/>
-          <line num="2" count="3" type="stmt"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="2" count="2" type="stmt"/>
           <line num="14" count="6" type="stmt"/>
           <line num="31" count="2" type="stmt"/>
           <line num="34" count="1" type="stmt"/>
@@ -124,9 +140,9 @@
       </package>
       <package name="components.ListTableProductCustomer">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/ListTableProductCustomer/index.vue">
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/ListTableProductCustomer/index.vue">
           <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-          <line num="1" count="3" type="stmt"/>
+          <line num="1" count="2" type="stmt"/>
           <line num="12" count="2" type="stmt"/>
           <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
           <line num="29" count="1" type="stmt"/>
@@ -134,21 +150,25 @@
         </file>
       </package>
       <package name="components.SearchOrder">
-        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/SearchOrder/index.vue">
-          <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="11" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/SearchOrder/index.vue">
+          <metrics statements="11" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
           <line num="1" count="2" type="stmt"/>
-          <line num="6" count="6" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
+          <line num="9" count="6" type="stmt"/>
           <line num="17" count="1" type="stmt"/>
-          <line num="21" count="1" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
-          <line num="29" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
         </file>
       </package>
       <package name="components.SearchProduct">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/SearchProduct/index.vue">
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/SearchProduct/index.vue">
           <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="16" count="3" type="stmt"/>
           <line num="22" count="1" type="stmt"/>
@@ -157,19 +177,19 @@
       </package>
       <package name="components.TableCart">
         <metrics statements="17" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/TableCart/index.vue">
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/TableCart/index.vue">
           <metrics statements="17" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-          <line num="1" count="2" type="stmt"/>
-          <line num="2" count="2" type="stmt"/>
-          <line num="11" count="3" type="stmt"/>
-          <line num="16" count="3" type="stmt"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="11" count="4" type="stmt"/>
+          <line num="16" count="4" type="stmt"/>
           <line num="20" count="0" type="stmt"/>
           <line num="21" count="0" type="stmt"/>
-          <line num="24" count="3" type="stmt"/>
-          <line num="27" count="3" type="stmt"/>
-          <line num="28" count="3" type="stmt"/>
-          <line num="29" count="3" type="stmt"/>
-          <line num="31" count="3" type="stmt"/>
+          <line num="24" count="4" type="stmt"/>
+          <line num="27" count="4" type="stmt"/>
+          <line num="28" count="4" type="stmt"/>
+          <line num="29" count="4" type="stmt"/>
+          <line num="31" count="4" type="stmt"/>
           <line num="34" count="0" type="stmt"/>
           <line num="39" count="4" type="stmt"/>
           <line num="42" count="1" type="stmt"/>
@@ -179,17 +199,19 @@
         </file>
       </package>
       <package name="components.TableProduct">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/components/TableProduct/index.vue">
-          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-          <line num="1" count="2" type="stmt"/>
-          <line num="2" count="2" type="stmt"/>
-          <line num="3" count="2" type="stmt"/>
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="index.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/components/TableProduct/index.vue">
+          <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
         </file>
       </package>
       <package name="pages.CustomPages">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="RegisterPage.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/pages/CustomPages/RegisterPage.vue">
+        <file name="RegisterPage.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/pages/CustomPages/RegisterPage.vue">
           <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="25" count="1" type="stmt"/>
           <line num="30" count="1" type="stmt"/>
@@ -197,47 +219,28 @@
         </file>
       </package>
       <package name="pages.Order">
-        <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <file name="Orders.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/pages/Order/Orders.vue">
-          <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-          <line num="1" count="1" type="stmt"/>
-          <line num="2" count="1" type="stmt"/>
-          <line num="10" count="3" type="stmt"/>
-          <line num="20" count="3" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
-          <line num="29" count="1" type="stmt"/>
-          <line num="30" count="1" type="stmt"/>
-          <line num="31" count="1" type="stmt"/>
-          <line num="36" count="3" type="stmt"/>
-          <line num="37" count="3" type="stmt"/>
-          <line num="41" count="3" type="stmt"/>
-        </file>
-      </package>
-      <package name="pages.Product">
-        <metrics statements="14" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <file name="index.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/pages/Product/index.vue">
-          <metrics statements="14" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="13" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <file name="Orders.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/pages/Order/Orders.vue">
+          <metrics statements="13" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="1" count="1" type="stmt"/>
           <line num="2" count="1" type="stmt"/>
           <line num="3" count="1" type="stmt"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="5" count="1" type="stmt"/>
-          <line num="25" count="1" type="stmt"/>
-          <line num="30" count="1" type="stmt"/>
+          <line num="12" count="3" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
           <line num="31" count="1" type="stmt"/>
-          <line num="35" count="1" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
-          <line num="41" count="1" type="stmt"/>
-          <line num="46" count="2" type="stmt"/>
-          <line num="47" count="2" type="cond" truecount="1" falsecount="1"/>
-          <line num="48" count="0" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="38" count="3" type="stmt"/>
+          <line num="42" count="3" type="stmt"/>
+          <line num="45" count="3" type="stmt"/>
         </file>
       </package>
       <package name="pages.User">
-        <metrics statements="18" coveredstatements="16" conditionals="10" coveredconditionals="8" methods="3" coveredmethods="3"/>
-        <file name="User.vue" path="/home/nanihutagaol/Dataku/Future/phase2/bazaar/otob_fe/otob_vue/src/pages/User/User.vue">
-          <metrics statements="18" coveredstatements="16" conditionals="10" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <metrics statements="17" coveredstatements="15" conditionals="10" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <file name="User.vue" path="/home/nanihutagaol/Dataku/otob_fe/otob_vue/src/pages/User/User.vue">
+          <metrics statements="17" coveredstatements="15" conditionals="10" coveredconditionals="8" methods="3" coveredmethods="3"/>
           <line num="1" count="1" type="stmt"/>
           <line num="9" count="6" type="stmt"/>
           <line num="27" count="6" type="cond" truecount="1" falsecount="1"/>
@@ -255,7 +258,6 @@
           <line num="53" count="1" type="stmt"/>
           <line num="55" count="4" type="stmt"/>
           <line num="58" count="1" type="stmt"/>
-          <line num="59" count="1" type="stmt"/>
         </file>
       </package>
     </metrics>

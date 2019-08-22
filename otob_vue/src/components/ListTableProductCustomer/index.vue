@@ -12,7 +12,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr v-for="(product, index) in listProduct" :key="index" style="display: flex">
+			<tr v-for="(product, index) in listProduct" :key="index" style="display: flex v- ">
 				<td class="col-sm-2">{{ product.name }}</td>
 				<td class="col-sm-3">{{ product.description }}</td>
 				<td class="col-sm-2"> {{ formatCurrency (product.listPrice) }}</td>
