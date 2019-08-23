@@ -3,12 +3,12 @@
 		<table width="100%" class="table">
 			<thead>
 			<tr  style="display: flex">
-				<td class="col-sm-2">Name</td>
-				<td class="col-sm-4">Description</td>
-				<td class="col-sm-2">List Price</td>
-				<td class="col-sm-2">Offer Price</td>
-				<td class="col-sm-1">Stock</td>
-				<td class="col-sm-1">Action</td>
+				<td class="col-sm-2">Nama Produk</td>
+				<td class="col-sm-4">Deskripsi Produk</td>
+				<td class="col-sm-2">Harga Awal</td>
+				<td class="col-sm-2">Harga Akhir</td>
+				<td class="col-sm-1">Stok</td>
+				<td class="col-sm-1"></td>
 			</tr>
 			</thead>
 			<tbody>
@@ -39,7 +39,7 @@
 			</div>
 
 			<div slot="body">
-				<b-form ref="form" @submit.prevent="onHandleSubmit">
+				<b-form ref="form" @submit.prevent="onHandleSubmit" @reset="onReset">
 					<div class="row grup-input">
 						<label>Nama</label>
 						<b-form-input type="text" v-model="form.name" placeholder="Masukkan nama produk" required/>

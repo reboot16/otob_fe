@@ -17,8 +17,8 @@
 							<h2> Nota Transaksi </h2>
 						</div>
 						<div class="com-sm-4 header-nota" style="text-align: right">
-							Tgl Waktu Pemesanan    : <b>{{ data.ordDate }}</b> <br>
-							Order id Pesanan : <b>{{ data.orderId }}</b><br>
+							Tgl Waktu Pemesanan    : <b>{{ formatDate(data.ordDate) }}</b> <br>
+							Order id Pesanan : <b>{{ data.ordId }}</b><br>
 							Status Pesanan : <b>{{ data.ordStatus }}</b>
 						</div>
 					</div>
@@ -38,16 +38,15 @@
 
 					<table width="100%" class="table table-bordered">
 						<tr v-for="product in data.ordItems" style="display: flex">
-							<td class="col-sm-7"><span> Nama Produk: </span> {{ product.productName}}</td>
+							<td class="col-sm-7"><span> Nama Produk: </span> <b>{{ product.name}}</b> </td>
 							<td class="col-sm-2"><span> Jumlah: </span> {{ product.qty }}</td>
-							<td class="col-sm-3"><span> Harga: </span> {{formatCurrency(product.productPrice)}}</td>
+							<td class="col-sm-3"><span> Harga: </span> {{formatCurrency(parseInt(product.offerPrice))}}</td>
 						</tr>
 					</table>
 
 					<div style="text-align: right" class="footer-nota">
 						Total pembayaran:
 						<label style="font-size: 24px; font-weight: bold;">{{ formatCurrency(data.totPrice)}}</label> <br>
-						{{ formatDate }}
 					</div>
 				</div>
 			</div>
@@ -60,21 +59,17 @@
 <script>
 	import jsPDF from 'jspdf'
 	import html2canvas from 'html2canvas'
+	import moment from 'moment'
 
 	export default {
 		name: "print-note",
-		data () {
-			return {
-				data: {}
-			}
-		},
 		mounted () {
 			this.getOrders();
 		},
 		computed: {
-			// data () {
-			// 	// return this.$store.getters.ORDERS
-			// }
+			data () {
+				return this.$store.getters.getOrderDetail
+			}
 		},
 		methods: {
 			print() {
@@ -92,11 +87,15 @@
 					doc.save("nota-transaksi.pdf");
 				});
 			},
-
 			getOrders(){
-				let par = ''
-				par = this.$route.params.id
-				this.data = this.$store.getters.getOrderById(par);
+				let ordId = ''
+				ordId = this.$route.params.id
+				this.$store.dispatch('getOrderByOrderId', ordId)
+			},
+			formatDate (date) {
+				let newDate = ''
+				newDate += ''+moment(date).format('DD MMM YYYY, HH:mm')
+				return newDate
 			},
 		}
 	}

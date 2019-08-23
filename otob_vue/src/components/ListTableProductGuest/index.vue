@@ -3,11 +3,11 @@
 		<table width="100%" class="table">
 			<thead>
 			<tr  style="display: flex">
-				<td class="col-sm-3">Name</td>
-				<td class="col-sm-4">Description</td>
-				<td class="col-sm-2">List Price</td>
-				<td class="col-sm-2">Offer Price</td>
-				<td class="col-sm-1">Stock</td>
+				<td class="col-sm-3">Nama Produk</td>
+				<td class="col-sm-4">Deskripsi Produk</td>
+				<td class="col-sm-2">harga Awal</td>
+				<td class="col-sm-2">Harga Akhir</td>
+				<td class="col-sm-1">Stok</td>
 			</tr>
 			</thead>
 			<tbody>
@@ -25,7 +25,7 @@
 
 <script>
 	export default {
-		name: "listtabelProductGuest",
+		name: "listTableProductGuest",
 		props: {
 			listProduct: {}
 		}

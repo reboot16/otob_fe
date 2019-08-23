@@ -3,18 +3,18 @@
 
   <CustomForm>
     <div slot="slot-title" id="title">
-      Register Your Self
+      Daftar Akun Baru
     </div>
 
     <div slot="slot-form">
       <b-form @submit.prevent="onRegister">
-        <b-form-input v-model="form.email" placeholder="Enter your email" required></b-form-input>
-        <b-button type="submit" variant="success" style="width:100%">Register</b-button>
+        <b-form-input v-model="form.email" placeholder="Masukkan email anda" required></b-form-input>
+        <b-button type="submit" variant="success" style="width:100%">Daftar</b-button>
       </b-form> 
     </div>
 
     <div slot="slot-notif">
-      If you already have an account, <a href="/" >Login Here</a>
+      Jika anda sudah punya akun, <a href="/login" >Masuk Disini</a>
     </div>
   </CustomForm> 
   
@@ -35,9 +35,6 @@ export default {
   },
   components: {
     CustomForm
-  },
-  mounted () {
-    this.onRouteLoginTrue()
   },
   methods: {
     onRegister () {

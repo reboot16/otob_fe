@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/CustomButtons/CartModify/index.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">components/CustomButtons/CartModify</a> index.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.76% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.76% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/21</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+		&lt;div  style="display: flex" class="row"&gt;
+			&lt;div  style="display: flex"&gt;
+				&lt;div class="qty"&gt;
+					&lt;button @click="decrement(product, index)" class="btn btn-gray btn-left"&gt;&amp;mdash;&lt;/button&gt;
+					&lt;input type="text" :value="product.qty" readonly class="input-gray"&gt;
+					&lt;button @click="increment(product, index)"class="btn btn-gray btn-right"&gt;&amp;#xff0b;&lt;/button&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;button @click="onDelete(product)"
+				style="padding:0.1em 0.5em; color:white; font-size: 18px; margin-left: 3px"
+				class="btn btn-red" id="btnDelete"&gt;
+				&lt;i class="fa fa-trash"&gt;&lt;/i&gt;
+			&lt;/button&gt;
+		&lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+	import CustomAlert from '@/components/CustomComponents/CustomAlert.vue'
+&nbsp;
+	export default {
+		name: 'ModifyCart',
+		props: {
+			product: {},
+			index: 0
+		},
+		components: {
+			CustomAlert
+		},
+		methods: {
+<span class="fstat-no" title="function not covered" >			decrement: function(product) {</span>
+<span class="cstat-no" title="statement not covered" >				let index = this.index</span>
+<span class="cstat-no" title="statement not covered" >				if( product.qty == 1) {</span>
+<span class="cstat-no" title="statement not covered" >					this.onDelete(product, index)</span>
+				}
+				else{
+<span class="cstat-no" title="statement not covered" >					product.qty--</span>
+<span class="cstat-no" title="statement not covered" >					product.index = index</span>
+<span class="cstat-no" title="statement not covered" >					product.type = false</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					this.$store.dispatch('updateItemCart', product)</span>
+				}
+			},
+<span class="fstat-no" title="function not covered" >			increment: function(product, index) {</span>
+<span class="cstat-no" title="statement not covered" >				product.qty++</span>
+<span class="cstat-no" title="statement not covered" >				product.index = index</span>
+<span class="cstat-no" title="statement not covered" >				product.type = true</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				this.$store.dispatch('updateItemCart', product)</span>
+			},
+<span class="fstat-no" title="function not covered" >			onDelete: function (product) {</span>
+<span class="cstat-no" title="statement not covered" >				let index = this.index</span>
+<span class="cstat-no" title="statement not covered" >				product.index = index</span>
+<span class="cstat-no" title="statement not covered" >				this.$store.dispatch('deleteItemCart', product)</span>
+			},
+<span class="fstat-no" title="function not covered" >			onOrder: function () {</span>
+<span class="cstat-no" title="statement not covered" >				this.showModalAlert = true</span>
+			},
+			async continueCheckout () {
+<span class="cstat-no" title="statement not covered" >				await this.$store.dispatch('checkout')</span>
+<span class="cstat-no" title="statement not covered" >				let currentOrder = this.$store.getters.getCurrentOrderId</span>
+<span class="cstat-no" title="statement not covered" >				console.log('tbl cart')</span>
+<span class="cstat-no" title="statement not covered" >				console.log(currentOrder)</span>
+<span class="cstat-no" title="statement not covered" >				this.$router.push('/orders/thank-you/'+currentOrder)</span>
+			}
+		}
+	}
+&lt;/script&gt;
+&nbsp;
+&lt;style scoped&gt;
+&nbsp;
+&lt;/style&gt;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 19 2019 11:52:07 GMT+0700 (WIB)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

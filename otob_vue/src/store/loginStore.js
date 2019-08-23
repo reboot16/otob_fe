@@ -26,25 +26,6 @@ export default {
     }
   },
   actions : {
-    async validateClient({commit, dispatch}){
-      await Axios
-        .get(config.API_PRODUCT)
-        .then(response => {
-          if(response.data.data.message == 'Invalid client'){
-            dispatch('setValidate', false)
-          }
-          else{
-            dispatch('setValidate', true)
-          }
-        }).catch((e) => {
-          dispatch('setValidate', false)
-        })
-    },
-    async setValidate ({commit}, payload) {
-      console.log('set valid')
-      console.log(payload)
-      await commit('SET_IS_VALID', payload)
-    },
     async checkAuthorized({commit, dispatch}){
       let isLoginExist = $cookies.isKey(config.key_login)
       let isIdExist = $cookies.isKey(config.key_id)
@@ -57,7 +38,7 @@ export default {
       }else {
         dispatch('removeCookie')
         // dispatch('doLogout')
-        console.log('cookie remove')
+        // console.log('cookie remove')
       }
       await commit('SET_AUTH', payload)
     },
@@ -88,19 +69,36 @@ export default {
           console.log(e)
         })
     },
-    doLogout({commit, dispatch}) {
-      console.log('syudah logout')
-      Axios
+    async doLogout({commit, dispatch}) {
+      await Axios
         .post(config.API_AUTH + '/logout')
         .then(response => {
-          let payload = {
-            isLogin: false,
-            userId: '',
-            userRole: ''
+          if(response.data.code == 200){
+            let isAuthorized = {}
+            commit('SET_AUTH', isAuthorized)
           }
-          commit('SET_AUTH', payload)
         }).catch((e) => {
           console.log(e)
+        })
+    },
+    validateCookie ({commit, dispatch}) {
+      console.log('check is valid')
+      Axios
+        .post(config.API_PRODUCT)
+        .then(response => {
+          console.log('is valid true' + response.data.code)
+          
+          if(response.data.code == 400) {
+            // $cookies.remove(config.key_login)
+            // $cookies.remove(config.key_id)
+            // $cookies.remove(config.key_role)
+            // console.log('cookie deleted')
+            // dispatch('doLogout')
+          }
+        }).catch((e) => {
+          console.log('is valid false')
+          let isAuthorized = {}
+          commit('SET_AUTH', isAuthorized)
         })
     }
   }

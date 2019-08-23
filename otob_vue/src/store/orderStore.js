@@ -2,93 +2,175 @@ import Axios from 'axios'
 
 export default {
   state: {
-    orders: [],
-    currentOrder: {}
+    orders: {},
+    currentOrder: {},
+    orderDetail: {},
+    totalPages: 0
   },
   getters : {
     ORDERS : state => {
       return state.orders.orders;
     },
+    TOTAL_ORDER_PAGES: state => {
+      return state.totalPages
+    },
     getOrderById : (state) => (id) => {
-      return state.orders.orders.find(order => order.orderId === id)
+      return state.orders.orders.find(order => order.ordId === id)
     },
     getOrderByStatus: (state) => (status) => {
       return state.orders.find(order => order.status === status)
     },
-    getProductsByOrderId :  (state) => (id) => {
-      var orders =  state.orders.find(order=>order.orders_id === id);
-      return orders.products;
-    },
     getCurrentOrder: (state) => {
       return state.currentOrder
     },
-    getCurrentOrderId: (state) => {
-      return state.currentOrder.orderId
+    getOrderDetail: (state) => {
+      return state.orderDetail
     }
   },
   mutations: {
-    UPDATE_PRODUCT_STATUS : (state,product) => {
-      state.orders[0].products[0] = product
-    },
     SET_ORDERS : (state, payload) => {
       state.orders = payload;
+    },
+    SET_TOTAL_PAGES: (state, payload) => {
+      state.totalPages = payload
     },
     ACCEPT_ORDER : (state,payload) => {
       state.orders[payload.index] = payload
     },
     GET_ORDER_BY_ID : (state, payload) => {
-      state.orders = payload
+      state.orderDetail = payload
     },
     SET_CURRENT_ORDER: (state, payload) => [
       state.currentOrder = payload
-    ]
+    ],
+    SET_ORDERS_SEARCH: (state, payload) => {
+      state.orders.orders = {}
+      state.orders.orders[''] = payload;
+    }
   },
   actions : {
-    updateStatusProduct({commit}, product) {
-      commit("UPDATE_PRODUCT_STATUS", product);
-    },
     getOrders ({commit}) {
       Axios
-          .get(config.API_ORDER)
-          .then(response => {
-            commit('SET_ORDERS',response.data.data.orders)
-          }).catch((e) => {
-            console.error(e);
+        .get(config.API_ORDER)
+        .then(response => {
+          commit('SET_ORDERS',response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+        }).catch((e) => {
+        console.error(e);
+      })
+    },
+    getOrderByPage ({commit}, payload) {
+      Axios
+        .get(config.API_ORDER+'?page='+payload.page+'&size='+payload.size)
+        .then(response => {
+          commit('SET_ORDERS',response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+        }).catch((e) => {
+        console.log(e)
+      })
+    },
+    getCustomerOrderByPage ({commit}, payload) {
+      Axios
+        .get(config.API_ORDER+'/user?page='+payload.page+'&size='+payload.size)
+        .then(response => {
+          commit('SET_ORDERS',response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+        }).catch((e) => {
+        console.log(e)
       })
     },
     acceptOrders ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.orderId + '/accept')
-          .then(response => {
-            commit('ACCEPT_ORDER', payload)
-            alert('Succes to Accept Order'+ payload.orderId)
-          })
-          .catch((e) => {
-            console.error(e)
-          });
+        .get(config.API_ORDER + '/' + payload.ordId + '/accept')
+        .then(response => {
+          commit('ACCEPT_ORDER', payload)
+          alert('Succes to Accept Order'+ payload.ordId)
+        })
+        .catch((e) => {
+          console.error(e)
+        });
     },
     rejectOrder ({commit}, payload) {
       Axios
-          .get(config.API_ORDER + '/' + payload.orderId + '/reject')
-          .then(response => {
-            commit('REJECT_ORDER', payload)
-            alert('Succes to Reject Order'+ payload.orderId)
-          })
-          .catch((e) => {
-            console.error(e)
-          });
+        .get(config.API_ORDER + '/' + payload.ordId + '/reject')
+        .then(response => {
+          commit('ACCEPT_ORDER', payload)
+          alert('Succes to Reject Order'+ payload.ordId)
+        })
+        .catch((e) => {
+          console.error(e)
+        });
+    },
+    getOrderByOrderId ({commit}, orderId) {
+      Axios
+        .get(config.API_ORDER+'/'+ orderId + '/search')
+        .then(response => {
+          commit('GET_ORDER_BY_ID', response.data.data)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
     },
     searchOrderByUserId ({commit}, payload) {
       Axios
-          .get(config.API_ORDER+'/user')
-          .then(response => {
-            commit('SET_ORDERS', response.data.data.orders)
-      }).catch((e) => {
+        .get(config.API_ORDER+'/user')
+        .then(response => {
+          console.log(response)
+          commit('SET_ORDERS', response.data.data)
+          commit('SET_TOTAL_PAGES', response.data.data.totalPage)
+        }).catch((e) => {
         console.error(e)
       })
     },
-    async setCurrentOrder ({commit}, payload) {
-      await commit('SET_CURRENT_ORDER', payload)
+    setCurrentOrder ({commit}, payload) {
+      commit('SET_CURRENT_ORDER', payload)
+    },
+    searchOrder ({commit}, textSearch) {
+      if (textSearch === '' || textSearch == null) {
+        Axios
+          .get(config.API_ORDER+'/user')
+          .then(response => {
+            commit('SET_ORDERS', response.data.data)
+            commit('SET_TOTAL_PAGES', response.data.data.totalPage)          })
+      } else {
+        Axios
+          .get(config.API_ORDER+'/'+textSearch+'/search')
+          .then(response => {
+            console.log(response.data.data)
+            commit('SET_ORDERS_SEARCH', response.data.data)
+          })
+      }
+    },
+    printExcel ({commit}, payload) {
+      Axios({
+        url: config.API_ORDER+'/export?month='+payload.month+'&year='+payload.year,
+        method: 'GET',
+        responseType: 'blob',
+      }).then( response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', 'Laporan Pesanan '+payload.month+' '+payload.year+'.xlsx')
+        document.body.appendChild(link)
+        link.click()
+      })
+    },
+    filterOrder ({commit}, payload) {
+      if ((payload.status === '' || payload.status === null) && (payload.date === '' || payload.date === null)) {
+        // alert('ehm')
+        Axios
+          .get(config.API_ORDER)
+          .then(response => {
+            commit('SET_ORDERS', response.data.data)
+          })
+      }  else {
+        // alert('uhuk')
+        Axios
+          .get(config.API_ORDER+'/filter?date='+payload.date+'&status='+payload.status)
+          .then(response => {
+            commit('SET_ORDERS', response.data.data)
+          })
+      }
     }
   }
 }

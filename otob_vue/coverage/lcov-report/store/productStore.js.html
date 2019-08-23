@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for store/productStore.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">store</a> productStore.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/72</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/72</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Axios from 'axios'
+&nbsp;
+export default {
+  state: {
+    products: [],
+    totalPages: 0
+  },
+  getters : {
+    PRODUCTS  : <span class="fstat-no" title="function not covered" >st</span>ate =&gt; {
+<span class="cstat-no" title="statement not covered" >      return state.products;</span>
+    },
+    TOTAL_PAGES : <span class="fstat-no" title="function not covered" >st</span>ate =&gt; {
+<span class="cstat-no" title="statement not covered" >      return state.totalPages</span>
+    }
+  },
+  mutations: { 
+    SET_PRODUCT : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >      state.products = payload</span>
+    },
+    ADD_PRODUCT : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >      state.products.push(payload)</span>
+    },
+    UPDATE_PRODUCT : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >      state.products[payload.index] = payload</span>
+    },
+    UPDATE_PRODUCT_BY_NAME : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >      state.products[payload.name] = payload</span>
+    },
+    DELETE_PRODUCT : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; { 
+<span class="cstat-no" title="statement not covered" >      state.products.splice(payload.index, 1) </span>
+    },
+    UPLOAD_PRODUCT : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >      state.products.push(payload)</span>
+    },
+    SET_TOTAL_PAGES : <span class="fstat-no" title="function not covered" >(s</span>tate, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >      state.totalPages = payload</span>
+    },
+  },
+  actions : {
+    getProducts  ({commit}) {  
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .get(config.API_PRODUCT)
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+          let result = <span class="cstat-no" title="statement not covered" >response.data.data</span>
+<span class="cstat-no" title="statement not covered" >          commit('SET_PRODUCT', result.products)</span>
+<span class="cstat-no" title="statement not covered" >          commit('SET_TOTAL_PAGES', result.totalPage)</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.error(e)</span>
+        }); 
+    },
+    getProductsPageable ({commit}, payload) {
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .get(config.API_PRODUCT + '?page=' + payload.page + '&amp;size=' + payload.size)
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+          let result = <span class="cstat-no" title="statement not covered" >response.data.data</span>
+<span class="cstat-no" title="statement not covered" >          result.products.map(<span class="fstat-no" title="function not covered" >fu</span>nction(product) {</span>
+<span class="cstat-no" title="statement not covered" >            product.qty = 1</span>
+          });
+<span class="cstat-no" title="statement not covered" >          commit('SET_PRODUCT', result.products)</span>
+<span class="cstat-no" title="statement not covered" >          commit('SET_TOTAL_PAGES', result.totalPage)</span>
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.error(e)</span>
+        });
+    },
+    addProduct ({commit}, payload) {
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .post(config.API_PRODUCT,
+          JSON.stringify(payload),
+          {'headers': {'Content-Type': 'application/json'}
+        })
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >          if(response.data.code == 200){</span>
+<span class="cstat-no" title="statement not covered" >            commit('ADD_PRODUCT', response.data.data)</span>
+<span class="cstat-no" title="statement not covered" >            alert('Success add data')</span>
+          }else{
+<span class="cstat-no" title="statement not covered" >            alert('Something wrong')</span>
+          }
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.error(e) </span>
+<span class="cstat-no" title="statement not covered" >          alert(e)</span>
+        }); 
+    },
+    updateProduct ({commit}, payload) {
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .put(config.API_PRODUCT + '/' + payload.productId,
+          JSON.stringify(payload),
+          {'headers': {'Content-Type': 'application/json'}
+        })
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >          if(response.data.code == 200){</span>
+<span class="cstat-no" title="statement not covered" >            commit('UPDATE_PRODUCT', payload)</span>
+<span class="cstat-no" title="statement not covered" >            alert('Success update data')</span>
+          }else{
+<span class="cstat-no" title="statement not covered" >            alert('access denied')</span>
+          }
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.error(e) </span>
+        }); 
+    },
+    deleteProduct ({commit}, payload) {  
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .delete(config.API_PRODUCT + '/' + payload.productId)
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >          if(response.data.code == 200){</span>
+<span class="cstat-no" title="statement not covered" >            commit('DELETE_PRODUCT', payload)</span>
+<span class="cstat-no" title="statement not covered" >            alert('Success delete data')</span>
+          }else{
+<span class="cstat-no" title="statement not covered" >            alert('access denied')</span>
+          }
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.error(e) </span>
+        }); 
+    },
+    searchProduct({commit}, textSearch){
+<span class="cstat-no" title="statement not covered" >      if(textSearch == ''){</span>
+<span class="cstat-no" title="statement not covered" >        Axios</span>
+          .get(config.API_PRODUCT)
+          .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+            let result = <span class="cstat-no" title="statement not covered" >response.data.data</span>
+<span class="cstat-no" title="statement not covered" >            result.products.map(<span class="fstat-no" title="function not covered" >fu</span>nction(product) {</span>
+<span class="cstat-no" title="statement not covered" >              product.qty = 1</span>
+            });
+<span class="cstat-no" title="statement not covered" >            commit('SET_PRODUCT', result.products)</span>
+<span class="cstat-no" title="statement not covered" >            commit('SET_TOTAL_PAGES', result.totalPage)</span>
+          })
+      }else{
+<span class="cstat-no" title="statement not covered" >        Axios</span>
+          .get(config.API_PRODUCT + '/name/' + textSearch)
+          .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >            console.log(response)</span>
+            let result = <span class="cstat-no" title="statement not covered" >response.data.data</span>
+<span class="cstat-no" title="statement not covered" >            result.products.map(<span class="fstat-no" title="function not covered" >fu</span>nction(product) {</span>
+<span class="cstat-no" title="statement not covered" >              product.qty = 1</span>
+            });
+<span class="cstat-no" title="statement not covered" >            commit('SET_PRODUCT', result.products)</span>
+<span class="cstat-no" title="statement not covered" >            commit('SET_TOTAL_PAGES', result.totalPage)</span>
+          })
+      } 
+    },
+    searchProductPageable ({commit}, payload){
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .get(config.API_PRODUCT + '/name/' + payload.textSearch + '?page=' + payload.page + '&amp;size=' + payload.size)
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+          let result = <span class="cstat-no" title="statement not covered" >response.data.data</span>
+<span class="cstat-no" title="statement not covered" >          result.products.map(<span class="fstat-no" title="function not covered" >fu</span>nction(product) {</span>
+<span class="cstat-no" title="statement not covered" >            product.qty = 1</span>
+          });
+<span class="cstat-no" title="statement not covered" >          commit('SET_PRODUCT', result.products)</span>
+<span class="cstat-no" title="statement not covered" >          commit('SET_TOTAL_PAGES', result.totalPage)</span>
+        })
+    },
+    uploadProduct({commit}, payload){ 
+<span class="cstat-no" title="statement not covered" >      Axios</span>
+        .post(config.API_PRODUCT + '/batch',
+          payload,
+          {'headers': {'Content-Type': 'multipart/form-data'}
+        })
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.log()</span>
+<span class="cstat-no" title="statement not covered" >          if(response.data.code == 200){</span>
+            var length = <span class="cstat-no" title="statement not covered" >response.data.data.length</span>
+            var i = <span class="cstat-no" title="statement not covered" >0</span>
+  
+<span class="cstat-no" title="statement not covered" >            for(i=0; i&lt;length; i++){</span>
+<span class="cstat-no" title="statement not covered" >              if(response.data.data[i].productId == 0){</span>
+                //belum bisa auto update
+<span class="cstat-no" title="statement not covered" >                commit('UPDATE_PRODUCT_BY_NAME', response.data.data[i])</span>
+              }else{
+<span class="cstat-no" title="statement not covered" >                commit('ADD_PRODUCT', response.data.data[i])</span>
+              }
+            }
+<span class="cstat-no" title="statement not covered" >            alert('Success upload data')</span>
+          }else{
+<span class="cstat-no" title="statement not covered" >            alert('access denied')</span>
+          }
+        })
+        .catch(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.error(e)</span>
+        }); 
+    },
+  }  
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 17 2019 20:37:55 GMT+0700 (WIB)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -34,15 +34,13 @@ export default {
     },
     SET_TOTAL_PAGES : (state, payload) => {
       state.totalPages = payload
-    }
+    },
   },
   actions : {
-    getProducts  ({commit}) {
-      console.log(config.API_PRODUCT)
+    getProducts  ({commit}) {  
       Axios
         .get(config.API_PRODUCT)
         .then(response => {
-          console.log(response.data.data.products)
           let result = response.data.data
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
@@ -56,9 +54,6 @@ export default {
         .get(config.API_PRODUCT + '?page=' + payload.page + '&size=' + payload.size)
         .then(response => {
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
@@ -74,10 +69,10 @@ export default {
         })
         .then(response => {
           if(response.data.code == 200){
-            commit('ADD_PRODUCT', payload)
-            console.log('add product: success')
+            commit('ADD_PRODUCT', response.data.data)
+            // alert('Success add data')
           }else{
-            console.log('add product: failed')
+            alert('Something wrong')
           }
         })
         .catch((e) => {
@@ -94,23 +89,7 @@ export default {
         .then(response => {
           if(response.data.code == 200){
             commit('UPDATE_PRODUCT', payload)
-            console.log('upd product: success')
-          }else{
-            console.log('upd product: failed')
-          }
-        })
-        .catch((e) => {
-          console.error(e) 
-        }); 
-    },
-    deleteProduct ({commit}, payload) {
-      console.log(config.API_PRODUCT + '/' + payload.productId)
-      Axios
-        .delete(config.API_PRODUCT + '/' + payload.productId)
-        .then(response => {
-          if(response.data.code == 200){
-            commit('DELETE_PRODUCT', payload)
-            alert('Success delete data')
+            // alert('Success update data')
           }else{
             alert('access denied')
           }
@@ -119,15 +98,27 @@ export default {
           console.error(e) 
         }); 
     },
-    searchProduct({commit, dispatch}, textSearch){
+    deleteProduct ({commit}, payload) {  
+      Axios
+        .delete(config.API_PRODUCT + '/' + payload.productId)
+        .then(response => {
+          if(response.data.code == 200){
+            commit('DELETE_PRODUCT', payload)
+            // alert('Success delete data')
+          }else{
+            alert('access denied')
+          }
+        })
+        .catch((e) => {
+          console.error(e) 
+        }); 
+    },
+    searchProduct({commit}, textSearch){
       if(textSearch == ''){
         Axios
           .get(config.API_PRODUCT)
           .then(response => {
             let result = response.data.data
-            result.products.map(function(product) {
-              product.qty = 1
-            });
             commit('SET_PRODUCT', result.products)
             commit('SET_TOTAL_PAGES', result.totalPage)
           })
@@ -135,23 +126,18 @@ export default {
         Axios
           .get(config.API_PRODUCT + '/name/' + textSearch)
           .then(response => {
+            console.log(response)
             let result = response.data.data
-            result.products.map(function(product) {
-              product.qty = 1
-            });
             commit('SET_PRODUCT', result.products)
             commit('SET_TOTAL_PAGES', result.totalPage)
           })
-      }
+      } 
     },
     searchProductPageable ({commit}, payload){
       Axios
         .get(config.API_PRODUCT + '/name/' + payload.textSearch + '?page=' + payload.page + '&size=' + payload.size)
         .then(response => {
           let result = response.data.data
-          result.products.map(function(product) {
-            product.qty = 1
-          });
           commit('SET_PRODUCT', result.products)
           commit('SET_TOTAL_PAGES', result.totalPage)
         })
@@ -163,7 +149,6 @@ export default {
           {'headers': {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
-          console.log()
           if(response.data.code == 200){
             var length = response.data.data.length
             var i = 0
@@ -178,7 +163,7 @@ export default {
             }
             alert('Success upload data')
           }else{
-            alert('access denied')
+            alert(response.data.message)
           }
         })
         .catch((e) => {

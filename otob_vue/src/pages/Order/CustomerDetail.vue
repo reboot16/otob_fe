@@ -2,123 +2,78 @@
 	<div class="orders">
 		<div class="container header-body">
 			<div class="block">
-				<div class="row content-header">
-					<div class="col-sm-12">
-						<span>Detail Pesanan</span>
-					</div>
+				<div>
+					<h3>Detail Pesanan</h3>
 				</div>
-				<div class="col-sm-12">
-					<div class="filter">
-						<table width="100%" class="table table-striped">
-							<tr class="col-sm-12">
-								<td>
-									<span class="label">Nomor Pesanan:</span><br>
-									<span class="value">{{orders.orderId}}</span>
-								</td>
-								<td>
-									<span class="label">Tanggal Transaksi:</span><br>
-									<span class="value">{{orders.ordDate}}</span>
-								</td>
-								<td>
-									<span class="label">Jumlah Pesanan:</span><br>
-									<span class="value">{{orders.totItem}}</span>
-								</td>
-								<td>
-									<span class="label">Total Harga:</span><br>
-									<span class="value">Rp {{orders.totPrice}}</span>
-								</td>
-								<td>
-									<span class="label">Status:</span><br>
-									<span class="status-waiting" v-show="orders.ordStatus === 'Waiting'">{{orders.ordStatus}}</span>
-									<span class="status-rej" v-show="orders.ordStatus === 'Rejected'">{{orders.ordStatus}}</span>
-									<span class="status-acc" v-show="orders.ordStatus === 'Accepted'">{{orders.ordStatus}}</span>
-								</td>
-								<td v-show="orders.ordStatus === 'Accepted'">
-									<button class="print-nota" v-on:click="printNota(orders.orderId)">
-										<i class="fa fa-print"></i>
-										Print Nota
-									</button>
-								</td>
-							</tr>
-						</table>
-					</div>
+				<div class="filter">
+					<table width="100%" class="table table-striped">
+						<tr class="col-sm-12">
+							<td>
+								<span class="label">Nomor Pesanan:</span><br>
+								<span class="value">{{orderDetail.ordId}}</span>
+							</td>
+							<td>
+								<span class="label">Tanggal Transaksi:</span><br>
+								<span class="value">{{ formatDate (orderDetail.ordDate) }}</span>
+							</td>
+							<td>
+								<span class="label">Jumlah Pesanan:</span><br>
+								<span class="value">{{orderDetail.totItem}}</span>
+							</td>
+							<td>
+								<span class="label">Total Harga:</span><br>
+								<span class="value"> {{ formatCurrency (orderDetail.totPrice) }}</span>
+							</td>
+							<td>
+								<span class="label">Status:</span><br>
+								<span class="status-waiting" v-show="orderDetail.ordStatus === 'Waiting'">{{orderDetail.ordStatus}}</span>
+								<span class="status-rej" v-show="orderDetail.ordStatus === 'Rejected'">{{orderDetail.ordStatus}}</span>
+								<span class="status-acc" v-show="orderDetail.ordStatus === 'Accepted'">{{orderDetail.ordStatus}}</span>
+							</td>
+							<td v-show="orderDetail.ordStatus === 'Accepted'">
+								<button class="print-nota" v-on:click="printNota(orderDetail.ordId)">
+									<i class="fa fa-print"></i>
+									Print Nota
+								</button>
+							</td>
+						</tr>
+					</table>
 				</div>
-				<div class="col-sm-12">
-					<div class="filter">
-						<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
-							<thead>
-							<tr class="col-sm-12">
-								<th width="5%">No</th>
-								<th width="30%">Nama Produk</th>
-								<th width="15%">Jumlah</th>
-								<th width="25%">Harga Satuan</th>
-								<th width="25%"> Harga Total</th>
-							</tr>
-							</thead>
 
-							<tbody class="scrollContentCart">
-							<tr ref="listItemCart" class="col-sm-12" v-if="orders.ordItems.length != 0" v-for="(item, index) in orders.ordItems" :key="index" >
-								<td width="5%"><b>{{ index+1 }}</b></td>
-								<td width="30%">{{ item.productName }}</td>
-								<td width="15%">{{ item.qty }}</td>
-								<td width="25%">Rp {{ item.productPrice }}</td>
-								<td width="25%">Rp {{item.qty * item.productPrice}}</td>
-							</tr>
+				<div class="filter">
+					<table width="100%" class="table table-hover table-striped table-scroll small-first-col">
+						<thead>
+						<tr class="col-sm-12">
+							<th width="5%">No</th>
+							<th width="30%">Nama Produk</th>
+							<th width="15%">Jumlah</th>
+							<th width="25%">Harga Satuan</th>
+							<th width="25%"> Harga Keseluruhan</th>
+						</tr>
+						</thead>
 
-							<tr class="col-sm-12" v-else>
-								<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
-							</tr>
-							</tbody>
+						<tbody class="scrollContentCart">
+						<tr ref="listItemCart" class="col-sm-12" v-if="orderDetail.ordItems.length != 0" v-for="(item, index) in orderDetail.ordItems" :key="index" >
+							<td width="5%"><b>{{ index+1 }}</b></td>
+							<td width="30%">{{ item.name }}</td>
+							<td width="15%">{{ item.qty }}</td>
+							<td width="25%"> {{ formatCurrency (item.offerPrice) }}</td>
+							<td width="25%"> {{ formatCurrency (item.qty * item.offerPrice) }}</td>
+						</tr>
 
-						</table>
-					</div>
+						<tr class="col-sm-12" v-else>
+							<td width="4%" class="empty-cart" style="text-align: center"><h5>Empty Order :(</h5></td>
+						</tr>
+						</tbody>
+
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script>
-	export default {
-		name: "Approvement",
-		props: {
-			'auth': ''
-		},
-		data(){
-			return{
-				orders: [],
-				products: {
-					products_id: 0,
-					products_name: '',
-					jumlah: 0,
-					harga: 0,
-					status: '',
-				},
-			};
-		},
-		computed: {
-			getOrders () {
-				let par = ''
-				par = this.$route.params.id
-				this.orders = this.$store.getters.getOrderById(par);
-			}
-		},
-		methods: {
-			getOrders(){
-				let par = ''
-				par = this.$route.params.id
-				this.orders = this.$store.getters.getOrderById(par);
-			},
-			printNota (id) {
-				this.$router.push('/orders/'+id+'/print-note')
-			}
-		},
-		mounted() {
-			this.$store.dispatch('getOrders')
-			this.getOrders();
-		}
-	}
-</script>
+<script src="./CustomerDetail.js"></script>
 
 <style scoped>
 	.block{
@@ -179,9 +134,9 @@
 		height: 48px;
 		width: 100%;
 		font-size: 1rem;
+		border-radius: 5px;
 	}
 	.print-nota:hover {
 		background: #F9a94b;
 	}
 </style>
-© 2019 GitHub, Inc.

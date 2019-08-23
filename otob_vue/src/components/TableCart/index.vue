@@ -4,42 +4,30 @@
         <tbody>
           <tr v-for="(product, index) in listItemCart" :key="index"  style="display: flex">
             <td class="col-sm-8">{{ product.name }}</td>
-            <td class="col-sm-2 color-orange item-price" style="text-align: right">
-              {{ formatCurrency(product.offerPrice) }}
-            </td>
+            <td class="col-sm-2 color-orange item-price" style="text-align: right">{{ formatCurrency
+							(product.offerPrice) }}</td>
             <td class="col-sm-2" style="display: flex;">
-              <ModifyCart :product="product" :index="index"/>
-<!--              <div  style="display: flex">-->
-<!--                <div class=" qty">-->
-<!--                  <button @click="decrement(product, index)" class="btn btn-gray btn-left">&mdash;</button>-->
-<!--                  <input type="text" :value="product.qty" readonly class="input-gray">-->
-<!--                  <button @click="increment(product, index)"class="btn btn-gray btn-right">&#xff0b;</button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <button @click="onDelete(product, index)"-->
-<!--                style="padding:0.1em 0.5em; color:white; font-size: 18px; margin-left: 3px"-->
-<!--                class="btn btn-red">-->
-<!--                <i class="fa fa-trash"></i>-->
-<!--              </button>-->
+              <CustomButton :product="product" :index="index"/>
             </td>
           </tr>
         </tbody>
       </table>
+
       <div class="row" style="margin-bottom: 0.5em">
         <div class="col-sm-10" style="text-align:right">
           <div style="font-size: 13px">Total Belanja <b> ({{ countOfItem }}) </b></div>
           <span class="color-orange checkout-price"> {{ formatCurrency(sumOfPrice) }}</span>
         </div>
         <div class="col-sm-2" style="text-align:right" >
-          <button class="btn btn-orange" @click="onOrder" :disabled="bookDisable(countOfItem)" width="100%">Order Now</button>
+          <button class="btn btn-orange" @click="onOrder" width="100%" id="btnOrder">Pesan Sekarang</button>
         </div>
       </div>
 
       <CustomAlert v-if="showModalAlert"
          @close="showModalAlert=false"
          @continue="continueCheckout" >
-        <div slot="alert-name">
-          Are you sure to continue the checkout process ?
+        <div slot="alert-name" style="text-align: center">
+          Lanjutkan proses pemesanan produk ?
         </div>
       </CustomAlert>
   </div> 

@@ -39,6 +39,11 @@ export const router = new VueRouter({
       component: () => import('@/pages/Order/ViewAllOrders.vue')
     },
     {
+      path: '/orders/check',
+      name: 'checkOrder',
+      component: () => import('@/pages/Order/CheckOrder.vue')
+    },
+    {
       path: '/orders/:id/detail',
       name: 'orderAprovement',
       component: () => import('@/pages/Order/Approvement.vue')
@@ -78,17 +83,7 @@ export const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = "Blibli Bazaar"
-  
-  // store.dispatch('validateClient')
-  // let isvalid = store.getters.isValid
-  // console.log('isValid:' + isvalid)
-  // if(isvalid == true){
-  //   console.log('valid')
-  // }else if(isvalid == false){
-  //   // store.dispatch('doLogout')
-  //   next('/login')
-  //   console.log('logout')
-  //   console.log('not-valid')
-  // }
+  // store.dispatch('validateCookie')
+  store.dispatch('checkAuthorized')
   next()
 })

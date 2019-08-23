@@ -42,16 +42,11 @@ export default {
 			this.form.index = index
 		},
 		onHandleSubmit () {
-			let product = this.form
-			this.onUpdate(product)
-		},
-		onUpdate (product) {
 			this.showModalUpd = false
-			this.$store.dispatch('updateProduct', product)
+			this.$store.dispatch('updateProduct', this.form)
 		},
 		onConfirmDelete (product, index) {
 			this.showModalAlert = true
-			
 			this.deletedProduct = product
 			this.deletedProduct.index = index
 		},
@@ -64,8 +59,5 @@ export default {
 		resetForm () {
 			this.form = ''
 		}
-	},
-	watch: {
 	}
-	
 }
